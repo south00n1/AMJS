@@ -7,6 +7,7 @@ public class MainClass {
 		System.out.println("열심히 해봐요~");
 		System.out.println("dd");
 		System.out.println("!!");
+		System.out.println("ㅁㄴㅇ");
 	}
 
 }
