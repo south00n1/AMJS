@@ -434,3 +434,6 @@
     padding-right: 0;
     border-right: none;
 }
+a.btn btn-primary b1 {
+	width: 128px !important;
+}
