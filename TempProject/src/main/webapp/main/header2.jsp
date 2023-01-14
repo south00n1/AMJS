@@ -14,7 +14,7 @@
     </div>
     
 	<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="main.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="../main/main.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">Go Out Display</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -22,20 +22,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="main.jsp" class="nav-item nav-link active">홈</a>
-                <a href="about.jsp" class="nav-item nav-link">전시회 목록</a>
-                <a href="courses.jsp" class="nav-item nav-link">2D 전시회</a>
+                <a href="../main/main.jsp" class="nav-item nav-link active">홈</a>
+                <a href="../main/about.jsp" class="nav-item nav-link">전시회 목록</a>
+                <a href="../main/courses.jsp" class="nav-item nav-link">2D 전시회</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="team.jsp" class="dropdown-item">후기게시판</a>
-                        <a href="testimonial.jsp" class="dropdown-item">이벤트게시판</a>
-                        <a href="404.jsp" class="dropdown-item">공지사항</a>
+                        <a href="../main/team.jsp" class="dropdown-item">후기게시판</a>
+                        <a href="../main/testimonial.jsp" class="dropdown-item">이벤트게시판</a>
+                        <a href="../main/404.jsp" class="dropdown-item">공지사항</a>
                     </div>
                 </div>
-                <a href="contact.jsp" class="nav-item nav-link">고객센터</a>
+                <a href="../main/contact.jsp" class="nav-item nav-link">고객센터</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     
