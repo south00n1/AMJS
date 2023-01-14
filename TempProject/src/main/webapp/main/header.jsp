@@ -35,14 +35,14 @@
                 </div>
                 <a href="contact.jsp" class="nav-item nav-link">고객센터</a>
             </div>
-            <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="../img/main_image.png" alt="">
+                <img class="img-fluid" src="../img/main_image.png" alt="" style="height: 550px">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="../img/main_image.png" alt="">
+                <img class="img-fluid" src="../img/main_image.png" alt="" style="height: 550px">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">

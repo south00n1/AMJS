@@ -18,7 +18,7 @@
     --bs-white: #fff;
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
-    --bs-primary: #06bbcc;
+    --bs-primary: #27375C;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -42,7 +42,7 @@
 }
 body {
     margin: 0;
-    font-family: "Heebo", sans-serif;
+    font-family: "Heebo", 'Noto Sans KR', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -2530,8 +2530,8 @@ fieldset:disabled .btn {
 }
 .btn-primary {
     color: #000;
-    background-color: #06bbcc;
-    border-color: #06bbcc;
+    background-color: #27375C;
+    border-color: #27375C;
 }
 .btn-primary:hover {
     color: #000;
@@ -6748,7 +6748,7 @@ fieldset:disabled .btn {
     word-break: break-word !important;
 }
 .text-primary {
-    color: #06bbcc !important;
+    color: #27375C !important;
 }
 .text-secondary {
     color: #6c757d !important;

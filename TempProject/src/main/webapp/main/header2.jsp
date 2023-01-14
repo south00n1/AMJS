@@ -35,7 +35,7 @@
                 </div>
                 <a href="../main/contact.jsp" class="nav-item nav-link">고객센터</a>
             </div>
-            <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     
