@@ -58,7 +58,7 @@
 	    </div>
 	  </div>
 	  
-	  <a href="#" title="">아직 회원이 아니신가요?</a>
+	  <a href="../user/join.jsp" title="">아직 회원이 아니신가요?</a>
 	  
 	</div>
 	

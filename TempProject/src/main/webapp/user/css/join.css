@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Heebo", 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.2rem;
+  color: #333;
+  letter-spacing: -0.02rem;
+  background-color: rgb(245, 246, 247);
+}
+
+div.container {
+	width: 768px;
+	margin: 60px auto;
+	text-align: center;
+}
+div.info_member div {
+	width: 460px;
+	margin: 0px auto;
+}
+h1 {
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 60px;
+  padding-bottom: 35px;
+  color: #333;
+}
+
+ul li {
+  list-style: none;
+}
+
+button {
+  border: 1px solid #27375C;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #27375C;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: "Heebo", 'Noto Sans KR', sans-serif;
+}
+
+input[type=search], input[type=email], input[type=password], input[type=text], input[type=number], textarea {
+  width: 100%;
+  height: 42px;
+  padding: 0 11px 1px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  appearance: none;
+  outline: 0;
+}
+
+input[type=search]:focus, input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=number]:focus, textarea:focus {
+  border: 1px solid #27375C;
+}
+
+input[type=radio] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input[type=radio]:checked.smallradio {
+  width: 24px;
+  height: 24px;
+  border: 7px solid #27375C;
+}
+
+.info_member>div> :nth-child(1) {
+  padding: 18px 0 7px 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.info_member>div> :nth-child(1)::after {
+  content: "*";
+  color: #ee6a7b;
+}
+
+div.info_member p::after {
+	content: "*";
+	color: #ee6a7b;
+}
+
+div.info_member :nth-child(1) div {
+	display: flex;
+}
+
+.info_member> :nth-child(1) div button {
+  width: 100px;
+  height: 42px;
+  margin-left: 10px;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+.info_member> :nth-child(1) div button:hover {
+  color: white;
+  background: #27375C;
+}
+.info_member> :nth-child(5) div {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.info_member> :nth-child(5) input {
+  border: none;
+  text-align: center;
+  height: 42px;
+}
+
+.info_member> :nth-child(5) div span {
+  margin: 0;
+  line-height: 42px;
+  color: #ccc;
+  background-color: white;
+}
+
+.info_member> :nth-child(6) div {
+  text-align: left;
+}
+
+.info_member> :nth-child(7)> :nth-child(1)::after,
+.info_member> :nth-child(10)> :nth-child(1)::after,
+.info_member> :nth-child(12)> :nth-child(1)::after {
+  display: none;
+}
+.info_member> :nth-child(9) input {
+  background: url('https://res.kurly.com/kurly/ico/2021/search_20_20_333.svg') no-repeat;
+  background-position: right center;
+  background-size: 45px 20px;
+  padding-right: 50px;
+  background-color: white;
+}
+div.info_member :nth-child(10) p {
+	margin-top: 0;
+}
+
+div.info_member :nth-child(11) div {
+	display: flex;
+}
+
+.info_member> :nth-child(11) div button {
+  width: 100px;
+  height: 42px;
+  margin-left: 10px;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+.info_member> :nth-child(11) div button:hover {
+  color: white;
+  background: #27375C;
+}
+
+.info_member> :nth-child(12) button {
+  width: 460px;
+  height: 42px;
+  margin-top: 20px;
+  transition: 0.8s;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 0;
+}
+
+.info_member> :nth-child(12) button:hover {
+  color: white;
+  background: #27375C;
+}
+
+::placeholder {
+  color: #333;
+  font-size: 0.8em;
+  font-weight: 400;
+  opacity: 0.7; 
+}
