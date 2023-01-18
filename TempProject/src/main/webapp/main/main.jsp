@@ -1,17 +1,6 @@
-<%@page import="com.sist.change.JspChange"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <%
- 	request.setCharacterEncoding("UTF-8");
- 	String mode = request.getParameter("mode");
-   // 처음에 한번은 default 지정
-   if(mode == null) {
-      mode = "0";
-   }
-   	String jsp = JspChange.change(Integer.parseInt(mode));
- %>
- 
 <!DOCTYPE html>
 <html>
 
@@ -54,7 +43,7 @@
     <!-- Header Start -->
     <jsp:include page="header.jsp"></jsp:include>
     <!-- section Start -->
-    <jsp:include page="<%=jsp %>"></jsp:include>
+    <jsp:include page="${main_jsp }"></jsp:include>
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
 
