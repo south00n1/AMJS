@@ -22,7 +22,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../main/main.jsp" class="nav-item nav-link active">홈</a>
+                <a href="../main/main.do" class="nav-item nav-link active">홈</a>
                 <a href="../main/about.jsp" class="nav-item nav-link">전시회 목록</a>
                 <a href="../main/courses.jsp" class="nav-item nav-link">2D 전시회</a>
                 <div class="nav-item dropdown">
