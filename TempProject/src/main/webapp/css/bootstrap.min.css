@@ -1657,7 +1657,7 @@ progress {
     color: var(--bs-table-hover-color);
 }
 .table-primary {
-    --bs-table-bg: #cdf1f5;
+    --bs-table-bg: rgb(255, 255, 255);
     --bs-table-striped-bg: #c3e5e9;
     --bs-table-striped-color: #000;
     --bs-table-active-bg: #b9d9dd;
@@ -6363,6 +6363,8 @@ fieldset:disabled .btn {
 }
 .mb-0 {
     margin-bottom: 0 !important;
+    margin-top: 10;
+    font-size: 15px;
 }
 .mb-1 {
     margin-bottom: 0.25rem !important;
@@ -6531,7 +6533,7 @@ fieldset:disabled .btn {
     padding: 1rem !important;
 }
 .p-4 {
-    padding: 1.5rem !important;
+    padding: 2.1rem !important;
 }
 .p-5 {
     padding: 3rem !important;
