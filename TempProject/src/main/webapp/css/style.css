@@ -272,7 +272,15 @@
 .service-item:hover * {
     color: var(--light) !important;
 }
-
+/*
+.mb-3{
+	padding:1px;
+	margin: 0 auto;
+	text-align:left;
+	color:#27375C;
+	font-size: 25px;
+}
+*/
 
 /*** Categories & Courses ***/
 .category img,
@@ -420,7 +428,7 @@
 }
 
 .footer .copyright a {
-    color: var(--light);
+    color: var(—light);
 }
 
 .footer .footer-menu a {
