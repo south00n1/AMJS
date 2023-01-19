@@ -34,7 +34,7 @@
         <!-- search bar end -->
                 <a href="../main/main.do" class="nav-item nav-link active">홈</a>
                 <a href="about.jsp" class="nav-item nav-link">전시회 목록</a>
-                <a href="courses.jsp" class="nav-item nav-link">2D 전시회</a>
+                <a href="../picture/picture_list.do" class="nav-item nav-link">2D 전시회</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
                     <div class="dropdown-menu fade-down m-0">

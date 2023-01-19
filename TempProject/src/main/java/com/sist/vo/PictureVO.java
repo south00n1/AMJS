@@ -8,7 +8,7 @@ package com.sist.vo;
  */
 public class PictureVO {
 	private int gpno;
-	private int image, title, name, content;
+	private String image, title, name, content;
 	
 	public int getGpno() {
 		return gpno;
@@ -16,28 +16,30 @@ public class PictureVO {
 	public void setGpno(int gpno) {
 		this.gpno = gpno;
 	}
-	public int getImage() {
+	public String getImage() {
 		return image;
 	}
-	public void setImage(int image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	public int getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(int content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
 }
