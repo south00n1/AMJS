@@ -24,13 +24,13 @@
         
             <div class="navbar-nav ms-auto p-4 p-lg-0">
              <!-- search bar start -->
-       <div class="box">
-  <div class="container-2">
-      <span class="icon"><i class="fa fa-search"></i></span>
-      <input type="search" id="search" placeholder="Search..." />
-  </div>
-</div>
-</div>
+       		<div class="box">
+ 			<div class="container-2">
+      		<span class="icon"><i class="fa fa-search"></i></span>
+      		<input type="search" id="search" placeholder="Search..." />
+  			</div>
+			</div>
+			</div>
         <!-- search bar end -->
                 <a href="../main/main.do" class="nav-item nav-link active">홈</a>
                 <a href="about.jsp" class="nav-item nav-link">전시회 목록</a>

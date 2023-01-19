@@ -6623,7 +6623,7 @@ fieldset:disabled .btn {
     padding-right: 3rem !important;
 }
 .pb-0 {
-    padding-bottom: 0 !important;
+    padding-bottom: 1rem !important;
 }
 .pb-1 {
     padding-bottom: 0.25rem !important;
@@ -10047,4 +10047,9 @@ width: 300px;
 }
 .container-2:hover .icon{
   color: #fff;
+}
+
+
+.smm-4{
+	margin-top:30px auto;
 }
