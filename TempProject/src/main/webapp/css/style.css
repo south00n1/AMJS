@@ -272,6 +272,7 @@
 .service-item:hover * {
     color: var(--light) !important;
 }
+/*
 .mb-3{
 	padding:1px;
 	margin: 0 auto;
@@ -279,6 +280,7 @@
 	color:#27375C;
 	font-size: 25px;
 }
+*/
 
 /*** Categories & Courses ***/
 .category img,
@@ -443,3 +445,5 @@
 a.btn btn-primary b1 {
 	width: 128px !important;
 }
+
+/* ================ 추가 css ==================*/

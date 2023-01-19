@@ -21,7 +21,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
+        
             <div class="navbar-nav ms-auto p-4 p-lg-0">
+             <!-- search bar start -->
+       <div class="box">
+  <div class="container-2">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <input type="search" id="search" placeholder="Search..." />
+  </div>
+</div>
+</div>
+        <!-- search bar end -->
                 <a href="../main/main.do" class="nav-item nav-link active">홈</a>
                 <a href="about.jsp" class="nav-item nav-link">전시회 목록</a>
                 <a href="courses.jsp" class="nav-item nav-link">2D 전시회</a>
@@ -38,11 +48,14 @@
             <a href="../user/login.jsp" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
+    <!-- slider start(test) -->
     
-    <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
+ 
+    <!-- slider end(test) -->
+    
+          <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="../img/main_image.png" alt="" style="height: 550px">
+                <img class="img-fluid" src="../img/main_image.png" alt="" style="height: 550px;width: 100%;">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
