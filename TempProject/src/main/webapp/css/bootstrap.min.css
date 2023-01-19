@@ -6366,6 +6366,9 @@ fieldset:disabled .btn {
     padding-top: 1rem;
     font-size:18px;
    
+  	margin-bottom: 0 !important;
+    padding-top: 1rem;
+    font-size:18px;
 }
 .mb-1 {
     margin-bottom: 0.25rem !important;
@@ -6625,7 +6628,7 @@ fieldset:disabled .btn {
     padding-right: 3rem !important;
 }
 .pb-0 {
-    padding-bottom: 0 !important;
+    padding-bottom: 1rem !important;
 }
 .pb-1 {
     padding-bottom: 0.25rem !important;
@@ -9987,4 +9990,71 @@ fieldset:disabled .btn {
     .d-print-none {
         display: none !important;
     }
+}
+
+/* ======================= css 추가 ============================= */
+.box{
+  margin: 10px auto;
+  width: 300px;
+  height: 50px;
+  
+}
+.container-2{
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+.container-2 input#search{
+  width: 50px;
+  height: 50px;
+  background: #27375C;
+  font-size: 10pt;
+  float: right;
+  color: #27375C;
+  padding-left: 35px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-transition: width .55s ease;
+  -moz-transition: width .55s ease;
+  -ms-transition: width .55s ease;
+  -o-transition: width .55s ease;
+  transition: width .55s ease;
+}
+.container-2 input#search::-webkit-input-placeholder {
+   color: #fff;
+}
+.container-2 input#search:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+.container-2 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #27375C;  
+}
+.container-2 input#search:-ms-input-placeholder {  
+   color: #27375C;  
+}
+.container-2 .icon{
+  position: absolute;
+  top: 50%;
+  margin-left: 89%;
+  margin-top: 17px;
+  z-index: 1;
+  color: #fff;
+}
+.container-2 input#search:focus, .container-2 input#search:active{
+  outline:none;
+  width: 300px;
+}
+.container-2:hover input#search{
+width: 300px;
+}
+.container-2:hover .icon{
+  color: #fff;
+}
+
+
+.smm-4{
+	margin-top:30px auto;
 }

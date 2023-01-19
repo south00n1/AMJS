@@ -3,6 +3,7 @@
     --primary: #27375C;
     --light: #F0FBFC;
     --dark: #181d38;
+    --white: #fff;
 }
 
 .fw-medium {
@@ -445,3 +446,5 @@
 a.btn btn-primary b1 {
 	width: 128px !important;
 }
+
+/* ================ 추가 css ==================*/

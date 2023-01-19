@@ -7,53 +7,224 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- Service Start -->
+<!-- 
+<div class="col-lg-8 text-center">
+            <form
+              action="#"
+              class="narrow-w form-search d-flex align-items-stretch mb-3 search"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <input
+                type="text"
+                class="form-control px-4"
+                placeholder="키워드 입력"
+                style="text-align: center"
+              />
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
+ -->
+ 
+  <!-- Courses1 Start -->
     <div class="container-xxl py-5">
         <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Catogory</h6>
+                <h1 class="mb-5">일반 전시회</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category1.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">우주 백패킹 2022 서울라이트 차세대 미디어아티스트 전시</h5>
+                            <div class="smm-4">
+                            <h6 class="sm-4">2022-11-01 ~ 2023-01-29</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category2.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">DDP협력전시 미래의 빛, <br>마르코 로돌라 </h5>
+                            <div class="smm-4">
+                            <h6 class="sm-4">2022-09-05 ~ 2023-01-29</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category3.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">HELLO, CREATORS! 서울디자인창업센터 및 입주기업 전시</h5>
+                            <h6 class="sm-4">2022-11-23 ~ 2023-06-23</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category4.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">DDP 소장품전 VOL.1 TELE+VISION 내일의 기억</h5>
+                            <h6 class="sm-4">2022-11-30 ~ 2023-05-31</h6>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                
+            </div>
+        </div>
+    </div>
+    <!-- Courses1 End -->
+    
+    <!-- Courses2 Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Catogory</h6>
+                <h1 class="mb-5">무역 전시회</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category1.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">우주 백패킹 2022 서울라이트 차세대 미디어아티스트 전시</h5>
+                            <div class="smm-4">
+                            <h6 class="sm-4">2022-11-01 ~ 2023-01-29</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category2.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">DDP협력전시 미래의 빛, <br>마르코 로돌라 </h5>
+                            <div class="smm-4">
+                            <h6 class="sm-4">2022-09-05 ~ 2023-01-29</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category3.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">HELLO, CREATORS! 서울디자인창업센터 및 입주기업 전시</h5>
+                            <h6 class="sm-4">2022-11-23 ~ 2023-06-23</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="../img/main-category4.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">DDP 소장품전 VOL.1 TELE+VISION 내일의 기억</h5>
+                            <h6 class="sm-4">2022-11-30 ~ 2023-05-31</h6>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                
+            </div>
+        </div>
+    </div>
+    <!-- Courses2 End -->
+    
+ 
+	<!-- Service Start -->
+	<!-- 
+    <div class="container-xxl py-5">
+        <div class="container">
+         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">전시 카테고리</h6>
+            </div> 
+                        <div style="height: 10px"></div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <h5 class="mb-3">일반 전시회</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <h5 class="mb-3">무역 일반 전시회(B2C)</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <h5 class="mb-3">무역 전시회(B2B)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 10px"></div>
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
-                            <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i> 
-                            <h5 class="mb-3">수도권</h5>
-                           <!--   <p>진행중인 전시 보러가기</p> -->
+                            <h5 class="mb-3">자동차</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5 class="mb-3">경상</h5>
-                            <!-- <p>진행중인 전시 보러가기</p> -->
+                            <h5 class="mb-3">환경</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
-                           < <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                            <h5 class="mb-3">전라</h5>
-                         <!--   <p>진행중인 전시 보러가기</p> -->
+                            <h5 class="mb-3">사진전</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
-                           <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">제주</h5>
-                         <!--   <p>진행중인 전시 보러가기</p> -->
+                            <h5 class="mb-3">문화</h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+     -->
     <!-- Service End -->
 
 
     <!-- About Start -->
+    <!-- 
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
@@ -63,7 +234,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <!-- <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6> -->
+                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
                     <h1 class="mb-4">Welcome to eLEARNING</h1>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
@@ -92,6 +263,7 @@
             </div>
         </div>
     </div>
+     -->
     <!-- About End -->
 
 
@@ -99,7 +271,7 @@
     <div class="container-xxl py-5 category">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <!-- <h6 class="section-title bg-white text-center text-primary px-3">이번달 이벤트</h6> -->
+                <h6 class="section-title bg-white text-center text-primary px-3">이번달 이벤트</h6>
                 <h1 class="mb-5">얼리버드 및 관람후기 프로모션</h1>
             </div>
             <div class="row g-3">
@@ -108,7 +280,8 @@
                         <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
                             <a class="position-relative d-block overflow-hidden" href="">
                                 <img class="img-fluid" src="../img/cat-1.png" alt="">
-                              	 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                              	  <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 0px;"> 
+                              		<i class="fa-solid fa-arrow-right"></i>
                                     <!-- <h5 class="m-0">Web Design</h5> -->
                                  <!--   <small class="text-primary">49 Courses</small> -->
                                 </div>
@@ -117,7 +290,8 @@
                         <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
                             <a class="position-relative d-block overflow-hidden" href="">
                                 <img class="img-fluid" src="../img/cat-2.png" alt="">
-                              	 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
+                              	   <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 0px;">
+                              	   <i class="fa-solid fa-arrow-right"></i>
                                     <!-- <h5 class="m-0">Web Design</h5> -->
                                  <!--   <small class="text-primary">49 Courses</small> -->
                                 </div>
@@ -127,8 +301,9 @@
                 </div>
                 <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
                     <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="../img/cat-4.jpg" alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
+                        <img class="img-fluid position-absolute w-100 h-100" src="../img/cat-3.png" alt="" style="object-fit: cover;">
+                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  0px;">
+                        <i class="fa-solid fa-arrow-right"></i>
                            <!-- <h5 class="m-0">Online Marketing</h5>-->
                            <!-- <small class="text-primary">49 Courses</small>-->
                         </div>
@@ -140,109 +315,14 @@
     <!-- Categories Start -->
 
 
-    <!-- Courses Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <!-- <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6> -->
-                <h1 class="mb-5">Popular Courses</h1>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="../img/course-1.jpg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="../img/course-2.jpg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="../img/course-3.jpg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0">$149.00</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(123)</small>
-                            </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Courses End -->
+   
 
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <!-- <h6 class="section-title bg-white text-center text-primary px-3">이번달 전시</h6> -->
+                <h6 class="section-title bg-white text-center text-primary px-3">이번달 전시</h6>
                 <h1 class="mb-5">전시 랭킹 TOP4</h1>
             </div>
             <div class="row g-4">
@@ -335,44 +415,45 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="text-center">
-                <h1 class="mb-5">Our Students Say!</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">전시관람 후기</h6>
+                <h1 class="mb-5">리뷰 서브 타이틀</h1>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="../img/testimonial-1.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <h5 class="mb-0">WATSON, THE MAESTRO-알버트 왓슨 사진전</h5>
+                    <p>손현진</p>
+                    <div class="testimonial-text bg-light text-center p-4-1">
+                    <p class="mb-0">패션 관련 전시가 전혀 아니고 마틴 마르지엘라 님의 깊고 심오한 예술세계를 볼 수 있는 현대미술 같은 전시입니다.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="../img/testimonial-2.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <h5 class="mb-0">MARTIN MARGIELA AT LOTTE MUSEUM</h5>
+                    <p>김선우</p>
+                    <div class="testimonial-text bg-light text-center p-4-1">
+                    <p class="mb-0">패션 관련 전시가 전혀 아니고 마틴 마르지엘라 님의 깊고 심오한 예술세계를 볼 수 있는 현대미술 같은 전시입니다.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="../img/testimonial-3.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <h5 class="mb-0">WATSON, THE MAESTRO-알버트 왓슨 사진전</h5>
+                    <p>김남훈</p>
+                    <div class="testimonial-text bg-light text-center p-4-1">
+                    <p class="mb-0">패션 관련 전시가 전혀 아니고 마틴 마르지엘라 님의 깊고 심오한 예술세계를 볼 수 있는 현대미술 같은 전시입니다.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="../img/testimonial-4.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <h5 class="mb-0">MARTIN MARGIELA AT LOTTE MUSEUM</h5>
+                    <p>최선형</p>
+                    <div class="testimonial-text bg-light text-center p-4-1">
+                    <p class="mb-0">어렵고도 재미있는 현대미술. 패션계 마틴 마르지엘라가 아닌 예술가 마틴 마르지엘라를 만나볼 수 있었던 전시입니다.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!— Testimonial End —>
+    <!-- Testimonial End -->
 </body>
 </html>
