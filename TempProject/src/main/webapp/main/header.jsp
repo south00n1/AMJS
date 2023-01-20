@@ -30,7 +30,7 @@
                         <a href="#" class="dropdown-item">공지사항</a>
                     </div>
                 </div>
-                <a href="#" class="nav-item nav-link">고객센터</a>
+                <a href="../service/list.do" class="nav-item nav-link">고객센터</a>
             </div>
             <a href="../user/login.do" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>

@@ -6,4 +6,5 @@
   <bean class="com.sist.model.UserModel"/>
   <bean class="com.sist.model.ReviewBoardModel"/>
   <bean class="com.sist.model.ExhibitionModel"/>
+  <bean class="com.sist.model.ServiceModel"/>
 </beans>

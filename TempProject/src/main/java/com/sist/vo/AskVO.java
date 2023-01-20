@@ -2,9 +2,21 @@ package com.sist.vo;
 import java.util.*;
 
 public class AskVO {
-	private int gano,hit,group_id,group_step,group_tab;
+	private int gano,hit,group_id,group_step,group_tab,root,depth;
 	private String subject,type,content,pwd,ans_state,msg,dbday,id;
 	private Date regdate;
+	public int getRoot() {
+		return root;
+	}
+	public void setRoot(int root) {
+		this.root = root;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
 	public String getId() {
 		return id;
 	}

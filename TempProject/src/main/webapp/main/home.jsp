@@ -54,7 +54,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Catogory</h6>
+                <h6 class="section-title bg-white text-center text-primary px-3">Category</h6>
                 <h1 class="mb-5">일반 전시회</h1>
             </div>
             <div class="row g-4 justify-content-center">
@@ -115,7 +115,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Catogory</h6>
+                <h6 class="section-title bg-white text-center text-primary px-3">Category</h6>
                 <h1 class="mb-5">무역 전시회</h1>
             </div>
             <div class="row g-4 justify-content-center">
