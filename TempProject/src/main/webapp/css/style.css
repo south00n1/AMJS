@@ -238,7 +238,7 @@
     content: "";
     width: calc(100% + 120px);
     height: 2px;
-    bottom: 5px;
+    bottom:  5px;
     left: -60px;
     background: var(--primary);
     z-index: -1;

@@ -2,10 +2,23 @@ package com.sist.vo;
 
 import java.sql.Date;
 
-public class review_boardVO {
+public class ReviewBoardVO {
 	private int grbno,hit;
-	private String name,subject,display_name,content,type,id;
+	private String name,subject,display_name,content,type,id,pwd,dbday;
 	private Date regdate;
+	
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getDbday() {
+		return dbday;
+	}
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
 	public int getGrbno() {
 		return grbno;
 	}
