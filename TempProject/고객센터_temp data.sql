@@ -1,20 +1,20 @@
 desc god_member_3;
 insert into god_member_3
-values('master','1234','관리자','',sysdate,'','post','addr1','','phone2','');
+values('master','1234','관리자','',sysdate,'','post','addr1','','phone1','');
 insert into god_member_3
-values('choe','1234','최선형','',sysdate,'','post','addr1','','phone1','');
+values('choe','1234','최선형','',sysdate,'','post','addr1','','phone2','');
 
 desc god_ask_3;
 insert into god_ask_3
-values(1,'예매 완료 후 결제 수단 변경 가능한가요?','예매','예매 완료했는데 결제 수단을 변경하고 싶어요.','1234',sysdate,'답변완료','',1,'1','','','2','choe');
+values(1,'예매 완료 후 결제 수단 변경 가능한가요?','예매','예매 완료했는데 결제 수단을 변경하고 싶어요.','1234',sysdate,'답변완료',0,1,1,0,0,2,'choe');
 insert into god_ask_3
-values(4,'re: 답변입니다.','예매','결제 수단 변경은 마이페이지에서 가능합니다.','1234',sysdate,'답변완료','',1,'2','1','1','','master');
+values(4,'re: 답변입니다.','예매','결제 수단 변경은 마이페이지에서 가능합니다.','1234',sysdate,'답변완료',0,1,2,1,1,0,'master');
 insert into god_ask_3
-values(2,'비회원으로 결제한 정보 조회 어떻게 해요?','회원','비회원으로 결제한 정보를 회원 정보에 불러올 수 있을까요?','1234',sysdate,'','',2,'','','','','choe');
+values(2,'비회원으로 결제한 정보 조회 어떻게 해요?','회원','비회원으로 결제한 정보를 회원 정보에 불러올 수 있을까요?','1234',sysdate,'미답변',0,2,0,0,0,0,'choe');
 insert into god_ask_3
-values(3,'이벤트 당첨 안내좀요','기타','이벤트 당첨자 발표일이 언제인가요?','1234',sysdate,'','',3,'','','','','choe');
+values(3,'이벤트 당첨 안내좀요','기타','이벤트 당첨자 발표일이 언제인가요?','1234',sysdate,'미답변',0,3,0,0,0,0,'choe');
 insert into god_ask_3
-values(5,'re: 재질문입니다.','예매','감사합니다.','1234',sysdate,'미답변','',1,'3','2','1','','choe');
+values(5,'re: 재질문입니다.','예매','감사합니다.','1234',sysdate,'미답변',0,1,3,2,1,0,'choe');
 
 desc god_faq_3;
 insert into god_faq_3 values(1,'회원','아이디, 비밀번호를 잊어버렸어요.','아이디 찾기 
