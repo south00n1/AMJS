@@ -23,7 +23,7 @@
                 <a href="../exhibition/exhibition_all.do" class="nav-item nav-link">전시회 목록</a>
                 <a href="../picture/list.do" class="nav-item nav-link">2D 전시회</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
+                    <a href="../board/review_list.do" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="../board/review_list.do" class="dropdown-item">후기게시판</a>
                         <a href="#" class="dropdown-item">이벤트게시판</a>

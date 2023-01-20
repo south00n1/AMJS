@@ -35,7 +35,7 @@
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
 	  	  	<td width=5% class="text-center">${vo.gano }</td>
-	  	  	<th width=15% class="text-center">문의 종류</th>
+	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<td width=10% class="text-center">${vo.type }</td>
 	  	  	<th width=13% class="text-center">작성일</th>
 	  	  	<td width=17% class="text-center">${vo.dbday }</td>
@@ -51,8 +51,8 @@
 	  	  </tr>
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
-	  	  		<a href="../service/update.do" class="btn btn-sm btn-warning">수정</a>
-	  	  		<a href="../service/delete.do" class="btn btn-sm btn-danger">삭제</a>
+	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
+	  	  		<a href="../service/delete.do?no=${vo.gano }" class="btn btn-sm btn-danger">삭제</a>
 	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary">목록</a>
 	  	  	</td>
 	  	  </tr>

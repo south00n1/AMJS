@@ -45,7 +45,7 @@ public class ServiceModel {
 		return "../main/main.jsp";
 	}
 	
-	@RequestMapping("service/insert_ok.do")
+	@RequestMapping("service/insert_ok.do") //안오케이
 	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -79,25 +79,54 @@ public class ServiceModel {
 	
 	@RequestMapping("service/update.do")
 	public String qna_update(HttpServletRequest request, HttpServletResponse response) {
+		try { //여긴 한글변환 없어도 되나??
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		ServiceDAO dao=new ServiceDAO();
+		AskVO vo=dao.qnaDetailData(Integer.parseInt(no), 2);
+		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../service/update.jsp");
 		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("service/update_ok.do")
 	public String qna_update_ok(HttpServletRequest request, HttpServletResponse response) {
-
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		String type=request.getParameter("type");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		ServiceDAO dao=new ServiceDAO();
+		AskVO vo=new AskVO();
+		vo.setGano(Integer.parseInt(no));
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setType(type);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		dao.qnaUpdate(vo);
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/delete.do")
 	public String qna_delete(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
 		request.setAttribute("main_jsp", "../service/delete.jsp");
 		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("service/delete_ok.do")
 	public String qna_delete_ok(HttpServletRequest request, HttpServletResponse response) {
-		
+		String no=request.getParameter("no");
+		String pwd=request.getParameter("pwd");
+		ServiceDAO dao=new ServiceDAO();
+		dao.qnaDelete(Integer.parseInt(no), pwd);
 		return "redirect:list.do";
 	}
 }

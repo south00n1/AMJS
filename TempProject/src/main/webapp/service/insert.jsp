@@ -35,7 +35,7 @@
 	  <form method=post action="../service/insert_ok.do">
 		<table class="table">
 		  <tr>
-		  	<th width=15% class="text-right">문의타입</th>
+		  	<th width=15% class="text-right">문의유형</th>
 		  	<td width=85%>
 		  		<input type=text name=type size=20 class="input-sm" required placeholder="회원/예매/결제/티켓/기타">
 		  	</td>

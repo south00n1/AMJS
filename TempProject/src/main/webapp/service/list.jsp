@@ -41,7 +41,7 @@
 	  	<table class="table">
 	  	  <tr>
 	  	  	<th width=5% class="text-center">번호</th>
-	  	  	<th width=15% class="text-center">문의종류</th>
+	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<th width=35% class="text-center">제목</th>
 	  	  	<th width=10% class="text-center">ID</th>
 	  	  	<th width=15% class="text-center">작성일</th>
