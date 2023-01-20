@@ -154,7 +154,32 @@
         </div>
     </div>
     <!-- Courses2 End -->
-    
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Catogory</h6>
+                <h1 class="mb-5">일반 전시회</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+              <c:forEach var="vo" items="${list }" begin="1" end="4" step="1">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-white">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="${vo.image }" alt="">
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h5 class="mb-4">${vo.title }</h5>
+                            <div class="smm-4">
+                            <h6 class="sm-4">${vo.name }</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </c:forEach>
+            </div>
+        </div>
+    </div>
+              
  
 	<!-- Service Start -->
 	<!-- 

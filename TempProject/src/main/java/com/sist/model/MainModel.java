@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(HttpServletRequest request, HttpServletResponse response) {
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
 		// include할 파일명을 전송
 		PictureDAO dao = new PictureDAO();
-		ArrayList<PictureVO> list = new ArrayList<PictureVO>();
+		ArrayList<PictureVO> list = dao.PictureListData(curpage);
 		request.setAttribute("list", list);
 		
 		request.setAttribute("main_jsp", "../main/home.jsp"); // main.jsp
