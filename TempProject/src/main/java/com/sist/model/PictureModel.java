@@ -14,7 +14,7 @@ import com.sist.vo.PictureVO;
 
 @Controller
 public class PictureModel {
-	@RequestMapping("picture/picture_list.do")
+	@RequestMapping("picture/list.do")
 	public String picture_list(HttpServletRequest request, HttpServletResponse response) {
 		String page = request.getParameter("page");
 		if (page == null) {
@@ -35,7 +35,7 @@ public class PictureModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		request.setAttribute("main_jsp", "../picture/picture_list.jsp"); // main.jsp에서 include되는 파일 지정
+		request.setAttribute("main_jsp", "../picture/list.jsp"); // main.jsp에서 include되는 파일 지정
 		return "../main/main.jsp";
 	}
 }

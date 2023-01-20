@@ -6384,7 +6384,7 @@ fieldset:disabled .btn {
 }
 .mb-5 {
     margin-bottom: 3rem !important;
-    text-align: left;
+    text-align: center;
 }
 .mb-auto {
     margin-bottom: auto !important;

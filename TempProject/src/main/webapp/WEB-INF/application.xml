@@ -3,4 +3,5 @@
 <beans>
   <bean class="com.sist.model.MainModel"/>
   <bean class="com.sist.model.PictureModel"/>
+  <bean class="com.sist.model.UserModel"/>
 </beans>
