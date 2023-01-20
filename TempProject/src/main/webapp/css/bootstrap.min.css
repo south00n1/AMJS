@@ -571,7 +571,7 @@ progress {
     .container-lg,
     .container-xl,
     .container-xxl {
-        max-width: 1320px;
+        max-width: 1200px;
     }
 }
 .row {
@@ -4215,7 +4215,7 @@ fieldset:disabled .btn {
     color: #6c757d;
 }
 .pagination {
-    display: flex;
+    display:flex;
     padding-left: 0;
     list-style: none;
 }
