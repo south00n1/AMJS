@@ -9993,6 +9993,10 @@ fieldset:disabled .btn {
 }
 
 /* ======================= css 추가 ============================= */
+.one_quarter{
+	display: inline-flex;
+}
+
 .box{
   margin: 10px auto;
   width: 300px;
@@ -10057,4 +10061,24 @@ width: 300px;
 
 .smm-4{
 	margin-top:30px auto;
+<<<<<<< HEAD
 }
+=======
+}
+/*     페이징css start       */
+.pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination li{display:inline-block; margin:0 2px 0 0;}
+.pagination li:last-child{margin-right:0;}
+.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; font-weight:normal;}
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current{color:#FFFFFF; background-color:#000000;}
+/*     페이징css end       */
+
+.board_search{
+	display: inline-block;
+    text-align: center;
+}
+.searchbtn{
+	background-color: #27375C
+}
+>>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
