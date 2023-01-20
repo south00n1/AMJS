@@ -26,10 +26,25 @@ public class ReviewBoardModel {
 		  int curpage=Integer.parseInt(page);
 		  ReviewBoardDAO dao=new ReviewBoardDAO();
 		  List<ReviewBoardVO> list=dao.boardListData(curpage);
-		  int totalpage=dao.boardTotalPage();
-
+		  
+		  ////////////////////////////////////////////
+		  int count=dao.reviewboardRowCount();
+		  int totalpage=(int)(Math.ceil(count/20.0));
+		  final int BLOCK=10;
+		  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		  if(endPage>totalpage)
+			   endPage=totalpage;
 		  request.setAttribute("curpage", curpage);
 		  request.setAttribute("totalpage", totalpage);
+		  request.setAttribute("startPage", startPage);
+		  request.setAttribute("endPage", endPage);
+		  request.setAttribute("count", count);
+		  /////////////////////////////////////////////
+		  //int totalpage=dao.boardTotalPage();
+
+		  //request.setAttribute("curpage", curpage);
+		  //request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("list", list);
 		  request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		  request.setAttribute("main_jsp", "../board/review_list.jsp");
