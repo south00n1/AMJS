@@ -150,5 +150,31 @@ public class ReviewBoardDAO {
 		return vo;
 	}
 	
+	public int reviewboardRowCount() // 갯수 출력 , 총페이지 
+	   {
+		   int count=0;
+		   try
+		   {
+			   conn=CreateConnection.getConnection();
+			   String sql="SELECT COUNT(*) FROM god_review_board_3";
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   count=rs.getInt(1);
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			  CreateConnection.disConnection(conn, ps);   
+		   }
+		   return count;
+		   
+	   }
+	
+	
+	
 	
 }
