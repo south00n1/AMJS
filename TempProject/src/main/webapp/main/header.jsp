@@ -20,7 +20,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
              
                 <a href="../main/main.do" class="nav-item nav-link active">홈</a>
-                <a href="#" class="nav-item nav-link">전시회 목록</a>
+                <a href="../exhibition/exhibition_all.do" class="nav-item nav-link">전시회 목록</a>
                 <a href="../picture/list.do" class="nav-item nav-link">2D 전시회</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
