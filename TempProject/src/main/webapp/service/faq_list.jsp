@@ -31,14 +31,14 @@
     
 	<div class="container" style="width:800px">
 	  <div style="height: 5px"></div>
-	  	<table class="table">
+	  	<table class="table text-center">
 	  	  <tr>
 	  	  	<td>
-	  	  		<a href="../service/faq_list?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
-	  	  		<a href="../service/faq_list?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
-	  	  		<a href="../service/faq_list?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
-	  	  		<a href="../service/faq_list?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
-	  	  		<a href="../service/faq_list?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
+	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
+	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
+	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
+	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
+	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
 	  	  	</td>
 	  	  </tr>
 	  	</table>
