@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,37 +28,27 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:800px">
+	<div class="container" style="width:600px">
 	  <div style="height: 5px"></div>
-	  	<table class="table text-center">
-	  	  <tr>
-	  	  	<td>
-	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">회원</a>
-	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-light py-md-3 px-md-5 animated slideInRight">예매</a>
-	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">결제</a>
-	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-light py-md-3 px-md-5 animated slideInRight">티켓</a>
-	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">기타</a>
-	  	  	</td>
-	  	  </tr>
-	  	</table>
 	  	<table class="table">
 	  	  <tr>
-	  	  	<th width=15% class="text-center">번호</th>
 	  	  	<th width=15% class="text-center">문의유형</th>
-	  	  	<th width=55% class="text-center">제목</th>
-	  	  	<th width=15% class="text-center">조회수</th>
+	  	  	<td width=10% class="text-center">${vo.type }</td>
+	  	  	<th width=13% class="text-center">조회수</th>
+	  	  	<td width=8% class="text-center">${vo.hit }</td>
+	  	  	<th width=9% class="text-center">제목</th>
+	  	  	<td width=45% class="text-center">${vo.subject }</td>
 	  	  </tr>
-	  	  <c:forEach var="vo" items="${list }" varStatus="s">
-		  	  <tr>
-		  	  	<td width=15% class="text-center">${count-s.index }</td>
-		  	  	<td width=15% class="text-center">${vo.type }</td>
-		  	  	<td width=55%>
-		  	  	<a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
-		  	 <!-- ### 링크 주니까 글자색 자동으로 하늘색으로 바뀜.. 구려.. ### -->
-		  	  	</td>
-		  	  	<td width=15% class="text-center">${vo.hit }</td>
-		  	  </tr>
-	  	  </c:forEach>
+	  	  <tr>
+	  	  	<td class="text-left" valign=top colspan=6 height=200>${vo.content }</td>
+	  	  </tr>
+		<!-- 관련 faq list 추가 -->
+	  	  <tr>
+	  	  	<td class="text-center" colspan=8 style="border-color: white">
+	  	  		<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+	  	  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">목록</a>
+	  	  	</td>
+	  	  </tr>
 	  	</table>
 	</div>
 </body>

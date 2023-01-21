@@ -8,4 +8,5 @@
   <bean class="com.sist.model.ExhibitionModel"/>
   <bean class="com.sist.model.ServiceModel"/>
   <bean class="com.sist.model.MyPageModel"/>
+  <bean class="com.sist.model.FaqModel"/>
 </beans>

@@ -34,7 +34,8 @@
 	  	<table class="table">
 	  	  <tr>
 	  	  	<td>
-	  	  		<a href="../service/insert.do" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">문의작성</a>
+	  	  		<a href="../service/insert.do" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">문의 작성</a>
+	  	  		<a href="../service/faq_list.do" class="btn btn-light py-md-3 px-md-5 animated slideInRight">FAQ 찾기</a>
 	  	  	</td>
 	  	  </tr>
 	  	</table>
