@@ -7,4 +7,5 @@
   <bean class="com.sist.model.ReviewBoardModel"/>
   <bean class="com.sist.model.ExhibitionModel"/>
   <bean class="com.sist.model.ServiceModel"/>
+  <bean class="com.sist.model.MyPageModel"/>
 </beans>

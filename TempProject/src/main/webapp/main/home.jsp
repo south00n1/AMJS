@@ -51,11 +51,12 @@
         <input type="search" id="search" placeholder="Search..." />
   	  </div>
 	</div>
+	
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Category</h6>
-                <h1 class="mb-5">일반 전시회</h1>
+                <h1 class="mb-5 text-center">일반 전시회</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -116,7 +117,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Category</h6>
-                <h1 class="mb-5">무역 전시회</h1>
+                <h1 class="mb-5 text-center">무역 전시회</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -177,8 +178,8 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">미술전</h6>
-                <h1 class="mb-5">미술전</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">미술관</h6>
+                <h1 class="mb-5 text-center">미술관</h1>
             </div>
             <div class="row g-4 justify-content-center">
               <c:forEach var="vo" items="${list }" begin="1" end="4" step="1">
@@ -318,7 +319,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">이번달 이벤트</h6>
-                <h1 class="mb-5">얼리버드 및 관람후기 프로모션</h1>
+                <h1 class="mb-5 text-center">얼리버드 및 관람후기 프로모션</h1>
             </div>
             <div class="row g-3">
                 <div class="col-lg-7 col-md-6">
@@ -369,7 +370,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">이번달 전시</h6>
-                <h1 class="mb-5">전시 랭킹 TOP4</h1>
+                <h1 class="mb-5 text-center">전시 랭킹 TOP4</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">

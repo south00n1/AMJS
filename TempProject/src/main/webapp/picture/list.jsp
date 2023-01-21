@@ -108,7 +108,8 @@ div.pic {
 	margin-bottom: 8px;
 }
 
-/* 페이지네이션 */
+
+/*######## 페이지네이션 #########*/
 
 ul {
 	list-style: none;
@@ -163,7 +164,7 @@ li.active a:hover {
  <hr>
 	<div class="gallery">
 	  <c:forEach var="vo" items="${list }">
-	   <div class="pic">
+	   <div class="pic wow fadeInUp" data-wow-delay="0.1s">
 		<img src="${vo.image }" alt="" width="50%" height="auto" class="gallery-img" />
 		<p><b>${vo.title }</b>&nbsp;&nbsp;&nbsp;${vo.name }</p>
 	   </div>

@@ -575,7 +575,7 @@ progress {
     }
 }
 .row {
-    --bs-gutter-x: 1.5rem;
+    --bs-gutter-x: 1rem;
     --bs-gutter-y: 0;
     display: flex;
     flex-wrap: wrap;
@@ -6365,10 +6365,6 @@ fieldset:disabled .btn {
     margin-bottom: 0 !important;
     padding-top: 1rem;
     font-size:18px;
-   
-  	margin-bottom: 0 !important;
-    padding-top: 1rem;
-    font-size:18px;
 }
 .mb-1 {
     margin-bottom: 0.25rem !important;
@@ -6384,7 +6380,6 @@ fieldset:disabled .btn {
 }
 .mb-5 {
     margin-bottom: 3rem !important;
-    text-align: center;
 }
 .mb-auto {
     margin-bottom: auto !important;
@@ -10081,4 +10076,6 @@ width: 300px;
 .searchbtn{
 	background-color: #27375C
 }
+
+/* 슬라이드 */
 
