@@ -15,7 +15,6 @@ HIT                 NUMBER
 GROUP_ID   NOT NULL NUMBER         
 GROUP_STEP          NUMBER         
 GROUP_TAB           NUMBER         
-MSG        NOT NULL CLOB           
 ID                  VARCHAR2(20)***** ID fk 수정!!
 
 group_id : 댓글 그룹 번호
