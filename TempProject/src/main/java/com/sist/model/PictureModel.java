@@ -38,4 +38,23 @@ public class PictureModel {
 		request.setAttribute("main_jsp", "../picture/list.jsp"); // main.jsp에서 include되는 파일 지정
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("picture/gallery.do")
+	public String picture_gallery(HttpServletRequest request, HttpServletResponse response) {
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		PictureDAO dao = new PictureDAO();
+		ArrayList<PictureVO> list = dao.PictureListData(curpage);
+		
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		
+		
+		return "../picture/gallery.jsp";
+	}
 }
+

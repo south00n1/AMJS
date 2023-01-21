@@ -62,4 +62,7 @@ public class PictureDAO {
 	      }
 	      return total;
 	   }
+	
+	// 2. 그림 상세보기
+	
 }
