@@ -66,9 +66,9 @@
 	  		<a href="../service/faq_list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
 	  	</th>
  	  </tr>
- 	  <c:forEach var="vo" items="${flist }">
+ 	  <c:forEach var="vo" items="${flist }" varStatus="s">
 		  <tr>
-		   	<td width=10% class="text-center">1</td>
+		   	<td width=10% class="text-center">${s.index+1 }</td>
 		  	<td width=10% class="text-center">${vo.type }</td>
 		  	<td width=70%>
 		  	  <a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>

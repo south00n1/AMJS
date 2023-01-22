@@ -23,7 +23,7 @@ public class ServiceModel {
 		//faq
 		FaqDAO fdao=new FaqDAO();
 		List<FaqVO> flist=fdao.faq_top10();
-		request.setAttribute("list", flist);
+		request.setAttribute("flist", flist);
 		request.setAttribute("main_jsp", "../service/service.jsp");
 		return "../main/main.jsp";
 	}
