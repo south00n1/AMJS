@@ -28,10 +28,41 @@ public class FaqModel {
 	@RequestMapping("service/faq_detail.do")
 	public String faq_detail(HttpServletRequest request, HttpServletResponse response) {
 		String no=request.getParameter("no");
+		String id="master";
 		FaqDAO dao=new FaqDAO();
 		FaqVO vo=dao.faqDetailData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../service/faq_detail.jsp");
 		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("service/faq_update.do")
+	public String faq_update(HttpServletRequest request, HttpServletResponse response) {
+		String no=request.getParameter("no");
+		FaqDAO dao=new FaqDAO();
+		FaqVO vo=dao.faqDetailData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../service/faq_update.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("service/faq_update_ok.do")
+	public String faq_update_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String id="master";
+		String type=request.getParameter("type");
+		String subject=request.getParameter("subject");
+		String content=request.getParameter("content");
+		FaqDAO dao=new FaqDAO();
+		FaqVO vo=new FaqVO();
+		vo.setGfno(Integer.parseInt(no));
+		vo.setType(type);
+		vo.setSubject(subject);
+		vo.setContent(content);
+		dao.faqUpdate(vo, id);
+		return "redirect:list.do";
 	}
 }

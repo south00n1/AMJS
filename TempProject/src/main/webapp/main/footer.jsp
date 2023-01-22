@@ -16,7 +16,7 @@
                     <a class="btn btn-link" href="../picture/list.do">미술품</a>
                     <a class="btn btn-link" href="../picture/gallery.do">2D 전시회</a>
                     <a class="btn btn-link" href="../board/review_list.do">커뮤니티</a>
-                    <a class="btn btn-link" href="../service/list.do">고객센터</a>
+                    <a class="btn btn-link" href="../service/main.do">고객센터</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>

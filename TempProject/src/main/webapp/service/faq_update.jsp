@@ -18,9 +18,9 @@
                     <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">문의 답변</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/faq_list.do">고객센터</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">자주 묻는 질문</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,23 +32,30 @@
 	<div class="container" style="width:700px">
 	<div style="height: 5px"></div>
 	<div class="row">
-	  <form method=post action="../service/reply_ok.do">
+	  <form method=post action="../service/faq_update_ok.do">
 		<table class="table">
 		  <tr>
-		  	<th width=15% class="text-right">내용</th>
+		  	<th width=15% class="text-right">문의유형</th>
 		  	<td width=85%>
-		  		<textarea rows=10 cols=50 name=content required></textarea>
+		  		<input type=text name=type size=20 class="input-sm" required value="${vo.type }">
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right">비밀번호</th>
+		  	<th width=15% class="text-right">제목</th>
 		  	<td width=85%>
-		  		<input type=password name=pwd size=10 class="input-sm" required>
+		  		<input type=text name=subject size=45 class="input-sm" required value="${vo.subject }">
+		  		<input type=hidden name=no size=45 class="input-sm" value="${vo.gfno }">
+		  	</td>
+		  </tr>
+		  <tr>
+		  	<th width=15% class="text-right">내용</th>
+		  	<td width=85%>
+		  		<textarea rows=10 cols=50 name=content required>${vo.content }</textarea>
 		  	</td>
 		  </tr>
 		  <tr>
 		  	<td colspan=2 class="text-center" style="border-color: white">
-		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary">
+		  		<input type=submit value="수정하기" class="btn btn-sm btn-primary">
 		  		<input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
 		  	</td>
 		  </tr>

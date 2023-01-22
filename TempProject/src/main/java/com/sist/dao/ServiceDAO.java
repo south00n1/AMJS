@@ -3,7 +3,6 @@ import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
 /* 
-<ask>
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
 TYPE       NOT NULL VARCHAR2(20)   
@@ -15,7 +14,7 @@ HIT                 NUMBER
 GROUP_ID   NOT NULL NUMBER         
 GROUP_STEP          NUMBER         
 GROUP_TAB           NUMBER         
-ID                  VARCHAR2(20)***** ID fk 수정!!
+ID                  VARCHAR2(20)
 
 group_id : 댓글 그룹 번호
 group_step : 그룹 내 출력 순서
@@ -29,13 +28,6 @@ depth : 포함 대댓글 갯수
          => 4DDDDDDDD   1           4             2          3       0
     EEEEEE              2           1             0
       =>KKKKKK          2           2             1
-      
-<faq>
-GFNO    NOT NULL NUMBER         
-TYPE    NOT NULL VARCHAR2(20)   
-SUBJECT NOT NULL VARCHAR2(1000) 
-CONTENT NOT NULL CLOB           
-HIT              NUMBER    
 */
 public class ServiceDAO {
 	private Connection conn;
@@ -46,9 +38,9 @@ public class ServiceDAO {
 		List<AskVO> list=new ArrayList<AskVO>();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,rownum as num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate "
+			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),depth,num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth,rownum as num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth "
 					+ "FROM god_ask_3 ORDER BY group_id DESC, group_step ASC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
@@ -68,6 +60,7 @@ public class ServiceDAO {
 				vo.setGroup_tab(rs.getInt(6));
 				vo.setHit(rs.getInt(7));
 				vo.setDbday(rs.getString(8));
+				vo.setDepth(rs.getInt(9));
 				list.add(vo);
 			}
 			rs.close();
@@ -110,6 +103,7 @@ public class ServiceDAO {
 				ps.setInt(1, no);
 				ps.executeUpdate();
 			}
+			
 			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
@@ -133,17 +127,17 @@ public class ServiceDAO {
 		return vo;
 	}
 	//QNA 작성
-	public void qnaInsert(AskVO vo) {
+	public void qnaInsert(AskVO vo, String id) {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id) "
-					+ "VALUES(ga_gano_seq_3.nextval,'choe',?,?,?,?,(SELECT NVL(MAX(group_id)+1,1))";
+					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1))";
 			ps=conn.prepareStatement(sql);
-//			ps.setString(1, vo.getId());
-			ps.setString(1, vo.getPwd());
-			ps.setString(2, vo.getSubject());
-			ps.setString(3, vo.getType());
-			ps.setString(4, vo.getContent());
+			ps.setString(1, id);
+			ps.setString(2, vo.getPwd());
+			ps.setString(3, vo.getSubject());
+			ps.setString(4, vo.getType());
+			ps.setString(5, vo.getContent());
 			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -152,10 +146,10 @@ public class ServiceDAO {
 		}
 	}
 	//QNA 답변
-	public void qnaReplyInsert(int no, AskVO vo) {
+	public void qnaReplyInsert(int no, String id, AskVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT group_id,group_step,group_tab "
+			String sql="SELECT group_id,group_step,group_tab,type "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
@@ -166,6 +160,7 @@ public class ServiceDAO {
 	  		rvo.setGroup_id(rs.getInt(1));
 	  		rvo.setGroup_step(rs.getInt(2));
 	  		rvo.setGroup_tab(rs.getInt(3));
+	  		rvo.setType(rs.getString(4));
 	  		rs.close();
 	  		
 	  		sql="UPDATE god_ask_3 "
@@ -177,20 +172,21 @@ public class ServiceDAO {
 	     	ps.setInt(2, rvo.getGroup_step());
 	     	ps.executeUpdate();
 			
-	     	sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
-	     		   + "group_id,group_step,group_tab,root,depth) "
-	     		   + "VALUES(ga_gano_seq_3.nextval,'master',?,?,?,?,SYSDATE,0,?,?,?,?,0)";
-			ps=conn.prepareStatement(sql);
-//			ps.setString(1, vo.getId());
-			ps.setString(1, vo.getPwd());
-			ps.setString(2, vo.getSubject());
-			ps.setString(3, vo.getType());
-			ps.setString(4, vo.getContent());
-			ps.setInt(5, rvo.getGroup_id());
-			ps.setInt(7, rvo.getGroup_step()+1);
-			ps.setInt(8, rvo.getGroup_tab()+1);
-			ps.setInt(9, no);
-			ps.executeUpdate();
+	     	if(id.equals("master")) {
+	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
+	     				+ "group_id,group_step,group_tab,root,depth) "
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다.',?,?,SYSDATE,0,?,?,?,?,0)";
+	     		ps=conn.prepareStatement(sql);
+	     		ps.setString(1, id);
+	     		ps.setString(2, vo.getPwd());
+	     		ps.setString(3, rvo.getType());
+	     		ps.setString(4, vo.getContent());
+	     		ps.setInt(5, rvo.getGroup_id());
+	     		ps.setInt(7, rvo.getGroup_step()+1);
+	     		ps.setInt(8, rvo.getGroup_tab()+1);
+	     		ps.setInt(9, no);
+	     		ps.executeUpdate();
+	     	}
 			
 			sql="UPDATE god_ask_3 "
 					+ "SET depth=depth+1 "

@@ -19,7 +19,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/list.do">고객센터</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">문의 수정</li>
                         </ol>
                     </nav>
@@ -29,7 +29,7 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:600px">
+	<div class="container" style="width:700px">
 	<div style="height: 5px"></div>
 	<div class="row">
 	  <form method=post action="../service/update_ok.do">
@@ -44,7 +44,6 @@
 		  	<th width=15% class="text-right">제목</th>
 		  	<td width=85%>
 		  		<input type=text name=subject size=45 class="input-sm" required value="${vo.subject }">
-		  		<input type=hidden name=id size=45 class="input-sm" value="${vo.id }">
 		  		<input type=hidden name=no size=45 class="input-sm" value="${vo.gano }">
 		  	</td>
 		  </tr>

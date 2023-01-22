@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,8 @@
                     <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/list.do">고객센터</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="../service/faq_list.do">고객센터</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">자주 묻는 질문</li>
                         </ol>
                     </nav>
@@ -28,7 +29,7 @@
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:600px">
+	<div class="container" style="width:700px">
 	  <div style="height: 5px"></div>
 	  	<table class="table">
 	  	  <tr>
@@ -45,7 +46,12 @@
 		<!-- 관련 faq list 추가 -->
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
-	  	  		<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+	  	  		<c:if test="${id=='master' }">
+	  	  			<a href="../service/faq_update.do" class="btn btn-sm btn-warning">수정</a>
+	  	  		</c:if>
+	  	  		<c:if test="${id!='master' }">
+	  	  			<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+	  	  		</c:if>
 	  	  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">목록</a>
 	  	  	</td>
 	  	  </tr>

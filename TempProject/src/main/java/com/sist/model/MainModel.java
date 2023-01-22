@@ -2,10 +2,8 @@ package com.sist.model;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
-import com.sist.dao.ExhibitionDAO;
-import com.sist.dao.PictureDAO;
-import com.sist.vo.ExhibitionVO;
-import com.sist.vo.PictureVO;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 import java.util.*;
 

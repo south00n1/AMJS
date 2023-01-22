@@ -11,6 +11,23 @@ import com.sist.controller.RequestMapping;
 
 @Controller
 public class ServiceModel {
+	@RequestMapping("service/main.do")
+	public String service_main(HttpServletRequest request, HttpServletResponse response) {
+		//qna
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		ServiceDAO sdao=new ServiceDAO();
+		List<AskVO> slist=sdao.qnaListData(Integer.parseInt(page));
+		request.setAttribute("slist", slist);
+		
+		//faq
+		FaqDAO fdao=new FaqDAO();
+		List<FaqVO> flist=fdao.faq_top10();
+		request.setAttribute("list", flist);
+		request.setAttribute("main_jsp", "../service/service.jsp");
+		return "../main/main.jsp";
+	}
+	
 	@RequestMapping("service/list.do")
 	public String qna_list(HttpServletRequest request, HttpServletResponse response) {
 		String page=request.getParameter("page");
@@ -18,13 +35,12 @@ public class ServiceModel {
 		int curpage=Integer.parseInt(page);
 		ServiceDAO dao=new ServiceDAO();
 		List<AskVO> list=dao.qnaListData(curpage);
-		request.setAttribute("list", list);
-		
 		int count=dao.qnaRowCount();
 		int totalpage=(int)(Math.ceil(count/10.0));
+		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
-		
 		request.setAttribute("main_jsp", "../service/list.jsp");
 		return "../main/main.jsp";
 	}
@@ -50,6 +66,7 @@ public class ServiceModel {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
+		String id="choe";
 		String subject=request.getParameter("subject");
 		String type=request.getParameter("type");
 		String content=request.getParameter("content");
@@ -60,28 +77,37 @@ public class ServiceModel {
 		vo.setType(type);
 		vo.setContent(content);
 		vo.setPwd(pwd);
-		dao.qnaInsert(vo);
+		dao.qnaInsert(vo, id);
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/reply.do")
 	public String qna_reply(HttpServletRequest request, HttpServletResponse response) {
-		
+		String no=request.getParameter("no");
 		request.setAttribute("main_jsp", "../service/reply.jsp");
 		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("service/reply_ok.do")
 	public String qna_reply_ok(HttpServletRequest request, HttpServletResponse response) {
-		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		String no=request.getParameter("no");
+		String id="master";
+		String pwd=request.getParameter("pwd");
+		String content=request.getParameter("content");
+		ServiceDAO dao=new ServiceDAO();
+		AskVO vo=new AskVO();
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setContent(content);
+		dao.qnaReplyInsert(Integer.parseInt(no), id, vo);
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/update.do")
 	public String qna_update(HttpServletRequest request, HttpServletResponse response) {
-		try { //여긴 한글변환 없어도 되나??
-			request.setCharacterEncoding("UTF-8");
-		} catch(Exception ex) {}
 		String no=request.getParameter("no");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=dao.qnaDetailData(Integer.parseInt(no), 2);
@@ -96,7 +122,6 @@ public class ServiceModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 		String subject=request.getParameter("subject");
@@ -104,7 +129,6 @@ public class ServiceModel {
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setGano(Integer.parseInt(no));
-		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setType(type);
 		vo.setSubject(subject);
