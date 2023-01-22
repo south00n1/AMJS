@@ -63,7 +63,7 @@
 								<h6 class="mb-0">${vo.title }</h6>
 								<div class="mt-2">
 									<small>${vo.period }</small><br> <span class="mt-0"
-										style="font-size: 0.6rem;">${vo.loc }</small>
+										style="font-size: 0.6rem;">${vo.loc }</span>
 								</div>
 							</div>
 						</div>
@@ -93,7 +93,7 @@
 								<h6 class="mb-0">${vo.title }</h6>
 								<div class="mt-2">
 									<small>${vo.period }</small><br> <span class="mt-0"
-										style="font-size: 0.6rem;">${vo.loc }</small>
+										style="font-size: 0.6rem;">${vo.loc }</span>
 								</div>
 							</div>
 						</div>
@@ -215,7 +215,7 @@
 								<h6 class="mb-0">${vo.title }</h6>
 								<div class="mt-2">
 									<small>${vo.period }</small><br> <span class="mt-0"
-										style="font-size: 0.6rem;">${vo.loc }</small>
+										style="font-size: 0.6rem;">${vo.loc }</span>
 								</div>
 							</div>
 						</div>
