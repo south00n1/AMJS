@@ -61,7 +61,7 @@ public class ServiceModel {
 		return "../main/main.jsp";
 	}
 	
-	@RequestMapping("service/insert_ok.do") //안오케이
+	@RequestMapping("service/insert_ok.do")
 	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");

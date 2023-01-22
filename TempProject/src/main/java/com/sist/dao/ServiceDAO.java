@@ -131,7 +131,8 @@ public class ServiceDAO {
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id) "
-					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1))";
+					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1) "
+					+ "FROM god_ask_3))";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, vo.getPwd());
