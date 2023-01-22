@@ -74,11 +74,12 @@ public class ExhibitionDAO {
    }
    
    // 메인페이지에서 쓸거 만든거에요!
+   // 일반전시회 데이터
    public List<ExhibitionVO> normalExhibitionData() {
 	   List<ExhibitionVO> list = new ArrayList<ExhibitionVO>();
 	   try {
 		   conn = CreateConnection.getConnection();
-		   String sql = "SELECT geno, poster, title, title2, period, kind "
+		   String sql = "SELECT geno, poster, title, title2, period, kind, loc "
 		   			  + "FROM god_exhibition_3 "
 		   			  + "WHERE kind = '일반전시회 (B2C)'";
 		   ps = conn.prepareStatement(sql);
@@ -87,10 +88,15 @@ public class ExhibitionDAO {
 			   ExhibitionVO vo = new ExhibitionVO();
 			   vo.setGeno(rs.getInt(1));
 			   vo.setPoster(rs.getString(2));
-			   vo.setTitle(rs.getString(3));
+			   String title = rs.getString(3);
+			   if(title.length() > 14) {
+				   title = title.substring(0,14) + "...";
+			   }
+			   vo.setTitle(title);
 			   vo.setTitle2(rs.getString(4));
 			   vo.setPeriod(rs.getString(5));
 			   vo.setKind(rs.getString(6));
+			   vo.setLoc(rs.getString(7));
 			   list.add(vo);
 		   }
 		   rs.close();
@@ -101,12 +107,12 @@ public class ExhibitionDAO {
 	   }
 	   return list;
    }
-   
+   // 무역전시회 데이터
    public List<ExhibitionVO> tradeExhibitionData() {
 	   List<ExhibitionVO> list = new ArrayList<ExhibitionVO>();
 	   try {
 		   conn = CreateConnection.getConnection();
-		   String sql = "SELECT geno, poster, title, title2, period, kind "
+		   String sql = "SELECT geno, poster, title, title2, period, kind, loc "
 				   + "FROM god_exhibition_3 "
 				   + "WHERE kind = '무역전시회 (B2B)'";
 		   ps = conn.prepareStatement(sql);
@@ -115,10 +121,15 @@ public class ExhibitionDAO {
 			   ExhibitionVO vo = new ExhibitionVO();
 			   vo.setGeno(rs.getInt(1));
 			   vo.setPoster(rs.getString(2));
-			   vo.setTitle(rs.getString(3));
+			   String title = rs.getString(3);
+			   if(title.length() > 14) {
+				   title = title.substring(0,14) + "...";
+			   }
+			   vo.setTitle(title);
 			   vo.setTitle2(rs.getString(4));
 			   vo.setPeriod(rs.getString(5));
 			   vo.setKind(rs.getString(6));
+			   vo.setLoc(rs.getString(7));
 			   list.add(vo);
 		   }
 		   rs.close();
@@ -129,6 +140,43 @@ public class ExhibitionDAO {
 	   }
 	   return list;
    }
+   // 인기랭킹 데이터
+   public List<ExhibitionVO> rankExhibitionData() {
+	   List<ExhibitionVO> list = new ArrayList<ExhibitionVO>();
+	   try {
+		   conn = CreateConnection.getConnection();
+		   String sql = "SELECT geno, poster, title, title2, period, loc, hit, rownum "
+		   			  + "FROM (SELECT geno, poster, title, title2, period, loc, hit "
+		   			  + "FROM god_exhibition_3 "
+		   			  + "ORDER BY hit DESC) "
+		   			  + "WHERE rownum <= 4";
+		   ps = conn.prepareStatement(sql);
+		   ResultSet rs = ps.executeQuery();
+		   while(rs.next()) {
+			   ExhibitionVO vo = new ExhibitionVO();
+			   vo.setGeno(rs.getInt(1));
+			   vo.setPoster(rs.getString(2));
+			   String title = rs.getString(3);
+			   if(title.length() > 14) {
+				   title = title.substring(0,14) + "...";
+			   }
+			   vo.setTitle(title);
+			   vo.setTitle2(rs.getString(4));
+			   vo.setPeriod(rs.getString(5));
+			   vo.setLoc(rs.getString(6));
+			   vo.setHit(rs.getInt(7));
+			   vo.setRownum(rs.getInt(8));
+			   list.add(vo);
+		   }
+		   rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	   return list;
+   }
+   
    //------------------------- 여기까지!
 }
 //   // 2. 특가

@@ -1,8 +1,21 @@
 package com.sist.vo;
 
 public class ExhibitionVO {
-	private int geno,good;
+	private int geno,good,hit, rownum;
 	private String poster,title,title2,kind,period,loc,loc2,area,are2,item,host,url,price,time,hastag,content;
+	
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getGeno() {
 		return geno;
 	}
