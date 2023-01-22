@@ -502,6 +502,10 @@ progress {
     max-width: 100%;
     height: auto;
 }
+.img-fluid2 {
+	max-width: 100%;
+    height: 380px;
+}
 .img-thumbnail {
     padding: 0.25rem;
     background-color: #fff;
@@ -6363,8 +6367,10 @@ fieldset:disabled .btn {
 }
 .mb-0 {
     margin-bottom: 0 !important;
+    /*
     padding-top: 1rem;
     font-size:18px;
+    */
 }
 .mb-1 {
     margin-bottom: 0.25rem !important;
