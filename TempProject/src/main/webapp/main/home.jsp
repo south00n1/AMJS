@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +112,7 @@
 				<h1 class="mb-5 text-center">미술관</h1>
 			</div>
 			<div class="row g-4 justify-content-center">
-				<c:forEach var="vo" items="${list }" begin="1" end="4" step="1">
+				<c:forEach var="vo" items="${list }" begin="4" end="7" step="1">
 					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 						<div class="course-item bg-white">
 							<div class="position-relative overflow-hidden">

@@ -177,7 +177,7 @@
 				</div>
 				<div class="product-detail-info">
 					<div class="product-detail-info__cont mx-3"
-						style="border-left: 0.5px solid lightgray">
+						">
 						<p class="product-detail-info__name">${vo.title }</p>
 
 						<p class="product-detail-info__desc mt-5"
@@ -185,8 +185,10 @@
 							작가 : <span style="font-size: 0.8rem;">${vo.name}</span><br>
 							작품정보 : <span style="font-size: 0.8rem;">${vo.info}</span><br>
 							작품코드 : <span style="font-size: 0.8rem">${vo.code }</span><br>
-							<br> 추천이유 : <span style="font-size: 0.8rem">${vo.content2 }</span><br>
-							<br> 큐레이터 노트 : <span style="font-size: 0.8rem">${vo.content }</span><br>
+							<hr>
+							추천이유 : <span style="font-size: 0.8rem">${vo.content2 }</span>
+							<hr>
+							큐레이터 노트 : <span style="font-size: 0.8rem">${vo.content }</span>
 						</p>
 
 					</div>
