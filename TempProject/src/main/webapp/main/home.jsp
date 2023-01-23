@@ -115,8 +115,9 @@
 					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 						<div class="course-item bg-white">
 							<div class="position-relative overflow-hidden">
-								<img class="img-fluid" src="${vo.image }" alt=""
-									style="height: 180px; width: 270.03px">
+								<a href="../picture/detail.do?gpno=${vo.gpno }"><img
+									class="img-fluid" src="${vo.image }" alt=""
+									style="height: 180px; width: 270.03px"></a>
 							</div>
 							<div class="text-center py-3 px-2"
 								style="border-bottom: 0.5px solid gray">
