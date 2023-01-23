@@ -11,7 +11,7 @@ public class PictureDAO {
 	private PreparedStatement ps;
 	
 	// 1. 그림 목록 출력
-	public ArrayList<PictureVO> PictureListData(int page) {
+	public ArrayList<PictureVO> pictureListData(int page) {
 		ArrayList<PictureVO> list = new ArrayList<PictureVO>();
 		try {
 			conn = CreateConnection.getConnection();
@@ -45,7 +45,7 @@ public class PictureDAO {
 		return list;
 	}
 	
-	public int PictureListTotalPage() {
+	public int pictureListTotalPage() {
 	      int total=0;
 	      try {
 	         conn=CreateConnection.getConnection();
@@ -64,5 +64,33 @@ public class PictureDAO {
 	   }
 	
 	// 2. 그림 상세보기
+	public PictureVO pictureDetailData(int gpno) {
+		PictureVO vo = new PictureVO();
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "SELECT gpno, image, title, name, content, content2, info, code, image2 "
+					+ "FROM god_picture_3 "
+					+ "WHERE gpno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, gpno);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			vo.setGpno(rs.getInt(1));
+			vo.setImage(rs.getString(2));
+			vo.setTitle(rs.getString(3));
+			vo.setName(rs.getString(4));
+			vo.setContent(rs.getString(5));
+			vo.setContent2(rs.getString(6));
+			vo.setInfo(rs.getString(7));
+			vo.setCode(rs.getString(8));
+			vo.setImage2(rs.getString(9));
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
 	
 }

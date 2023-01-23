@@ -22,7 +22,7 @@ public class MainModel {
 		int curpage = Integer.parseInt(page);
 		// include할 파일명을 전송
 		PictureDAO dao = new PictureDAO();
-		ArrayList<PictureVO> list = dao.PictureListData(curpage);
+		ArrayList<PictureVO> list = dao.pictureListData(curpage);
 		ExhibitionDAO dao2 = new ExhibitionDAO();
 		List<ExhibitionVO> list2 = dao2.normalExhibitionData(); // 일반전시회
 		List<ExhibitionVO> list3 = dao2.tradeExhibitionData(); // 무역전시회

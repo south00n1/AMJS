@@ -165,8 +165,8 @@ li.active a:hover {
 	<div class="gallery">
 	  <c:forEach var="vo" items="${list }">
 	   <div class="pic wow fadeInUp" data-wow-delay="0.1s">
-		<img src="${vo.image }" alt="" width="50%" height="auto" class="gallery-img" />
-		<p><b>${vo.title }</b>&nbsp;&nbsp;&nbsp;${vo.name }</p>
+		<a href="../picture/detail.do?gpno=${vo.gpno }"><img src="${vo.image }" alt="" width="50%" height="auto" class="gallery-img" /></a>
+		<p class="mb-2"><b>${vo.title }</b>&nbsp;&nbsp;&nbsp;${vo.name }</p>
 	   </div>
 	  </c:forEach>
 	</div> 
