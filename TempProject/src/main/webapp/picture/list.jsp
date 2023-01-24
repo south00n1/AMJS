@@ -21,8 +21,8 @@
 .gallery img { 
     width: 100%; 
     height: auto;
-    transition: 500ms;
     margin-bottom: 10px;
+    transition: 500ms;
     opacity: 0.8;
     page-break-inside: avoid; /* For Firefox. */
     -webkit-column-break-inside: avoid; /* For Chrome & friends. */
@@ -170,7 +170,6 @@ li.active a:hover {
 	   </div>
 	  </c:forEach>
 	</div> 
-</div>
 
     <ul>
     	<c:if test="${startPage>1 }">
@@ -183,7 +182,7 @@ li.active a:hover {
           <li><a href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
         </c:if>
     </ul>
-
+</div>
 </body>
 
 </html>
