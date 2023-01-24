@@ -47,18 +47,25 @@
 	  	  	<th width=10% class="text-center">ID</th>
 	  	  	<th width=15% class="text-center">작성일</th>
 	  	  	<th width=10% class="text-center">답변상태</th>
-	  	  	<th width=10% class="text-center">조회수</th>
+	  	  	<th width=10% class="text-center">첨부파일</th>
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=5% class="text-center">${count-s.index }</td>
+		  	  	<td width=5% class="text-center">${count-s.index-((curpage-1)*10) }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=35%>
 		  	  	  <c:if test="${vo.group_tab>0 }">
 		  	  	  	<c:forEach var="i" begin="0" end="${vo.group_tab }">&nbsp;&nbsp;</c:forEach>
+		  	  	  	<img src="../service/image/letter.png" style="width: 20px;height: 20px">
+		  	  	  	<!-- 
+		  	  	  	<img src="../service/image/file_icon.jpg" style="width: 20px;height: 20px">
+		  	  	  	<i class="fa-brands fa-replyd"></i>
+		  	  	  	 -->
 		  	  	  </c:if>
-		  	  	  <img src="">
 		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
+		  	  	  <c:if test="${vo.dbday==today }">
+		          	<img src="../service/image/new_red.png" style="width: 20px">
+		          </c:if>
 		  	  	</td>
 		  	  	<td width=10% class="text-center">${vo.id }</td>
 		  	  	<td width=15% class="text-center">${vo.dbday }</td>
@@ -71,7 +78,13 @@
 		  	  	  </c:if>
 		  	  <!-- ### id=master의 글은 답변 상태 나타내지 말까? 이중 for문으로? ### -->
 		  	  	</td>
-		  	  	<td width=10% class="text-center">${vo.hit }</td>
+		  	  	<td width=10% class="text-center">
+		  	  	  <c:if test="${vo.filesize>0 }">
+		  	  	   <a href="../service/download.do?fn=${vo.filename }">
+		  	  	  	<img src="../service/image/file.png" style="width: 20px;height: 20px">
+		  	  	   </a>
+		  	  	  </c:if>
+		  	  	</td>
 		  	  </tr>
 	  	  </c:forEach>
 	  	</table>

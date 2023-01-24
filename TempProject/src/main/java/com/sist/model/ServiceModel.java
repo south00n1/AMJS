@@ -1,5 +1,8 @@
 package com.sist.model;
 import java.util.*;
+import java.io.*;
+import java.text.SimpleDateFormat;
+
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -14,16 +17,15 @@ public class ServiceModel {
 	@RequestMapping("service/main.do")
 	public String service_main(HttpServletRequest request, HttpServletResponse response) {
 		//qna
-		String page=request.getParameter("page");
-		if(page==null) page="1";
 		ServiceDAO sdao=new ServiceDAO();
-		List<AskVO> slist=sdao.qnaListData(Integer.parseInt(page));
+		List<AskVO> slist=sdao.qnaListData(1);
 		request.setAttribute("slist", slist);
 		
 		//faq
 		FaqDAO fdao=new FaqDAO();
-		List<FaqVO> flist=fdao.faq_top10();
+		List<FaqVO> flist=fdao.faqListData(0, 1);
 		request.setAttribute("flist", flist);
+		
 		request.setAttribute("main_jsp", "../service/service.jsp");
 		return "../main/main.jsp";
 	}
@@ -41,6 +43,7 @@ public class ServiceModel {
 		request.setAttribute("count", count);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("main_jsp", "../service/list.jsp");
 		return "../main/main.jsp";
 	}

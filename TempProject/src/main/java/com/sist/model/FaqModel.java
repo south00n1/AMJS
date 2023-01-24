@@ -15,12 +15,18 @@ public class FaqModel {
 	public String faq_list(HttpServletRequest request, HttpServletResponse response) {
 		String type=request.getParameter("type");
 		if(type==null) type="0";
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
 		FaqDAO dao=new FaqDAO();
-		List<FaqVO> list=dao.faqListData(Integer.parseInt(type));
+		List<FaqVO> list=dao.faqListData(Integer.parseInt(type), curpage);
 		int count=dao.faqRowCount(Integer.parseInt(type));
+		int totalpage=(int)(Math.ceil(count/10.0));
 		request.setAttribute("type", type);
+		request.setAttribute("curpage", curpage);
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
 		return "../main/main.jsp";
 	}

@@ -32,15 +32,14 @@ depth : 포함 대댓글 갯수
 public class ServiceDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	/* **** 참조키 id 해결하기 insert가 안됨 **** */
 	//QNA 목록 출력
 	public List<AskVO> qnaListData(int page){
 		List<AskVO> list=new ArrayList<AskVO>();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),depth,num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth,rownum as num "
-					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth "
+			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),depth,filename,filesize,num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth,filename,filesize,rownum as num "
+					+ "FROM (SELECT gano,id,subject,type,ans_state,group_tab,hit,regdate,depth,filename,filesize "
 					+ "FROM god_ask_3 ORDER BY group_id DESC, group_step ASC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
@@ -61,6 +60,8 @@ public class ServiceDAO {
 				vo.setHit(rs.getInt(7));
 				vo.setDbday(rs.getString(8));
 				vo.setDepth(rs.getInt(9));
+				vo.setFilename(rs.getString(10));
+				vo.setFilesize(rs.getInt(11));
 				list.add(vo);
 			}
 			rs.close();
@@ -104,7 +105,7 @@ public class ServiceDAO {
 				ps.executeUpdate();
 			}
 			
-			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
@@ -118,6 +119,8 @@ public class ServiceDAO {
 			vo.setAns_state(rs.getString(5));
 			vo.setDbday(rs.getString(6));
 			vo.setHit(rs.getInt(7));
+			vo.setFilename(rs.getString(8));
+			vo.setFilesize(rs.getInt(9));
 			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -130,15 +133,17 @@ public class ServiceDAO {
 	public void qnaInsert(AskVO vo, String id) {
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id) "
-					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1) "
-					+ "FROM god_ask_3))";
+			String sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,group_id,filename,filesize) "
+					+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,"
+					+ "(SELECT NVL(MAX(group_id)+1,1) FROM god_ask_3),?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, vo.getPwd());
 			ps.setString(3, vo.getSubject());
 			ps.setString(4, vo.getType());
 			ps.setString(5, vo.getContent());
+			ps.setString(6, vo.getFilename());
+			ps.setInt(7, vo.getFilesize());
 			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -176,16 +181,30 @@ public class ServiceDAO {
 	     	if(id.equals("master")) {
 	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
 	     				+ "group_id,group_step,group_tab,root,depth) "
-	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다.',?,?,SYSDATE,0,?,?,?,?,0)";
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다',?,?,SYSDATE,0,?,?,?,?,0)";
 	     		ps=conn.prepareStatement(sql);
 	     		ps.setString(1, id);
 	     		ps.setString(2, vo.getPwd());
 	     		ps.setString(3, rvo.getType());
 	     		ps.setString(4, vo.getContent());
 	     		ps.setInt(5, rvo.getGroup_id());
-	     		ps.setInt(7, rvo.getGroup_step()+1);
-	     		ps.setInt(8, rvo.getGroup_tab()+1);
-	     		ps.setInt(9, no);
+	     		ps.setInt(6, rvo.getGroup_step()+1);
+	     		ps.setInt(7, rvo.getGroup_tab()+1);
+	     		ps.setInt(8, no);
+	     		ps.executeUpdate();
+	     	} else {
+	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
+	     				+ "group_id,group_step,group_tab,root,depth) "
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'재질문입니다',?,?,SYSDATE,0,?,?,?,?,0)";
+	     		ps=conn.prepareStatement(sql);
+	     		ps.setString(1, id);
+	     		ps.setString(2, vo.getPwd());
+	     		ps.setString(3, rvo.getType());
+	     		ps.setString(4, vo.getContent());
+	     		ps.setInt(5, rvo.getGroup_id());
+	     		ps.setInt(6, rvo.getGroup_step()+1);
+	     		ps.setInt(7, rvo.getGroup_tab()+1);
+	     		ps.setInt(8, no);
 	     		ps.executeUpdate();
 	     	}
 			
@@ -286,6 +305,28 @@ public class ServiceDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return bCheck;
+	}
+	//QNA 파일
+	public AskVO qnaFileData(int no) {
+		AskVO vo=new AskVO();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT filename,filesize "
+					+ "FROM god_ask_3 "
+					+ "WHERE gano=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setFilename(rs.getString(1));
+			vo.setFilesize(rs.getInt(2));
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
 	}
 	//QNA 검색
 }

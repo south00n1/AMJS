@@ -53,6 +53,12 @@
 		  	</td>
 		  </tr>
 		  <tr>
+		  	<th width=15% class="text-right">첨부파일</th>
+		  	<td width=85%>
+		  		<input type=file name=upload size=20 class="input-sm">
+		  	</td>
+		  </tr>
+		  <tr>
 		  	<th width=15% class="text-right">비밀번호</th>
 		  	<td width=85%>
 		  		<input type=password name=pwd size=10 class="input-sm" required>

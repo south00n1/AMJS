@@ -46,6 +46,15 @@
 	  	  	<th colspan=2 class="text-center">제목</th>
 	  	  	<td colspan=6>${vo.subject }</td>
 	  	  </tr>
+	  	  <c:if test="${vo.filesize>0 }">
+	  	    <tr>
+	  	    	<th colspan=2 class="text-center">첨부파일</th>
+	  	    	<td colspan=6>
+	  	    	  <img src="../service/images/file.png" style="width: 20px;height: 20px">
+	  	    	  <a href="../service/download.do?fn=${vo.filename }">${vo.filename }</a>(${vo.filesize }Bytes)
+	  	    	</td>
+	  	    </tr>
+	  	  </c:if>
 	  	  <tr>
 	  	  	<td class="text-left" valign=top colspan=8 height=200>${vo.content }</td>
 	  	  </tr>

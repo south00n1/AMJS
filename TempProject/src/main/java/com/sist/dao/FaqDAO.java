@@ -13,17 +13,25 @@ public class FaqDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	//FAQ 목록 출력
-	public List<FaqVO> faqListData(int type){
+	public List<FaqVO> faqListData(int type, int page){
 		List<FaqVO> list=new ArrayList<FaqVO>();
 		String[] ftype= {"","회원","예매","결제","티켓","기타"};
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="";
 			if(type==0) {
-				sql="SELECT gfno,type,subject,hit "
+				sql="SELECT gfno,type,subject,hit,num "
+						+ "FROM (SELECT gfno,type,subject,hit,rownum as num "
+						+ "FROM (SELECT gfno,type,subject,hit "
 						+ "FROM god_faq_3 "
-						+ "ORDER BY hit DESC";
+						+ "ORDER BY hit DESC)) "
+						+ "WHERE num BETWEEN ? AND ?";
 				ps=conn.prepareStatement(sql);
+				int rowSize=10;
+				int start=rowSize*(page-1)+1;
+				int end=rowSize*page;
+				ps.setInt(1, start);
+				ps.setInt(2, end);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
 					FaqVO vo=new FaqVO();
@@ -145,33 +153,5 @@ public class FaqDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return bCheck;
-	}
-	//FAQ top10
-	public List<FaqVO> faq_top10(){
-		List<FaqVO> list=new ArrayList<FaqVO>();
-		try {
-			conn=CreateConnection.getConnection();
-			String sql="SELECT gfno,type,subject,hit "
-					+ "FROM (SELECT gfno,type,subject,hit "
-					+ "FROM god_faq_3 "
-					+ "ORDER BY hit DESC) "
-					+ "WHERE rownum BETWEEN 1 AND 10";
-			ps=conn.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
-				FaqVO vo=new FaqVO();
-				vo.setGfno(rs.getInt(1));
-				vo.setType(rs.getString(2));
-				vo.setSubject(rs.getString(3));
-				vo.setHit(rs.getInt(4));
-				list.add(vo);
-			}
-			rs.close();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			CreateConnection.disConnection(conn, ps);
-		}
-		return list;
 	}
 }

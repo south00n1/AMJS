@@ -53,7 +53,7 @@
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=10% class="text-center">${count-s.index }</td>
+		  	  	<td width=10% class="text-center">${count-s.index-((curpage-1)*10) }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65%>
 		  	  		<a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
@@ -62,6 +62,17 @@
 		  	  </tr>
 	  	  </c:forEach>
 	  	</table>
+	  	<c:if test="${type==0 }">
+		  	<table class="table" style="border-color: white">
+		  	  <tr>
+		  	  	<td class="text-center">
+		  	  		<a href="../service/faq_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+		  	  		${curpage } page / ${totalpage } pages
+		  	  		<a href="../service/faq_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+		  	  	</td>
+		  	  </tr>
+		  	</table>
+	  	</c:if>
 	</div>
 </body>
 </html>
