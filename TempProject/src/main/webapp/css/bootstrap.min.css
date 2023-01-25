@@ -9993,9 +9993,7 @@ fieldset:disabled .btn {
 }
 
 /* ======================= css 추가 ============================= */
-.one_quarter{
-	display: inline-flex;
-}
+
 
 .box{
   margin: 10px auto;
@@ -10061,4 +10059,20 @@ width: 300px;
 
 .smm-4{
 	margin-top:30px auto;
+}
+.container{
+	
+}
+.img-list-1{
+	width: 20%;
+	height: auto;
+	padding: 10px;
+	margin: 50px;
+	object-fit: cover;
+	display: flex;
+	float: left;
+	
+}
+.bottom{
+	clear: both;
 }
