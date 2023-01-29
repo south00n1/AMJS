@@ -1,8 +1,21 @@
 package com.sist.vo;
 
 public class ExhibitionVO {
-	private int geno,good;
-	private String poster,title,title2,kind,period,loc,loc2,area,are2,item,host,url,price,time,hastag,content;
+	private int geno,good,hit, rownum;
+	private String poster,title,title2,kind,period,loc,loc2,area,area2,item,host,url,price,time,hashtag,content;
+	
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getGeno() {
 		return geno;
 	}
@@ -63,11 +76,11 @@ public class ExhibitionVO {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public String getAre2() {
-		return are2;
+	public String getArea2() {
+		return area2;
 	}
-	public void setAre2(String are2) {
-		this.are2 = are2;
+	public void setArea2(String area2) {
+		this.area2 = area2;
 	}
 	public String getItem() {
 		return item;
@@ -100,10 +113,10 @@ public class ExhibitionVO {
 		this.time = time;
 	}
 	public String getHastag() {
-		return hastag;
+		return hashtag;
 	}
 	public void setHastag(String hastag) {
-		this.hastag = hastag;
+		this.hashtag = hastag;
 	}
 	public String getContent() {
 		return content;

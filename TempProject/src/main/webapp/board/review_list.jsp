@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,24 +42,35 @@
 
 <div class="wrapper row3">
   <main class="container clear">
-  <h2 class="sectiontitle">Review</h2>
+  
+  <div style="height: 100px;">
+  
+  
+  </div>
+  <div>
+  <h2>Review</h2>
+  <h6>후기 게시판</h6>
+  <p>Go Out Display를 통해 예약하고 직접 방문하여 관람한 전시에 대하여 관람객들의 솔직한 후기를 남기는 게시판입니다.</p>
+  </div>
+   <h6><span style="color:#2737C;font-size: 25px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
+   <hr style="float:left;width: 55%">
   <div style="height: 5px"></div>
   <div style="height: 550px">
   <table class="table">
     <tr>
       <td>
-        <a href="../board/review_insert.do" class="btn btn-sm btn-danger">새글</a>
+        <a href="../board/review_insert.do" class="btn btn-sm btn-danger">글 작성</a>
       </td>
     </tr>
   </table>
   <table class="table">
     <tr>
-      <th width=10% class="text-center">번호</th>
+      <th width=10% class="text-center">no</th>
       <th width=45% class="text-center">제목</th>
-      <th width=15% class="text-center">관람전시</th>
-      <th width=10% class="text-center">이름</th>
+      <th width=15% class="text-center">전시명</th>
+      <th width=10% class="text-center">작성자</th>
       <th width=10% class="text-center">작성일</th>
-      <th width=10% class="text-center">조회수</th>
+      <th width=10% class="text-center">조회</th>
     </tr>
     <c:forEach var="vo" items="${list }">
       <tr>
@@ -77,15 +89,42 @@
     </c:forEach>
   </table>
   </div>
-  <table class="table">
-    <tr>
-      <td class="text-center">
-       <a href="../board/review_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-        ${curpage } page / ${totalpage } pages
-       <a href="../board/review_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
-      </td>
-    </tr>
-  </table>
+   <nav class="pagination">
+        <ul>
+         <c:if test="${startPage>1 }">
+          <li><a href="../board/review_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
+         </c:if>
+          <c:forEach var="i" begin="${startPage }" end="${endPage }">
+            <li ${i==curpage?"class=current":"" }><a href="../board/review_list.do?page=${i }">${i }</a></li>
+          </c:forEach>
+         <c:if test="${endPage<totalpage }">
+          <li><a href="../board/review_list.do?page=${endPage+1 }">Next &raquo;</a></li>
+         </c:if>
+        </ul>
+        <!-- 검색바 start -->
+        <div class="board_search">
+        <div class="container">
+		<div class="row">
+			<form method="post" name="search" action="searchbbs.jsp" pos>
+				<table class="pull-right">
+					<tr>
+						<td><select class="form-control" name="searchField">
+								<option value="0">선택</option>
+								<option value="bbsTitle">제목</option>
+								<option value="userID">작성자</option>
+						</select></td>
+						<td><input type="text" class="form-control"
+							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+						<td><button type="submit" class="btn btn-success">검색</button></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+	</div>
+	</div>
+        <!-- 검색바 end -->
+      </nav>
   </main>
 </div>
 

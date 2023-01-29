@@ -22,7 +22,9 @@ public class ExhibitionModel {
 	   int curpage=Integer.parseInt(page);
 	   ExhibitionDAO dao=new ExhibitionDAO();
 	   ArrayList<ExhibitionVO> list=dao.exhibitionAllListData(curpage);
-	   int totalpage=dao.exhibitionAllTotalPage();
+	   int count=dao.exhibitionRowCount();
+	   int totalpage=(int)(Math.ceil(count/20.0));
+	   //int totalpage=dao.exhibitionAllTotalPage();
 	   
 	   final int BLOCK=10;
 	   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -35,7 +37,19 @@ public class ExhibitionModel {
 	   request.setAttribute("totalpage", totalpage);
 	   request.setAttribute("startPage", startPage);
 	   request.setAttribute("endPage", endPage);
+	   request.setAttribute("count", count);
 	   request.setAttribute("main_jsp", "../exhibition/exhibition_all.jsp");// main.jsp에서 include되는 파일 지정 
 	   return "../main/main.jsp";
    }  
+   
+   @RequestMapping("exhibition/exhibition_detail.do")
+	public String picture_detail(HttpServletRequest request, HttpServletResponse response) {
+		String geno = request.getParameter("geno");
+		ExhibitionDAO dao = new ExhibitionDAO();
+		ExhibitionVO vo = dao.ExhibitionDetailData(Integer.parseInt(geno));
+		
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../exhibition/exhibition_detail.jsp");
+		return "../main/main.jsp";
+	}
 }

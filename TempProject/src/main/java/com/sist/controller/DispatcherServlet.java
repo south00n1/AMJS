@@ -105,7 +105,7 @@ public class DispatcherServlet extends HttpServlet {
 			//1-1. XML의 파일 읽기 => 호환성 => 실제 톰캣이 인식하는 폴더에서 읽기 
 			URL url=this.getClass().getClassLoader().getResource("."); // . 현재폴더 
 			File file=new File(url.toURI());
-			System.out.println(file.getPath());
+//			System.out.println(file.getPath());
 			//C:\webDev\webStudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPFinalProject\WEB-INF\classes
 			//C:\webDev\webStudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPFinalProject\WEB-INF
 			String path=file.getPath();
@@ -153,10 +153,10 @@ public class DispatcherServlet extends HttpServlet {
 		{
 			//1. 사용자가 요청한 주소를 확인 => ?뒤에는 자동으로 request
 			String uri=request.getRequestURI();
-			System.out.println(uri);
+//			System.out.println(uri);
 			// /JSPFinalProject/main/main.do   ==> 구분자 : main/main.do
 			uri=uri.substring(request.getContextPath().length()+1);
-			System.out.println("uri:"+uri);
+//			System.out.println("uri:"+uri);
 			// uri에 해당하는 메소드를 찾아서 호출 => 결과값 jsp로 전송 
 			for(String cls:clsList) // 등록된 클래스안에서 해당 요청의 메소드를 호출한다 
 			{

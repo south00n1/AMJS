@@ -75,7 +75,7 @@ h6,
 .h6 {
     margin-top: 0;
     margin-bottom: 0.5rem;
-    font-family: "Nunito", sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
     line-height: 1.2;
     color: #181d38;
@@ -502,6 +502,10 @@ progress {
     max-width: 100%;
     height: auto;
 }
+.img-fluid2 {
+	max-width: 100%;
+    height: 380px;
+}
 .img-thumbnail {
     padding: 0.25rem;
     background-color: #fff;
@@ -571,11 +575,11 @@ progress {
     .container-lg,
     .container-xl,
     .container-xxl {
-        max-width: 1320px;
+        max-width: 1200px;
     }
 }
 .row {
-    --bs-gutter-x: 1.5rem;
+    --bs-gutter-x: 1rem;
     --bs-gutter-y: 0;
     display: flex;
     flex-wrap: wrap;
@@ -4196,6 +4200,8 @@ fieldset:disabled .btn {
     border-radius: 0;
 }
 .breadcrumb {
+	flex-direction: row;
+	flex: 0 0 auto;
     display: flex;
     flex-wrap: wrap;
     padding: 0 0;
@@ -4215,7 +4221,7 @@ fieldset:disabled .btn {
     color: #6c757d;
 }
 .pagination {
-    display: flex;
+    display:flex;
     padding-left: 0;
     list-style: none;
 }
@@ -6363,12 +6369,10 @@ fieldset:disabled .btn {
 }
 .mb-0 {
     margin-bottom: 0 !important;
+    /*
     padding-top: 1rem;
     font-size:18px;
-   
-  	margin-bottom: 0 !important;
-    padding-top: 1rem;
-    font-size:18px;
+    */
 }
 .mb-1 {
     margin-bottom: 0.25rem !important;
@@ -6384,7 +6388,6 @@ fieldset:disabled .btn {
 }
 .mb-5 {
     margin-bottom: 3rem !important;
-    text-align: center;
 }
 .mb-auto {
     margin-bottom: auto !important;
@@ -6580,8 +6583,8 @@ fieldset:disabled .btn {
     padding-bottom: 0.5rem !important;
 }
 .py-3 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
 }
 .py-4 {
     padding-top: 1.5rem !important;
@@ -10059,15 +10062,15 @@ width: 300px;
 
 .smm-4{
 	margin-top:30px auto;
+
 }
-.container{
-	
-}
+
 .img-list-1{
 	width: 20%;
 	height: auto;
 	padding: 10px;
-	margin: 50px;
+	margin: 20px;
+	margin-top: 90px;
 	object-fit: cover;
 	display: flex;
 	float: left;
@@ -10076,3 +10079,51 @@ width: 300px;
 .bottom{
 	clear: both;
 }
+
+.sectiontitle{
+	text-align: center;
+	margin-top: 8%;
+	margin-bottom: 6.3%;
+	color: #27375C
+}
+.sectiontitle-1{
+	text-align: right;
+	margin-top: 50px;
+	color: #27375C;
+	padding: 0px;
+	width: flex;
+	margin-bottom: 20px;
+}
+.sectionnumber{
+	color: #f2445f;
+}
+.postertitle{
+	text-align: left;
+	margin-bottom: 0;
+}
+.course-item bg-white{
+	flex: 1;
+	overflow: auto;
+}
+
+
+/*     페이징css start       */
+.pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination li{display:inline-block; margin:0 2px 0 0;}
+.pagination li:last-child{margin-right:0;}
+.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; font-weight:normal;}
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current{color:#FFFFFF; background-color:#000000;}
+/*     페이징css end       */
+
+.board_search{
+	display: inline-block;
+    text-align: center;
+}
+.searchbtn{
+	background-color: #27375C
+}
+
+/* 슬라이드 */
+
+

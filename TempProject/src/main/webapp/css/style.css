@@ -121,7 +121,7 @@
 
 .navbar-light .navbar-nav .nav-link {
     color: var(--dark);
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .navbar-light.sticky-top {
@@ -448,3 +448,4 @@ a.btn btn-primary b1 {
 }
 
 /* ================ 추가 css ==================*/
+

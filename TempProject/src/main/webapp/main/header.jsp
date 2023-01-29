@@ -21,7 +21,13 @@
              
                 <a href="../main/main.do" class="nav-item nav-link active">홈</a>
                 <a href="../exhibition/exhibition_all.do" class="nav-item nav-link">전시회 목록</a>
-                <a href="../picture/list.do" class="nav-item nav-link">2D 전시회</a>
+                <div class="nav-item dropdown">
+                	<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">미술관</a>
+                	<div class="dropdown-menu fade-down m-0">
+                        <a href="../picture/list.do" class="dropdown-item">미술품</a>
+                        <a href="../picture/gallery.do" class="dropdown-item">2D 전시회</a>
+                    </div>
+                </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
                     <div class="dropdown-menu fade-down m-0">
@@ -30,7 +36,7 @@
                         <a href="#" class="dropdown-item">공지사항</a>
                     </div>
                 </div>
-                <a href="#" class="nav-item nav-link">고객센터</a>
+                <a href="../service/main.do" class="nav-item nav-link">고객센터</a>
             </div>
             <a href="../user/login.do" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
         </div>

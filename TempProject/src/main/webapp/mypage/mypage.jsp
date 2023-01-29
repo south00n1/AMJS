@@ -6,50 +6,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-* {
-	/* border: 1px solid black; */
-	box-sizing: border-box;
+ul {
+	list-style: none;
 }
-
-div.mypageForm {
-	width: 100%;
-	height: 800px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-div.mypageList {
-	border: 1px solid black;
-	width: 25%;
-	height: 600px;
-}
-div.mypageContents {
-	border: 1px solid black;
-	width: 75%;
-	height: 600px;
-	
+li:hover {
+	color: #27375C;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
-	<div class="mypageForm">
-	  <div class="mypageList">
-	  	<div>
-	  	  <h2>마이페이지</h2>
-	  	</div>
-	  	<div class="exhibitionInfo">
-	  	  <h3>내 전시회 정보</h3>
-	  	</div>
-	  	<div class="communityInfo">
-	  	  <h3>내 활동</h3>
-	  	</div>
-	  	<div class="userInfo">
-	  	  <h3>회원정보수정</h3>
-	  	</div>
-	  </div>
-	  
-	  <div class="mypageContents">
+	
+<div class="container-xxl py-5" style="height: 70%">	
+	<div class="container ">
+	  <div class="row my-5">
+	  	<h4 class="mb-5 wow fadeInUp" data-wow-delay="0.5s">마이페이지</h4>
+	    <div class="col-sm-2 wow fadeInUp" data-wow-delay="0.5s">
+	  	  <ul class="py-0 px-0">
+	  	    <li class="">전시회 예매내역</li>
+	  	    <hr>
+	  	    <li class="">좋아요 목록</li>
+	  	    <hr>
+	  	    <li class="">회원정보수정</li>
+	  	    <hr>
+	  	    <li class="mb-1">내 활동</li>
+	  	    <li class="my-1" style="font-size: 11px">내가 쓴 게시글</li>
+	  	    <li class="my-1" style="font-size: 11px">내가 쓴 댓글</li>
+	  	    <li class="my-1" style="font-size: 11px">내 문의 내역</li>
+	  	  </ul>
+	    </div>
+	    <div class="col-sm-10 px-5 wow fadeInUp" data-wow-delay="0.5s"">
+	      <div class="bg-success" style="width: 100%; height: 50px">
+	        <h2>제목</h2>
+	      </div>
+	      <div class="bg-primary" style="width: 100%; height: auto">
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	        <h3>내용</h3>
+	      </div>
+	    </div>
 	  </div>
 	</div>
+</div>
 </body>
 </html>

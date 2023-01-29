@@ -1,16 +1,8 @@
 package com.sist.vo;
-/*
-	GERNO NOT NULL NUMBER       
-	RDATE NOT NULL VARCHAR2(30) 
-	RTIME NOT NULL VARCHAR2(20) 
-	INWON NOT NULL NUMBER       
-	OK    NOT NULL VARCHAR2(10) 
-	GENO           NUMBER       
-	ID             VARCHAR2(20) 
- */
+
 public class ReserveVO {
-	private int gerno, inwon, geno;
-	private String rdate, rtime, ok, id;
+	private int gerno,inwon,geno;
+	private String rdate,rtime,ok,id;
 	
 	public int getGerno() {
 		return gerno;
@@ -54,5 +46,4 @@ public class ReserveVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 }
