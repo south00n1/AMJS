@@ -2,7 +2,8 @@ package com.sist.model;
 import java.util.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
-
+import com.oreilly.servlet.*;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.vo.*;
 import com.sist.dao.*;
 
@@ -65,22 +66,43 @@ public class ServiceModel {
 	}
 	
 	@RequestMapping("service/insert_ok.do")
-	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) {
+	public String qna_insert_ok(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
+		String path="c:\\download";
+		int size=1024*1024*100;
+		String enctype="UTF-8";
+		MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
 		String id="choe";
-		String subject=request.getParameter("subject");
-		String type=request.getParameter("type");
-		String content=request.getParameter("content");
-		String pwd=request.getParameter("pwd");
+		String subject=mr.getParameter("subject");
+		String type=mr.getParameter("type");
+		String content=mr.getParameter("content");
+		String pwd=mr.getParameter("pwd");
+		String filename=mr.getFilesystemName("upload");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
 		vo.setSubject(subject);
 		vo.setType(type);
 		vo.setContent(content);
 		vo.setPwd(pwd);
+		if(filename==null) {
+			vo.setFilename("");
+			vo.setFilesize(0);
+		} else {
+			File file=new File(path+"\\"+filename);
+			vo.setFilename(filename);
+			vo.setFilesize((int)file.length());
+		}
 		dao.qnaInsert(vo, id);
+		return "redirect:list.do";
+	}
+	
+	@RequestMapping("service/download.do")
+	public String qna_download(HttpServletRequest request, HttpServletResponse response) {
+		String fn=request.getParameter("fn");
+		String path="c:\\download";
+		
 		return "redirect:list.do";
 	}
 	

@@ -58,8 +58,8 @@
     </div>
     <div style="height: 10px"></div>
 	<div>
-		<div style="color: #27375C;font-size: 12px">
-		  <span style="color: white;font-size: 13px">인기검색어</span>&nbsp;
+		<div style="color: #27375C;font-size: 13px">
+		  <span style="color: white;font-size: 14px">인기검색어</span>&nbsp;
 			<span><a href="#">결제방법</a></span>&nbsp;|&nbsp;
 			<span><a href="#">회원정보 확인/변경</a></span>&nbsp;|&nbsp;
 			<span><a href="#">2D 전시회</a></span>&nbsp;|&nbsp;

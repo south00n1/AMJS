@@ -50,7 +50,7 @@
 	  	    <tr>
 	  	    	<th colspan=2 class="text-center">첨부파일</th>
 	  	    	<td colspan=6>
-	  	    	  <img src="../service/images/file.png" style="width: 20px;height: 20px">
+	  	    	  <img src="../service/image/folder.png" style="width: 20px;height: 20px">
 	  	    	  <a href="../service/download.do?fn=${vo.filename }">${vo.filename }</a>(${vo.filesize }Bytes)
 	  	    	</td>
 	  	    </tr>

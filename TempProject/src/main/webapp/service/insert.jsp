@@ -32,7 +32,7 @@
 	<div class="container" style="width:700px">
 	<div style="height: 5px"></div>
 	<div class="row">
-	  <form method=post action="../service/insert_ok.do">
+	  <form method=post action="../service/insert_ok.do" enctype="multipart/form-data">
 		<table class="table">
 		  <tr>
 		  	<th width=15% class="text-right">문의유형</th>

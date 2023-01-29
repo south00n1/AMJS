@@ -81,7 +81,7 @@
 		  	  	<td width=10% class="text-center">
 		  	  	  <c:if test="${vo.filesize>0 }">
 		  	  	   <a href="../service/download.do?fn=${vo.filename }">
-		  	  	  	<img src="../service/image/file.png" style="width: 20px;height: 20px">
+		  	  	  	<img src="../service/image/folder.png" style="width: 20px;height: 20px">
 		  	  	   </a>
 		  	  	  </c:if>
 		  	  	</td>
