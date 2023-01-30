@@ -12,20 +12,13 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Quick Link</h4>
-<<<<<<< HEAD
-                    <a class="btn btn-link" href="">회사 소개</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
-=======
                     <a class="btn btn-link" href="../exhibition/exhibition_all.do">전시회 목록</a>
                     <a class="btn btn-link" href="../picture/list.do">미술품</a>
                     <a class="btn btn-link" href="../picture/gallery.do">2D 전시회</a>
                     <a class="btn btn-link" href="../board/review_list.do">커뮤니티</a>
                     <a class="btn btn-link" href="../service/main.do">고객센터</a>
->>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
                 </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>서울 강남구 테헤란로 132</p>

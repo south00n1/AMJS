@@ -47,6 +47,7 @@ button {
   cursor: pointer;
 }
 
+
 input, textarea, select {
   font-family: "Heebo", 'Noto Sans KR', sans-serif;
 }
@@ -106,8 +107,18 @@ div.info_member p::after {
 div.info_member :nth-child(1) div {
 	display: flex;
 }
+#checkBtn {
+  border: 1px solid #27375C;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #27375C;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
 
-.info_member> :nth-child(1) div button {
+#checkBtn {
   width: 100px;
   height: 42px;
   margin-left: 10px;
@@ -115,10 +126,86 @@ div.info_member :nth-child(1) div {
   flex-shrink: 0;
 }
 
-.info_member> :nth-child(1) div button:hover {
+#checkBtn:hover {
   color: white;
   background: #27375C;
 }
+
+#eBtn {
+  border: 1px solid #27375C;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #27375C;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+#eBtn {
+  width: 100px;
+  height: 42px;
+  margin-left: 10px;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+#eBtn:hover {
+  color: white;
+  background: #27375C;
+}
+
+#tBtn {
+  border: 1px solid #27375C;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #27375C;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+#tBtn {
+  width: 100px;
+  height: 42px;
+  margin-left: 10px;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+
+#tBtn:hover {
+  color: white;
+  background: #27375C;
+}
+
+#joinBtn {
+  border: 1px solid #27375C;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #27375C;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+#joinBtn {
+  width: 460px;
+  height: 42px;
+  margin-top: 20px;
+  transition: 0.8s;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 0;
+}
+
+#joinBtn:hover {
+  color: white;
+  background: #27375C;
+}
+
+
 .info_member> :nth-child(5) div {
   display: flex;
   border: 1px solid #ddd;
@@ -147,7 +234,24 @@ div.info_member :nth-child(1) div {
 .info_member> :nth-child(12)> :nth-child(1)::after {
   display: none;
 }
-.info_member> :nth-child(9) input {
+
+div.info_member :nth-child(7) div {
+	display: flex;
+}
+
+.info_member> :nth-child(7) div button {
+  width: 100px;
+  height: 42px;
+  margin-left: 10px;
+  transition: 0.8s;
+  flex-shrink: 0;
+}
+.info_member> :nth-child(7) div button:hover {
+  color: white;
+  background: #27375C;
+}
+
+.info_member> :nth-child(8) input {
   background: url('https://res.kurly.com/kurly/ico/2021/search_20_20_333.svg') no-repeat;
   background-position: right center;
   background-size: 45px 20px;

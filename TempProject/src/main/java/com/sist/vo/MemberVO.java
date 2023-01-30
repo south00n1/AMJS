@@ -13,8 +13,17 @@ package com.sist.vo;
 	ADMIN             CHAR(1)
  */
 public class MemberVO {
-	private String id, pwd, name, sex, brithday
-			,email ,post, addr1, addr2, phone, admin;
+	private String id, pwd, name, sex, birthday
+			,email ,post, addr1, addr2, phone, admin, msg;
+	
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
 	public String getId() {
 		return id;
@@ -47,13 +56,13 @@ public class MemberVO {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-	public String getBrithday() {
-		return brithday;
+	
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setBrithday(String brithday) {
-		this.brithday = brithday;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getEmail() {

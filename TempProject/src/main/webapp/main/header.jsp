@@ -1,10 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+// 로그아웃 버튼
+$(function(){
+	$('#logoutBtn').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../member/logout.do',
+			success:function(result) {
+				location.href="../main/main.do"
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
     
@@ -37,8 +54,21 @@
                     </div>
                 </div>
                 <a href="../service/main.do" class="nav-item nav-link">고객센터</a>
+                <c:if test="${sessionScope.id != null }">
+					<c:if test="${sessionScope.admin == 'n' }">
+		                <a href="../mypage/mypage.do" class="nav-item nav-link">마이페이지</a>
+					</c:if>
+					<c:if test="${sessionScope.admin == 'y' }">
+		                <a href="../mypage/mypage.do" class="nav-item nav-link">관리자페이지</a>
+					</c:if>
+				</c:if>
             </div>
-            <a href="../user/login.do" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
+            <c:if test="${sessionScope.id==null }">
+           	<a href="../member/login.do" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1">로그인<i class="fa fa-arrow-right ms-3"></i></a>
+        	</c:if>
+        	<c:if test="${sessionScope.id!=null }">
+           	<a href="../member/logout.do" class="btn btn-primary py-4 px-lg-4 d-none d-lg-block b1" id="logoutBtn">로그아웃<i class="fa fa-arrow-right ms-3"></i></a>
+        	</c:if>
         </div>
     </nav>
     <!-- slider start(test) -->
