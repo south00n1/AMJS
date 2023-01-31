@@ -239,7 +239,7 @@
 			<div class="text-center">
 				<h6 class="section-title bg-white text-center text-primary px-3">전시관람
 					후기</h6>
-				<h1 class="mb-5">리뷰 서브 타이틀</h1>
+				<h1 class="mb-5">이달의 리뷰</h1>
 			</div>
 			<div class="owl-carousel testimonial-carousel position-relative">
 				<div class="testimonial-item text-center">

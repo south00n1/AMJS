@@ -8,6 +8,37 @@
 <title>Insert title here</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let f=0
+$(function(){
+	$('.ftype span').click(function(){
+		let type=$(this).attr("data-no")
+		$.ajax({
+			type:'post',
+			url:'../service/faq_list.do',
+			data:{"type":type},
+			success:function(result){
+				//안댐 ...왜때무네..
+			}
+		})
+	})
+	
+	$('.fsub').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	$('.fsub').click(function(){
+		let no=$(this).attr("data-no")
+		if(f===0){
+			$('#f'+no).show()
+			f=1
+		}else{
+			$('#f'+no).hide()
+			f=0
+		}
+	})
+})
+</script>
 </head>
 <body>
 	<!-- ### -->
@@ -33,13 +64,12 @@
 	  <div style="height: 5px"></div>
 	  	<table class="table text-center">
 	  	  <tr>
-	  	  	<td>
-	  	  		<a href="../service/faq_list.do?type=1" class="btn btn-primary py-md-3 px-md-5 slideInLeft">회원</a>
-	  	  		<a href="../service/faq_list.do?type=2" class="btn btn-primary py-md-3 px-md-5 slideInRight">예매</a>
-	  	  		<a href="../service/faq_list.do?type=3" class="btn btn-primary py-md-3 px-md-5 slideInLeft">결제</a>
-	  	  		<a href="../service/faq_list.do?type=4" class="btn btn-primary py-md-3 px-md-5 slideInRight">티켓</a>
-	  	  		<a href="../service/faq_list.do?type=5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</a>
-	  	  		<!-- 선택 후 나머지 비활성화 어케 하는거쥐 -->
+	  	  	<td class=ftype>
+	  	  		<span data-no="1" class="btn btn-primary py-md-3 px-md-5 slideInLeft">회원</span>
+	  	  		<span data-no="2" class="btn btn-primary py-md-3 px-md-5 slideInLeft">예매</span>
+	  	  		<span data-no="3" class="btn btn-primary py-md-3 px-md-5 slideInLeft">결제</span>
+	  	  		<span data-no="4" class="btn btn-primary py-md-3 px-md-5 slideInLeft">티켓</span>
+	  	  		<span data-no="5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</span>
 	  	  	</td>
 	  	  </tr>
 	  	</table>
@@ -49,19 +79,34 @@
 	  	  	<th width=15% class="text-center">문의유형</th>
 	  	  	<th width=65% class="text-center">제목</th>
 	  	  	<th width=10% class="text-center">조회수</th>
-	  	  	<!-- 조회수 없애까 -->
 	  	  </tr>
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index-((curpage-1)*10) }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
-		  	  	<td width=65%>
-		  	  		<a href="../service/faq_detail.do?no=${vo.gfno }" style="color: black">${vo.subject }</a>
-		  	  	</td>
+		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 		  	  	<td width=10% class="text-center">${vo.hit }</td>
 		  	  </tr>
+		  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
+				<td colspan=2></td>
+				<td>${vo.content }</td>
+				<td>
+					<c:if test="${sessionScope.admin=='y' }">
+	  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning">수정</a>
+	  	  			</c:if>
+				</td>
+			  </tr>
 	  	  </c:forEach>
 	  	</table>
+	  	<c:if test="${sessionScope.admin=='n' }">
+		  	<table>
+		  	  <tr>
+		  	  	<td class="text-right" colspan=8 style="border-color: white">
+		  	  			<a href="../service/insert.do" class="btn btn-sm btn-warning">문의 작성</a>
+		  	  	</td>
+		  	  </tr>
+		  	</table>
+	  	</c:if>
 	  	<c:if test="${type==0 }">
 		  	<table class="table" style="border-color: white">
 		  	  <tr>

@@ -44,7 +44,7 @@
 		  	<th width=15% class="text-right">제목</th>
 		  	<td width=85%>
 		  		<input type=text name=subject size=45 class="input-sm" required value="${vo.subject }">
-		  		<input type=hidden name=no size=45 class="input-sm" value="${vo.gfno }">
+		  		<input type=hidden name=no size=45 value="${vo.gfno }">
 		  	</td>
 		  </tr>
 		  <tr>
