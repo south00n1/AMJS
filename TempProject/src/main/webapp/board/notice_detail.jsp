@@ -36,57 +36,43 @@
 </head>
 <body>
 
-
-<!-- 게시판 글 작성 start -->
+<!-- 게시판 글 상세2 start -->
 <div class="wrapper row3">
   <main class="container clear">
-  <h2 class="sectiontitle">글 작성</h2>
-  <div style="height: 5px"></div>
-  <form method="post" action="../board/review_insert_ok.do">
+  <div style="height: 120px;"></div>
+<div>
+  <h2><a href="../board/notice_list.do" style="color:#27375C">Notice</a></h2>
+  <h6><a href="../board/notice_list.do" style="color:#27375C">공지사항</a></h6>
+  </div>
+  <div style="height: 20px"></div>
+  
+<hr>
+  <div style="height: auto">
   <table class="table">
     <tr>
-      <th width=15% class="text-right">이름</th>
-      <td width=80%>
-        <input type=text name=name size=20 class="input-sm">
-      </td>
+      <th width=10% class="text-center">${vo.gnbno }</th>
+      <th width=75% class="text-center" colspan="2">${vo.subject }</th>
+      <th width=15% class="text-center">${vo.dbday }</th>
     </tr>
-    <tr>
-      <th width=15% class="text-right">글제목</th>
-      <td width=80%>
-        <input type=text name=subject size=60 class="input-sm">
-      </td>
-    </tr>
-        <tr>
-      <th width=15% class="text-right">관람전시</th>
-      <td width=80%>
-        <input type=text name=display_name size=60 class="input-sm">
-      </td>
-    </tr>
-    <tr>
-      <th width=15% class="text-right">내용</th>
-      <td width=80%>
-        <textarea rows="10" cols="60" name="content"></textarea>
-      </td>
-    </tr>
-    <tr>
-      <th width=15% class="text-right">비밀번호</th>
-      <td width=80%>
-        <input type=password name=pwd size=15 class="input-sm">
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="text-center">
-        <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
-        <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
-      </td>
-    </tr>
+      <tr>
+<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre></td>
+      </tr>
+      <tr>
+      <th width=10% class="text-center">다음글</th>
+      <th width=10% class="text-center">${vo.type }</th>
+      <th width=50% class="text-left">${vo.subject }</th>
+      <th width="20%"class="text-center">${vo.dbday }</th>
+      </tr>
+
   </table>
-  </form>
+  	<div class="btn_customer">
+	<span class="btn btn-lg btn_list"><a href="../board/notice_list.do" class="btlcu">목록</a></span>
+	</div>
+  </div>
   </main>
-</div>
+  </div>
 
-<!-- 게시판 글 작성 end -->
-
+<!-- 게시판 글 상세2 end -->
     
 
 

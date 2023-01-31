@@ -34,74 +34,86 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    
-    
-    
 </head>
 <body>
 
 
 <!-- 게시판 start -->
 
-<div class="wrapper row3">
-  <main class="container clear">
-  
-  <div style="height: 100px;">
-  
-  
-  </div>
-  <div>
-  <h2>Review</h2>
-  <h6>후기 게시판</h6>
-  <p>Go Out Display를 통해 예약하고 직접 방문하여 관람한 전시에 대하여 관람객들의 솔직한 후기를 남기는 게시판입니다.</p>
-  </div>
-   <h6><span style="color:#2737C;font-size: 25px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
-  <div style="height: 5px"></div>
+
+
   <div style="height: auto;">
 
-  <table class="table">
-    <tr>
-      <th width=10% class="text-center">no</th>
-      <th width=45% class="text-center">제목</th>
-      <th width=15% class="text-center">전시명</th>
-      <th width=10% class="text-center">작성자</th>
-      <th width=10% class="text-center">작성일</th>
-      <th width=10% class="text-center">조회</th>
-    </tr>
-    <c:forEach var="vo" items="${list }">
-      <tr>
-        <td width="10%" height="50px" style="vertical-align: middle;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="45%" height="50px" style="vertical-align: middle;" >
-         <a href="../board/review_detail.do?no=${vo.no }">${vo.subject}</a>&nbsp;
-         <c:if test="${vo.dbday==today }">
-           <sup><img src="../board/image/new.gif"></sup>
-         </c:if>
-        </td>
-        <td width="15%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.display_name }</td>        
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.name }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.dbday }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.hit }</td>
-      </tr>
-    </c:forEach>
-  </table>
-    <table class="table">
-    <tr>
-      <td>
-        <a href="../board/review_insert.do" class="btn btn-sm btn-danger">글 작성</a>
-      </td>
-    </tr>
-  </table>
+	<!-- 이벤트 리스트 start -->
+<div class="wrapper row3">
+  <main class="container clear">
+  <div style="height: 120px;">
+  
+  
   </div>
-    <nav class="pagination">
+
+  <div>
+  <h2>Event</h2>
+  <h6>이벤트</h6>
+  </div>
+  <div style="height: 20px"></div>
+    <div>
+  	<table class="pull-right">
+					<tr>
+						<td><select class="form-control" name="searchField">
+								<option value="0">전체</option>
+								<option value="bbsTitle">진행중</option>
+								<option value="userID">종료</option>
+						</select></td>
+					</tr>
+
+				</table>
+  </div>
+  <div style="height: 50px;"></div>
+  
+  <div class="row g-3 justify-content-center">
+  	<c:forEach var="vo" items="${list }" begin="1" end="9" step="1">
+  		<div class="col-lg-4 col-md-6">
+  		<div class="inner">
+  			<div class="course-item bg-white">
+  				<div class="position-relative overflow-hidden">
+  				<img class="img-fluid-2" src="${vo.poster }"style="width: 100%;height: 100%">
+  				</div>
+  				<div class="text-left py-3 px-2">
+  				<span class="frame"></span>
+  				<span class="tit_event">${vo.subject }</span>
+  				<div class="box_info">
+             <p class="info">
+             <span class="tit_info">${vo.event_date }</span>
+             </p>
+             <p class="info">
+             <span class="tit_info">${vo.progress_status }</span>
+             </p>
+             </div>
+             </div>
+  			</div>
+  			</div>
+  			
+  		</div>
+  	</c:forEach>
+  </div>
+
+	<!-- 이벤트 리스트 end --> 
+
+  </div>
+  
+  <div style="height: 50px;"></div>
+  
+   <nav class="pagination">
         <ul>
          <c:if test="${startPage>1 }">
-          <li><a href="../board/review_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
+          <li><a href="../board/event_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
          </c:if>
           <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/review_list.do?page=${i }">${i }</a></li>
+            <li ${i==curpage?"class=current":"" }><a href="../board/event_list.do?page=${i }">${i }</a></li>
           </c:forEach>
          <c:if test="${endPage<totalpage }">
-          <li><a href="../board/review_list.do?page=${endPage+1 }">Next &raquo;</a></li>
+          <li><a href="../board/event_list.do?page=${endPage+1 }">Next &raquo;</a></li>
          </c:if>
         </ul>
         <!-- 검색바 start -->

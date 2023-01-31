@@ -2,11 +2,18 @@ package com.sist.vo;
 
 import java.sql.Date;
 
-public class notice_boardVO {
+public class NoticeBoardVO {
 
 	private int gnbno,hit;
-	private String name,subject,content,type;
+	private String name,subject,content,type,dbday;
 	private Date regdate;
+	
+	public String getDbday() {
+		return dbday;
+	}
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
 	public int getGnbno() {
 		return gnbno;
 	}

@@ -3,10 +3,22 @@ package com.sist.vo;
 import java.sql.Date;
 
 public class ReviewBoardVO {
-	private int grbno,hit;
+	private int no,hit,good,noti;
 	private String name,subject,display_name,content,type,id,pwd,dbday;
 	private Date regdate;
 	
+	public int getNoti() {
+		return noti;
+	}
+	public void setNoti(int noti) {
+		this.noti = noti;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public String getPwd() {
 		return pwd;
 	}
@@ -19,11 +31,11 @@ public class ReviewBoardVO {
 	public void setDbday(String dbday) {
 		this.dbday = dbday;
 	}
-	public int getGrbno() {
-		return grbno;
+	public int getno() {
+		return no;
 	}
-	public void setGrbno(int grbno) {
-		this.grbno = grbno;
+	public void setno(int no) {
+		this.no = no;
 	}
 	public int getHit() {
 		return hit;

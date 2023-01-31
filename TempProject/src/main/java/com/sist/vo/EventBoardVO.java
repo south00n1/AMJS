@@ -2,10 +2,17 @@ package com.sist.vo;
 
 import java.sql.Date;
 
-public class event_boardVO {
+public class EventBoardVO {
 	private int gebno,hit;
-	private String name,subject,poster,content,type,progress_status,event_date,id;
+	private String name,subject,poster,content,type,progress_status,event_date,id,dbday;
 	private Date regdate;
+	
+	public String getDbday() {
+		return dbday;
+	}
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
 	public int getGebno() {
 		return gebno;
 	}

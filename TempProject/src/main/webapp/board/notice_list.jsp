@@ -34,9 +34,6 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    
-    
-    
 </head>
 <body>
 
@@ -45,63 +42,67 @@
 
 <div class="wrapper row3">
   <main class="container clear">
-  
-  <div style="height: 100px;">
+  <div style="height: 120px;">
   
   
   </div>
-  <div>
-  <h2>Review</h2>
-  <h6>후기 게시판</h6>
-  <p>Go Out Display를 통해 예약하고 직접 방문하여 관람한 전시에 대하여 관람객들의 솔직한 후기를 남기는 게시판입니다.</p>
-  </div>
-   <h6><span style="color:#2737C;font-size: 25px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
-  <div style="height: 5px"></div>
-  <div style="height: auto;">
 
+  <div>
+  <h2>Notice</h2>
+  <h6>공지사항</h6>
+  </div>
+  <div style="height: 20px"></div>
+  
+  <div>
+  	<table class="pull-right">
+					<tr>
+						<td><select class="form-control" name="searchField">
+								<option value="0">전체</option>
+								<option value="bbsTitle">서비스소식</option>
+								<option value="userID">서비스오픈</option>
+								<option value="bbsTitle">서비스종료</option>
+								<option value="userID">서비스점검</option>
+								<option value="userID">안내</option>
+						</select></td>
+					</tr>
+
+				</table>
+  </div>
+  <div style="height: auto;">
   <table class="table">
     <tr>
-      <th width=10% class="text-center">no</th>
+      <th width=10% class="text-center">NO.</th>
+      <th width=20% class="text-center">분류</th>
       <th width=45% class="text-center">제목</th>
-      <th width=15% class="text-center">전시명</th>
-      <th width=10% class="text-center">작성자</th>
-      <th width=10% class="text-center">작성일</th>
+      <th width=15% class="text-center">등록일</th>
       <th width=10% class="text-center">조회</th>
     </tr>
     <c:forEach var="vo" items="${list }">
       <tr>
-        <td width="10%" height="50px" style="vertical-align: middle;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="45%" height="50px" style="vertical-align: middle;" >
-         <a href="../board/review_detail.do?no=${vo.no }">${vo.subject}</a>&nbsp;
+        <td width="10%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.gnbno}</td><%-- vo.getNo() = {} getXxx() --%>
+        <td width="20%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.type }</td>
+        <td width="45%" height="50px" style="vertical-align: middle;" class="notice-table" >
+         <a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.subject}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>
         </td>
-        <td width="15%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.display_name }</td>        
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.name }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.dbday }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.hit }</td>
+        <td width="15%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.dbday }</td>
+        <td width="10%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.hit }</td>
       </tr>
     </c:forEach>
   </table>
-    <table class="table">
-    <tr>
-      <td>
-        <a href="../board/review_insert.do" class="btn btn-sm btn-danger">글 작성</a>
-      </td>
-    </tr>
-  </table>
   </div>
-    <nav class="pagination">
+   <nav class="pagination">
         <ul>
          <c:if test="${startPage>1 }">
-          <li><a href="../board/review_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
+          <li><a href="../board/notice_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
          </c:if>
           <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/review_list.do?page=${i }">${i }</a></li>
+            <li ${i==curpage?"class=current":"" }><a href="../board/notice_list.do?page=${i }">${i }</a></li>
           </c:forEach>
          <c:if test="${endPage<totalpage }">
-          <li><a href="../board/review_list.do?page=${endPage+1 }">Next &raquo;</a></li>
+          <li><a href="../board/notice_list.do?page=${endPage+1 }">Next &raquo;</a></li>
          </c:if>
         </ul>
         <!-- 검색바 start -->

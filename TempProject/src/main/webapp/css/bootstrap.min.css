@@ -10126,4 +10126,205 @@ width: 300px;
 
 /* 슬라이드 */
 
+/* ======================= css 추가 ============================= */
+.one_quarter{
+	display: inline-flex;
+}
+
+.box{
+  margin: 10px auto;
+  width: 300px;
+  height: 50px;
+  
+}
+.container-2{
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+.container-2 input#search{
+  width: 50px;
+  height: 50px;
+  background: #27375C;
+  font-size: 10pt;
+  float: right;
+  color: #27375C;
+  padding-left: 35px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-transition: width .55s ease;
+  -moz-transition: width .55s ease;
+  -ms-transition: width .55s ease;
+  -o-transition: width .55s ease;
+  transition: width .55s ease;
+}
+.container-2 input#search::-webkit-input-placeholder {
+   color: #fff;
+}
+.container-2 input#search:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+.container-2 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #27375C;  
+}
+.container-2 input#search:-ms-input-placeholder {  
+   color: #27375C;  
+}
+.container-2 .icon{
+  position: absolute;
+  top: 50%;
+  margin-left: 89%;
+  margin-top: 17px;
+  z-index: 1;
+  color: #fff;
+}
+.container-2 input#search:focus, .container-2 input#search:active{
+  outline:none;
+  width: 300px;
+}
+.container-2:hover input#search{
+width: 300px;
+}
+.container-2:hover .icon{
+  color: #fff;
+}
+
+
+.smm-4{
+	margin-top:30px auto;
+
+}
+
+
+/*     페이징css start       */
+.pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination li{display:inline-block; margin:0 2px 0 0;}
+.pagination li:last-child{margin-right:0;}
+.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; font-weight:normal;}
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current{color:#FFFFFF; background-color:#000000;}
+/*     페이징css end       */
+
+.board_search{
+	display: inline-block;
+    text-align: center;
+}
+.searchbtn{
+	background-color: #27375C
+}
+
+/* 슬라이드 */
+
+/*		공지사항 start		*/
+.wrapper{
+	font-size: 14px;
+}
+.btn_customer{
+	text-align: center;
+}
+.btn_list{
+	border: 1px solid #ccc;
+    background: #fff;
+    display: inline-block;
+    zoom: 1;
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+
+}
+.btlcu{
+	color: #27375C;
+	width: 170px;
+	display: inline-block;
+    height: 48px;
+    line-height: 46px;
+    font-size: 16px;
+    font-family: AppleSDGothicNeo-Regular, '맑은 고딕', 'Malgun Gothic';
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+}
+.pull-right{
+	background-color: white;
+}
+
+/*		공지사항 end		*/
+
+
+/*		게시판 start		*/
+.board-subject{
+	font-size:26px;
+	font-weight: 400;
+}
+/*		게시판 end		*/
+
+/*		이벤트 start		*/
+
+
+.list_event{
+	display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.tit_event{
+	overflow: hidden;
+    display: block;
+    height: auto;
+    max-height: 40px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    padding: 0 0 0;
+    font-size: 19px;
+    line-height: 21px;
+    color: #666;
+    font-family: AppleSDGothicNeo-Regular, "돋움",Dotum;
+}
+.info{
+	overflow: hidden;
+    font-size: 16px;
+    line-height: 18px;
+    color: #888;
+    font-family: AppleSDGothicNeo-Regular, "돋움",Dotum;
+    margin-bottom: 1px;
+}
+.box_info{
+	padding: 0 auto;
+}
+.img-fluid-2 {
+    max-width: 100%;
+    height: auto;
+    height: 120px;
+    vertical-align: top;
+    margin-bottom: 12px;
+}
+.inner{
+	
+    padding: 24px 23px 19px;
+    border: 1px solid #eee;
+}
+.frame{
+	background: none;
+    width: 266px;
+    height: 118px;
+    z-index: 10;
+    left: 0px;
+    border: 1px solid #000;
+    opacity: 0.03;
+}
+/*		이벤트 end		*/
 

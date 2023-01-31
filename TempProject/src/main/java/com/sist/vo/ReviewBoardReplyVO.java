@@ -2,16 +2,23 @@ package com.sist.vo;
 
 import java.sql.Date;
 
-public class replyVO {
+public class ReviewBoardReplyVO {
 
-	private int gbrno,gruop_id,group_step,group_tab,root,depth,grbno;
-	private String name,msg,id;
+	private int rno,gruop_id,group_step,group_tab,root,depth,bno;
+	private String name,msg,id,dbday;
 	private Date regdate;
-	public int getGbrno() {
-		return gbrno;
+	
+	public String getDbday() {
+		return dbday;
 	}
-	public void setGbrno(int gbrno) {
-		this.gbrno = gbrno;
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
+	public int getrno() {
+		return rno;
+	}
+	public void setrno(int rno) {
+		this.rno = rno;
 	}
 	public int getGruop_id() {
 		return gruop_id;
@@ -43,11 +50,11 @@ public class replyVO {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-	public int getGrbno() {
-		return grbno;
+	public int getbno() {
+		return bno;
 	}
-	public void setGrbno(int grbno) {
-		this.grbno = grbno;
+	public void setbno(int bno) {
+		this.bno = bno;
 	}
 	public String getName() {
 		return name;
