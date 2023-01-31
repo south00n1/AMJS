@@ -20,9 +20,9 @@ public class FaqDAO {
 			conn=CreateConnection.getConnection();
 			String sql="";
 			if(type==0) {
-				sql="SELECT gfno,type,subject,hit,num "
-						+ "FROM (SELECT gfno,type,subject,hit,rownum as num "
-						+ "FROM (SELECT gfno,type,subject,hit "
+				sql="SELECT gfno,type,subject,hit,content,num "
+						+ "FROM (SELECT gfno,type,subject,hit,content,rownum as num "
+						+ "FROM (SELECT gfno,type,subject,hit,content "
 						+ "FROM god_faq_3 "
 						+ "ORDER BY hit DESC)) "
 						+ "WHERE num BETWEEN ? AND ?";
@@ -39,6 +39,7 @@ public class FaqDAO {
 					vo.setType(rs.getString(2));
 					vo.setSubject(rs.getString(3));
 					vo.setHit(rs.getInt(4));
+					vo.setContent(rs.getString(5));
 					list.add(vo);
 				}
 				rs.close();
@@ -98,7 +99,7 @@ public class FaqDAO {
 		}
 		return count;
 	}
-	//FAQ 상세 출력
+	//FAQ 상세 출력 - 안써도 없애면 안돼 수정에서 써야대
 	public FaqVO faqDetailData(int no) {
 		FaqVO vo=new FaqVO();
 		try {
@@ -131,27 +132,22 @@ public class FaqDAO {
 		return vo;
 	}
 	//FAQ 수정
-	public boolean faqUpdate(FaqVO vo, String id) {
-		boolean bCheck=false;
+	public void faqUpdate(FaqVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
-			if(id.equals("master")) {
-				bCheck=true;
-				String sql="UPDATE god_faq_3 "
-						+ "SET subject=?, content=?, type=? "
-						+ "WHERE gfno=?";
-				ps=conn.prepareStatement(sql);
-				ps.setString(1, vo.getSubject());
-				ps.setString(2, vo.getContent());
-				ps.setString(3, vo.getType());
-				ps.setInt(4, vo.getGfno());
-				ps.executeUpdate();
-			}
+			String sql="UPDATE god_faq_3 "
+					+ "SET subject=?, content=?, type=? "
+					+ "WHERE gfno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getSubject());
+			ps.setString(2, vo.getContent());
+			ps.setString(3, vo.getType());
+			ps.setInt(4, vo.getGfno());
+			ps.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			CreateConnection.disConnection(conn, ps);
 		}
-		return bCheck;
 	}
 }

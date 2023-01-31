@@ -31,17 +31,6 @@ public class FaqModel {
 		return "../main/main.jsp";
 	}
 
-	@RequestMapping("service/faq_detail.do")
-	public String faq_detail(HttpServletRequest request, HttpServletResponse response) {
-		String no=request.getParameter("no");
-		String id="master";
-		FaqDAO dao=new FaqDAO();
-		FaqVO vo=dao.faqDetailData(Integer.parseInt(no));
-		request.setAttribute("vo", vo);
-		request.setAttribute("main_jsp", "../service/faq_detail.jsp");
-		return "../main/main.jsp";
-	}
-	
 	@RequestMapping("service/faq_update.do")
 	public String faq_update(HttpServletRequest request, HttpServletResponse response) {
 		String no=request.getParameter("no");
@@ -58,7 +47,6 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id="master";
 		String type=request.getParameter("type");
 		String subject=request.getParameter("subject");
 		String content=request.getParameter("content");
@@ -68,7 +56,7 @@ public class FaqModel {
 		vo.setType(type);
 		vo.setSubject(subject);
 		vo.setContent(content);
-		dao.faqUpdate(vo, id);
-		return "redirect:list.do";
+		dao.faqUpdate(vo);
+		return "redirect:faq_list.do";
 	}
 }

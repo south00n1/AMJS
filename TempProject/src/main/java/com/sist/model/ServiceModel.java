@@ -1,6 +1,7 @@
 package com.sist.model;
 import java.util.*;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -74,7 +75,7 @@ public class ServiceModel {
 		int size=1024*1024*100;
 		String enctype="UTF-8";
 		MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
-		String id="choe";
+		String id=mr.getParameter("id");
 		String subject=mr.getParameter("subject");
 		String type=mr.getParameter("type");
 		String content=mr.getParameter("content");
@@ -82,6 +83,7 @@ public class ServiceModel {
 		String filename=mr.getFilesystemName("upload");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=new AskVO();
+		vo.setId(id);
 		vo.setSubject(subject);
 		vo.setType(type);
 		vo.setContent(content);
@@ -94,32 +96,38 @@ public class ServiceModel {
 			vo.setFilename(filename);
 			vo.setFilesize((int)file.length());
 		}
-		dao.qnaInsert(vo, id);
+		dao.qnaInsert(vo);
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/download.do")
-	public String qna_download(HttpServletRequest request, HttpServletResponse response) {
+	public String qna_download(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String fn=request.getParameter("fn");
 		String path="c:\\download";
-		
+		File file=new File(path+"\\"+fn);
+		response.setContentLengthLong(file.length());
+		response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(fn,"UTF-8"));
+		BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+		BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+		int i=0;
+		byte[] buffer=new byte[1024];
+		while((i=bis.read(buffer,0,1024))!=-1) {
+			bos.write(buffer,0,i);
+		}
+		//out 객체?
+		bis.close();
+		bos.close();
 		return "redirect:list.do";
 	}
 	
 	@RequestMapping("service/reply.do")
-	public String qna_reply(HttpServletRequest request, HttpServletResponse response) {
-		String no=request.getParameter("no");
-		request.setAttribute("main_jsp", "../service/reply.jsp");
-		return "../main/main.jsp";
-	}
-	
-	@RequestMapping("service/reply_ok.do")
 	public String qna_reply_ok(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String no=request.getParameter("no");
-		String id="master";
+		String id=request.getParameter("id");
+		String admin=request.getParameter("admin");
 		String pwd=request.getParameter("pwd");
 		String content=request.getParameter("content");
 		ServiceDAO dao=new ServiceDAO();
@@ -127,7 +135,7 @@ public class ServiceModel {
 		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setContent(content);
-		dao.qnaReplyInsert(Integer.parseInt(no), id, vo);
+		dao.qnaReplyInsert(Integer.parseInt(no), admin, vo);
 		return "redirect:list.do";
 	}
 	
@@ -158,24 +166,26 @@ public class ServiceModel {
 		vo.setType(type);
 		vo.setSubject(subject);
 		vo.setContent(content);
-		dao.qnaUpdate(vo);
-		return "redirect:list.do";
+		boolean bCheck=dao.qnaUpdate(vo);
+		if(bCheck==true) {
+			request.setAttribute("res", "y");
+		} else {
+			request.setAttribute("res", "n");
+		}
+		return "../service/ok.jsp";
 	}
 	
 	@RequestMapping("service/delete.do")
 	public String qna_delete(HttpServletRequest request, HttpServletResponse response) {
 		String no=request.getParameter("no");
 		String pwd=request.getParameter("pwd");
-		request.setAttribute("main_jsp", "../service/delete.jsp");
-		return "../main/main.jsp";
-	}
-	
-	@RequestMapping("service/delete_ok.do")
-	public String qna_delete_ok(HttpServletRequest request, HttpServletResponse response) {
-		String no=request.getParameter("no");
-		String pwd=request.getParameter("pwd");
 		ServiceDAO dao=new ServiceDAO();
-		dao.qnaDelete(Integer.parseInt(no), pwd);
-		return "redirect:list.do";
+		boolean bCheck=dao.qnaDelete(Integer.parseInt(no), pwd);
+		if(bCheck==true) {
+			request.setAttribute("res", "y");
+		} else {
+			request.setAttribute("res", "n");
+		}
+		return "../service/ok.jsp";
 	}
 }
