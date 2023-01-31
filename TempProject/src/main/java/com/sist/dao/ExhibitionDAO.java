@@ -103,7 +103,7 @@ public class ExhibitionDAO {
 	   ExhibitionVO vo=new ExhibitionVO();
 	   try
 	   {
-		   CreateConnection.getConnection();
+		   conn=CreateConnection.getConnection();
 		   String sql="SELECT geno,good,hit,poster,title,title2,kind,period,loc,loc2,area,area2,host,url,price,time,hashtag,content "
 				     +"FROM god_exhibition_3 "
 				     +"WHERE geno=?";
@@ -127,7 +127,7 @@ public class ExhibitionDAO {
 		   vo.setUrl(rs.getString(14));
 		   vo.setPrice(rs.getString(15));
 		   vo.setTime(rs.getString(16));
-		   vo.setHastag(rs.getString(17));
+		   vo.setHashtag(rs.getString(17));
 		   vo.setContent(rs.getString(18));
 		   rs.close();
 	   }catch(Exception ex)
