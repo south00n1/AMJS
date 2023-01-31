@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>전시회 상세보기 | GOD</title>
 <style type="text/css">
+
+/* 전체 */
 #exhibitionView .excon{
 	height: auto;
 }
@@ -27,10 +29,45 @@ img{
 	width: 30%;
 	height: 60%;
 }
+#exhibitionView .exCon{
+	height: auto;
+	display: block;
+	padding: 80px;
+}
+
+
+/* 오른쪽 정보 */
+#exhibitionView .exb_info{
+	margin-left: 50px;
+	width: 700px;
+}
 .exb_img_sns, .exb_info, .plus_con_wrap{
 	float: none;
 	display: inline-block;
 	vertical-align: top;
+}
+.exb_sns_wrap{
+	width: auto;
+	height: 90px;
+	border-radius: 5px;
+	margin-top: 20px;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+/* 왼쪽 이미지 */
+#exhibitionView .exCon .exb_img_sns{
+	width: 380px;
+	height: 100%;
+}
+#exhibitionView .exCon .exb_img_wrap{
+	width: 100%;
+	height: 600px;
+	position: static;
+	float: none;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 
@@ -43,13 +80,13 @@ img{
 <div id="exhibitionView">
  <section class="exCon">
   <div class="container ex_container_top">
-    <div class="exb_img_sns">
-     <img src="${vo.poster }">
+   <div class="exb_img_sns">
+    <div class="exb_img_wrap" style="background-image:url('${vo.poster}')"></div>
       <div class="exb_sns_wrap">
-       <p class="tit">공식 채널</p>
-       <a href="${url }" class="icn_home" target="_blank">홈페이지</a>
+       <p class="tit">홈페이지 바로가기
+       <a href="${vo.url }" class="icn_home" target="_blank"><i class="fa-solid fa-house" style="color:black;"></i></a></p>
       </div>
-    </div>
+   </div>
     <div class="exb_info">
        <table class="table">
      	<tr>
