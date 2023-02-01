@@ -2,7 +2,6 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
-
 /* 
 GANO       NOT NULL NUMBER         
 SUBJECT    NOT NULL VARCHAR2(1000) 
@@ -91,7 +90,7 @@ public class ServiceDAO {
 		}
 		return count;
 	}
-	//QNA 상세
+	//QNA 상세 출력
 	public AskVO qnaDetailData(int no, int type) {
 		AskVO vo=new AskVO();
 		try {
@@ -145,7 +144,7 @@ public class ServiceDAO {
 			int gi=rs.getInt(1);
 			rs.close();
 			
-			sql="SELECT gano,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id "
+			sql="SELECT gano,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize "
 					+ "FROM god_ask_3 "
 					+ "WHERE group_id=? "
 					+ "AND gano!=?";
@@ -162,7 +161,6 @@ public class ServiceDAO {
 				vo.setHit(rs.getInt(5));
 				vo.setFilename(rs.getString(6));
 				vo.setFilesize(rs.getInt(7));
-				vo.setId(rs.getString(8));
 				list.add(vo);
 			}
 			rs.close();
@@ -241,16 +239,17 @@ public class ServiceDAO {
 	     	} else {
 	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
 	     				+ "group_id,group_step,group_tab,root,depth) "
-	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'재질문입니다',?,?,SYSDATE,0,?,?,?,?,0)";
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,?,?,?,SYSDATE,0,?,?,?,?,0)";
 	     		ps=conn.prepareStatement(sql);
 	     		ps.setString(1, vo.getId());
 	     		ps.setString(2, vo.getPwd());
-	     		ps.setString(3, rvo.getType());
-	     		ps.setString(4, vo.getContent());
-	     		ps.setInt(5, rvo.getGroup_id());
-	     		ps.setInt(6, rvo.getGroup_step()+1);
-	     		ps.setInt(7, rvo.getGroup_tab()+1);
-	     		ps.setInt(8, no);
+	     		ps.setString(3, vo.getSubject());
+	     		ps.setString(4, rvo.getType());
+	     		ps.setString(5, vo.getContent());
+	     		ps.setInt(6, rvo.getGroup_id());
+	     		ps.setInt(7, rvo.getGroup_step()+1);
+	     		ps.setInt(8, rvo.getGroup_tab()+1);
+	     		ps.setInt(9, no);
 	     		ps.executeUpdate();
 	     	}
 			

@@ -99,7 +99,7 @@ public class FaqDAO {
 		}
 		return count;
 	}
-	//FAQ 상세 출력 - 안써도 없애면 안돼 수정에서 써야대
+	//FAQ 상세 출력
 	public FaqVO faqDetailData(int no) {
 		FaqVO vo=new FaqVO();
 		try {
@@ -150,4 +150,59 @@ public class FaqDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 	}
+	//FAQ 검색
+	public List<FaqVO> faqFindData(int page, String ss) {
+        List<FaqVO> list = new ArrayList<FaqVO>();
+        try {
+        	conn = CreateConnection.getConnection();
+            String sql = "SELECT gfno, type, subject, content, num "
+                     + "FROM (SELECT gfno, type, subject, content, rownum as num  "
+                     + "FROM (SELECT gfno, type, subject, content "
+                     + "FROM god_faq_3 "
+                     + "WHERE content LIKE '%'||?||'%')) "
+                     + "WHERE num BETWEEN ? AND ?";
+            ps = conn.prepareStatement(sql);
+            int rowSize = 10;
+            int start = (rowSize * page) - (rowSize - 1);
+            int end = rowSize * page;
+            ps.setString(1, ss);
+            ps.setInt(2, start);
+            ps.setInt(3, end);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+               FaqVO vo = new FaqVO();
+               vo.setGfno(rs.getInt(1));
+               vo.setType(rs.getString(2));
+               vo.setSubject(rs.getString(3));
+               vo.setContent(rs.getString(4));
+               list.add(vo);
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return list;
+    }
+	//검색 총페이지
+    public int faqFindTotalPage(String ss) {
+        int total = 0;
+        try {
+            conn = CreateConnection.getConnection();
+            String sql = "SELECT CEIL(COUNT(*)/10.0) FROM god_faq_3 "
+                        + "WHERE REGEXP_LIKE(address, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, ss);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            total = rs.getInt(1);
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return total;
+    }
 }

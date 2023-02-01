@@ -5,6 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let f=0
+$(function(){
+	//검색 결과
+	$('#sBtn').click(function(){
+		let ss=$('#search').val()
+		if(ss.trim()==""){
+			$('#search').focus()
+			return
+		}
+		location.href="../service/search.do"
+	})
+	
+	//인기검색어 클릭 이벤트
+	$('#s-pop span:nth-child(n+2)').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	let key=$('#s-pop span').text()
+//고장고장 고쳐야대
+	$('#s-pop span:nth-child(n+2)').click(function(){
+		location.href="../service/faq_list.do?key="+key
+	})
+}
+</script>
 </head>
 <body>
 	<!-- ### -->

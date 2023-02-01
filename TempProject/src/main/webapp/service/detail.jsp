@@ -10,9 +10,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+let u=0
 let d=0
 let r=0
 $(function(){
+	$('.usub').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	$('.usub').click(function(){
+		let no=$(this).attr("data-no")
+		if(u==0){
+			$('#u'+no).show()
+			u=1
+		}else{
+			$('#u'+no).hide()
+			u=0
+		}
+	})
+	
 	$('#delete').click(function(){
 		if(d===0){
 			$('#dpwd').show()
@@ -94,6 +109,18 @@ $(function(){
 	  	  <tr>
 	  	  	<td class="text-left" valign=top colspan=8 height=200>${vo.content }</td>
 	  	  </tr>
+	  	  <c:forEach var="uvo" items="${list }">
+		  	  <tr>
+		  	  	<td style="color: orange">답변</td>
+		  	  	<td colspan=5 class=usub data-no="${uvo.gano }">${uvo.subject }</td>
+		  	  	<td colspan=2>${uvo.dbday }</td>
+		  	  </tr>
+		  	  <tr class=qunder id="u${uvo.gano }" style="display: none">
+		  	  	<td></td>
+		  	  	<td class="text-left" valign=top colspan=5 height=100>${uvo.content }</td>
+		  	  	<td colspan=2></td>
+		  	  </tr>
+	  	  </c:forEach>
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
 	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
@@ -113,16 +140,24 @@ $(function(){
 	  	</table>
 	  	<table class="table" id=reinsert style="display: none">
 	  	 <form method=post action="../service/reply.do">
+	  	  <c:if test="${sessionScope.admin=='n' }">
+			  <tr>
+			  	<th width=15% class="text-right">제목</th>
+			  	<td width=85%>
+			  		<input type=text name=subject size=30 class="input-sm" required>
+			  	</td>
+			  </tr>
+	  	  </c:if>
 		  <tr>
 		  	<th width=15% class="text-right">내용</th>
 		  	<td width=85%>
-		  		<textarea rows=10 cols=65 name=content id=recontent required></textarea>
+		  		<textarea rows=10 cols=65 name=content required></textarea>
 		  	</td>
 		  </tr>
 		  <tr>
 		  	<th width=15% class="text-right">비밀번호</th>
 		  	<td width=85%>
-		  		<input type=password name=pwd size=10 class="input-sm" id=repwd required>
+		  		<input type=password name=pwd size=10 class="input-sm" required>
 		  		<input type=hidden name=no value="${vo.gano }">
 		  		<input type=hidden name=id value="${sessionScope.id }">
 		  		<input type=hidden name=admin value="${sessionScope.admin }">

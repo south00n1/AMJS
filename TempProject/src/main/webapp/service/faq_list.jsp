@@ -12,9 +12,11 @@
 <script type="text/javascript">
 let f=0
 $(function(){
-	$('.ftype span').click(function(){
-		let type=$(this).attr("data-no")
-	})
+	$('#fbtn1').val("")
+	$('#fbtn1').val("")
+	$('#fbtn1').val("")
+	$('#fbtn1').val("")
+	$('#fbtn1').val("")
 	
 	$('.fsub').hover(function(){
 		$(this).css("cursor","pointer")
@@ -39,13 +41,13 @@ $(function(){
 	  <div style="height: 5px"></div>
 	  	<table class="table text-center">
 	  	  <tr>
-	  	  	<td class=ftype>
+	  	  	<td>
 	  	  	  <form method=get action="../service/faq_list.do?type=">
-	  	  		<span data-no="1" class="btn btn-primary py-md-3 px-md-5 slideInLeft">회원</span>
-	  	  		<span data-no="2" class="btn btn-primary py-md-3 px-md-5 slideInLeft">예매</span>
-	  	  		<span data-no="3" class="btn btn-primary py-md-3 px-md-5 slideInLeft">결제</span>
-	  	  		<span data-no="4" class="btn btn-primary py-md-3 px-md-5 slideInLeft">티켓</span>
-	  	  		<span data-no="5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</span>
+	  	  		<button value="" class="btn btn-primary py-md-3 px-md-5 slideInLeft" id=fBtn1>회원</button>
+	  	  		<button value="" class="btn btn-primary py-md-3 px-md-5 slideInLeft" id=fBtn2>예매</button>
+	  	  		<button value="" class="btn btn-primary py-md-3 px-md-5 slideInLeft" id=fBtn3>결제</button>
+	  	  		<button value="" class="btn btn-primary py-md-3 px-md-5 slideInLeft" id=fBtn4>티켓</button>
+	  	  		<button value="" class="btn btn-primary py-md-3 px-md-5 slideInLeft" id=fBtn5>기타</button>
 	  	  	  </form>
 	  	  	</td>
 	  	  </tr>

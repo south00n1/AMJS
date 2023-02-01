@@ -59,4 +59,25 @@ public class FaqModel {
 		dao.faqUpdate(vo);
 		return "redirect:faq_list.do";
 	}
+	
+	@RequestMapping("service/service_find.do")
+	public String service_find(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+	    } catch (Exception e) {}
+	    String ss = request.getParameter("ss");
+	    if(ss == null) ss = ".";
+	    String page = request.getParameter("page");
+	    if(page == null) page = "1";
+        int curpage = Integer.parseInt(page);
+        FaqDAO dao = new FaqDAO();
+	    List<FaqVO> list = dao.faqFindData(curpage, ss);
+	    int totalpage = dao.faqFindTotalPage(ss);
+	    request.setAttribute("list", list);
+	    request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
+	    request.setAttribute("ss", ss);
+	    request.setAttribute("main_jsp", "../service/temp.jsp");
+	    return "../main/main.jsp";
+	}
 }

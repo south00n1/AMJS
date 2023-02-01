@@ -40,26 +40,6 @@
 <script type="text/javascript">
 let f=0
 $(function(){
-	//검색 결과
-	$('#sBtn').click(function(){
-		let ss=$('#search').val()
-		if(ss.trim()==""){
-			$('#search').focus()
-			return
-		}
-		location.href="../service/search.do"
-	})
-	
-	//인기검색어 클릭 이벤트
-	$('#s-pop span:nth-child(n+2)').hover(function(){
-		$(this).css("cursor","pointer")
-	})
-	let key=$('#s-pop span').text()
-//고장고장 고쳐야대
-	$('#s-pop span:nth-child(n+2)').click(function(){
-		location.href="../service/faq_list.do?key="+key
-	})
-	
 	//빠른찾기 클릭 이벤트
 	$('.f-card li').hover(function(){
 		$(this).css("cursor","pointer")
@@ -199,8 +179,7 @@ $(function(){
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
-		   <c:if test="${vo.id==sessionScope.id}">
-		   	<!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
+		   <c:if test="${vo.id==sessionScope.id}"> <!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
