@@ -91,7 +91,7 @@ public class ServiceDAO {
 		}
 		return count;
 	}
-	//QNA 상세 출력
+	//QNA 상세
 	public AskVO qnaDetailData(int no, int type) {
 		AskVO vo=new AskVO();
 		try {
@@ -130,6 +130,49 @@ public class ServiceDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return vo;
+	}
+	//QNA 그룹
+	public List<AskVO> qnaGroupData(int no){
+		List<AskVO> list=new ArrayList<AskVO>();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT group_id FROM god_ask_3 "
+					+ "WHERE gano=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int gi=rs.getInt(1);
+			rs.close();
+			
+			sql="SELECT gano,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id "
+					+ "FROM god_ask_3 "
+					+ "WHERE group_id=? "
+					+ "AND gano!=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, gi);
+			ps.setInt(2, no);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				AskVO vo=new AskVO();
+				vo.setGano(rs.getInt(1));
+				vo.setSubject(rs.getString(2));
+				vo.setContent(rs.getString(3));
+				vo.setDbday(rs.getString(4));
+				vo.setHit(rs.getInt(5));
+				vo.setFilename(rs.getString(6));
+				vo.setFilesize(rs.getInt(7));
+				vo.setId(rs.getString(8));
+				list.add(vo);
+			}
+			rs.close();
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
 	}
 	//QNA 작성
 	public void qnaInsert(AskVO vo) {

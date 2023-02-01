@@ -62,24 +62,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">나의 문의 보기</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
+	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:700px">
 	  <div style="height: 5px"></div>
@@ -113,10 +96,8 @@ $(function(){
 	  	  </tr>
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
-	  	  		<c:if test="${sessionScope.id==vo.id }">
-	  	  			<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
-	  	  			<span class="btn btn-sm btn-danger" id=delete>삭제</span>
-	  	  		</c:if>
+	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
+	  	  		<span class="btn btn-sm btn-danger" id=delete>삭제</span>
 	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary">목록</a>
 	  	  		<span class="btn btn-sm btn-success" id=reply>답변</span>
 	  	  	</td>

@@ -55,7 +55,9 @@ public class ServiceModel {
 		String no=request.getParameter("no");
 		ServiceDAO dao=new ServiceDAO();
 		AskVO vo=dao.qnaDetailData(Integer.parseInt(no), 1);
+		List<AskVO> list=dao.qnaGroupData(Integer.parseInt(no));
 		request.setAttribute("vo", vo);
+		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../service/detail.jsp");
 		return "../main/main.jsp";
 	}

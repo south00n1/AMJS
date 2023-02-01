@@ -48,7 +48,6 @@ $(function(){
 			return
 		}
 		location.href="../service/search.do"
-//음......서치...어케하지..
 	})
 	
 	//인기검색어 클릭 이벤트
@@ -84,46 +83,16 @@ $(function(){
 		}
 	})
 	
-	//qna 연결 질문 새창
 	$('.qsub').hover(function(){
 		$(this).css("cursor","pointer")
-	})
-	$('.qsub').click(function(){
-		window.open('one_list.jsp','one_list','width:600px,height:400px')
 	})
 })
 </script>
 </head>
 <body>
-	<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
-<!-- faq 검색바, 인기검색어 -->
-    <div style="height: 20px"></div>
-	<div>
-		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
-			<input type=text id=search size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
-    </div>
-    <div style="height: 10px"></div>
-	<div id=s-pop style="color: white;font-size: 13px">
-		<span style="font-size: 14px">인기검색어</span>&nbsp;
-		<span>결제방법</span>&nbsp;|&nbsp;
-		<span>회원정보변경</span>&nbsp;|&nbsp;
-		<span>2D전시회</span>&nbsp;|&nbsp;
-		<span>예매수수료</span>
-	</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
+	<jsp:include page="../service/service_header.jsp"></jsp:include>
 
 	<div class="container" style="width: 100%">
-	
 <!-- faq 빠른 찾기  -->
 	<div>
 		<h4 class="text-primary px-3">FAQ 찾기</h4>
@@ -183,7 +152,7 @@ $(function(){
 	<div class=f-10 >
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">자주 묻는 질문 TOP10</h4>
-		<table class="table table-hover">
+		<table class="table">
 		  <thead>
 			  <tr>
 			 	<th width=10% class="text-center">순위</th>
@@ -203,7 +172,9 @@ $(function(){
 			  </tr>
 			  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>
-				<td colspan=2>${vo.content }</td>
+				<td colspan=2>
+					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
+				</td>
 			  </tr>
 		    </c:forEach>
 	 	  </tbody>
@@ -214,6 +185,10 @@ $(function(){
 	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">나의 문의 내역</h4>
+	  <c:if test="${sessionScope.id==null }">
+	  	<p>로그인 후 이용 가능합니다</p>
+	  </c:if>
+	  <c:if test="${sessionScope.id!=null }">
 		<table class="table">
 		  <tr>
 		  	<th width=15% class="text-center">문의유형</th>
@@ -224,11 +199,14 @@ $(function(){
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
-		   <c:if test="${vo.id==sessionScope.id }">
+		   <c:if test="${vo.id==sessionScope.id}">
+		   	<!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
-			  	<td width=35% class=qsub>${vo.subject }</td>
+			  	<td width=35% class=qsub>
+			  		<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
+			  	</td>
 			  	<td width=10% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
 			  	  	<span style="color: blue">${vo.ans_state }</span>
@@ -248,10 +226,9 @@ $(function(){
 			</td>
 		  </tr>
 		</table>
+	  </c:if>
 	</div>
   
-<!-- 공지사항 list 일부 추가? 더보기 누르면 공지사항 페이지 연결 -->
-	
 	</div>
 </body>
 </html>

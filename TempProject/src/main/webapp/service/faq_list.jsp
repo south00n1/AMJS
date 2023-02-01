@@ -14,14 +14,6 @@ let f=0
 $(function(){
 	$('.ftype span').click(function(){
 		let type=$(this).attr("data-no")
-		$.ajax({
-			type:'post',
-			url:'../service/faq_list.do',
-			data:{"type":type},
-			success:function(result){
-				//안댐 ...왜때무네..
-			}
-		})
 	})
 	
 	$('.fsub').hover(function(){
@@ -41,35 +33,20 @@ $(function(){
 </script>
 </head>
 <body>
-	<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/faq_list.do">고객센터</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">자주 묻는 질문</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
-    
+	<jsp:include page="../service/service_header.jsp"></jsp:include>
+	
 	<div class="container" style="width:800px">
 	  <div style="height: 5px"></div>
 	  	<table class="table text-center">
 	  	  <tr>
 	  	  	<td class=ftype>
+	  	  	  <form method=get action="../service/faq_list.do?type=">
 	  	  		<span data-no="1" class="btn btn-primary py-md-3 px-md-5 slideInLeft">회원</span>
 	  	  		<span data-no="2" class="btn btn-primary py-md-3 px-md-5 slideInLeft">예매</span>
 	  	  		<span data-no="3" class="btn btn-primary py-md-3 px-md-5 slideInLeft">결제</span>
 	  	  		<span data-no="4" class="btn btn-primary py-md-3 px-md-5 slideInLeft">티켓</span>
 	  	  		<span data-no="5" class="btn btn-primary py-md-3 px-md-5 slideInLeft">기타</span>
+	  	  	  </form>
 	  	  	</td>
 	  	  </tr>
 	  	</table>
@@ -89,7 +66,9 @@ $(function(){
 		  	  </tr>
 		  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>
-				<td>${vo.content }</td>
+				<td>
+					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
+				</td>
 				<td>
 					<c:if test="${sessionScope.admin=='y' }">
 	  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning">수정</a>

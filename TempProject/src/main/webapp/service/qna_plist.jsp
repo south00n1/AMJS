@@ -16,16 +16,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#qsub').click(function(){
-		$('#qcon').append(
-			'<tr>'		
-			+'<td></td>'
-			+'<td>'+${vo.content }+'</td>'
-			+'<td colspan=3></td>'
-			+'</tr>'		
-		)
-	})
-	
+
 })
 </script>
 </head>

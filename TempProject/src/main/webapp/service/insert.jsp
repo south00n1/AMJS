@@ -30,24 +30,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="../main/main.do">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="../service/main.do">고객센터</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">문의 작성</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
+	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:700px">
 	<div style="height: 5px"></div>
