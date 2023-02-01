@@ -204,6 +204,43 @@ public class MemberDAO {
 	}
 	// 3. 회원수정
 	// 4. ID찾기
+	public String idFind(String name, String email) {
+		String result = "";
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "SELECT COUNT(*) "
+					+ "FROM god_member_3 "
+					+ "WHERE name=? AND email=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt(1);
+			rs.close();
+			
+			if(count == 0) {
+				result = "no";
+			} else {
+				sql = "SELECT RPAD(SUBSTR(id,1,4),LENGTH(id),'*') "
+					+ "FROM god_member_3 "
+					+ "WHERE name=? AND email=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, name);
+				ps.setString(2, email);
+				
+				rs = ps.executeQuery();
+				rs.next();
+				result = rs.getString(1);
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+	}
 	// 5. PWD찾기
 	// 6. 회원탈퇴
 }

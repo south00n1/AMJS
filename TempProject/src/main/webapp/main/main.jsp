@@ -36,6 +36,10 @@
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
 	
+	<!-- 섀도우박스 -->
+ 	<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+  	<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+	
 </head>
 
 <body>

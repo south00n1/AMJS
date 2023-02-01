@@ -147,4 +147,21 @@ public class MemberModel {
 		session.invalidate(); // 모든 정보 해제
 		return "redirect:../main/main.do";
 	}
+	
+	@RequestMapping("member/idfind.do")
+	public String member_idfind(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "../member/idfind.jsp";
+	}
+	
+	@RequestMapping("member/idfind_result.do")
+    public String idfind_result(HttpServletRequest request, HttpServletResponse response) {
+        
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        MemberDAO dao = new MemberDAO();
+        String result = dao.idFind(name, email);
+        request.setAttribute("result", result);
+        return "../member/result.jsp";
+    }
 }

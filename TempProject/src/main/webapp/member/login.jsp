@@ -6,6 +6,10 @@
 <link href="../member/css/login.css?after" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+Shadowbox.init({
+    players:['iframe'],
+    overlayOpacity: 0.5
+})
 $(function(){
 	// 로그인 버튼 
 	$('#logBtn').click(function(){
@@ -50,7 +54,18 @@ $(function(){
 				}
 			}
 		})
-		
+	})
+	
+    
+	// 아이디찾기
+	$('#idfind').css('cursor','pointer');
+	$('#idfind').click(function(){
+		 Shadowbox.open({
+	            content:'../member/idfind.do',
+	            player:'iframe',
+	            width:350,
+	            height:300
+	        })
 	})
 	
 })
@@ -72,7 +87,7 @@ $(function(){
 
 		<div>
 			<div>
-				<a href="#" title="">아이디 찾기</a> <a href="#" title="">비밀번호 찾기</a>
+				<a id="idfind">아이디 찾기</a> <a id="pwdfind">비밀번호 찾기</a>
 			</div>
 		</div>
 
