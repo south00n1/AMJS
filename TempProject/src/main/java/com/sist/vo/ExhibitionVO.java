@@ -112,11 +112,11 @@ public class ExhibitionVO {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getHastag() {
+	public String getHashtag() {
 		return hashtag;
 	}
-	public void setHastag(String hastag) {
-		this.hashtag = hastag;
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
 	}
 	public String getContent() {
 		return content;

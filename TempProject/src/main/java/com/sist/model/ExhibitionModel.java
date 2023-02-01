@@ -43,7 +43,7 @@ public class ExhibitionModel {
    }  
    
    @RequestMapping("exhibition/exhibition_detail.do")
-	public String picture_detail(HttpServletRequest request, HttpServletResponse response) {
+	public String exhibition_exhibitiondetail(HttpServletRequest request, HttpServletResponse response) {
 		String geno = request.getParameter("geno");
 		ExhibitionDAO dao = new ExhibitionDAO();
 		ExhibitionVO vo = dao.ExhibitionDetailData(Integer.parseInt(geno));
