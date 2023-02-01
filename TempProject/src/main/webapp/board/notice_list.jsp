@@ -51,6 +51,8 @@
   <h2>Notice</h2>
   <h6>공지사항</h6>
   </div>
+    <div style="height: 5px"></div>
+  <hr>
   <div style="height: 20px"></div>
   
   <div>
@@ -68,6 +70,7 @@
 
 				</table>
   </div>
+  <div style="height: 10px;"></div>
   <div style="height: auto;">
   <table class="table">
     <tr>

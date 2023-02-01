@@ -139,7 +139,8 @@ $(function(){
   <div>
   <h2>Review</h2>
   <h6>후기 게시판</h6>
-  <p>Go Out Display를 통해 예약하고 직접 방문하여 관람한 전시에 대하여 관람객들의 솔직한 후기를 남기는 게시판입니다.</p>
+    <div style="height: 5px"></div>
+  
   </div>
   <div style="height: 5px"></div>
   <table class="table board">
@@ -150,12 +151,12 @@ $(function(){
 	<td width=95% class="text-left" colspan="3" style="	font-size:26px;font-weight: 400;">${vo.subject }</td>
    </tr>
    <tr>
-     <th width=5% class="text-center"><i class="fa-solid fa-user fa-lg"></i>&nbsp;</th>
-     <td width=75% class="text-left">${vo.name }<br>${vo.dbday }</td>
-     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(0) &nbsp; URL 복사</th>
+     <th width=5% class="text-center"><i class="fa-regular fa-user fa-lg" style="height: 100%;"></i>&nbsp;</th>
+     <td width=75% class="text-left">${vo.name }<br>${vo.dbday } &nbsp; 조회 ${vo.hit }</td>
+     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(${count}) &nbsp; URL 복사</th>
    </tr>
    <tr>
-<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre></td>
+<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }</pre></td>
    </tr>
    <tr>
      <td class="text-right" colspan="4">
@@ -207,7 +208,7 @@ $(function(){
             </tr>
             <tr>
               <td colspan="2">
-               <pre style="white-space: pre-wrap;background-color: white;border: none">${rvo.msg }</pre>
+                <pre style="white-space: pre-wrap;background-color: white;border: none">${rvo.msg }</pre> 
               </td>
             </tr>
             <%-- 대댓글 --%>

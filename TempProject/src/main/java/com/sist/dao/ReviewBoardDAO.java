@@ -78,15 +78,9 @@ public class ReviewBoardDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return total;
-	
-	// 추가
-	// 상세보기
-	// 수정
-	// 삭제
-	// 검색
-	// 댓글
-	
 	}
+	
+
 	
 	public void boardInsert(ReviewBoardVO vo)
 	{

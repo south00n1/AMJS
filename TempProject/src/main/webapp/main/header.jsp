@@ -49,8 +49,8 @@ $(function(){
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">커뮤니티</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="../board/review_list.do" class="dropdown-item">후기게시판</a>
-                        <a href="#" class="dropdown-item">이벤트게시판</a>
-                        <a href="#" class="dropdown-item">공지사항</a>
+                        <a href="../board/event_list.do" class="dropdown-item">이벤트게시판</a>
+                        <a href="../board/notice_list.do" class="dropdown-item">공지사항</a>
                     </div>
                 </div>
                 <a href="../service/main.do" class="nav-item nav-link">고객센터</a>

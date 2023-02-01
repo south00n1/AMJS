@@ -35,7 +35,7 @@
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     
-    
+    <script src="https://kit.fontawesome.com/2fd2b83183.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
@@ -52,11 +52,12 @@
   </div>
   <div>
   <h2>Review</h2>
-  <h6>후기 게시판</h6>
-  <p>Go Out Display를 통해 예약하고 직접 방문하여 관람한 전시에 대하여 관람객들의 솔직한 후기를 남기는 게시판입니다.</p>
+  <h6>후기게시판</h6>
   </div>
-   <h6><span style="color:#2737C;font-size: 25px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
+  <div style="height: 10px;"></div>
+   <h6><span style="color:#2737C;font-size: 16px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
   <div style="height: 5px"></div>
+  <hr>
   <div style="height: auto;">
 
   <table class="table">
@@ -70,28 +71,24 @@
     </tr>
     <c:forEach var="vo" items="${list }">
       <tr>
-        <td width="10%" height="50px" style="vertical-align: middle;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="45%" height="50px" style="vertical-align: middle;" >
+        <td width="10%" height="50px" style="vertical-align: middle;font-size: 11px;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
+        <td width="45%" height="50px" style="vertical-align: middle;font-size: 13px;" >
          <a href="../board/review_detail.do?no=${vo.no }">${vo.subject}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>
         </td>
-        <td width="15%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.display_name }</td>        
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.name }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.dbday }</td>
-        <td width="10%" height="50px" style="vertical-align: middle;"  class="text-center">${vo.hit }</td>
+        <td width="15%" height="50px" style="vertical-align: middle;font-size: 13px;"  class="text-center">${vo.display_name }</td>        
+        <td width="10%" height="50px" style="vertical-align: middle;font-size: 13px;"  class="text-center">${vo.name }</td>
+        <td width="10%" height="50px" style="vertical-align: middle;font-size: 13px;"  class="text-center">${vo.dbday }</td>
+        <td width="10%" height="50px" style="vertical-align: middle;font-size: 13px;"  class="text-center">${vo.hit }</td>
       </tr>
     </c:forEach>
   </table>
-    <table class="table">
-    <tr>
-      <td>
-        <a href="../board/review_insert.do" class="btn btn-sm btn-danger">글 작성</a>
-      </td>
-    </tr>
-  </table>
+
   </div>
+          <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
+  
     <nav class="pagination">
         <ul>
          <c:if test="${startPage>1 }">
@@ -107,25 +104,25 @@
         <!-- 검색바 start -->
         <div class="board_search">
         <div class="container">
-		<div class="row">
-			<form method="post" name="search" action="searchbbs.jsp" pos>
-				<table class="pull-right">
-					<tr>
-						<td><select class="form-control" name="searchField">
-								<option value="0">선택</option>
-								<option value="bbsTitle">제목</option>
-								<option value="userID">작성자</option>
-						</select></td>
-						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
-						<td><button type="submit" class="btn btn-success">검색</button></td>
-					</tr>
+      <div class="row">
+         <form method="post" name="search" action="../board/reivew_list.do" class="inline">
+            <table class="pull-right">
+               <tr>
+                  <td><select class="form-control" name="searchField">
+                        <option value="0">선택</option>
+                        <option value="bbsTitle">제목</option>
+                        <option value="userID">작성자</option>
+                  </select></td>
+                  <td><input type="text" class="form-control"
+                     placeholder="검색어 입력" name="searchText" value="${ss }" maxlength="100"></td>
+                  <td><button type="submit" class="btn btn-success">검색</button></td>
+               </tr>
 
-				</table>
-			</form>
-		</div>
-	</div>
-	</div>
+            </table>
+         </form>
+      </div>
+   </div>
+   </div>
         <!-- 검색바 end -->
       </nav>
   </main>

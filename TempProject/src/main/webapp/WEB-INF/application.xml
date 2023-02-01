@@ -5,6 +5,8 @@
   <bean class="com.sist.model.PictureModel"/>
   <bean class="com.sist.model.MemberModel"/>
   <bean class="com.sist.model.ReviewBoardModel"/>
+  <bean class="com.sist.model.NoticeBoardModel"/>
+  <bean class="com.sist.model.EventBoardModel"/>
   <bean class="com.sist.model.ExhibitionModel"/>
   <bean class="com.sist.model.ServiceModel"/>
   <bean class="com.sist.model.MyPageModel"/>
