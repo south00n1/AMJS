@@ -13,7 +13,6 @@
 	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:700px">
-	<div style="height: 5px"></div>
 	<div class="row">
 	  <form method=post action="../service/faq_update_ok.do">
 		<table class="table">

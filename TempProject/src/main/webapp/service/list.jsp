@@ -16,15 +16,17 @@
 	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:960px">
-	  <div style="height: 5px"></div>
-	  	<table class="table">
-	  	  <tr>
-	  	  	<td>
-	  	  		<a href="../service/insert.do" class="btn btn-primary py-md-3 px-md-5 slideInLeft">문의 작성</a>
-	  	  		<a href="../service/faq_list.do" class="btn btn-light py-md-3 px-md-5 slideInRight">FAQ 찾기</a>
-	  	  	</td>
-	  	  </tr>
-	  	</table>
+	 	<table>
+		  <tr>
+		  	<td style="border-color: white">
+	  		  <c:if test="${sessionScope.admin=='n' }">
+		  		<a href="../service/insert.do" class="btn btn-sm btn-danger">문의 작성</a>
+	  		  </c:if>
+		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		  	</td>
+		  </tr>
+		</table>
+	  <div style="height: 20px"></div>
 	  	<table class="table">
 	  	  <tr>
 	  	  	<th width=5% class="text-center">번호</th>

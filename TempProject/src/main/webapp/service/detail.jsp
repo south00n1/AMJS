@@ -80,7 +80,14 @@ $(function(){
 	<jsp:include page="../service/service_header.jsp"></jsp:include>
     
 	<div class="container" style="width:700px">
-	  <div style="height: 5px"></div>
+		<table>
+		  <tr>
+		  	<td style="border-color: white">
+		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		  	</td>
+		  </tr>
+		</table>
+		<div style="height: 20px"></div>
 	  	<table class="table">
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>

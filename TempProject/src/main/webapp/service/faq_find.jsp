@@ -12,13 +12,20 @@
 <script type="text/javascript">
 let f=0
 $(function(){
-	//검색바
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
 			$('#search').focus()
 			return
 		}
+		$.ajax({
+			type:'post',
+			url:'../service/faq_find_result.do',
+			data:{"ss":ss},
+			success:function(result){
+				$('.f-find tbody').html(result)
+			}
+		})
 	})
 	
 	//인기검색어 클릭 이벤트
@@ -31,7 +38,7 @@ $(function(){
 		$('#ss_frm').submit()
 	})
 	
-	//faq 본문 보여주기
+///////////////////////////////////////post 또는 include할 때
 	$('.fsub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
@@ -77,19 +84,20 @@ $(function(){
         </div>
     </div>
     <!-- ### -->
-	
+    
 	<div class="container" style="width:800px">
-	  	<table>
+	    <table>
 		  <tr>
 		  	<td style="border-color: white">
 	  		  <c:if test="${sessionScope.admin=='n' }">
 		  		<a href="../service/insert.do" class="btn btn-sm btn-danger">문의 작성</a>
 	  		  </c:if>
+		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
 		  	</td>
 		  </tr>
 		</table>
 	  <div style="height: 20px"></div>
-	  	<table class="table" id=flist>
+	  	<table class="table f-find">
 	  	 <thead>
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
@@ -99,9 +107,14 @@ $(function(){
 	  	  </tr>
 	  	 </thead>
 	  	 <tbody>
-	  	  <c:forEach var="vo" items="${list }" varStatus="s">
+	  	   <c:if test="${count==0 }">
+	  	   	  <tr>
+	  	   		<td colspan=4>검색 결과가 없습니다</td>
+	  	   	  </tr>
+	  	   </c:if>
+			<c:forEach var="vo" items="${flist }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=10% class="text-center">${count-s.index-((curpage-1)*10) }</td>
+		  	  	<td width=10% class="text-center">${count-s.index }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 		  	  	<td width=10% class="text-center">${vo.hit }</td>
@@ -111,16 +124,10 @@ $(function(){
 				<td>
 					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
 				</td>
-				<td>
-					<c:if test="${sessionScope.admin=='y' }">
-	  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning">수정</a>
-	  	  			</c:if>
-				</td>
 			  </tr>
-	  	  </c:forEach>
+	  	  	</c:forEach>
 	  	 </tbody>
 	  	</table>
-	  	
 	  	<c:if test="${type==0 }">
 		  	<table class="table" style="border-color: white">
 		  	  <tr>

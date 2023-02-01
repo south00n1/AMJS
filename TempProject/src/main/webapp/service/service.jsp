@@ -40,12 +40,33 @@
 <script type="text/javascript">
 let f=0
 $(function(){
+	//검색바
+	$('#sBtn').click(function(){
+		let ss=$('#search').val()
+		if(ss.trim()==""){
+			$('#search').focus()
+			return
+		}
+	})
+	
+	//인기검색어 클릭 이벤트
+	$('#s-pop span:nth-child(n+2)').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	$('#s-pop span:nth-child(n+2)').click(function(){
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
+	})
+	
 	//빠른찾기 클릭 이벤트
 	$('.f-card li').hover(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('.f-card li').click(function(){
-		
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
 	})
 	
 	//f10 본문 보여주기
@@ -63,6 +84,7 @@ $(function(){
 		}
 	})
 	
+	//qna 호버
 	$('.qsub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
@@ -70,7 +92,34 @@ $(function(){
 </script>
 </head>
 <body>
-	<jsp:include page="../service/service_header.jsp"></jsp:include>
+	<!-- ### -->
+	<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
+<!-- faq 검색바, 인기검색어 -->
+    <div style="height: 20px"></div>
+	<div>
+		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
+		  <form method=post action="../service/faq_find.do" id=ss_frm>
+			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
+    </div>
+    <div style="height: 10px"></div>
+	<div id=s-pop style="color: white;font-size: 13px">
+		<span style="font-size: 14px">인기검색어</span>&nbsp;
+		<span>결제방법</span>&nbsp;|&nbsp;
+		<span>회원정보</span>&nbsp;|&nbsp;
+		<span>2D전시회</span>&nbsp;|&nbsp;
+		<span>예매수수료</span>
+	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ### -->
 
 	<div class="container" style="width: 100%">
 <!-- faq 빠른 찾기  -->
@@ -82,9 +131,9 @@ $(function(){
 		  	<dt>예매</dt>
 		  	<dd>
 		  	  <ul>
-				<li>예매/예매확인</li>
-				<li>예매변경</li>
-				<li>예매취소</li>
+				<li>예매방법</li>
+				<li>예매확인</li>
+				<li>예매변경 / 예매취소</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -96,7 +145,8 @@ $(function(){
 		  	  <ul>
 				<li>결제정보</li>
 				<li>결제수단</li>
-				<li>영수증/세금계산서</li>
+				<li>현금영수증</li>
+				<li>세금계산서</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -106,9 +156,9 @@ $(function(){
 		  	<dt>회원관리</dt>
 		  	<dd>
 		  	  <ul>
-				<li>회원가입/탈퇴</li>
-				<li>회원정보 확인/변경</li>
-				<li>인증문의(성인/본인)</li>
+				<li>회원가입 / 탈퇴</li>
+				<li>회원정보 / 변경</li>
+				<li>본인인증 / 성인인증</li>
 				<li>휴면회원</li>
 		  	  </ul>
 		  	</dd>
@@ -119,8 +169,8 @@ $(function(){
 		  	<dt>기타</dt>
 		  	<dd>
 		  	  <ul>
-				<li>리뷰/한줄평</li>
-				<li>홈페이지/시스템장애</li>
+				<li>리뷰 / 한줄평</li>
+				<li>홈페이지 / 시스템장애</li>
 				<li>기타</li>
 		  	  </ul>
 		  	</dd>

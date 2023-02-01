@@ -60,24 +60,33 @@ public class FaqModel {
 		return "redirect:faq_list.do";
 	}
 	
-	@RequestMapping("service/service_find.do")
-	public String service_find(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("service/faq_find.do")
+	public String faq_find(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
-	    String ss = request.getParameter("ss");
-	    if(ss == null) ss = ".";
-	    String page = request.getParameter("page");
-	    if(page == null) page = "1";
-        int curpage = Integer.parseInt(page);
-        FaqDAO dao = new FaqDAO();
-	    List<FaqVO> list = dao.faqFindData(curpage, ss);
-	    int totalpage = dao.faqFindTotalPage(ss);
-	    request.setAttribute("list", list);
-	    request.setAttribute("curpage", curpage);
-	    request.setAttribute("totalpage", totalpage);
+	    String ss=request.getParameter("ss");
+        FaqDAO dao=new FaqDAO();
+	    List<FaqVO> flist=dao.faqFindData(ss);
+	    int count=dao.faqFindRowCount(ss);
 	    request.setAttribute("ss", ss);
-	    request.setAttribute("main_jsp", "../service/temp.jsp");
+	    request.setAttribute("flist", flist);
+	    request.setAttribute("count", count);
+	    request.setAttribute("main_jsp", "../service/faq_find.jsp");
 	    return "../main/main.jsp";
+	}
+	
+	@RequestMapping("service/faq_find_result.do")
+	public String faq_find_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {}
+		String ss=request.getParameter("ss");
+		FaqDAO dao=new FaqDAO();
+		List<FaqVO> flist=dao.faqFindData(ss);
+		int count=dao.faqFindRowCount(ss);
+		request.setAttribute("flist", flist);
+		request.setAttribute("count", count);
+		return "../service/faq_find_result.jsp";
 	}
 }

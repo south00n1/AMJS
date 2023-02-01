@@ -7,26 +7,24 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-let f=0
 $(function(){
-	//검색 결과
+	//검색바
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
 			$('#search').focus()
 			return
 		}
-		location.href="../service/search.do"
 	})
 	
 	//인기검색어 클릭 이벤트
 	$('#s-pop span:nth-child(n+2)').hover(function(){
 		$(this).css("cursor","pointer")
 	})
-	let key=$('#s-pop span').text()
-//고장고장 고쳐야대
 	$('#s-pop span:nth-child(n+2)').click(function(){
-		location.href="../service/faq_list.do?key="+key
+		let ss=$(this).text()
+		$('#search').val(ss)
+		$('#ss_frm').submit()
 	})
 }
 </script>
@@ -42,14 +40,16 @@ $(function(){
     <div style="height: 20px"></div>
 	<div>
 		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
-			<input type=text id=search size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+		  <form method=post action="../service/faq_find.do" id=ss_frm>
+			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
 			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
     </div>
     <div style="height: 10px"></div>
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
 		<span>결제방법</span>&nbsp;|&nbsp;
-		<span>회원정보변경</span>&nbsp;|&nbsp;
+		<span>회원정보</span>&nbsp;|&nbsp;
 		<span>2D전시회</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
