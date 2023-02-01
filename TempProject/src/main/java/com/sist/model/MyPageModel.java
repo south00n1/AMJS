@@ -8,10 +8,12 @@ import com.sist.controller.RequestMapping;
 
 @Controller
 public class MyPageModel {
-	@RequestMapping("mypage/mypage.do")
+	@RequestMapping("mypage/mypage_main.do")
 	public String mypage(HttpServletRequest request, HttpServletResponse response) {
 		
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+		
+		request.setAttribute("mypage_jsp", "../mypage/mypage_home.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
 	}
 }
