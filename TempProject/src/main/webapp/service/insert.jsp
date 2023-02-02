@@ -11,6 +11,7 @@
 <script type="text/javascript">
 let fileIndex=0
 $(function(){
+	//파일 추가
 	$('#addBtn').click(function(){
 		$('#fplus').append(
 			'<tr id="fp'+fileIndex+'">'
@@ -20,6 +21,7 @@ $(function(){
 		)
 		fileIndex++
 	})
+	//파일 삭제
 	$('#delBtn').click(function(){
 		if(fileIndex>0){
 			$('#fp'+(fileIndex-1)).remove()

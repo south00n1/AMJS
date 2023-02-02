@@ -11,6 +11,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	//유효성검사
 	$('#updateBtn').click(function(){
 		let pwd=$('#pwd').val()
 		if(pwd.trim()===""){
@@ -18,6 +19,7 @@ $(function(){
 			return
 		}
 		
+		//정보전송
 		let no=$('#no').val()
 		let queryString=$('#up_frm').serialize() 
 		$.ajax({

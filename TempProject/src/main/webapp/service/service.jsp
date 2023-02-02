@@ -74,6 +74,7 @@ $(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('.fsub').click(function(){
+		$('.fdetail').hide()
 		let no=$(this).attr("data-no")
 		if(f===0){
 			$('#f'+no).show()
@@ -101,10 +102,11 @@ $(function(){
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
-		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
+		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
+    	<div style="height: 10px"></div>
 		  <form method=post action="../service/faq_find.do" id=ss_frm>
-			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>
@@ -133,7 +135,8 @@ $(function(){
 		  	  <ul>
 				<li>예매방법</li>
 				<li>예매확인</li>
-				<li>예매변경 / 예매취소</li>
+				<li>예매변경</li>
+				<li>예매취소</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -156,9 +159,10 @@ $(function(){
 		  	<dt>회원관리</dt>
 		  	<dd>
 		  	  <ul>
-				<li>회원가입 / 탈퇴</li>
-				<li>회원정보 / 변경</li>
-				<li>본인인증 / 성인인증</li>
+				<li>회원가입</li>
+				<li>회원탈퇴</li>
+				<li>회원정보변경</li>
+				<li>본인인증</li>
 				<li>휴면회원</li>
 		  	  </ul>
 		  	</dd>
@@ -169,9 +173,10 @@ $(function(){
 		  	<dt>기타</dt>
 		  	<dd>
 		  	  <ul>
-				<li>리뷰 / 한줄평</li>
-				<li>홈페이지 / 시스템장애</li>
-				<li>기타</li>
+				<li>리뷰</li>
+				<li>한줄평</li>
+				<li>홈페이지</li>
+				<li>시스템장애</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
@@ -218,7 +223,7 @@ $(function(){
 	  <c:if test="${sessionScope.id==null }">
 	  	<p>로그인 후 이용 가능합니다</p>
 	  </c:if>
-	  <c:if test="${sessionScope.id!=null }">
+	  <c:if test="${sessionScope.admin=='n' }">
 		<table class="table">
 		  <tr>
 		  	<th width=15% class="text-center">문의유형</th>

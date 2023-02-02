@@ -12,6 +12,7 @@
 <script type="text/javascript">
 let f=0
 $(function(){
+	//검색 ajax
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
@@ -38,11 +39,25 @@ $(function(){
 		$('#ss_frm').submit()
 	})
 	
-///////////////////////////////////////post 또는 include할 때
+	//
+	$('#fop').change(function(){
+		let type=$(this).val()
+		$.ajax({
+			type:'post',
+			url:'../service/faq_type.do',
+			data:{"type":type},
+			success:function(response){
+				
+			}
+		})
+	})
+	
+	//faq 본문 보여주기
 	$('.fsub').hover(function(){
 		$(this).css("cursor","pointer")
 	})
 	$('.fsub').click(function(){
+		$('.fdetail').hide()
 		let no=$(this).attr("data-no")
 		if(f===0){
 			$('#f'+no).show()
@@ -61,14 +76,15 @@ $(function(){
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
+                    <h1 class="display-3 text-white">고객센터</h1>
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
-		<h6 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h6>
+		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
+    	<div style="height: 10px"></div>
 		  <form method=post action="../service/faq_find.do" id=ss_frm>
-			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>
@@ -79,13 +95,15 @@ $(function(){
 		<span>2D전시회</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
+    <div style="height: 30px"></div>
+    <h6 style="color: white">검색 결과 <span>${count }</span>개의 글을 찾았습니다</h6>
                 </div>
             </div>
         </div>
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:800px">
+	<div class="container" style="width:960px">
 	    <table>
 		  <tr>
 		  	<td style="border-color: white">
@@ -93,10 +111,17 @@ $(function(){
 		  		<a href="../service/insert.do" class="btn btn-sm btn-danger">문의 작성</a>
 	  		  </c:if>
 		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		  		<select id=fop>
+		  			<option value="1">회원</option>
+		  			<option value="2">예매</option>
+		  			<option value="3">티켓</option>
+		  			<option value="4">결제</option>
+		  			<option value="5">기타</option>
+		  		</select>
 		  	</td>
 		  </tr>
 		</table>
-	  <div style="height: 20px"></div>
+	  <div style="height: 5px"></div>
 	  	<table class="table f-find">
 	  	 <thead>
 	  	  <tr>
@@ -112,9 +137,9 @@ $(function(){
 	  	   		<td colspan=4>검색 결과가 없습니다</td>
 	  	   	  </tr>
 	  	   </c:if>
-			<c:forEach var="vo" items="${flist }" varStatus="s">
+			<c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
-		  	  	<td width=10% class="text-center">${count-s.index }</td>
+		  	  	<td width=10% class="text-center">${count-s.index-((curpage-1)*10) }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 		  	  	<td width=10% class="text-center">${vo.hit }</td>
@@ -124,11 +149,15 @@ $(function(){
 				<td>
 					<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
 				</td>
+				<td>
+					<c:if test="${sessionScope.admin=='y' }">
+	  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning">수정</a>
+	  	  			</c:if>
+				</td>
 			  </tr>
 	  	  	</c:forEach>
 	  	 </tbody>
 	  	</table>
-	  	<c:if test="${type==0 }">
 		  	<table class="table" style="border-color: white">
 		  	  <tr>
 		  	  	<td class="text-center">
@@ -138,7 +167,6 @@ $(function(){
 		  	  	</td>
 		  	  </tr>
 		  	</table>
-	  	</c:if>
 	</div>
 </body>
 </html>

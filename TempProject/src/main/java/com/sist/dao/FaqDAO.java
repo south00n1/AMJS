@@ -151,15 +151,24 @@ public class FaqDAO {
 		}
 	}
 	//FAQ 검색
-	public List<FaqVO> faqFindData(String ss) {
+	public List<FaqVO> faqFindData(String ss, int page) {
         List<FaqVO> list=new ArrayList<FaqVO>();
         try {
         	conn=CreateConnection.getConnection();
-            String sql="SELECT gfno,type,subject,content,hit "
+            String sql="SELECT gfno,type,subject,content,hit,num "
+                    + "FROM (SELECT gfno,type,subject,content,hit,rownum as num "
+                    + "FROM (SELECT gfno,type,subject,content,hit "
                     + "FROM god_faq_3 "
-                    + "WHERE content LIKE '%'||?||'%'";
+                    + "WHERE content LIKE '%'||?||'%' "
+                    + "ORDER BY hit DESC)) "
+                    + "WHERE num BETWEEN ? AND ?";
             ps=conn.prepareStatement(sql);
+            int rowSize=10;
+			int start=rowSize*(page-1)+1;
+			int end=rowSize*page;
             ps.setString(1, ss);
+            ps.setInt(2, start);
+            ps.setInt(3, end);
             ResultSet rs=ps.executeQuery();
             while(rs.next()) {
                 FaqVO vo = new FaqVO();

@@ -105,7 +105,7 @@ public class ServiceDAO {
 				ps.executeUpdate();
 			}
 			
-			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id "
+			sql="SELECT gano,subject,type,content,ans_state,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id,group_tab "
 					+ "FROM god_ask_3 "
 					+ "WHERE gano=?";
 			ps=conn.prepareStatement(sql);
@@ -122,6 +122,7 @@ public class ServiceDAO {
 			vo.setFilename(rs.getString(8));
 			vo.setFilesize(rs.getInt(9));
 			vo.setId(rs.getString(10));
+			vo.setGroup_tab(rs.getInt(11));
 			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -144,7 +145,7 @@ public class ServiceDAO {
 			int gi=rs.getInt(1);
 			rs.close();
 			
-			sql="SELECT gano,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize "
+			sql="SELECT gano,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,filename,filesize,id,group_tab "
 					+ "FROM god_ask_3 "
 					+ "WHERE group_id=? "
 					+ "AND gano!=?";
@@ -161,6 +162,8 @@ public class ServiceDAO {
 				vo.setHit(rs.getInt(5));
 				vo.setFilename(rs.getString(6));
 				vo.setFilesize(rs.getInt(7));
+				vo.setId(rs.getString(8));
+				vo.setGroup_tab(rs.getInt(9));
 				list.add(vo);
 			}
 			rs.close();

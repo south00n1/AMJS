@@ -13,7 +13,7 @@
 	  	   		<td colspan=4>검색 결과가 없습니다</td>
 	  	   	  </tr>
 	  	  </c:if>
-		  <c:forEach var="vo" items="${flist }" varStatus="s">
+		  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>

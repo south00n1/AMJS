@@ -1,6 +1,8 @@
 package com.sist.model;
 import com.sist.vo.*;
 import com.sist.dao.*;
+
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,12 +68,18 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
 	    String ss=request.getParameter("ss");
+	    String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
         FaqDAO dao=new FaqDAO();
-	    List<FaqVO> flist=dao.faqFindData(ss);
+	    List<FaqVO> list=dao.faqFindData(ss, curpage);
 	    int count=dao.faqFindRowCount(ss);
+	    int totalpage=(int)(Math.ceil(count/10.0));
 	    request.setAttribute("ss", ss);
-	    request.setAttribute("flist", flist);
+	    request.setAttribute("list", list);
 	    request.setAttribute("count", count);
+	    request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
 	    request.setAttribute("main_jsp", "../service/faq_find.jsp");
 	    return "../main/main.jsp";
 	}
@@ -82,11 +90,34 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception e) {}
 		String ss=request.getParameter("ss");
+		
 		FaqDAO dao=new FaqDAO();
-		List<FaqVO> flist=dao.faqFindData(ss);
+		List<FaqVO> list=dao.faqFindData(ss, 1);
 		int count=dao.faqFindRowCount(ss);
-		request.setAttribute("flist", flist);
+		request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		return "../service/faq_find_result.jsp";
+	}
+	
+	@RequestMapping("service/faq_type.do")
+	public void faq_type(HttpServletRequest request, HttpServletResponse response) {
+		String type=request.getParameter("type");
+		if(type==null) type="0";
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
+		FaqDAO dao=new FaqDAO();
+		List<FaqVO> list=dao.faqListData(Integer.parseInt(type), curpage);
+		int count=dao.faqRowCount(Integer.parseInt(type));
+		int totalpage=(int)(Math.ceil(count/10.0));
+		request.setAttribute("type", type);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("totalpage", totalpage);
+		try {
+			PrintWriter out=response.getWriter();
+			out.println(type);
+		} catch(Exception ex) {}
 	}
 }
