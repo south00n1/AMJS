@@ -203,6 +203,74 @@ public class MemberDAO {
 		return vo;
 	}
 	// 3. 회원수정
+	public MemberVO memberJoinUpdateData(String id) {
+		MemberVO vo = new MemberVO();
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "SELECT id, name, sex, birthday, email, post, addr1, addr2, phone "
+						+ "FROM god_member_3 "
+						+ "WHERE id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			vo.setId(rs.getString(1));
+			vo.setName(rs.getString(2));
+			vo.setSex(rs.getString(3));
+			vo.setBirthday(rs.getString(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPost(rs.getString(6));
+			vo.setAddr1(rs.getString(7));
+			vo.setAddr2(rs.getString(8));
+			vo.setPhone(rs.getString(9));
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	
+	public boolean memberJoinUpdate(MemberVO vo) {
+		boolean bCheck = false;
+		
+		try {
+			conn= CreateConnection.getConnection();
+			String sql = "SELECT pwd FROM god_member_3 "
+						+ "WHERE id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String db_pwd = rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd())) {
+				bCheck = true;
+				sql = "UPDATE god_member_3 SET "
+					+ "name=?, sex=?, email=?, phone=?, birthday=?, "
+					+ "post=?, addr1=?, addr2=? "
+					+ "WHERE id = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSex());
+				ps.setString(3, vo.getEmail());
+				ps.setString(4, vo.getPhone());
+				ps.setString(5, vo.getBirthday());
+				ps.setString(6, vo.getPost());
+				ps.setString(7, vo.getAddr1());
+				ps.setString(8, vo.getAddr2());
+				ps.setString(9, vo.getId());
+				ps.executeUpdate();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 	// 4. ID찾기
 	public String idFind(String name, String email) {
 		String result = "";

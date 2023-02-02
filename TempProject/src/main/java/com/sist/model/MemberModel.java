@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -164,4 +165,70 @@ public class MemberModel {
         request.setAttribute("result", result);
         return "../member/result.jsp";
     }
+	
+	// 회원 수정, 회원 탈퇴 => session
+		@RequestMapping("member/join_update.do")
+		public String member_join_update(HttpServletRequest request, HttpServletResponse response) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("id");
+			MemberDAO dao = new MemberDAO();
+			// DB연동
+			MemberVO vo = dao.memberJoinUpdateData(id);
+			String year = vo.getBirthday().substring(0,4);
+			String month = vo.getBirthday().substring(5,7);
+			String day = vo.getBirthday().substring(8);
+			
+			
+			request.setAttribute("year", year);
+			request.setAttribute("month", month);
+			request.setAttribute("day", day);
+			request.setAttribute("vo", vo);
+			return "../member/join_update.jsp";
+		}
+		
+		@RequestMapping("member/join_update_ok.do")
+		public void member_join_update_ok(HttpServletRequest request, HttpServletResponse response) {
+			
+			try {
+				request.setCharacterEncoding("UTF-8");
+			} catch (Exception e) {}
+			String id = request.getParameter("id");
+			String pwd = request.getParameter("pwd");
+			String name = request.getParameter("name");
+			String sex = request.getParameter("sex");
+			String year = request.getParameter("year");
+			String month = request.getParameter("month");
+			String day = request.getParameter("day");
+			String post = request.getParameter("post");
+			String addr1 = request.getParameter("addr1");
+			String addr2 = request.getParameter("addr2");
+			String email = request.getParameter("email");
+			String tel = request.getParameter("tel");
+			
+			MemberVO vo = new MemberVO();
+			vo.setId(id);
+			vo.setPwd(pwd);
+			vo.setName(name);
+			vo.setSex(sex);
+			vo.setBirthday(year + "-" + month + "-" + day);
+			vo.setPost(post);
+			vo.setAddr1(addr1);
+			vo.setAddr2(addr2);
+			vo.setEmail(email);
+			vo.setPhone(tel);
+			
+			MemberDAO dao = new MemberDAO();
+			boolean bCheck = dao.memberJoinUpdate(vo);
+			try {
+				PrintWriter out = response.getWriter(); // 접속한 브라우저에 값을 보내겠다?
+				if(bCheck == true) {
+					out.println("yes");
+					HttpSession session = request.getSession();
+					session.setAttribute("name", vo.getName());
+				} else {
+					out.println("no");
+				}
+			} catch (Exception e) {}
+		}
 }

@@ -14,6 +14,7 @@ li:hover {
 	cursor: pointer;
 }
 </style>
+
 </head>
 <body>
 <div class="container-xxl py-5" style="height: 70%">	
@@ -28,6 +29,7 @@ li:hover {
 	    </div>
 	  </div>
 	</div>
-</div>
+</div> 
+
 </body>
 </html>
