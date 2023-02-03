@@ -28,6 +28,14 @@ $(function(){
 			$('#id').focus;
 			return
 		}
+		let idRegExp = /^[a-zA-z0-9]{4,8}$/;
+		if (!idRegExp.test(id.trim())) {
+            $('#result').html("<font color=red>아이디는 영문 대소문자와<br> 숫자 4~8자리로 입력해야합니다!</font>");
+            $('#id').val("");
+        	$('#id').focus;
+        	return
+        }
+		
 		
 		$.ajax({
 			type: 'post', // get, post
