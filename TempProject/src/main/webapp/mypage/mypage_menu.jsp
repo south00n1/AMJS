@@ -10,7 +10,7 @@
 	<ul class="py-0 px-0">
 	  	    <li class="">내 정보</li>
 	  	    <li class="my-1" style="font-size: 11px"><a href="../member/join_update.do">정보 수정</a></li>
-	  	    <li class="my-1" style="font-size: 11px">회원 탈퇴</li>
+	  	    <li class="my-1" style="font-size: 11px"><a href="../member/join_delete.do">회원 탈퇴</a></li>
 	  	    <hr>
 	  	    <li class="">내 활동</li>
 	  	    <li class="my-1" style="font-size: 11px">내가 쓴 게시글</li>

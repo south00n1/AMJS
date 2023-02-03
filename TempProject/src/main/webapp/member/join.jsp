@@ -105,6 +105,12 @@
 				$('#join_pwd').focus();
 				return;
 			}
+			if (pwd.trim().length < 4) {
+				alert("비밀번호는 4자 이상으로 작성해주세요!")
+				$('#join_pwd').val("");
+				$('#join_pwd').focus();
+				return;
+			}
 
 			let pwd1 = $('#join_pwd1').val();
 			if (pwd.trim() !== pwd1.trim()) {
