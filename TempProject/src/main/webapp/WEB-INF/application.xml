@@ -11,4 +11,5 @@
   <bean class="com.sist.model.ServiceModel"/>
   <bean class="com.sist.model.MyPageModel"/>
   <bean class="com.sist.model.FaqModel"/>
+  <bean class="com.sist.model.JjimModel"/>
 </beans>

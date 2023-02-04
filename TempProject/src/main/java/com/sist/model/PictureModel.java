@@ -6,9 +6,11 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.JjimDAO;
 import com.sist.dao.PictureDAO;
 import com.sist.vo.PictureVO;
 
@@ -63,6 +65,14 @@ public class PictureModel {
 		PictureDAO dao = new PictureDAO();
 		PictureVO vo = dao.pictureDetailData(Integer.parseInt(gpno));
 		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		JjimDAO jdao = new JjimDAO();
+		int jcount = jdao.jjimCount(Integer.parseInt(gpno), id);
+		request.setAttribute("jjim_count", jcount);
+		
+		
+		request.setAttribute("id", id);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../picture/detail.jsp");
 		return "../main/main.jsp";

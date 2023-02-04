@@ -7,209 +7,154 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.page-product__category .category-item {
-	display: block;
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+div.pic_detail_container {
+	width: 1300px;
+	margin: 50px auto;
+}
+div.pic_detail_cont1 {
+	float: left;
+    width: 600px;
+    height: 600px;
+    margin-bottom: 10px;
+}
+div.pic_detail_cont2 {
+	float: left;
+    width: 600px;
+    height: 600px;
+    margin-left: 60px;
+    padding-right: 30px;
+    overflow: auto  
+}
+div.pic_detail_cont2::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
 }
 
-.page-product__category .category-item__body {
-	display: block;
+div.pic_detail_cont2::-webkit-scrollbar-thumb {
+    height: 90%; /* 스크롤바의 길이 */
+    background: #27375C; /* 스크롤바의 색상 */
+    border-radius: 10px;
 }
 
-.breadcrumbs__link {
-	color: #9B9B9B;
-	font-size: 12px;
-	font-weight: 400;
-	line-height: 14px;
-	text-decoration: none;
-	position: relative;
+div.pic_detail_cont2::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+div.pic_detail_small {
+	width: 600px;
+	height: 100px;
+	padding-top: 10px;
+}
+div.pic_detail_menu {
+    width: 600px;
+    height: 100px;
+    float: right;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 40px;
+}
+div.pic_detail_reply {
+    width: 100%;
+    height: 200px;
+    clear: both;
+    padding-top: 15px;
+    text-align: right;
+}
+input[type=button] {
+	width: 70px;
+	height: 40px;
+	color: #27375C;
+	background-color: white;
+	border-radius: 5px;
+	font-weight: bold;
+	transition: 0.3s;
+	border:none;
+	border: 1px solid #27375C;
+}
+input[type=button]:first-child {
 }
 
-.breadcrumbs__link:after {
-	content: "/";
-	margin-left: 5px;
+input[type=button]:hover {
+	color: white;
+	background-color: #27375C;
 }
-
-.breadcrumbs__link:last-child:after {
-	content: none;
+.jjim {
+	width: 70px;
+	height: 40px;
+	color: #27375C;
+	background-color: white;
+	border-radius: 5px;
+	font-weight: bold;
+	transition: 0.3s;
+	border: 1px solid #27375C;
 }
-
-@media screen and (min-width: 768px) {
-	.product-detail {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
-}
-
-.product-gallery {
-	max-width: 480px;
-	margin: 0 auto;
-}
-
-@media screen and (min-width: 768px) {
-	.product-gallery {
-		max-width: 100%;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.product-gallery {
-		display: flex;
-		flex-direction: row-reverse;
-	}
-}
-
-.product-gallery__view-item img {
-	width: 100%;
-	height: auto;
-}
-
-@media screen and (min-width: 768px) {
-	.product-gallery__thumbs {
-		margin-right: 10px;
-		height: 100%;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.product-gallery__thumbs-list {
-		width: 50px;
-		height: 100%;
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	.product-gallery__thumbs-list {
-		width: 80px;
-	}
-}
-
-.product-gallery__thumbs-item img {
-	width: 100%;
-	height: auto;
-}
-
-.product-detail-info__cont {
-	margin: 0 auto;
-	margin-top: 70px;
-}
-
-@media screen and (min-width: 768px) {
-	.product-detail-info__cont {
-		max-width: 550px;
-		padding: 0 0 0 50px;
-	}
-}
-
-.product-detail-info__category {
-	color: #000000;
-	font-size: 16px;
-	font-weight: 700;
-	line-height: 19px;
-	text-align: center;
-	margin-bottom: 15px;
-}
-
-@media screen and (min-width: 768px) {
-	.product-detail-info__category {
-		text-align: left;
-	}
-}
-
-.product-detail-info__name {
-	color: #000000;
-	font-size: 40px;
-	font-weight: 600;
-	line-height: 36px;
-	text-align: center;
-	margin-bottom: 15px;
-}
-
-@media screen and (min-width: 768px) {
-	.product-detail-info__name {
-		text-align: left;
-	}
-}
-
-.product-detail-info__price {
-	color: #000000;
-	font-size: 16px;
-	font-weight: 700;
-	line-height: 19px;
-	text-align: center;
-	margin-bottom: 30px;
-}
-
-@media screen and (min-width: 768px) {
-	.product-detail-info__price {
-		text-align: left;
-	}
-}
-
-.product-detail-info__desc {
-	color: #4A4A4A;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 25px;
-	text-align: justify;
-}
-
-.product-detail-info__quantity {
-	margin-top: 50px;
-}
-
-.product-detail-info__action {
-	margin-top: 50px;
+.jjim:hover {
+	color: white;
+	background-color: #27375C;
 }
 </style>
-
-
 </head>
 <body>
-
-	<div class="page-product">
-		<div class="container">
-			<div class="product-detail my-5">
-				<div class="product-gallery">
-					<div class="product-gallery__view" style="">
-						<img src="${vo.image }" alt=""
-							style="width: 600px; height: 600px; margin-top: 70px;">
-					</div>
-				</div>
-				<div class="product-detail-info">
-					<div class="product-detail-info__cont mx-3"
-						">
-						<p class="product-detail-info__name">${vo.title }</p>
-
-						<p class="product-detail-info__desc mt-5"
-							style="font-size: 0.9rem">
-							작가 : <span style="font-size: 0.8rem;">${vo.name}</span><br>
-							작품정보 : <span style="font-size: 0.8rem;">${vo.info}</span><br>
-							작품코드 : <span style="font-size: 0.8rem">${vo.code }</span><br>
-							<hr>
-							추천이유 : <span style="font-size: 0.8rem">${vo.content2 }</span>
-							<hr>
-							큐레이터 노트 : <span style="font-size: 0.8rem">${vo.content }</span>
-						</p>
-
-					</div>
-				</div>
-			</div>
-			<div style="display: flex; justify-content: space-between;">
-				<div>
-					<c:forTokens items="${vo.image2 }" delims="^" var="image" begin="1">
-						<img src="${image }" class="mr-2"
-							style="display: inline-block; width: 100px; height: 100px;">
-					</c:forTokens>
-				</div>
-				<div>
-					<a href="../picture/list.do" class="btn btn-sm"
-						style="background-color: #27375C; color: #fff;">목록</a>
-				</div>
-			</div>
+	<div class="pic_detail_container">
+		
+		<div class="pic_detail_cont1">
+			<img src="${vo.image }" style="width: 600px; height: 600px;">
 		</div>
+		<div class="pic_detail_cont2">
+			<table class="table">
+				<tr>
+					<th colspan="2"><h2>${vo.title }</h2></th>
+				</tr>
+				<tr>
+					<th width=20%>작가</th>
+					<td width=80%>${vo.name }</td>
+				</tr>
+				<tr>
+					<th width=20%>작품정보</th>
+					<td width=80%>${vo.info }</td>
+				</tr>
+				<tr>
+					<th width=20%>작품코드</th>
+					<td width=80%>${vo.code }</td>
+				</tr>
+				<tr>
+					<th width=20%>추천이유</th>
+					<td width=80%>${vo.content2  }</td>
+				</tr>
+				<tr>
+					<th width=20%>큐레이터 노트</th>
+					<td width=80%>${vo.content }</td>
+				</tr>
+			</table>
+		</div>
+		<div class="pic_detail_small">
+			<c:forTokens items="${vo.image2 }" delims="^" var="image" begin="1" end="5">
+				<img src="${image }" style="display: inline-block; width: 100px; height: 100px;">
+			</c:forTokens>
+		</div>
+		<div class="pic_detail_menu">
+			<c:if test="${sessionScope.id!=null }">
+				<c:if test="${jjim_count == 0 }">
+					<a href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;">찜하기</a>
+				</c:if>
+				<c:if test="${jjim_count != 0 }">
+					<span href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">찜하기</span>
+				</c:if>
+			</c:if>
+				<a href="../picture/list.do" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;">목록</a>
+		</div>
+		<table class="table">
+		   <tr>
+		      <td class="text-center">댓글이 없습니다</td>
+		   </tr>
+		</table>
+		<div class="pic_detail_reply">
+		</div>
+		
+		
 	</div>
-
-
 
 </body>
 </html>
