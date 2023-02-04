@@ -155,7 +155,7 @@ $(function(){
 <a href="#" id=id-find-btn><div class="btn">아이디찾기</div></a> <!-- End Btn -->
 <a href="#" id=ok-btn><div id="btn2">확인</div></a> <!-- End Btn2 -->
   
-</div> <!-- End Box -->
+</div>
   
 </body>
 </html>

@@ -20,8 +20,7 @@
 				content : '../member/idcheck.do',
 				player : 'iframe',
 				width : 420,
-				height : 180,
-				title : '아이디 중복체크'
+				height : 320,
 			})
 		})
 
@@ -30,9 +29,8 @@
 			Shadowbox.open({
 				content : '../member/postfind.do',
 				player : 'iframe',
-				width : 580,
-				height : 450,
-				title : '우편번호 검색'
+				width : 600,
+				height : 400,
 			})
 		})
 
@@ -80,7 +78,7 @@
 			}
 			let phoneRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
 			if (!phoneRegExp.test(phone.trim())) {
-				$('#tPrint').html("<font color=red>휴대폰 번호 형식이 올바르지 않습니다!</font>");
+				$('#tPrint').html("<font color=red>휴대폰 번호 형식이 올바르지 않습니다!<br>ex)010-XXXX-XXXX</font>");
 	        	return
 	        }
 
@@ -103,6 +101,7 @@
 				}
 			})
 		})
+		
 
 		$('#joinBtn').click(function() {
 			
@@ -124,12 +123,15 @@
 			let pwdRegExp = /^[a-zA-z0-9]{4,8}$/;
 			
 			if (!pwdRegExp.test(pwd.trim())) {
+				$('#id_result').html("");
 	            $('#pwd_result').html("<font color=red>비밀번호는 영문 대소문자와 숫자 4~8자리로 입력해야합니다!</font>");
 	        	return
 	        }
 
 			let pwd1 = $('#join_pwd1').val();
 			if (pwd.trim() !== pwd1.trim()) {
+				$('#id_result').html("");
+				$('#pwd_result').html("");
 				$('#pwd1_result').html("<font color=red>비밀번호가 다릅니다 다시 입력해주세요</font>");
 				$('#join_pwd1').val("");
 				$('#join_pwd1').focus();
@@ -164,38 +166,68 @@
 	        }
 
 			let year = $('#year').val();
-			let yearRegExp = /^[0-9]{4}$/;
-	        if (!yearRegExp.test(year)) {
+	        if (year.trim() == "") {
 				$('#name_result').html("")
-				alert("생년월일을 입력해주세요.")
+				$('#birthday_result').html("<font color=red>생년월일을 입력해주세요.</font>");
 				$('#year').focus();
 	            return;
 	        }
-	        
+			let yearRegExp = /^(19|20)[0-9]{2}$/;
+	        if (!yearRegExp.test(year)) {
+				$('#name_result').html("")
+				$('#birthday_result').html("<font color=red>생년월일을 올바르게 입력해주세요.</font>");
+				$('#year').val("");
+				$('#year').focus();
+	            return;
+	        }
 			let month = $('#month').val();
-			let monthRegExp = /^[0-9]{2}$/;
+	        if (month.trim() == "") {
+				$('#name_result').html("")
+				$('#birthday_result').html("<font color=red>생년월일을 입력해주세요.</font>");
+				$('#month').focus();
+	            return;
+	        }
+	        
+			let monthRegExp = /^(0[1-9]|1[0-2])$/;
 	        if (!monthRegExp.test(month)) {
 				$('#name_result').html("")
-				alert("생년월일을 입력해주세요.")
+				$('#birthday_result').html("<font color=red>생년월일을 올바르게 입력해주세요.</font>");
+				$('#month').val("");
 				$('#month').focus();
 	            return;
 	        }
 	        
 			let day = $('#day').val();
-			let dayRegExp = /^[0-9]{2}$/;
+	        if (day.trim() == "") {
+				$('#name_result').html("")
+				$('#birthday_result').html("<font color=red>생년월일을 입력해주세요.</font>");
+				$('#day').focus();
+	            return;
+	        }
+			let dayRegExp = /^(0[1-9]|[1-2][0-9]|3[0-1])$/;
 	        if (!dayRegExp.test(day)) {
 				$('#name_result').html("")
-				alert("생년월일을 입력해주세요.")
+				$('#birthday_result').html("<font color=red>생년월일을 올바르게 입력해주세요.</font>");
+				$('#day').val("");
 				$('#day').focus();
 	            return;
 	        }
 			
 			let email = $('#email').val();
 			if (email.trim() === "") {
+				$('#birthday_result').html("");
 				$('#ePrint').html("<font color=red>이메일을 입력해주세요.</font>");
 				$('#email').focus();
 				return;
 			}
+			
+			let emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+	        if (!emailRegExp.test(email)) {
+	        	$('#ePrint').html("<font color=red>이메일 형식이 올바르지 않습니다!</font>");
+	            $('#email').val("");
+	            $('#email').focus();
+	            return
+	        }
 
 			let post = $('#post').val();
 			if (post.trim() === "") {
@@ -219,7 +251,14 @@
 				$('#tel').focus();
 				return;
 			}
-
+			
+			let telRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
+			if (!telRegExp.test(tel.trim())) {
+				$('#tPrint').html("<font color=red>휴대폰 번호 형식이 올바르지 않습니다!<br>ex)010-XXXX-XXXX</font>");
+				$('#tel').val("");
+				$('#tel').focus();
+	        	return
+	        }
 			$('#join_frm').submit();
 		})
 	})
@@ -228,7 +267,7 @@
 <body>
 	<div class="container">
 		<div class="top">
-			<h1>회원정보 입력</h1>
+			<h1>GOD</h1>
 		</div>
 
 		<form method="post" action="../member/join_ok.do" name="join_frm"
@@ -268,7 +307,7 @@
 					<span id="name_result"></span>
 					</div>
 				</div>
-				<div>
+				<div style="text-align: left">
 					<p>생년월일</p>
 					<div>
 						<input type="text" size="4" maxlength="4" placeholder="YYYY"
@@ -277,6 +316,7 @@
 						<span>/</span> <input type="text" size="2" maxlength="2"
 							placeholder="DD" name="day" id="day">
 					</div>
+					<span id="birthday_result"></span>
 				</div>
 				<div>
 					<p>성별</p>
@@ -326,9 +366,14 @@
 					</div>
 					</td>
 				</div>
-				<div>
+				<div style="padding-bottom: 40px">
 					<input type="button" id="joinBtn" value="가입하기">
 				</div>
+				
+				<p style="font-size: 14px;">
+				이용약관 | 개인정보처리방침 | 책임의 한계와 법적고지 | 회원정보 | 고객센터<br>
+				<span style="font-size: 12px;">GOD Copyright <b>GOD Corp</b>. All Rights Reserved.</span>
+				</p>
 			</div>
 		</form>
 	</div>

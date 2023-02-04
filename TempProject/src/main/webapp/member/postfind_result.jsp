@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	function ok(zip, addr) {
@@ -29,13 +30,13 @@
 	<c:if test="${count != 0 }">
 		<table class="table">
 			<tr class="success">
-				<th class="text-center" width="15%">우편번호</th>
-				<th class="text-center" width="85%">주소</th>
+				<th class="text-center" width="20%">우편번호</th>
+				<th class="text-center" width="80%">주소</th>
 			</tr>
 			<c:forEach var="vo" items="${list }">
 				<tr>
-					<td class="text-center" width=15%>${vo.zipcode }</td>
-					<td width=85%><a
+					<td class="text-center" width=20%>${vo.zipcode }</td>
+					<td width=80%><a
 						href="javascript:ok('${vo.zipcode }','${vo.address }')">${vo.address }</a></td>
 				</tr>
 			</c:forEach>

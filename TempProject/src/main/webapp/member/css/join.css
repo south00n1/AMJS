@@ -18,6 +18,7 @@ body {
 div.container {
 	width: 768px;
 	margin: 60px auto;
+	margin-bottom: 10px;
 	text-align: center;
 }
 div.info_member div {
@@ -25,11 +26,11 @@ div.info_member div {
 	margin: 0px auto;
 }
 h1 {
-  font-size: 34px;
+  font-size: 56px;
   font-weight: 900;
   line-height: 60px;
   padding-bottom: 35px;
-  color: #333;
+  color: #27375C;
 }
 
 ul li {
@@ -89,7 +90,7 @@ input[type=radio]:checked.smallradio {
 }
 
 .info_member>div> :nth-child(1) {
-  padding: 18px 0 7px 0;
+  padding: 14px 0 7px 0;
   font-weight: bold;
   text-align: left;
 }
@@ -122,7 +123,7 @@ div.info_member :nth-child(1) div {
   width: 100px;
   height: 42px;
   margin-left: 10px;
-  transition: 0.8s;
+  transition: 0.3s;
   flex-shrink: 0;
 }
 
@@ -229,7 +230,6 @@ div.info_member :nth-child(1) div {
   text-align: left;
 }
 
-.info_member> :nth-child(7)> :nth-child(1)::after,
 .info_member> :nth-child(10)> :nth-child(1)::after,
 .info_member> :nth-child(12)> :nth-child(1)::after {
   display: none;
@@ -243,7 +243,7 @@ div.info_member :nth-child(7) div {
   width: 100px;
   height: 42px;
   margin-left: 10px;
-  transition: 0.8s;
+  transition: 0.3s;
   flex-shrink: 0;
 }
 .info_member> :nth-child(7) div button:hover {
@@ -270,7 +270,7 @@ div.info_member :nth-child(11) div {
   width: 100px;
   height: 42px;
   margin-left: 10px;
-  transition: 0.8s;
+  transition: 0.3s;
   flex-shrink: 0;
 }
 
@@ -287,9 +287,10 @@ div.info_member :nth-child(11) div {
   flex-shrink: 0;
   text-align: center;
   padding: 0;
+  
 }
 
-.info_member> :nth-child(12) button:hover {
+#joinBtn {
   color: white;
   background: #27375C;
 }
@@ -299,4 +300,8 @@ div.info_member :nth-child(11) div {
   font-size: 0.8em;
   font-weight: 400;
   opacity: 0.7; 
+}
+
+.shadow-shorter {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11), 0 8px 16px rgba(0, 0, 0, 0.11);
 }
