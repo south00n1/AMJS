@@ -7,8 +7,32 @@ package com.sist.vo;
  */
 public class JjimVO {
 	private int jno, no;
-	private String id;
+	private String id, title, image, name, code;
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public int getJno() {
 		return jno;
 	}

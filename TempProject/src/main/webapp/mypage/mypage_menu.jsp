@@ -77,7 +77,7 @@ li.mypage_menu::before {
   	    	<li class="mypage_menu">예매 목록</li>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<li class="mypage_menu">찜하기 목록</li>
+  	    	<a href="../mypage/jjim_list.do"><li class="mypage_menu">찜하기 목록</li></a>
   	    </div>
   	    <div class="mypage_li_div">
 	  	    <li class="mypage_menu">내 정보</li>
