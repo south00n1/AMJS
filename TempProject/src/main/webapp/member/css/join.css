@@ -53,7 +53,7 @@ input, textarea, select {
   font-family: "Heebo", 'Noto Sans KR', sans-serif;
 }
 
-input[type=search], input[type=email], input[type=password], input[type=text], input[type=number], textarea {
+input[type=search], input[type=email], input[type=password], input[type=text], input[type=number], textarea, #question {
   width: 100%;
   height: 42px;
   padding: 0 11px 1px 15px;
@@ -67,7 +67,7 @@ input[type=search], input[type=email], input[type=password], input[type=text], i
   outline: 0;
 }
 
-input[type=search]:focus, input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=number]:focus, textarea:focus {
+input[type=search]:focus, input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=number]:focus, textarea:focus, #question:focus {
   border: 1px solid #27375C;
 }
 
@@ -301,6 +301,11 @@ div.info_member :nth-child(11) div {
   font-weight: 400;
   opacity: 0.7; 
 }
+
+#last::after {
+	content: "";
+}
+
 
 .shadow-shorter {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11), 0 8px 16px rgba(0, 0, 0, 0.11);

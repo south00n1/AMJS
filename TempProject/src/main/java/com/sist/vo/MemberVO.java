@@ -14,9 +14,23 @@ package com.sist.vo;
  */
 public class MemberVO {
 	private String id, pwd, name, sex, birthday
-			,email ,post, addr1, addr2, phone, admin, msg;
+			,email ,post, addr1, addr2, phone, admin, msg, question, answer;
 	
-	
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
 	public String getMsg() {
 		return msg;
 	}

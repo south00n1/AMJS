@@ -124,6 +124,18 @@ function getCookie(cookieName) {
 	        })
 	})
 	
+	// 비밀번호찾기
+	$('#pwdfind').css('cursor','pointer');
+	$('#pwdfind').click(function(){
+		 Shadowbox.open({
+	            content:'../member/pwdfind.do',
+	            player:'iframe',
+	            width:350,
+	            height:330 
+	        })
+	})
+	
+	
 })
 </script>
 </head>
@@ -138,7 +150,7 @@ function getCookie(cookieName) {
 			class="cbx" for="cbx"><span> <svg width="12px"
 					height="10px" viewbox="0 0 12 10">
 	        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-	      </svg></span><span>아이디 기억</span></label> <input type="button" value="로그인"
+	      </svg></span><span>아이디 저장</span></label> <input type="button" value="로그인"
 			id="logBtn">
 
 		<div>

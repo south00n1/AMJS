@@ -137,7 +137,7 @@ public class MemberDAO {
 	public void memberInsert(MemberVO vo) {
 		try {
 			conn = CreateConnection.getConnection();
-			String sql = "INSERT INTO god_member_3 VALUES(?,?,?,?,?,?,?,?,?,?,'n')"; // 디폴트값
+			String sql = "INSERT INTO god_member_3 VALUES(?,?,?,?,?,?,?,?,?,?,'n',?,?)"; // 디폴트값
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getId());
 			ps.setString(2, vo.getPwd());
@@ -149,6 +149,8 @@ public class MemberDAO {
 			ps.setString(8, vo.getAddr1());
 			ps.setString(9, vo.getAddr2());
 			ps.setString(10, vo.getPhone());
+			ps.setString(11, vo.getAnswer());
+			ps.setString(12, vo.getQuestion());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -310,6 +312,83 @@ public class MemberDAO {
 		return result;
 	}
 	// 5. PWD찾기
+	public String pwFind1(String name, String id) {
+        
+        String result = "";
+        try {
+            conn = CreateConnection.getConnection();
+            
+            String sql = "SELECT COUNT(*) "
+                    + "FROM god_member_3 "
+                    + "WHERE name=? AND id=?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, id);
+            
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            rs.close();
+            if (count == 0) {
+                result = "no";
+            } else {
+                sql = "SELECT question "
+                    + "FROM god_member_3 "
+                    + "WHERE name=? AND id=?";
+                
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, name);
+                ps.setString(2, id);
+                
+                rs = ps.executeQuery();
+                
+                rs.next();
+                
+                result = rs.getString(1);
+                
+                rs.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return result;
+    }
+	
+	public String pwFind2(String id, String answer) {
+        
+        String result = "";
+        try {
+            conn = CreateConnection.getConnection();
+            
+            String sql = "SELECT pwd "
+                    + "FROM god_member_3 "
+                    + "WHERE id=? AND answer=?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, answer);
+            
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            String count = rs.getString(1);
+            rs.close();
+            
+            if (count == "") {
+                result = "no";
+            } else {
+                result = count;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            CreateConnection.disConnection(conn, ps);
+        }
+        return result;
+    }
+	
 	// 6. 회원탈퇴
 	public boolean memberJoinDelete(String id, String pwd) {
 		boolean bCheck = false;

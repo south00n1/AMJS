@@ -259,6 +259,14 @@
 				$('#tel').focus();
 	        	return
 	        }
+			
+			let answer = $('#answer').val();
+			if(answer.trim() === "") {
+				$('#answer_result').html("<font color=red>답변을 입력해주세요!</font>");
+				$('#tPrint').html("");
+				$('#answer').focus();
+				return;
+			}
 			$('#join_frm').submit();
 		})
 	})
@@ -281,7 +289,7 @@
 							type="button" id="checkBtn" value="중복확인">
 					</div>
 					<div style="text-align: left; padding-left: 5px">
-						<span id="id_result"></span>
+						<span id="id_result" style="font-size: 12px;"></span>
 					</div>
 				</div>
 				<div>
@@ -289,7 +297,7 @@
 					<input type="password" name="pwd" id="join_pwd"
 						placeholder="비밀번호를 입력해주세요">
 					<div style="text-align: left; padding-left: 5px">
-					<span id="pwd_result"></span>
+					<span id="pwd_result" style="font-size: 12px;"></span>
 					</div>
 				</div>
 				<div>
@@ -297,14 +305,14 @@
 					<input type="password" name="pwd1" id="join_pwd1"
 						placeholder="비밀번호를 한번 더 입력해주세요">
 					<div style="text-align: left; padding-left: 5px">
-					<span id="pwd1_result"></span>
+					<span id="pwd1_result" style="font-size: 12px;"></span>
 					</div>
 				</div>
 				<div>
 					<p>이름</p>
 					<input type="text" name="name" id="name" placeholder="이름을 입력해주세요">
 					<div style="text-align: left; padding-left: 5px">
-					<span id="name_result"></span>
+					<span id="name_result" style="font-size: 12px;"></span>
 					</div>
 				</div>
 				<div style="text-align: left">
@@ -316,7 +324,7 @@
 						<span>/</span> <input type="text" size="2" maxlength="2"
 							placeholder="DD" name="day" id="day">
 					</div>
-					<span id="birthday_result"></span>
+					<span id="birthday_result" style="font-size: 12px;"></span>
 				</div>
 				<div>
 					<p>성별</p>
@@ -335,7 +343,7 @@
 							type="button" id="eBtn" value="이메일확인">
 					</div>
 					<div style="text-align: left; padding-left: 5px">
-						<span id="ePrint"></span>
+						<span id="ePrint" style="font-size: 12px;"></span>
 					</div>
 					</td>
 				</div>
@@ -343,7 +351,7 @@
 					<p>우편번호</p>
 					<input type="text" name="post" id="post" value="" placeholder="">
 					<div style="text-align: left; padding-left: 5px">
-						<span id="post_result"></span>
+						<span id="post_result" style="font-size: 12px;"></span>
 					</div>
 				</div>
 				<div>
@@ -362,15 +370,43 @@
 							value="전화확인">
 					</div>
 					<div style="text-align: left; padding-left: 5px">
-						<span id="tPrint"></span>
+						<span id="tPrint" style="font-size: 12px;"></span>
 					</div>
 					</td>
 				</div>
+				<div>
+                <div>비밀번호 찾기 질문</div>
+                <select name=question id="question">
+                  <option value="기억에 남는 추억의 장소는?" >기억에 남는 추억의 장소는?</option>
+                  <option value="자신의 인생 좌우명은?" >자신의 인생 좌우명은?</option>
+                  <option value="자신의 보물 제1호는?" >자신의 보물 제1호는?</option>
+                  <option value="가장 기억에 남는 선생님 성함은?" >가장 기억에 남는 선생님 성함은?</option>
+                  <option value="타인이 모르는 자신만의 신체비밀이 있다면?" >타인이 모르는 자신만의 신체비밀이 있다면?</option>
+                  <option value="추억하고 싶은 날짜가 있다면?" >추억하고 싶은 날짜가 있다면? </option>
+                  <option value="받았던 선물 중 기억에 남는 독특한 선물은?" >받았던 선물 중 기억에 남는 독특한 선물은?</option>
+                  <option value="유년시절 가장 생각나는 친구 이름은?" >유년시절 가장 생각나는 친구 이름은?</option>
+                  <option value="인상 깊게 읽은 책 이름은?" >인상 깊게 읽은 책 이름은? </option>
+                  <option value="읽은 책 중에서 좋아하는 구절이 있다면?" >읽은 책 중에서 좋아하는 구절이 있다면?</option>
+                  <option value="자신이 두번째로 존경하는 인물은?" >자신이 두번째로 존경하는 인물은?</option>
+                  <option value="친구들에게 공개하지 않은 어릴 적 별명이 있다면?" >친구들에게 공개하지 않은 어릴 적 별명이 있다면?</option>
+                  <option value="초등학교 때 기억에 남는 짝꿍 이름은?" >초등학교 때 기억에 남는 짝꿍 이름은?</option>
+                  <option value="다시 태어나면 되고 싶은 것은?" >다시 태어나면 되고 싶은 것은?</option>
+                  <option value="내가 좋아하는 캐릭터는?" >내가 좋아하는 캐릭터는? </option>
+                </select>
+              </div>
+              <div>
+				<p>비밀번호 확인 답변</p>
+				<input type="text" name=answer id=answer placeholder="답변을 입력하세요.">
+				<div style="text-align: left; padding-left: 5px">
+						<span id="answer_result" style="font-size: 12px;"></span>
+				</div>
+			  </div>
 				<div style="padding-bottom: 40px">
 					<input type="button" id="joinBtn" value="가입하기">
+					
 				</div>
 				
-				<p style="font-size: 14px;">
+				<p style="font-size: 14px;" id="last">
 				이용약관 | 개인정보처리방침 | 책임의 한계와 법적고지 | 회원정보 | 고객센터<br>
 				<span style="font-size: 12px;">GOD Copyright <b>GOD Corp</b>. All Rights Reserved.</span>
 				</p>

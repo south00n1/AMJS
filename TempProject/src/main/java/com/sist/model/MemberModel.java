@@ -102,6 +102,8 @@ public class MemberModel {
 		String addr2 = request.getParameter("addr2");
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
 
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
@@ -114,6 +116,8 @@ public class MemberModel {
 		vo.setAddr2(addr2);
 		vo.setEmail(email);
 		vo.setPhone(tel);
+		vo.setQuestion(question);
+		vo.setAnswer(answer);
 
 		MemberDAO dao = new MemberDAO();
 		dao.memberInsert(vo);
@@ -162,6 +166,51 @@ public class MemberModel {
         String email = request.getParameter("email");
         MemberDAO dao = new MemberDAO();
         String result = dao.idFind(name, email);
+        request.setAttribute("result", result);
+        return "../member/result.jsp";
+    }
+	
+	@RequestMapping("member/pwdfind.do")
+	public String member_pwdfind(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "../member/pwdfind.jsp";
+	}
+	
+	@RequestMapping("member/pwfind2.do")
+	public String pwfind(HttpServletRequest request, HttpServletResponse response) {
+	        
+        String id = request.getParameter("id");
+        String question = request.getParameter("question");
+        MemberDAO dao = new MemberDAO();
+        
+        request.setAttribute("id", id);
+        request.setAttribute("question", question);
+        return "../member/pwdfind2.jsp";
+	}
+	
+	@RequestMapping("member/pwfind_result.do")
+    public String questionfind_result(HttpServletRequest request, HttpServletResponse response) {
+        
+        String name = request.getParameter("name");
+        String id = request.getParameter("id");
+        
+        MemberDAO dao = new MemberDAO();
+        String result = dao.pwFind1(name, id);
+       
+        request.setAttribute("result", result);
+        return "../member/result.jsp";
+    }
+    
+    // 로그인 - 비밀번호 찾기 - 답변 일치 여부
+    @RequestMapping("member/pwfind2_result.do")
+    public String pwfind_result(HttpServletRequest request, HttpServletResponse response) {
+        
+        String id = request.getParameter("id");
+        String answer = request.getParameter("answer");
+        
+        MemberDAO dao = new MemberDAO();
+        String result = dao.pwFind2(id, answer);
+        
         request.setAttribute("result", result);
         return "../member/result.jsp";
     }
