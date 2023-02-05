@@ -111,17 +111,17 @@ div.pic {
 
 /*######## 페이지네이션 #########*/
 
-ul {
+#page_ul {
 	list-style: none;
 	display: block;
 	text-align: center;
 	margin-top: 35px;
 }
-ul > li {
+.page_li {
   	display: inline-block;
 }
 
-li a {
+.page_a {
     transition: all 100ms ease-in-out 0s;
     background-color: #F7F7F8;
     border-radius: 5px 5px 5px 5px;
@@ -136,20 +136,16 @@ li a {
     width: 30px;
 }
 
-li a:hover {
+.page_a:hover {
     background-color: #27375C;
     color: #FFFFFF;
 }
-li.active a {
+.page_li.active page_a {
     background-color: #27375C;
     color: #FFFFFF;
 }
-li.active a:hover {
+.page_li.active page_a:hover {
     color: #FFFFFF;
-}
-
-::marker {
-	content: "";
 }
 
 </style>
@@ -171,15 +167,15 @@ li.active a:hover {
 	  </c:forEach>
 	</div> 
 
-    <ul>
+    <ul id="page_ul">
     	<c:if test="${startPage>1 }">
-          <li><a href="../picture/list.do?page=${startPage-1 }">&lt;</a></li>
+          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${startPage-1 }">&lt;</a></li>
         </c:if>
         <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li ${i==curpage?"class=active":"" }><a href="../picture/list.do?page=${i }">${i }</a></li>          
+          <li class="page_li" ${i==curpage?"class=active":"" }><a class="page_a" href="../picture/list.do?page=${i }">${i }</a></li>          
         </c:forEach>    
         <c:if test="${endPage<totalpage }">
-          <li><a href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
+          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
         </c:if>
     </ul>
 </div>

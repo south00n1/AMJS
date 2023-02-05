@@ -46,10 +46,10 @@ mypage_sub_container {
 <body>
 <div class="mypage_container py-5" style="height: 70%">	
 	  <div class="row my-5 mypage_sub_container">
-	    <div class="col-sm-2 wow fadeInUp mypage_menu_div" data-wow-delay="0.5s">
+	    <div class="col-sm-2 mypage_menu_div" >
 	  	  <jsp:include page="../mypage/mypage_menu.jsp"></jsp:include>
 	    </div>
-	    <div class="px-5 wow fadeInUp pl-5 mypage_home_div" data-wow-delay="0.5s" style="">
+	    <div class="px-5 pl-5 mypage_home_div" style="">
 	      <jsp:include page="${mypage_jsp }"></jsp:include>
 	    </div>
 	  </div>
