@@ -12,10 +12,11 @@ HIT              NUMBER
 public class FaqDAO {
 	private Connection conn;
 	private PreparedStatement ps;
+	//FAQ 타입
+	String[] ftype= {"","회원","예매","결제","티켓","기타"};
 	//FAQ 목록 출력
 	public List<FaqVO> faqListData(int type, int page){
 		List<FaqVO> list=new ArrayList<FaqVO>();
-		String[] ftype= {"","회원","예매","결제","티켓","기타"};
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="";
@@ -44,7 +45,7 @@ public class FaqDAO {
 				}
 				rs.close();
 			} else {
-				sql="SELECT gfno,type,subject,hit "
+				sql="SELECT gfno,type,subject,content,hit "
 						+ "FROM god_faq_3 "
 						+ "WHERE type=? "
 						+ "ORDER BY hit DESC";
@@ -56,7 +57,8 @@ public class FaqDAO {
 					vo.setGfno(rs.getInt(1));
 					vo.setType(rs.getString(2));
 					vo.setSubject(rs.getString(3));
-					vo.setHit(rs.getInt(4));
+					vo.setContent(rs.getString(4));
+					vo.setHit(rs.getInt(5));
 					list.add(vo);
 				}
 				rs.close();
@@ -71,7 +73,6 @@ public class FaqDAO {
 	//FAQ 목록 번호
 	public int faqRowCount(int type){
 		int count=0;
-		String[] ftype= {"","회원","예매","결제","티켓","기타"};
 		try {
 			conn=CreateConnection.getConnection();
 			String sql="";

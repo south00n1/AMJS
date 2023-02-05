@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<%--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ --%>
 <style type="text/css">
 .f-card{
 	position: relative;
@@ -15,6 +17,7 @@
 	text-align: center;
 	width: 20%;
 	float: left;
+	border-radius: 10px;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.4);
 }
 .f-card dl{
@@ -26,14 +29,19 @@
 	padding: 10px 0;
 	font-size: 1em;
 	text-align: center;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 .f-card dd{
 	padding: 10px 0;
 	font-size: 0.9rem;
 	text-align: left;
+	margin-bottom: -1rem;
+	height: 145px
 }
-.f-10{
+#findcard{
 	clear: both;
+	padding-top: 15px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -41,12 +49,16 @@
 let f=0
 $(function(){
 	//검색바
+	$('#search').click(function(){
+		$(this).val("")
+	})
 	$('#sBtn').click(function(){
 		let ss=$('#search').val()
 		if(ss.trim()==""){
 			$('#search').focus()
 			return
 		}
+		$('#ss_frm').submit()
 	})
 	
 	//인기검색어 클릭 이벤트
@@ -61,12 +73,20 @@ $(function(){
 	
 	//빠른찾기 클릭 이벤트
 	$('.f-card li').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","Opacity":"0.7"})
+	},function(){
+		$(this).css("Opacity","1.0")
 	})
 	$('.f-card li').click(function(){
 		let ss=$(this).text()
-		$('#search').val(ss)
-		$('#ss_frm').submit()
+		$.ajax({
+			type:'post',
+			url:'../service/faq_card.do',
+			data:{"ss":ss},
+			success:function(response){
+				$('#findcard').html(response)
+			}
+		})
 	})
 	
 	//f10 본문 보여주기
@@ -98,23 +118,23 @@ $(function(){
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">고객센터</h1>
+                    <h1 class="display-3 text-white">고객센터</h1>
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
 		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
     	<div style="height: 10px"></div>
-		  <form method=post action="../service/faq_find.do" id=ss_frm>
+		  <form method=post action="../service/faq_list.do" id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+			<button type=button id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
 		  </form>
     </div>
     <div style="height: 10px"></div>
 	<div id=s-pop style="color: white;font-size: 13px">
 		<span style="font-size: 14px">인기검색어</span>&nbsp;
-		<span>결제방법</span>&nbsp;|&nbsp;
+		<span>결제수단</span>&nbsp;|&nbsp;
 		<span>회원정보</span>&nbsp;|&nbsp;
-		<span>2D전시회</span>&nbsp;|&nbsp;
+		<span>리뷰</span>&nbsp;|&nbsp;
 		<span>예매수수료</span>
 	</div>
                 </div>
@@ -175,16 +195,18 @@ $(function(){
 		  	  <ul>
 				<li>리뷰</li>
 				<li>한줄평</li>
-				<li>홈페이지</li>
 				<li>시스템장애</li>
 		  	  </ul>
 		  	</dd>
 		  </dl>
 		</div>
 	</div>
+	<div id="findcard">
+	
+	</div>
 	
 <!-- faq top10 -->
-	<div class=f-10 >
+	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">자주 묻는 질문 TOP10</h4>
 		<table class="table">
@@ -249,14 +271,18 @@ $(function(){
 			  	  	<span style="color: gray">${vo.ans_state }</span>
 			  	  </c:if>
 			  	</td>
-			   	<td width=10% class="text-center">${vo.depth }</td>
+			   	<td width=10% class="text-center"></td>
 			  </tr>
 			</c:if>
 		   </c:if>
 		  </c:forEach>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
-	  			<a href="../service/insert.do"><input type=button class="btn btn-sm btn-danger" value="문의 작성"></a>
+	  			<span style="float: center;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
+				  <a href="../service/insert.do" class="btn btn-sm writerbtn">
+				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+				  </a>
+			    </span>
 			</td>
 		  </tr>
 		</table>
