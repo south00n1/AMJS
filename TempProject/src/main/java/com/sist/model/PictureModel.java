@@ -2,6 +2,7 @@ package com.sist.model;
 
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.AllReplyDAO;
 import com.sist.dao.JjimDAO;
 import com.sist.dao.PictureDAO;
+import com.sist.vo.AllReplyVO;
 import com.sist.vo.PictureVO;
 
 
@@ -64,6 +67,11 @@ public class PictureModel {
 		String gpno = request.getParameter("gpno");
 		PictureDAO dao = new PictureDAO();
 		PictureVO vo = dao.pictureDetailData(Integer.parseInt(gpno));
+		
+		AllReplyDAO adao=new AllReplyDAO();
+		List<AllReplyVO> rList=adao.allReplyListData(Integer.parseInt(gpno), 1);
+		request.setAttribute("rList", rList);
+		request.setAttribute("count", rList.size());
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
