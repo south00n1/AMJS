@@ -151,34 +151,30 @@ div.pic {
 </style>
 </head>
 <body>
+	<div class="container">
+	 <h2 >미술관</h2>
+	 <hr>
+		<div class="gallery">
+		  <c:forEach var="vo" items="${list }">
+		   <div class="pic wow fadeInUp" data-wow-delay="0.1s">
+			<a href="../picture/before_detail.do?gpno=${vo.gpno }"><img src="${vo.image }" alt="" width="50%" height="auto" class="gallery-img" /></a>
+			<p class="mb-2"><b>${vo.title }</b>&nbsp;&nbsp;&nbsp;${vo.name }</p>
+		   </div>
+		  </c:forEach>
+		</div> 
 	
-		  
-			
-		  
-<div class="container">
- <h2 >미술관</h2>
- <hr>
-	<div class="gallery">
-	  <c:forEach var="vo" items="${list }">
-	   <div class="pic wow fadeInUp" data-wow-delay="0.1s">
-		<a href="../picture/detail.do?gpno=${vo.gpno }"><img src="${vo.image }" alt="" width="50%" height="auto" class="gallery-img" /></a>
-		<p class="mb-2"><b>${vo.title }</b>&nbsp;&nbsp;&nbsp;${vo.name }</p>
-	   </div>
-	  </c:forEach>
-	</div> 
-
-    <ul id="page_ul">
-    	<c:if test="${startPage>1 }">
-          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${startPage-1 }">&lt;</a></li>
-        </c:if>
-        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li class="page_li" ${i==curpage?"class=active":"" }><a class="page_a" href="../picture/list.do?page=${i }">${i }</a></li>          
-        </c:forEach>    
-        <c:if test="${endPage<totalpage }">
-          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
-        </c:if>
-    </ul>
-</div>
+	    <ul id="page_ul">
+	    	<c:if test="${startPage>1 }">
+	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${startPage-1 }">&lt;</a></li>
+	        </c:if>
+	        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+	          <li class="page_li" ${i==curpage?"class=active":"" }><a class="page_a" href="../picture/list.do?page=${i }">${i }</a></li>          
+	        </c:forEach>    
+	        <c:if test="${endPage<totalpage }">
+	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
+	        </c:if>
+	    </ul>
+	</div>
 </body>
 
 </html>

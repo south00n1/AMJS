@@ -52,7 +52,8 @@ div.pic_detail_cont1 {
 div.pic_detail_cont2 {
     width: 630px;
     height: 600px;
-    margin-left: 70px;
+    margin-left: 50px;
+    padding-right: 20px;
     overflow: auto  
 }
 div.pic_detail_cont2::-webkit-scrollbar {
@@ -84,7 +85,8 @@ div.pic_detail_menu {
     height: 100px;
     text-align: right;
     padding-top: 20px;
-    margin-left: 70px;
+    margin-left: 50px;
+    padding-right: 20px;
 }
 div.pic_detail_reply {
     width: 100%;
@@ -246,7 +248,14 @@ input[type=button]:hover {
 			</table>
 		</div>
 		<div style="height: 80px"></div>
-		
+		  <h4>최근 본 그림</h4>
+	      <div class="inline" style="margin-top: 5px;">
+		      <c:forEach var="cvo" items="${cList }" varStatus="s">
+		      	<c:if test ="${s.index<9 }">
+		      		<a href="../picture/before_detail.do?gpno=${cvo.gpno }"><img src="${cvo.image }" style="width:100px; height:100px"></a>
+		      	</c:if>
+		      </c:forEach>
+	      </div>
 	</div> <!-- pic_detail_container END -->
 
 </body>

@@ -1,10 +1,9 @@
 package com.sist.model;
 
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -62,6 +61,30 @@ public class PictureModel {
 		return "../picture/gallery.jsp";
 	}
 	
+	@RequestMapping("picture/before_detail.do")
+	public String food_before_detail(HttpServletRequest request,HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String user = "";
+		
+		if(id == null) {
+			user="guest";
+		} else {
+			user=id;
+		}
+		
+		String gpno = request.getParameter("gpno");
+		try {
+			Cookie cookie = new Cookie(user+"_picture"+gpno, gpno);
+			cookie.setPath("/");
+			cookie.setMaxAge(60*60*24); // 하루동안 저장
+			response.addCookie(cookie);
+		} catch (Exception e) {} 
+		
+		return "redirect:../picture/detail.do?gpno="+gpno;
+	}
+	
 	@RequestMapping("picture/detail.do")
 	public String picture_detail(HttpServletRequest request, HttpServletResponse response) {
 		String gpno = request.getParameter("gpno");
@@ -79,7 +102,29 @@ public class PictureModel {
 		int jcount = jdao.jjimCount(Integer.parseInt(gpno), id);
 		request.setAttribute("jjim_count", jcount);
 		
+		Cookie[] cookies = request.getCookies();
+		List<PictureVO> cList = new ArrayList<PictureVO>();
+		if (cookies!=null) {
+			if(id == null) {
+				for(int i = cookies.length-1; i>=0; i--) {
+					if(cookies[i].getName().startsWith("guest_picture")) {
+						String gpno2 = cookies[i].getValue();
+						PictureVO vo2 = dao.pictureDetailData(Integer.parseInt(gpno2));
+						cList.add(vo2);
+					}
+				}
+			} else {
+				for(int i = cookies.length-1; i>=0; i--) {
+					if(cookies[i].getName().startsWith(id+"_picture")) {
+						String gpno2 = cookies[i].getValue();
+						PictureVO vo2 = dao.pictureDetailData(Integer.parseInt(gpno2));
+						cList.add(vo2);
+					}
+				}
+			}
+		}
 		
+		request.setAttribute("cList", cList);
 		request.setAttribute("id", id);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../picture/detail.jsp");
