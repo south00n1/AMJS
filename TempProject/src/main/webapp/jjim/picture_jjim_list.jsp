@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+// href="../mypage/jjim_delete.do?no=${vo.jno }
+$(function(){
+	$('.jjim_delBtn').click(function(){
+		let no = $(this).attr('data-no')
+		$.ajax({
+			type:'post',
+			url:'../mypage/jjim_delete.do',
+			data:{'no':no},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+		
+	})
+
+})
+
+</script>
 <style type="text/css">
 .mypage_home_title {
 	margin: 0px;
@@ -37,12 +57,12 @@
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr>
-					<td width="40%">${vo.title}</td>
+					<td width="40%" class="text-center" style="vertical-align: middle;"><b>${vo.title}</b></td>
 					<td width="15%" class="text-center"><img src="${vo.image}" style="width:60px; height: 60px"></td>
-					<td width="15%" class="text-center">${vo.name }</td>
-					<td width="20%" class="text-center">${vo.code }</td>
-					<td width="10%" class="text-center">
-					<a href="../mypage/jjim_delete.do?no=${vo.jno }" class="btn btn-sm" style="background-color: red; color: #fff; border-radius: 5px;">삭제</a>
+					<td width="15%" class="text-center" style="vertical-align: middle">${vo.name }</td>
+					<td width="20%" class="text-center" style="vertical-align: middle">${vo.code }</td>
+					<td width="10%" class="text-center" style="vertical-align: middle">
+					<span data-no="${vo.jno }" class="btn btn-sm jjim_delBtn" style="background-color: red; color: #fff; border-radius: 5px;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>
