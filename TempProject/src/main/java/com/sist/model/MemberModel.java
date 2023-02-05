@@ -281,32 +281,4 @@ public class MemberModel {
 		} catch (Exception e) {}
 	}
 	
-	@RequestMapping("member/join_delete.do")
-	public String member_delete(HttpServletRequest request, HttpServletResponse response) {
-		
-		request.setAttribute("main_jsp", "../member/join_delete.jsp");
-		return "../main/main.jsp";
-	}
-	
-	@RequestMapping("member/join_delete_ok.do")
-	
-	public void member_delete_ok(HttpServletRequest request, HttpServletResponse response) {
-		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		String pwd = request.getParameter("pwd");
-		MemberDAO dao = new MemberDAO();
-		boolean bCheck = dao.memberJoinDelete(id, pwd);
-		try {
-			PrintWriter out = response.getWriter();
-			if(bCheck == true) {
-				out.println("yes");
-				session.invalidate();
-			} else {
-				out.println("no");
-			}
-		} catch (Exception e) {}
-		
-	}
-		
 }

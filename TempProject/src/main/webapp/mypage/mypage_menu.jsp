@@ -5,6 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#jjim_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_main.do',
+			success:function(result) {
+				$.ajax({
+					type:'post',
+					url:'../mypage/jjim_list.do',
+					success:function(response){
+						$('.mypage_home_div').html(response)
+					}
+				})
+			}
+		})
+	})
+	
+	$('#join_delete').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/join_delete.do',
+			success:function(response){
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+})
+
+
+</script>
 <style type="text/css">
 * {
 font-family: font-family: 'Noto Sans KR', sans-serif;
@@ -74,12 +106,12 @@ li.mypage_menu::before {
   	    	<li class="mypage_menu">예매 목록</li>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<a href="../mypage/jjim_list.do" id="jjim_list"><li class="mypage_menu">찜하기 목록</li></a>
+  	    	<span id="jjim_list"><li class="mypage_menu">찜하기 목록</li></span>
   	    </div>
   	    <div class="mypage_li_div">
 	  	    <li class="mypage_menu">내 정보</li>
 	  	    <li class="mypage_menu_child"><a href="../member/join_update.do">정보 수정</a></li>
-	  	    <li class="mypage_menu_child"><a href="../member/join_delete.do">회원 탈퇴</a></li>
+	  	    <span id="join_delete"><li class="mypage_menu_child">회원 탈퇴</li></span>
 		</div>
 	</ul>
 </body>
