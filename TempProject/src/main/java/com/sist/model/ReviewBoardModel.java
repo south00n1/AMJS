@@ -20,14 +20,22 @@ public class ReviewBoardModel {
 	@RequestMapping("board/review_list.do")
 	  public String reviewboard_list(HttpServletRequest request,HttpServletResponse response)
 	  {
-
+		try
+		   {
+			   // 한글 변환 
+			   request.setCharacterEncoding("UTF-8");
+		   }catch(Exception ex){}
+		   String ss=request.getParameter("ss");
+		   if(ss==null)
+			   ss="";
+		   
 		  String page=request.getParameter("page");
 		  if(page==null)
 			  page="1";
 
 		  int curpage=Integer.parseInt(page);
 		  ReviewBoardDAO dao=new ReviewBoardDAO();
-		  List<ReviewBoardVO> list=dao.boardListData(curpage);
+		  List<ReviewBoardVO> list=dao.reviewboardFindData(curpage,ss);
 		  
 		  ////////////////////////////////////////////
 		  int count=dao.reviewboardRowCount();
@@ -37,16 +45,14 @@ public class ReviewBoardModel {
 		  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		  if(endPage>totalpage)
 			   endPage=totalpage;
+
+		  
+		  request.setAttribute("ss", ss);
 		  request.setAttribute("curpage", curpage);
 		  request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("startPage", startPage);
 		  request.setAttribute("endPage", endPage);
 		  request.setAttribute("count", count);
-		  /////////////////////////////////////////////
-		  //int totalpage=dao.boardTotalPage();
-
-		  //request.setAttribute("curpage", curpage);
-		  //request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("list", list);
 		  request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		  request.setAttribute("main_jsp", "../board/review_list.jsp");

@@ -4,9 +4,15 @@ import java.sql.Date;
 
 public class EventBoardVO {
 	private int gebno,hit;
-	private String name,subject,poster,content,type,progress_status,event_date,id,dbday;
+	private String name,subject,poster,content,content_poster,type,progress_status,event_date,id,dbday;
 	private Date regdate;
 	
+	public String getContent_poster() {
+		return content_poster;
+	}
+	public void setContent_poster(String content_poster) {
+		this.content_poster = content_poster;
+	}
 	public String getDbday() {
 		return dbday;
 	}

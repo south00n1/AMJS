@@ -4,10 +4,22 @@ import java.sql.Date;
 
 public class NoticeBoardVO {
 
-	private int gnbno,hit;
-	private String name,subject,content,type,dbday;
+	private int gnbno,hit,type;
+	private String name,subject,content,dbday,prefix;
 	private Date regdate;
 	
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public String getPrefix() {
+		return prefix;
+	}
+	public void setPrefix(String prefix) {
+		this.prefix = prefix;
+	}
 	public String getDbday() {
 		return dbday;
 	}
@@ -43,12 +55,6 @@ public class NoticeBoardVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public Date getRegdate() {
 		return regdate;

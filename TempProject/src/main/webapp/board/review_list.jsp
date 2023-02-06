@@ -43,17 +43,35 @@
 
 <!-- 게시판 start -->
 
+<!-- ### -->
+	<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">후기게시판</h1>
+                    
+	<div>
+		<h5 style="color: white">GOD 후기게시판입니다. 다양한 전시후기를 둘러보세요.</h5>
+    	<div style="height: 10px"></div>
+		  <form method=post action="../board/review_list.do" id=ss_frm>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
+    </div>
+    <div style="height: 10px"></div>
+    <div style="height: 30px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ### -->
+
 <div class="wrapper row3">
   <main class="container clear">
   
-  <div style="height: 100px;">
-  
-  
-  </div>
-  <div>
-  <h2>Review</h2>
-  <h6>후기게시판</h6>
-  </div>
+
+
+
   <div style="height: 10px;"></div>
    <h6><span style="color:#2737C;font-size: 16px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
   <div style="height: 5px"></div>
@@ -87,8 +105,9 @@
   </table>
 
   </div>
+           <c:if test="${sessionScope.id!=null }">
           <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
-  
+  		   </c:if>
     <nav class="pagination">
         <ul>
          <c:if test="${startPage>1 }">
@@ -105,7 +124,7 @@
         <div class="board_search">
         <div class="container">
       <div class="row">
-         <form method="post" name="search" action="../board/reivew_list.do" class="inline">
+         <form method="post" name="search" action="../board/review_list.do" class="inline">
             <table class="pull-right">
                <tr>
                   <td><select class="form-control" name="searchField">
@@ -114,7 +133,7 @@
                         <option value="userID">작성자</option>
                   </select></td>
                   <td><input type="text" class="form-control"
-                     placeholder="검색어 입력" name="searchText" value="${ss }" maxlength="100"></td>
+                     placeholder="검색어 입력" name="ss" value="${ss }" maxlength="100"></td>
                   <td><button type="submit" class="btn btn-success">검색</button></td>
                </tr>
 

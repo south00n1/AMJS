@@ -1,6 +1,7 @@
 package com.sist.dao;
 import java.util.*;
 
+import com.sist.vo.NoticeBoardVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
 
@@ -502,6 +503,55 @@ public class ReviewBoardDAO {
 			}catch(Exception ex) {}
 		}
 	}
+	
+	public ArrayList<ReviewBoardVO> reviewboardFindData(int page,String ss)
+	   {
+		   ArrayList<ReviewBoardVO> list=new ArrayList<ReviewBoardVO>();
+		   try
+		   {
+			   conn=CreateConnection.getConnection();
+			   String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,good,noti,num "
+					     +"FROM (SELECT no,subject,display_name,name,regdate,hit,good,noti,rownum as num "
+					     +"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,good,noti "
+					     +"FROM god_review_board_3 "
+					     +"WHERE subject LIKE '%'||?||'%')) "
+					     +"WHERE num BETWEEN ? AND ? "
+					     + "ORDER BY no ASC";
+			   ps=conn.prepareStatement(sql);
+			   int rowSize=10;
+			   int start=(rowSize*page)-(rowSize-1);
+			   int end=rowSize*page;
+			   ps.setString(1, ss);
+			   ps.setInt(2, start);
+			   ps.setInt(3, end);
+			   ResultSet rs=ps.executeQuery();
+			   while(rs.next())
+			   {
+					ReviewBoardVO vo=new ReviewBoardVO();
+					vo.setno(rs.getInt(1));
+					vo.setSubject(rs.getString(2));
+					vo.setDisplay_name(rs.getString(3));
+					vo.setName(rs.getString(4));
+					vo.setDbday(rs.getString(5));
+					vo.setHit(rs.getInt(6));
+					vo.setGood(rs.getInt(7));
+					vo.setNoti(rs.getInt(8));
+					list.add(vo);
+			   }
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   CreateConnection.disConnection(conn, ps);
+		   }
+		   return list;
+	   }
+	
+	
+	
 	
 	
 	

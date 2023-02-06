@@ -145,9 +145,6 @@ $(function(){
   <div style="height: 5px"></div>
   <table class="table board">
    <tr>
-     <td width=95% class="text-left" colspan="3" style="font-size:13px;"><${vo.display_name }></td>
-   </tr>
-   <tr>
 	<td width=95% class="text-left" colspan="3" style="	font-size:26px;font-weight: 400;">${vo.subject }</td>
    </tr>
    <tr>

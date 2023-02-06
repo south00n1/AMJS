@@ -43,6 +43,7 @@ $(function(){
                 	<div class="dropdown-menu fade-down m-0">
                         <a href="../picture/list.do" class="dropdown-item">미술품</a>
                         <a href="../picture/gallery.do" class="dropdown-item">2D 전시회</a>
+                        <a href="../reserve/reserve_main.do" class="dropdown-item">전시예약</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">

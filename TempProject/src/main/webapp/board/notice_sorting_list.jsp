@@ -39,50 +39,44 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+$(function(){
+	$('#selectbox').change(changeseletebox=function(){
+		$.ajax({
+			type:'post',
+			url:'',
+			data:{$('#selectbox option:selected').val()}
+		})
+	})
+		
+	})
+	}
 </script>
     
 </head>
 <body>
 
-<!-- ### -->
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">공지사항</h1>
-                    
-	<div>
-		<h5 style="color: white">GOD 공지사항입니다. 서비스와 관련된 모든 공지사항을 전달해드립니다.</h5>
-    	<div style="height: 10px"></div>
-		  <form method=post action="../board/notice_list.do" id=ss_frm>
-			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
-		  </form>
-    </div>
-    <div style="height: 10px"></div>
-    <div style="height: 30px"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ### -->
 
 <!-- 게시판 start -->
 
 <div class="wrapper row3">
- <main class="container clear">
-
-
+  <main class="container clear">
+  <div style="height: 120px;">
   
-  <div style="height: 5px"></div>
+  
+  </div>
+
+  <div>
+  <h2>Notice</h2>
+  <h6>공지사항</h6>
+  </div>
+    <div style="height: 5px"></div>
   <hr>
   <div style="height: 20px"></div>
   
-  <!--  
   <div>
   	<table class="pull-right">
 	<tr>
-	<td><select name="notice_type" id="notice_type">
+	<td><select class="form-control" name="searchField" id="selectbox">
 			<option value="0">전체</option>
 			<option value="1">서비스소식</option>
 			<option value="2">서비스오픈</option>
@@ -91,12 +85,11 @@
 			<option value="5">안내</option>
 	</select></td>
 	</tr>
-	</table>
+
+				</table>
   </div>
-  -->
   <div style="height: 10px;"></div>
-  
-  <div class="notice_find" style="height: auto;">
+  <div style="height: auto;">
   <table class="table">
     <tr>
       <th width=10% class="text-center">NO.</th>
@@ -121,10 +114,6 @@
     </c:forEach>
   </table>
   </div>
-  
-
-  
-        <!-- pagination start -->
    <nav class="pagination">
         <ul>
          <c:if test="${startPage>1 }">
@@ -137,25 +126,24 @@
           <li><a href="../board/notice_list.do?page=${endPage+1 }">Next &raquo;</a></li>
          </c:if>
         </ul>
-        <!-- pagination end -->
         <!-- 검색바 start -->
         <div class="board_search">
         <div class="container">
 		<div class="row">
-		 <form method="post" name="search" action="../board/notice_list.do" class="inline">
-			<table class="pull-right">
-			 <tr>
-			  <td><input type="text" id="search" value="${ss }"
-					placeholder="검색어 입력" name="ss" maxlength="100"></td>
-			  <td><button type="submit" class="btn btn-success">검색</button></td>
-			 </tr>
-			</table>
-		 </form>
+			<form method="post" name="search" action="../board/notice_list.do" class="inline">
+				<table class="pull-right">
+					<tr>
+						<td><input type="text" class="form-control" value="${ss }"
+							placeholder="검색어 입력" name="ss" maxlength="100"></td>
+						<td><button type="submit" class="btn btn-success">검색</button></td>
+					</tr>
+
+				</table>
+			</form>
 		</div>
 	</div>
 	</div>
         <!-- 검색바 end -->
-        
       </nav>
   </main>
 </div>

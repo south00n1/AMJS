@@ -38,25 +38,37 @@
 <body>
 
 
+<!-- ### -->
+	<div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">이벤트</h1>
+                    
+	<div>
+		<h5 style="color: white">GOD 이벤트입니다. 전시와 관련된 다양한 이벤트와 프로모션을 둘러보세요.</h5>
+    	<div style="height: 10px"></div>
+		  <form method=post action="../board/event_list.do" id=ss_frm>
+			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
+			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
+		  </form>
+    </div>
+    <div style="height: 10px"></div>
+    <div style="height: 30px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ### -->
+
 <!-- 게시판 start -->
-
-
-
   <div style="height: auto;">
 
 	<!-- 이벤트 리스트 start -->
 <div class="wrapper row3">
   <main class="container clear">
-  <div style="height: 120px;">
-  
-  
-  </div>
-
-  <div>
-  <h2>Event</h2>
-  <h6>이벤트</h6>
-  </div>
   <div style="height: 20px"></div>
+  <!-- 
     <div>
   	<table class="pull-right">
 					<tr>
@@ -69,6 +81,7 @@
 
 				</table>
   </div>
+   -->
   <div style="height: 50px;"></div>
   
   <div class="row g-3 justify-content-center">
@@ -77,7 +90,7 @@
   		<div class="inner">
   			<div class="course-item bg-white">
   				<div class="position-relative overflow-hidden">
-  				<img class="img-fluid-2" src="${vo.poster }"style="width: 100%;height: 100%">
+  				<a href="../board/event_detail.do?gebno=${vo.gebno }"><img class="img-fluid-2" src="${vo.poster }"style="width: 100%;height: 100%"></a>
   				</div>
   				<div class="text-left py-3 px-2">
   				<span class="frame"></span>
@@ -129,7 +142,7 @@
 								<option value="userID">작성자</option>
 						</select></td>
 						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+							placeholder="검색어 입력" name="ss" value="${ss }" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>
 					</tr>
 
