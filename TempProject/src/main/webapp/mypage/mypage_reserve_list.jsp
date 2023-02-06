@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.reserve_delBtn').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
+	
+	$('.reserve_delBtn').click(function(){
+		let gerno = $(this).attr('data-gerno')
+		$.ajax({
+			type:'post',
+			url:'../mypage/reserve_delete.do',
+			data:{"gerno": gerno},
+			success:function(response){
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})	
+})
+</script>
 <style type="text/css">
 .mypage_home_title {
 	margin: 0px;
@@ -19,7 +39,7 @@
 .mypage_home_subtitle {
 	color: #27375C;
 }
-.reserve_state {
+.rst {
 	width:70px;
 	hiegh:30px;
 	color: #fff;
@@ -53,8 +73,8 @@
 					<td width="10%" class="text-center">${vo.rtime }</td>
 					<td width="5%" class="text-center">${vo.inwon }</td>
 					<td width="15%" class="text-center">
-						<span data-no="" class="reserve_state" style="background-color: green;">대기</span>
-						<span data-no="" class="reserve_state" style="background-color: red;">취소</span>
+						<span data-no="" class="rst reserve_state" style="background-color: green;">대기</span>
+						<span data-gerno="${vo.gerno }" class="rst reserve_delBtn" class="reserve_state" style="background-color: red;">취소</span>
 					</td>
 				</tr>
 				</c:forEach>

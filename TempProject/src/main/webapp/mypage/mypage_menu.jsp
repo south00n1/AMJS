@@ -44,6 +44,17 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#mypost_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_mypost_list.do',
+			success:function(response) {
+				console.log(response)
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -110,7 +121,7 @@ li.mypage_menu::before {
 		<h2 class="mypage_title">MyPage</h2>
 		<div class="mypage_li_div">
 	  	    <li class="mypage_menu">내 활동</li>
-	  	    <li class="mypage_menu_child">내가 쓴 게시글</li>
+	  	    <span id ="mypost_list"><li class="mypage_menu_child">내가 쓴 게시글</li></span>
 	  	    <li class="mypage_menu_child">내가 쓴 댓글</li>
   	    </div>
   	    <div class="mypage_li_div">
