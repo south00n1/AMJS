@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,36 +10,40 @@
 <script type="text/javascript">
 $(function(){
 	//시간 선택 효과
-	$('.times td').hover(function(){
-		$(this).css({"cursor":"pointer","background-color":"powderblue","border-radius":"25px"})
+	$('.times').hover(function(){
+		$(this).css({"cursor":"pointer","color":"lightgray"})
 	},function(){
-		$(this).css({"cursor":"none","background-color":"white"})
+		$(this).css({"cursor":"none","color":"#52565b"})
 	})
-	$('.times tr').click(function(){
+	$('.times').click(function(){
+		$('.times').css("background-color","white")
+		$(this).css("background-color","lightblue")
+		
+		//선택된 데이터 입력
 		let time=$(this).text()
 		$('#r_time').text(time)
+		$('#reservetime').val(time)
+		
+		//인원 선택 옵션 출력
+		$.ajax({
+			type:'post',
+			url:'../reserve/reserve_pers.do',
+			success:function(response){
+				$('#select_pers').html(response)
+			}
+		})
 	})
 })
 </script>
 </head>
 <body>
-	<table class="table times">
+  <table class="table">
+	<c:forEach var="t" items="${rtimes }" varStatus="s">
 	  <tr>
-	  	<th>1회</th>
-	    <td>10:00 ~ 12:00</td>
+	  	<th width=35%>${s.index+1 }회</th>
+	    <td width=65% class="times">${t }</td>
 	  </tr>
-	  <tr>
-	  	<th>2회</th>
-	    <td>12:00 ~ 14:00</td>
-	  </tr>
-	  <tr>
-	  	<th>3회</th>
-	    <td>12:00 ~ 16:00</td>
-	  </tr>
-	  <tr>
-	  	<th>4회</th>
-	    <td>16:00 ~ 18:00</td>
-	  </tr>
-	</table>
+	</c:forEach>
+  </table>
 </body>
 </html>

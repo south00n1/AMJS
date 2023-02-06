@@ -17,7 +17,6 @@
                     <a class="btn btn-link" href="../picture/gallery.do">2D 전시회</a>
                     <a class="btn btn-link" href="../board/review_list.do">커뮤니티</a>
                     <a class="btn btn-link" href="../service/main.do">고객센터</a>
-                    <a class="btn btn-link" href="../reserve/reserve_main.do">temp</a>
                 </div>
                 
                 <div class="col-lg-3 col-md-6">

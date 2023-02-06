@@ -9,23 +9,41 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	//전시 선택 효과
 	$('.trs').hover(function(){
 		$(this).css("cursor","pointer")
 	},function(){
 		$(this).css('cursor',"none")
 	})
 	$('.trs').click(function(){
-		let img=$(this).attr("data-img")
-		let name=$(this).attr("data-name");
-		$('#exhibition_img').attr("src",img)
-		$('#exhibition_title').text(name)
+		$('.trs').css("background-color","white")
+		$(this).css("background-color","lightblue")
 		
+		//선택된 데이터 전송
+		let geno=$(this).attr("data-no")
 		$.ajax({
 			type:'post',
-			url:'../reserve/reserve_date.do',
-			success:function(response)
-			{
-				$('#select_date').html(response)
+			url:'../reserve/reserve_main.do',
+			data:{"geno":geno},
+			success:function(result){
+				$.ajax({
+					type:'post',
+					url:'../reserve/reserve_date.do',
+					data:{"geno":geno},
+					success:function(response){
+						$('#select_date').html(response)
+					}
+				})
+				$.ajax({
+					type:'post',
+					url:'../reserve/reserve_list.do',
+					data:{"geno":geno},
+					success:function(response){
+						$('#select_list').html(response)
+					}
+				})
+				$('#select_time').html("")
+				$('#select_pers').html("")
 			}
 		})
 	})
@@ -34,16 +52,18 @@ $(function(){
 </head>
 <body>
   <table class="table">
-   <tr class="success">
+   <tr>
      <th class="text-center"></th>
      <th class="text-center">전시명</th>
+     <th class="text-center">전시기간</th>
    </tr>
    <c:forEach var="vo" items="${list }">
-     <tr class="trs" data-img="${vo.poster }" data-name="${vo.title }">
+     <tr class="trs" data-no="${vo.geno }">
       <td class="text-center">
         <img src="${vo.poster }" style="width: 30px;height: 30px">
       </td>
       <td>${vo.title }</td>
+      <td>${vo.period }</td>
      </tr>
    </c:forEach>
   </table>
