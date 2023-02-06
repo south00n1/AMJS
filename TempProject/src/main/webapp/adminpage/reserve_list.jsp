@@ -9,15 +9,15 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.reserve_delBtn').hover(function(){
+	$('.reserve_okBtn').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	
-	$('.reserve_delBtn').click(function(){
+	$('.reserve_okBtn').click(function(){
 		let gerno = $(this).attr('data-gerno')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_reserve_delete.do',
+			url:'../adminpage/admin_reserve_list_ok.do',
 			data:{"gerno": gerno},
 			success:function(response){
 				$('.mypage_home_div').html(response)
@@ -51,7 +51,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">예매 목록</h4>
+			<h4 class="mypage_home_subtitle">예매 관리</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table">
@@ -62,7 +62,7 @@ $(function(){
 					<th width="10%" class="text-center">날짜</th>
 					<th width="10%" class="text-center">시간</th>
 					<th width="5%" class="text-center">인원</th>
-					<th width="15%" class="text-center">예매상태</th>
+					<th width="15%" class="text-center">승인여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
@@ -73,13 +73,12 @@ $(function(){
 					<td width="10%" class="text-center">${vo.rtime }</td>
 					<td width="5%" class="text-center">${vo.inwon }</td>
 					<td width="15%" class="text-center">
-						<c:if test="${vo.ok == 'y' }">
-						<span data-no="" class="rst reserve_state" style="background-color: gray;">완료</span>
+						<c:if test="${vo.ok == 'y'}">
+						<span class="rst reserve_state" style="background-color: gray;">완료</span>
 						</c:if>
-						<c:if test="${vo.ok == 'n' }">
-						<span data-no="" class="rst reserve_state" style="background-color: green;">대기</span>
+						<c:if test="${vo.ok == 'n'}">
+						<span data-gerno="${vo.gerno }" class="rst reserve_state reserve_okBtn" style="background-color: green;">대기</span>
 						</c:if>
-						<span data-gerno="${vo.gerno }" class="rst reserve_delBtn" class="reserve_state" style="background-color: red;">취소</span>
 					</td>
 				</tr>
 				</c:forEach>

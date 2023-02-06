@@ -6,11 +6,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.AdminDAO;
 import com.sist.dao.NoticeBoardDAO;
 import com.sist.vo.NoticeBoardVO;
+import com.sist.vo.ReserveVO;
 
 @Controller
 public class AdminModel {
@@ -144,4 +147,26 @@ public class AdminModel {
 		  dao.noticeDelete(Integer.parseInt(grbno));
 		  return "redirect:notice_list.do";
 	  }
+	  
+	  // 예약관리 리스트
+	  @RequestMapping("adminpage/admin_reserve_list.do")
+	  public String admin_reserve_list(HttpServletRequest request,HttpServletResponse response) {
+		  
+		  AdminDAO dao = new AdminDAO();
+		  List<ReserveVO> list = dao.adminpageReserveData();
+		  
+		  request.setAttribute("list", list);
+		  return "../adminpage/reserve_list.jsp";
+	  }
+	  @RequestMapping("adminpage/admin_reserve_list_ok.do")
+	  public String admin_reserve_list_ok(HttpServletRequest request,HttpServletResponse response) {
+		  
+		  String gerno = request.getParameter("gerno");
+		  AdminDAO dao = new AdminDAO();
+		  dao.reserveAdminOk(Integer.parseInt(gerno));
+		  
+		  return "redirect:../adminpage/admin_reserve_list.do";
+	  }
+	  
+	  
 }

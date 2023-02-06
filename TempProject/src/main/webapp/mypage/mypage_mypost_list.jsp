@@ -58,19 +58,19 @@ $(function(){
 				<tr>
 					<th width="10%" class="text-center">no</th>
 					<th width="40%" class="text-center">제목</th>
-					<th width="10%" class="text-center">작성자</th>
-					<th width="10%" class="text-center">작성일</th>
+					<th width="15%" class="text-center">작성자</th>
+					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회</th>
-					<th width="20%" class="text-center">삭제여부</th>
+					<th width="10%" class="text-center">삭제여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
 					<td width="10%" class="text-center" >${vo.no }</td>
 					<td width="40%" class="text-center">${vo.subject }</td>
-					<td width="10%" class="text-center">${vo.name }</td>
-					<td width="10%" class="text-center">${vo.regdate }</td>
+					<td width="15%" class="text-center">${vo.name }</td>
+					<td width="15%" class="text-center">${vo.regdate }</td>
 					<td width="10%" class="text-center">${vo.hit }</td>
-					<td width="20%" class="text-center">
+					<td width="10%" class="text-center">
 						<span data-no="${vo.no }" class="rst post_delBtn" style="background-color: gray;">삭제</span>
 					</td>
 				</tr>
