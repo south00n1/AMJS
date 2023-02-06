@@ -5,31 +5,114 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#jjim_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_main.do',
+			success:function(result) {
+				$.ajax({
+					type:'post',
+					url:'../mypage/jjim_list.do',
+					success:function(response){
+						$('.mypage_home_div').html(response)
+					}
+				})
+			}
+		})
+	})
+	
+	$('#join_delete').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/join_delete.do',
+			success:function(response){
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+})
+
+
+</script>
+<style type="text/css">
+* {
+font-family: font-family: 'Noto Sans KR', sans-serif;
+}
+.mypage_title {
+	color: #27375C;
+	font-size: 30px;
+	padding-bottom: 40px;
+}
+
+.mypage_ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+li.mypage_menu {
+	font-size: 22px;
+	font-weight: bold;
+	color: #27375C!important;
+	padding-bottom: 5px;
+}
+li.mypage_menu:hover {
+	cursor: pointer;
+}
+li.mypage_menu::before {
+	content: <i class="fa-solid fa-star"></i>;
+}
+
+.mypage_menu_child {
+	color: #666;
+	font-size: 15px;
+	font-weight: bold;
+}
+.mypage_menu_child:hover {
+	color: #27375C!important;
+	cursor: pointer;
+}
+.mypage_menu_child a {
+	color: #666;
+}
+.mypage_menu_child a:hover {
+	color: #27375C!important;
+	cursor: pointer;
+}
+.mypage_li_div {
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #E2E2E2;
+}
+.mypage_li_div:last-child {
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	border-bottom: none;
+}
+</style>
 </head>
 <body>
-<nav class="sdb_holder">
-        <ul>
-          <li><a href="#">회원 관리</a>
-          </li>
-          <li>커뮤니티 관리
-            <ul>
-              <li><a href="../adminpage/notice_list.do">공지사항</a></li>
-              <li><a href="#">묻고답하기</a></li>
-              <li><a href="#">자유게시판</a>
-                <ul>
-                  <li><a href="#">자유 게시판 댓글 관리</a></li>
-                  <li><a href="#">명소/맛집/상품 댓글 관리</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>서비스 관리
-            <ul>
-              <li><a href="#">예약 관리</a></li>
-              <li><a href="#">구매 관리</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+	<ul class="mypage_ul">
+		<h2 class="mypage_title">AdminPage</h2>
+		<div class="mypage_li_div">
+	  	    <li class="mypage_menu">커뮤니티관리</li>
+	  	    <li class="mypage_menu_child"><a href="../adminpage/notice_list.do">공지사항 관리</a></li>
+	  	    <li class="mypage_menu_child">후기게시판 관리</li>
+  	    </div>
+  	    <div class="mypage_li_div">
+  	    	<li class="mypage_menu">예매 관리</li>
+  	    </div>
+  	    <div class="mypage_li_div">
+  	    	<span id="jjim_list"><li class="mypage_menu">찜하기 목록</li></span>
+  	    </div>
+  	    <div class="mypage_li_div">
+	  	    <li class="mypage_menu">내 정보</li>
+	  	    <li class="mypage_menu_child"><a href="../member/join_update.do">정보 수정</a></li>
+	  	    <span id="join_delete"><li class="mypage_menu_child">회원 탈퇴</li></span>
+		</div>
+	</ul>
 </body>
 </html>

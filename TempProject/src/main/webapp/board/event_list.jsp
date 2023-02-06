@@ -136,11 +136,6 @@
 			<form method="post" name="search" action="searchbbs.jsp" pos>
 				<table class="pull-right">
 					<tr>
-						<td><select class="form-control" name="searchField">
-								<option value="0">선택</option>
-								<option value="bbsTitle">제목</option>
-								<option value="userID">작성자</option>
-						</select></td>
 						<td><input type="text" class="form-control"
 							placeholder="검색어 입력" name="ss" value="${ss }" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>

@@ -84,23 +84,5 @@ public class NoticeBoardModel {
 	  }
 	
 	
-	// select박스 활용 모델
-	@RequestMapping("baord/notice_type.do")
-	public String notice_type(HttpServletRequest request, HttpServletResponse response) {
-		String type=request.getParameter("type");
-		if(type==null) type="0";
-		String page=request.getParameter("page");
-	    if(page==null) page="1";	
-	    int curpage=Integer.parseInt(page);
-		NoticeBoardDAO dao=new NoticeBoardDAO();
-		List<NoticeBoardVO> list=dao.boardListData(Integer.parseInt(type), curpage);
-		int count=dao.noticeboardRowCount(Integer.parseInt(type));
-		int totalpage=(int)(Math.ceil(count/10.0));
-		request.setAttribute("type", type);
-		request.setAttribute("list", list);
-		request.setAttribute("count", count);
-		request.setAttribute("curpage", curpage);
-	    request.setAttribute("totalpage", totalpage);
-		return "../board/notice_list.jsp";
-	}
+
 }

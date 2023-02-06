@@ -51,7 +51,7 @@
   <table class="table">
     <tr>
       <th width=10% class="text-center">${vo.gnbno }</th>
-      <th width=75% class="text-center" colspan="2">${vo.subject }</th>
+      <th width=75% class="text-center" colspan="2" style="	font-size:20px;font-weight: 400;">${vo.subject }</th>
       <th width=15% class="text-center">${vo.dbday }</th>
     </tr>
       <tr>

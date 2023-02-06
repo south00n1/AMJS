@@ -72,6 +72,7 @@ import com.sist.vo.NoticeBoardVO;
 			  request.setAttribute("main_jsp", "../board/event_detail.jsp"); 
 			  return "../main/main.jsp";
 		  }
+		
 	
 	}
 
