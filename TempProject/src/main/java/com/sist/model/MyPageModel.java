@@ -11,7 +11,9 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.JjimDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.MypageDAO;
 import com.sist.vo.JjimVO;
+import com.sist.vo.ReserveVO;
 
 @Controller
 public class MyPageModel {
@@ -43,6 +45,19 @@ public class MyPageModel {
 		return "redirect:jjim_list.do";
 	}
 	
+	@RequestMapping("mypage/mypage_reserve_list.do")
+	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		// dao연결
+		MypageDAO dao = new MypageDAO();
+		List<ReserveVO> list = dao.mypageReserveData(id);
+		
+		request.setAttribute("list", list);
+		return "../mypage/mypage_reserve_list.jsp";
+	}
+	
 	@RequestMapping("mypage/join_delete.do")
 	public String member_delete(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -51,22 +66,22 @@ public class MyPageModel {
 	
 	@RequestMapping("mypage/join_delete_ok.do")
 		
-		public void member_delete_ok(HttpServletRequest request, HttpServletResponse response) {
-			
-			HttpSession session = request.getSession();
-			String id = (String)session.getAttribute("id");
-			String pwd = request.getParameter("pwd");
-			MemberDAO dao = new MemberDAO();
-			boolean bCheck = dao.memberJoinDelete(id, pwd);
-			try {
-				PrintWriter out = response.getWriter();
-				if(bCheck == true) {
-					out.println("yes");
-					session.invalidate();
-				} else {
-					out.println("no");
-				}
-			} catch (Exception e) {}
-			
-		}
+	public void member_delete_ok(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String pwd = request.getParameter("pwd");
+		MemberDAO dao = new MemberDAO();
+		boolean bCheck = dao.memberJoinDelete(id, pwd);
+		try {
+			PrintWriter out = response.getWriter();
+			if(bCheck == true) {
+				out.println("yes");
+				session.invalidate();
+			} else {
+				out.println("no");
+			}
+		} catch (Exception e) {}
+		
+	}
 }

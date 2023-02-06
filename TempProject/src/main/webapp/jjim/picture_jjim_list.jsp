@@ -39,7 +39,14 @@ $(function(){
 .mypage_home_subtitle {
 	color: #27375C;
 }
-
+.jjim_delBtn {
+	width:70px;
+	hiegh:30px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	padding: 5px 7px;;
+}
 </style>
 </head>
 <body>
@@ -56,13 +63,13 @@ $(function(){
 					<th width="10%" class="text-center">삭제여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
-				<tr>
-					<td width="40%" class="text-center" style="vertical-align: middle;"><b>${vo.title}</b></td>
-					<td width="15%" class="text-center"><img src="${vo.image}" style="width:60px; height: 60px"></td>
-					<td width="15%" class="text-center" style="vertical-align: middle">${vo.name }</td>
-					<td width="20%" class="text-center" style="vertical-align: middle">${vo.code }</td>
-					<td width="10%" class="text-center" style="vertical-align: middle">
-					<span data-no="${vo.jno }" class="btn btn-sm jjim_delBtn" style="background-color: red; color: #fff; border-radius: 5px;">삭제</span>
+				<tr style="vertical-align: middle;">
+					<td width="40%" class="text-center">${vo.title}</td>
+					<td width="15%" class="text-center"><img src="${vo.image}" style="width:50px; height: 50px"></td>
+					<td width="15%" class="text-center">${vo.name }</td>
+					<td width="20%" class="text-center">${vo.code }</td>
+					<td width="10%" class="text-center">
+					<span data-no="${vo.jno }" class="jjim_delBtn" style="background-color: red;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>

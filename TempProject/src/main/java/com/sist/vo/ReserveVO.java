@@ -3,7 +3,14 @@ package com.sist.vo;
 public class ReserveVO {
 	private int gerno,inwon,geno;
 	private String rdate,rtime,ok,id;
+	private ExhibitionVO evo = new ExhibitionVO();
 	
+	public ExhibitionVO getEvo() {
+		return evo;
+	}
+	public void setEvo(ExhibitionVO evo) {
+		this.evo = evo;
+	}
 	public int getGerno() {
 		return gerno;
 	}
