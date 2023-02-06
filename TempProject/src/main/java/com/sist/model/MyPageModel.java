@@ -75,10 +75,27 @@ public class MyPageModel {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		JjimDAO dao = new JjimDAO();
-		List<JjimVO> list = dao.jjimListData(id);
 		
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
+		JjimDAO dao = new JjimDAO();
+		List<JjimVO> list = dao.jjimListData(id, curpage);
+		int totalpage = dao.jjimListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
 		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		return "../jjim/picture_jjim_list.jsp";
 	}
 	

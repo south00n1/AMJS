@@ -55,21 +55,33 @@ public class JjimDAO {
 		return list;
 	 */
 	// JJIM 목록
-	public List<JjimVO> jjimListData(String id) {
+	public List<JjimVO> jjimListData(String id, int page) {
 		List<JjimVO> list = new ArrayList<JjimVO>();
 		try {
 			conn = CreateConnection.getConnection();
-			
-			String sql="SELECT /*+ INDEX_DESC(project_jjim pj_jno_pk)*/jno,no,"
+			/*
+			String sql="SELECT + INDEX_DESC(project_jjim pj_jno_pk)jno,no,"
 	                 +"(SELECT DISTINCT title FROM god_picture_3 WHERE gpno=god_jjim_3.no),"
 	                 +"(SELECT DISTINCT image FROM god_picture_3 WHERE gpno=god_jjim_3.no),"
 	                 +"(SELECT DISTINCT name FROM god_picture_3 WHERE gpno=god_jjim_3.no),"
 	                 +"(SELECT DISTINCT code FROM god_picture_3 WHERE gpno=god_jjim_3.no) "
 	                 +"FROM god_jjim_3 "
-	                 +"WHERE id=?";
-
+	                 +"WHERE id=?";*/
+			
+			String sql = "select jno, no, title, image, name, code, num "
+					+ "from (select jno, no, title, image, name, code, rownum as num "
+					+ "from (select /*+ INDEX_DESC(god_jjim_3 gj_jno_pk)*/jno, no, title, image, name, code "
+					+ "from god_jjim_3, god_picture_3 "
+					+ "where no = gpno and id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
+	        
 			ps = conn.prepareStatement(sql);
+			int rowSize = 6;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
 			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				JjimVO vo = new JjimVO();
@@ -89,6 +101,28 @@ public class JjimDAO {
 		}
 		return list;
 	}
+	
+	// JJIM 총 페이지
+	public int jjimListTotalPage(String id) {
+	      int total=0;
+	      try {
+	         conn=CreateConnection.getConnection();
+	         String sql="SELECT CEIL(COUNT(*)/5.0) FROM god_jjim_3 "
+	         		+ "WHERE id = ?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, id);
+	         ResultSet rs=ps.executeQuery();
+	         rs.next();
+	         total=rs.getInt(1);
+	         rs.close();
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         CreateConnection.disConnection(conn, ps);
+	      }
+	      return total;
+	   }
+	
 	
 	// JJIM 취소
 	public void jjimDelete(int jno) {

@@ -22,7 +22,42 @@ $(function(){
 		})
 		
 	})
-
+	// mypage/jjim_list.do
+	$('.jjim_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../mypage/jjim_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.jjim_page_pre').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../mypage/jjim_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.jjim_page_next').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../mypage/jjim_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 </script>
@@ -46,6 +81,43 @@ $(function(){
 	border-radius: 5px;
 	font-size: 15px;
 	padding: 5px 7px;;
+}
+
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
 }
 </style>
 </head>
@@ -75,5 +147,16 @@ $(function(){
 				</c:forEach>
 			</table>
 		</div>
+			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><span class="jjim_page_pre page_a" data-page="${startPage-1 }">&lt;</span></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="jjim_page page_a" data-page="${i }">${i }</span></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><span class="jjim_page_next page_a" data-page="${endPage+1 }">&gt;</span></li>
+		        </c:if>
+		    </ul>
 </body>
 </html>
