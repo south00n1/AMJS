@@ -14,4 +14,5 @@
   <bean class="com.sist.model.ReserveModel"/>
   <bean class="com.sist.model.JjimModel"/>
   <bean class="com.sist.model.AllReplyModel"/>
+  <bean class="com.sist.model.AdminModel"/>
 </beans>

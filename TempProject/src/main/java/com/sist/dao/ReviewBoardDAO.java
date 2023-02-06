@@ -23,7 +23,7 @@ public class ReviewBoardDAO {
 					+"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,good,noti "
 					+ "FROM god_review_board_3)) "
 					+ "WHERE num BETWEEN ? AND ? "
-					+ "ORDER BY no ASC";
+					+ "ORDER BY noti,no ASC";
 			ps=conn.prepareStatement(sql);
 			int rowSize=10;
 			int start=(rowSize*page)-(rowSize-1);
@@ -516,7 +516,7 @@ public class ReviewBoardDAO {
 					     +"FROM god_review_board_3 "
 					     +"WHERE subject LIKE '%'||?||'%')) "
 					     +"WHERE num BETWEEN ? AND ? "
-					     + "ORDER BY no ASC";
+					     + "ORDER BY noti,no ASC";
 			   ps=conn.prepareStatement(sql);
 			   int rowSize=10;
 			   int start=(rowSize*page)-(rowSize-1);

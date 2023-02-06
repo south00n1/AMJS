@@ -60,7 +60,7 @@ $(function(){
 		                <a href="../mypage/mypage_main.do" class="nav-item nav-link">마이페이지</a>
 					</c:if>
 					<c:if test="${sessionScope.admin == 'y' }">
-		                <a href="../mypage/mypage.do" class="nav-item nav-link">관리자페이지</a>
+		                <a href="../adminpage/adminpage_main.do" class="nav-item nav-link">관리자페이지</a>
 					</c:if>
 				</c:if>
             </div>

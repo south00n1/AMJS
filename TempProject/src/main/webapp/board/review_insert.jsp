@@ -54,41 +54,43 @@
   <form method="post" action="../board/review_insert_ok.do">
   <table class="table">
     <tr>
-      <th width=15% class="text-right">이름</th>
+      <th width=15% class="text-right">작성자</th>
       <td width=20%>
-        <input type=text name=name size=20 class="input-sm">
+      	${sessionScope.id }
+        <%--<input type=text name=name size=40 placeholder="이름 입력" class="input-sm"> --%>
+        <input type=hidden name=name size=45 value="${sessionScope.id }" required>
       </td>
+
+    </tr>
+    <tr>
       <th width=15% class="text-left">전시명</th>
       <td width=50%>
-      <input type=text name=display_name size=30 placeholder="전시명 입력" class="input-sm">
+      <input type=text name=display_name size=40 placeholder="전시명 입력" class="input-sm">
       </td>
     </tr>
     <tr>
       <th width=10% class="text-right">제목</th>
       <td width=90%>
-        <input type=text name=subject size=100 placeholder="제목을 입력해주세요." class="input-sm">
+        <input type=text name=subject size=40 placeholder="제목을 입력해주세요." class="input-sm">
       </td>
-    </tr>
-        <tr>
-      <th width=15% class="text-right">관람전시</th>
-      <td width=80%>
-        <input type=text name=display_name size=60 placeholder="전시명 입력" class="input-sm">
+      <th width=15% class="text-left"></th>
+      <td width=50%>
       </td>
     </tr>
     <tr>
       <th width=15% class="text-right">내용</th>
-      <td width=80%>
-        <textarea rows="10" cols="60" name="content" placeholder="내용을 입력하세요."></textarea>
+      <td width=80% colspan="3">
+        <textarea rows="20" cols="90" name="content" placeholder="내용을 입력하세요."></textarea>
       </td>
     </tr>
     <tr>
       <th width=15% class="text-right">비밀번호</th>
-      <td width=80%>
-        <input type=password name=pwd size=15 placeholder="비밀번호를 입력하세요." class="input-sm">
+      <td width=80% colspan="3">
+        <input type=password name=pwd size=40 placeholder="비밀번호를 입력하세요." class="input-sm">
       </td>
     </tr>
     <tr>
-      <td colspan="2" class="text-center">
+      <td colspan="4" class="text-center">
         <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
         <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
       </td>
