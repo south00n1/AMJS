@@ -17,7 +17,7 @@ $(function(){
 		let gerno = $(this).attr('data-gerno')
 		$.ajax({
 			type:'post',
-			url:'../mypage/reserve_delete.do',
+			url:'../mypage/mypage_reserve_delete.do',
 			data:{"gerno": gerno},
 			success:function(response){
 				$('.mypage_home_div').html(response)

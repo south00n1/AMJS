@@ -9,16 +9,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.post_delBtn').hover(function(){
+	$('.reply_delBtn').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	
-	$('.post_delBtn').click(function(){
-		let no = $(this).attr('data-no')
+	$('.reply_delBtn').click(function(){
+		let rno = $(this).attr('data-rno')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_mypost_delete.do',
-			data:{"no": no},
+			url:'../mypage/mypage_myreply_delete.do',
+			data:{"rno": rno},
 			success:function(response){
 				$('.mypage_home_div').html(response)
 			}
@@ -47,31 +47,34 @@ $(function(){
 	font-size: 15px;
 	padding: 5px 7px;;
 }
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
 </style>
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">내가 쓴 게시글</h4>
+			<h4 class="mypage_home_subtitle">내가 쓴 댓글</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
-			<table class="table">
+			<table class="table" style="table-layout: fixed;">
 				<tr>
-					<th width="10%" class="text-center">no</th>
-					<th width="40%" class="text-center">제목</th>
-					<th width="10%" class="text-center">작성자</th>
-					<th width="10%" class="text-center">작성일</th>
-					<th width="10%" class="text-center">조회</th>
-					<th width="20%" class="text-center">삭제여부</th>
+					<th width="25%" class="text-center">원문제목</th>
+					<th width="35%" class="text-center">댓글내용</th>
+					<th width="15%" class="text-center">작성자</th>
+					<th width="15%" class="text-center">작성일</th>
+					<th width="10%" class="text-center">삭제여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center" >${vo.no }</td>
-					<td width="40%" class="text-center">${vo.subject }</td>
-					<td width="10%" class="text-center">${vo.name }</td>
-					<td width="10%" class="text-center">${vo.regdate }</td>
-					<td width="10%" class="text-center">${vo.hit }</td>
-					<td width="20%" class="text-center">
-						<span data-no="${vo.no }" class="rst post_delBtn" style="background-color: gray;">삭제</span>
+					<td width="25%" class="text-center origin">${vo.subject }</td>
+					<td width="35%" class="text-center origin">${vo.msg }</td>
+					<td width="15%" class="text-center">${vo.name }</td>
+					<td width="15%" class="text-center">${vo.regdate }</td>
+					<td width="10%" class="text-center">
+						<span data-rno="${vo.rno }" class="rst reply_delBtn" style="background-color: gray;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>

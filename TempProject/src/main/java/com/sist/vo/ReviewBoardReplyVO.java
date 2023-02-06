@@ -5,9 +5,15 @@ import java.sql.Date;
 public class ReviewBoardReplyVO {
 
 	private int rno,gruop_id,group_step,group_tab,root,depth,bno;
-	private String name,msg,id,dbday;
+	private String name,msg,id,dbday,subject;
 	private Date regdate;
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 	public String getDbday() {
 		return dbday;
 	}

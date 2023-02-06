@@ -15,6 +15,7 @@ import com.sist.dao.MypageDAO;
 import com.sist.dao.ReviewBoardDAO;
 import com.sist.vo.JjimVO;
 import com.sist.vo.ReserveVO;
+import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
 
 @Controller
@@ -39,12 +40,33 @@ public class MyPageModel {
 		return "../mypage/mypage_mypost_list.jsp";
 	}
 	
-	@RequestMapping("mypage/reserve_delete.do")
+	@RequestMapping("mypage/mypage_mypost_delete.do")
 	public String mypage_mypost_list_delete(HttpServletRequest request, HttpServletResponse response) {
 		String no = request.getParameter("no");
 		MypageDAO dao = new MypageDAO();
 		dao.myPostDelete(Integer.parseInt(no));
 		return "redirect:../mypage/mypage_mypost_list.do";
+
+	}
+	@RequestMapping("mypage/mypage_myreply_list.do")
+	public String mypage_myreply_list(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		// dao연결
+		MypageDAO dao = new MypageDAO();
+		List<ReviewBoardReplyVO> list = dao.mypageMyReplyData(id);
+		
+		request.setAttribute("list", list);
+		return "../mypage/mypage_myreply_list.jsp";
+	}
+	@RequestMapping("mypage/mypage_myreply_delete.do")
+	public String mypage_myreply_list_delete(HttpServletRequest request, HttpServletResponse response) {
+		
+		String rno = request.getParameter("rno");
+		MypageDAO dao = new MypageDAO();
+		dao.myReplyDelete(Integer.parseInt(rno));
+		return "redirect:../mypage/mypage_myreply_list.do";
 
 	}
 	
@@ -80,7 +102,7 @@ public class MyPageModel {
 		request.setAttribute("list", list);
 		return "../mypage/mypage_reserve_list.jsp";
 	}
-	@RequestMapping("mypage/reserve_delete.do")
+	@RequestMapping("mypage/mypage_reserve_delete.do")
 	public String mypage_reserve_delete(HttpServletRequest request, HttpServletResponse response) {
 		String gerno = request.getParameter("gerno");
 		MypageDAO dao = new MypageDAO();
