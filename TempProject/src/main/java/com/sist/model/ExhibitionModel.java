@@ -157,7 +157,6 @@ public class ExhibitionModel {
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../exhibition/exhibition_detail.jsp");
-		
 		ArrayList<ExhibitionVO> list=dao.exhibitionAllListData(Integer.parseInt(geno));
 		LikeDAO ldao=new LikeDAO();
 		for(ExhibitionVO evo:list)
@@ -165,13 +164,14 @@ public class ExhibitionModel {
 			evo.setCount(ldao.ExhibitionLikeCount(evo.getGeno()));
 		}
 		request.setAttribute("list", list);
-		request.setAttribute("main_jsp", "../exhibition/exhibition_detail.jsp");
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
 		int mc=ldao.myLikeCount(Integer.parseInt(geno), id);
 		int tc=ldao.ExhibitionLikeCount(Integer.parseInt(geno));
 		request.setAttribute("like_count", mc);
 		request.setAttribute("like_total", tc);
+		
+
 		return "../main/main.jsp";
 	}
    

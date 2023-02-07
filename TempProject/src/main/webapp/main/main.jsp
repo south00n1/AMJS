@@ -3,7 +3,6 @@
     
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>GO OUT DISPLAY</title>
@@ -39,6 +38,9 @@
 	<!-- 섀도우박스 -->
  	<link rel="stylesheet" href="../shadow/css/shadowbox.css">
   	<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+  	
+  	<!-- 지도 -->
+  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9965c727d3306713c47391be682e4be9&libraries=services"></script>
 	
 </head>
 

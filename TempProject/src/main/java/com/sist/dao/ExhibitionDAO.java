@@ -18,9 +18,9 @@ public class ExhibitionDAO {
 	   try
 	   {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT geno,poster,title,period,num "
-				     +"FROM (SELECT geno,poster,title,period,rownum as num "
-				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period  "
+		   String sql="SELECT geno,poster,title,period,loc,num "
+				     +"FROM (SELECT geno,poster,title,period,loc,rownum as num "
+				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period,loc  "
 				     +"FROM god_exhibition_3)) "
 				     +"WHERE num BETWEEN ? AND ?";
 		   ps=conn.prepareStatement(sql);
@@ -37,6 +37,7 @@ public class ExhibitionDAO {
 	           vo.setPoster(rs.getString(2));
 			   vo.setTitle(rs.getString(3));
 			   vo.setPeriod(rs.getString(4));
+			   vo.setLoc(rs.getString(5));
 			   list.add(vo);
 		   }
 		   rs.close();

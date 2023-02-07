@@ -15,4 +15,5 @@
   <bean class="com.sist.model.JjimModel"/>
   <bean class="com.sist.model.AllReplyModel"/>
   <bean class="com.sist.model.AdminModel"/>
+  <bean class="com.sist.model.LikeModel"/>
 </beans>
