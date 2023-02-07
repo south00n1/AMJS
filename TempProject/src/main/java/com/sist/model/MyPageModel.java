@@ -15,6 +15,7 @@ import com.sist.dao.MypageDAO;
 import com.sist.dao.ReviewBoardDAO;
 import com.sist.vo.AskVO;
 import com.sist.vo.JjimVO;
+import com.sist.vo.LikeVO;
 import com.sist.vo.ReserveVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
@@ -141,7 +142,6 @@ public class MyPageModel {
 
 	}
 		
-	
 	@RequestMapping("mypage/jjim_list.do")
 	public String mypage_jjim(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -216,6 +216,43 @@ public class MyPageModel {
 		dao.reserveDelete(Integer.parseInt(gerno));
 		return "redirect:../mypage/mypage_reserve_list.do";
 	}
+	@RequestMapping("mypage/mypage_like_list.do")
+	public String mypage_like_list(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
+		MypageDAO dao = new MypageDAO();
+		List<LikeVO> list = dao.mypageLikeData(id, curpage);
+		int totalpage = dao.mypageLikeListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		return "../mypage/mypage_like_list.jsp";
+	}
+	@RequestMapping("mypage/mypage_like_delete.do")
+	public String mypage_like_delete(HttpServletRequest request, HttpServletResponse response) {
+		String lno = request.getParameter("lno");
+		MypageDAO dao = new MypageDAO();
+		
+		dao.likeDelete(Integer.parseInt(lno));
+		return "redirect:../mypage/mypage_like_list.do";
+	}
 	
 	@RequestMapping("mypage/join_delete.do")
 	public String member_delete(HttpServletRequest request, HttpServletResponse response) {
@@ -224,9 +261,7 @@ public class MyPageModel {
 	}
 	
 	@RequestMapping("mypage/join_delete_ok.do")
-		
 	public void member_delete_ok(HttpServletRequest request, HttpServletResponse response) {
-		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String pwd = request.getParameter("pwd");
@@ -243,4 +278,5 @@ public class MyPageModel {
 		} catch (Exception e) {}
 		
 	}
+	
 }

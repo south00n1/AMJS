@@ -91,6 +91,15 @@ $(function(){
 	white-space : nowrap;
 	text-overflow: ellipsis;
 }
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
 
 #page_ul {
 	list-style: none;
@@ -147,12 +156,12 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="35%" class="text-center origin" >${vo.evo.title }</td>
-					<td width="10%" class="text-center origin"><img src="${vo.evo.poster }" style="width:50px; height:50px"></td>
-					<td width="10%" class="text-center origin">${vo.evo.loc }</td>
-					<td width="10%" class="text-center origin">${vo.rdate }</td>
-					<td width="15%" class="text-center origin">${vo.rtime }</td>
-					<td width="5%" class="text-center origin">${vo.inwon }</td>
+					<td width="35%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.evo.title }</a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}"><img src="${vo.evo.poster }" style="width:50px; height:50px"></a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.evo.loc }</a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.rdate }</a></td>
+					<td width="15%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.rtime }</a></td>
+					<td width="5%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.inwon }</a></td>
 					<td width="15%" class="text-center">
 						<c:if test="${vo.ok == 'y' }">
 						<span data-no="" class="rst reserve_state" style="background-color: gray;">완료</span>

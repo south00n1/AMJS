@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sist.vo.AskVO;
+import com.sist.vo.ExhibitionVO;
+import com.sist.vo.LikeVO;
 import com.sist.vo.ReserveVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
@@ -327,4 +329,84 @@ public class MypageDAO {
  			CreateConnection.disConnection(conn, ps);
  		}
  	}
+ 	
+ 	// 5-1 좋아요한 전시회 출력
+ 	public List<LikeVO> mypageLikeData(String id, int page) {
+  		List<LikeVO> list = new ArrayList<LikeVO>();
+  		try {
+			conn = CreateConnection.getConnection();
+			
+			String sql = "select lno, no, title, poster, loc, area, num "
+					+ "from (select lno, no, title, poster, loc, area, rownum as num "
+					+ "from (select lno, no, title, poster, loc, area "
+					+ "from god_like_3, god_exhibition_3 "
+					+ "where no = geno and id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			
+			ps = conn.prepareStatement(sql);
+			int rowSize = 6;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				LikeVO vo = new LikeVO();
+				vo.setLno(rs.getInt(1));
+				vo.setNo(rs.getInt(2));
+				vo.setTitle(rs.getString(3));
+				vo.setPoster(rs.getString(4));
+				vo.setLoc(rs.getString(5));
+				vo.setArea(rs.getString(6));
+				list.add(vo);
+				}
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+  			return list;
+	  	}
+ 	
+ 	// 5-2 좋아요한 전시회 총페이지
+ 	public int mypageLikeListTotalPage(String id) {
+	      int total=0;
+	      try {
+	         conn=CreateConnection.getConnection();
+	         String sql="SELECT CEIL(COUNT(*)/6.0) FROM god_like_3 "
+	         		+ "WHERE id = ?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, id);
+	         ResultSet rs=ps.executeQuery();
+	         rs.next();
+	         total=rs.getInt(1);
+	         rs.close();
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         CreateConnection.disConnection(conn, ps);
+	      }
+	      return total;
+	   }
+ 	
+ 	// 5-3 좋아요 취소
+ 	public void likeDelete(int lno) {
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "DELETE FROM god_like_3 "
+					+ "WHERE lno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, lno);
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+ 	
 }

@@ -29,7 +29,7 @@ public class MemberModel {
 
 	@RequestMapping("member/idcheck.do")
 	public String member_idCheck(HttpServletRequest request, HttpServletResponse response) {
-
+		
 		return "../member/idcheck.jsp";
 	}
 

@@ -9,27 +9,28 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.qna_delBtn').hover(function(){
+	$('.like_delBtn').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	
-	$('.qna_delBtn').click(function(){
-		let gano = $(this).attr('data-gano')
+	$('.like_delBtn').click(function(){
+		let lno = $(this).attr('data-lno')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_myqna_delete.do',
-			data:{"gano": gano},
+			url:'../mypage/mypage_like_delete.do',
+			data:{"lno": lno},
 			success:function(response){
 				$('.mypage_home_div').html(response)
 			}
 		})
 	})
 	
-	$('.myqna_page').click(function(){
+	// 페이징 ajax
+	$('.like_page').click(function(){
 		let page = $(this).attr('data-page')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_myqna_list.do',
+			url:'../mypage/mypage_like_list.do',
 			data:{'page':page},
 			success:function(response) {
 				$('.mypage_home_div').html(response)
@@ -37,11 +38,11 @@ $(function(){
 		})
 	})
 	
-	$('.myqna_page_pre').click(function(){
+	$('.like_page_pre').click(function(){
 		let page = $(this).attr('data-page')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_myqna_list.do',
+			url:'../mypage/mypage_like_list.do',
 			data:{'page':page},
 			success:function(response) {
 				$('.mypage_home_div').html(response)
@@ -50,17 +51,18 @@ $(function(){
 	})
 	
 	
-	$('.myqna_page_next').click(function(){
+	$('.like_page_next').click(function(){
 		let page = $(this).attr('data-page')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_myqna_list.do',
+			url:'../mypage/mypage_like_list.do',
 			data:{'page':page},
 			success:function(response) {
 				$('.mypage_home_div').html(response)
 			}
 		})
 	})
+	
 })
 </script>
 <style type="text/css">
@@ -135,31 +137,37 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
+.like_delBtn {
+	width:70px;
+	hiegh:30px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	padding: 5px 7px;;
+}
 </style>
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">내가 쓴 문의</h4>
+			<h4 class="mypage_home_subtitle">좋아요 목록</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
-					<th width="10%" class="text-center">no</th>
-					<th width="40%" class="text-center">제목</th>
-					<th width="15%" class="text-center">유형</th>
-					<th width="15%" class="text-center">작성일</th>
-					<th width="10%" class="text-center">답변상태</th>
+					<th width="40%" class="text-center">전시회명</th>
+					<th width="15%" class="text-center">포스터</th>
+					<th width="15%" class="text-center">장소</th>
+					<th width="20%" class="text-center">분야</th>
 					<th width="10%" class="text-center">삭제여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.gano }</a></td>
-					<td width="40%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.subject }</a></td>
-					<td width="15%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.type }</a></td>
-					<td width="15%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.regdate }</a></td>
-					<td width="10%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.ans_state }</a></td>
+					<td width="40%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}">${vo.title }</a></td>
+					<td width="15%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}"><img src="${vo.poster }" style="width:50px; height:50px"></a></td>
+					<td width="15%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}">${vo.loc }</a></td>
+					<td width="20%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}">${vo.area }</a></td>
 					<td width="10%" class="text-center">
-						<span data-gano="${vo.gano }" class="rst qna_delBtn" style="background-color: gray;">삭제</span>
+						<span data-lno="${vo.lno }" class="like_delBtn" style="background-color: red;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>
@@ -167,13 +175,13 @@ $(function(){
 		</div>
 			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		    	<c:if test="${startPage>1 }">
-		          <li class="page_li"><span class="myqna_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		          <li class="page_li"><span class="like_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="myqna_page page_a" data-page="${i }">${i }</span></li>          
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="like_page page_a" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		        <c:if test="${endPage<totalpage }">
-		          <li class="page_li"><span class="myqna_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		          <li class="page_li"><span class="like_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
 		        </c:if>
 		    </ul>
 </body>

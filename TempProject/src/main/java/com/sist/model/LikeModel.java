@@ -21,8 +21,6 @@ public class LikeModel {
 		vo.setNo(Integer.parseInt(geno));
 		vo.setId(id);
 		LikeDAO dao=new LikeDAO();
-		System.out.println(vo.getNo());
-		System.out.println(id);
 		dao.likeInsert(vo);
 		return "redirect:../exhibition/exhibition_detail.do?geno="+geno;
 	}
