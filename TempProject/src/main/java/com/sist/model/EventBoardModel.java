@@ -38,7 +38,7 @@ import com.sist.vo.NoticeBoardVO;
 			  
 			  ////////////////////////////////////////////
 			  int count=dao.eventboardRowCount();
-			  int totalpage=(int)(Math.ceil(count/10.0));
+			  int totalpage=(int)(Math.ceil(count/12.0));
 			  final int BLOCK=10;
 			  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 			  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
