@@ -7,6 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>GO OUT DISPLAY</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$('.data_status').on("click",function(){
+    title = "";
+    var date = new Date();                // 오늘날짜
+    let yyyy = date.getFullYear();        // 년
+    let mm = date.getMonth() + 1;        // 월 0부터시작 +1해줌
+    let dd = date.getDate();            // 일
+</script>
 <style type="text/css">
  /*######## 페이지네이션 #########*/
 
@@ -50,32 +59,261 @@ li.active a:hover {
 ::marker {
 	content: "";
 }
+
+/* 새로 수정 css */
+.title{
+	text-align:left;
+	margin-top: 5%;
+}
+
+.head_sch_wrap {
+    max-width: 300px;
+}
+
+.head_sch_wrap {
+    width: 100%;
+    max-width: 480px;
+}
+
+.head_sch_wrap {
+    position: absolute;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.head_sch_wrap {
+    width: 300px;
+    height: 50px;
+    border: 3px solid #27375C;
+    border-radius: 100px;
+    position: relative;
+    float: right;
+    margin-top: 8px;
+}
+fieldset, legend, form, button{
+	font-size: 16px;
+	margin: 0;
+	padding:0;
+	font-weight: normal;
+	color: gray;
+}
+fieldset{ 
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+}
+form{
+	border:0;
+	display: block;
+}
+.head_sch_wrap input{
+	width:100%;
+	padding: 0 36px 0 10px;
+	box-sizing: border-box;
+	border: 0;
+	line-height: 34px;
+	border-radius: 100px;
+}
+input[type='text']{
+	color: #393e4d;
+}
+input{
+	outline: none;
+	font-size: 14px;
+	vertical-align: middle;
+}
+dd{
+	font-size: 16px;
+	margin:0;
+	padding:0;
+	font-weight: normal;
+	display: block;
+	margin-inline-start: 40px;
+}
+.head_src_wrap .sch_submit{
+	width: 23px;
+	height: 22px;
+	padding: 0;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.sch_submit_button{
+	position: absolute;
+	border:0;
+	box-sizing: border-box;
+	cursor: pointer;
+	border-radius: 3px;
+	text-indent: -9999px;
+	margin-left: -4px;
+}
+
+/* 진행중 버튼 css */
+.date_status{
+    background: #e94727;
+}
+.date_status {
+    right: 0;
+    font-size: 12px;
+    line-height: 17px;
+}
+.date_status {
+    top: 2;
+    right: 16px;
+    background: #e33355;
+    color: #fff;
+    font-size: 10px;
+    border-radius: 15px;
+    min-width: 38px;
+    text-align: center;
+    max-width: 54px;
+    line-height: 19px;
+    padding: 0 9px;
+}
+.ex_tit {
+    width: 100%;
+    position: relative;
+    padding-right: 55px;
+    box-sizing: border-box;
+}
+
+/* 검색바 css */
+form{
+	font-size: 10px;
+	margin:0 ; padding: 0
+}
+.head_sch_warp input {
+    width: 100%;
+    padding: 0 36px 0 10px;
+    box-sizing: border-box;
+    border: 0;
+    line-height: 34px;
+    border-radius: 100px;
+}
+.head_sch_warp {
+    width: 300px;
+    height: 34px;
+    border: 3px solid #27375C;
+    border-radius: 100px;
+    position: relative;
+    float: left;
+    margin-top: 8px;
+}
+fieldset{
+	font-size: 16px;
+	margon:0; padding:0;
+	display:block;
+	margin-inline-end: 2px;
+	padding-block-start: 0.35em;
+	padding-inline-start: 0.75em;
+	padding-inline-end: 0.75em;
+	padding-block-end: 0.625em;
+	min-inline-size: min-content;
+}
+legend{
+	font-size: 16px;
+	margin:0; padding:0;
+	position: absolute;
+	line-height:0;
+	text-indent: -9999em;
+	overflow: hidden;
+	padding-inline-start: 2px;
+	padding-inline-end: 2px;
+	border-width: initial;
+	border-style: none;
+	border-color: initial;
+	border-image: initial;
+}
+form{
+	display: block;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    list-style:none;
+}
+dd {
+	margin:0; padding:0;
+    display: block;
+    margin-inline-start: 10px;
+}
+input {
+    outline: none;
+    margin:0;
+    font-size: 14px
+}
+
 </style>
+</head>
+<body>
 <!-- 목록 start -->
   <div class="container">
-			<div class="text-center">
-				<h2 class="sectiontitle">전체 전시</h2>
-				<h6 class="sectiontitle-1">총 <span class="sectionnumber"><fmt:formatNumber value="${count }" type="number"/></span>개의 전시가 있습니다</h6>
-			</div>
-			<div class="row g-4 justify-content-center">
-			<c:forEach var="vo" items="${list }" begin="1" end="12" step="1">
-					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-						<div class="course-item bg-white">
-							<div class="position-relative overflow-hidden">
-							  <a href="../exhibition/exhibition_detail.do?geno=${vo.geno }"><img class="img-fluid" src="${vo.poster }" title="${vo.title }" style="height: 380px"></a>
-							</div>
+	<div class="text-center">
+	  <div>
+		<h2 class="title">전체 전시</h2>
+		<div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: left; margin-top: 30px;">
+	<form method=post action="../exhibition/exhibition_all.do" class="inline">
+             <input type=text name="tt" size=25 class="input-sm" value="${tt }">
+             <input type=submit value="검색">
+    </form>
+    </div>
+	  </div>
+	  <div>	
+	  <!-- 검색바 
+	   <form method=post action="../exhibition/exhibition_all.do" class="inline">
+             <input type=text name="tt" size=25 class="input-sm" value="${tt }">
+             <input type=submit value="검색">
+       </form>
+       <div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: center;margin: 20px;">
+	<form method=post action="../exhibition/exhibition_all.do" class="inline">
+             <input type=text name="tt" size=25 class="input-sm" value="${tt }">
+             <input type=submit value="검색">
+    </form>
+    </div>
+        -->
+       
+		<h6 class="sectiontitle-1">총 <span class="sectionnumber"><fmt:formatNumber value="${count }" type="number"/></span>개의 전시가 있습니다</h6>
+	  </div>
+    <div class="row g-4 justify-content-center">
+		<c:forEach var="vo" items="${list }" begin="1" end="12" step="1">
+				<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+					<div class="course-item bg-white">
+						<div class="position-relative overflow-hidden">
+							 <a href="../exhibition/exhibition_detail.do?geno=${vo.geno }"><img class="img-fluid" src="${vo.poster }" title="${vo.title }" style="height: 380px"></a>
+						</div>
 							<div class="text-center py-3 px-2">
-								<h6 class="mb-0">${vo.title }</h6>
+							  <div class="ex_tit">
+								<div class="mb-0" style="text-align: left; font-weight: bold; font-size: 1rem">${vo.title }</div>
+							  </div>
 								  <div class="mt-2">
-									<small>${vo.period }</small><br> 
-									<h6 class="mt-0" style="font-size: 0.6rem; height: auto">${vo.loc }</h6>
+								    <div class="mt-0" style="font-size: 0.8rem; height: auto; text-align: left;">${vo.loc }</div>
+									<div class="mt-1" style="text-align: left; font-size: 0.8rem">${vo.period }</div>
+									<!-- <span>${today1 }:${vo.startday }:${vo.endday }</span> -->
+									<div class="date_status">
+									<c:choose>
+									 <c:when test="${(today1>=vo.startday && today1<=vo.endday) || today1<=vo.startday }">
+									  진행중
+									 </c:when>
+									 <c:otherwise>
+									  종료
+									 </c:otherwise>
+									 </c:choose>
+									</div>
+									
 								  </div>
 							</div>
-						</div>
 					</div>
-			</c:forEach>
-		    </div>
+				</div>
+		</c:forEach>
 	</div>
+  </div>
 
 
 
