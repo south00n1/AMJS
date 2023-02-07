@@ -17,8 +17,14 @@ public class ReserveModel {
 	@RequestMapping("reserve/reserve_main.do")
 	public String reserve_main(HttpServletRequest request, HttpServletResponse response) {
 		String geno=request.getParameter("geno");
-		if(geno==null) geno="3";
+		if(geno==null) geno="22";
+		ExhibitionDAO dao=new ExhibitionDAO();
+		ExhibitionVO vo=dao.ExhibitionDetailData(Integer.parseInt(geno));
+		String period=vo.getPeriod();
+		ReserveDAO rdao=new ReserveDAO();
+		int month=rdao.reserveMonth(period);
 		request.setAttribute("geno", geno);
+		request.setAttribute("month", month);
 		request.setAttribute("main_jsp", "../reserve/reserve_main.jsp");
 		return "../main/main.jsp";
 	}
@@ -99,20 +105,6 @@ public class ReserveModel {
 		return "../reserve/reserve_pers.jsp";
 	}
 	
-	@RequestMapping("reserve/pay.do")
-	public String reserve_pay(HttpServletRequest request, HttpServletResponse response) {
-		String geno=request.getParameter("reserveno");
-		String rdate=request.getParameter("reservedate");
-		String rtime=request.getParameter("reservetime");
-		String inwon=request.getParameter("reservepers");
-		request.setAttribute("geno", geno);
-		request.setAttribute("rdate", rdate);
-		request.setAttribute("rtime", rtime);
-		request.setAttribute("inwon", inwon);
-		request.setAttribute("main_jsp", "../reserve/pay.jsp");
-		return "../main/main.jsp";
-	}
-	
 	@RequestMapping("reserve/reserve_ok.do")
 	public String reserve_ok(HttpServletRequest request, HttpServletResponse response) {
 		String geno=request.getParameter("reserveno");
@@ -129,7 +121,7 @@ public class ReserveModel {
 		vo.setInwon(Integer.parseInt(inwon));
 		vo.setId(id);
 		dao.reserveOk(vo);
-		return "redirect:../mypage/mypage_reserve_list.do";
+		return "redirect:../mypage/mypage_main.do";
 	}
 
 	@RequestMapping("reserve/reserve_exhib.do")

@@ -144,7 +144,7 @@ $(function(){
     </div>
     <!-- ### -->
 	
-	<div class="container" style="width:960px">
+	<div class="container" style="width:960px;height: 800px">
 		<span id=falist class="btn btn-sm btn-primary">전체보기</span>
 	  	<c:if test="${sessionScope.admin!='y' }">
 	  	  <c:if test="${sessionScope.id==null }">
@@ -192,7 +192,7 @@ $(function(){
 			  </table>
 			</c:if>
 			<c:if test="${count>0 }">
-			 <div style="height: 420px">
+			 <div>
 			  <table class=table>
 				  <c:forEach var="vo" items="${list }" varStatus="s">
 				  	  <tr>
@@ -204,7 +204,7 @@ $(function(){
 				  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 						<td colspan=2></td>
 						<td>
-							<pre style="white-space: pre-wrap;background-color: white;border: none">${vo.content }</pre>
+							<pre style="white-space: pre-wrap;background-color: white;border: none;overflow-y: auto">${vo.content }</pre>
 						</td>
 						<td>
 							<c:if test="${sessionScope.admin=='y' }">

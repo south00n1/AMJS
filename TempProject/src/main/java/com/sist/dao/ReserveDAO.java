@@ -88,10 +88,19 @@ public class ReserveDAO {
 		}
 		return period;
     }
+    //2023-02-02 ~ 2023-02-05
+    public int reserveMonth(String period) {
+    	int mon=0;
+    	
+    	String smonth=period.substring(0, period.indexOf("~")).trim();
+    	smonth=smonth.substring(smonth.indexOf("-")+1, smonth.lastIndexOf("-"));
+    	mon=Integer.parseInt(smonth);
+    	
+    	return mon;
+    }
     public int[] reserveDate(String period) {
     	int[] temp = null;
     	
-    	//2023-02-02 ~ 2023-02-05
     	String smonth=period.substring(0, period.indexOf("~")).trim();
     	smonth=smonth.substring(smonth.indexOf("-")+1, smonth.lastIndexOf("-"));
     	int sm=Integer.parseInt(smonth);
@@ -179,5 +188,11 @@ public class ReserveDAO {
 		} finally {
 			CreateConnection.disConnection(conn, ps);
 		}
+	}
+    public static void main(String[] args) {
+		ReserveDAO dao=new ReserveDAO();
+		String period="2023-01-02 ~ 2023-03-04";
+		int month=dao.reserveMonth(period);
+		System.out.println(month);
 	}
 }

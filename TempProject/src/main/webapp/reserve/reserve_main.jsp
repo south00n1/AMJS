@@ -19,12 +19,13 @@
 <script type="text/javascript">
 $(function(){
 	let geno=$('#r_no').val()
+	let month=$('#r_month').val()
 	
 	//날짜 선택 달력 출력
 	$.ajax({
 		type:'post',
 		url:'../reserve/reserve_date.do',
-		data:{"geno":geno},
+		data:{"geno":geno,"month":month},
 		success:function(response){
 			$('#select_date').html(response)
 		}
@@ -111,6 +112,7 @@ $(function(){
     	  		<tr>
     	  		  <td>
     	  		  	<input type=hidden value="${geno }" id="r_no">
+    	  		  	<input type=hidden value="${month }" id="r_month">
     	  		  	<div id="select_list" style="height: 800px">
     	  		  	
     	  		  	</div>

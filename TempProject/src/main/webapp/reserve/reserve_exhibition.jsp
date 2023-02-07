@@ -26,10 +26,11 @@ $(function(){
 			url:'../reserve/reserve_main.do',
 			data:{"geno":geno},
 			success:function(result){
+				let month=$('#r_month').val()
 				$.ajax({
 					type:'post',
 					url:'../reserve/reserve_date.do',
-					data:{"geno":geno},
+					data:{"geno":geno,"month":month},
 					success:function(response){
 						$('#select_date').html(response)
 					}
