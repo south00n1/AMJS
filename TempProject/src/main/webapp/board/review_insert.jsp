@@ -58,7 +58,8 @@
       <td width=20%>
       	${sessionScope.id }
         <%--<input type=text name=name size=40 placeholder="이름 입력" class="input-sm"> --%>
-        <input type=hidden name=name size=45 value="${sessionScope.id }" required>
+        <input type=hidden name=name size=45 value="${sessionScope.name }" required>
+        <input type=hidden name=id size=45 value="${sessionScope.id }" required>
       </td>
 
     </tr>

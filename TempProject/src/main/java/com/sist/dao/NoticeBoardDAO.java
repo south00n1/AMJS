@@ -2,6 +2,7 @@ package com.sist.dao;
 import java.util.*;
 
 import com.sist.vo.NoticeBoardVO;
+import com.sist.vo.ReviewBoardVO;
 
 import java.sql.*;
 public class NoticeBoardDAO {
@@ -19,10 +20,9 @@ public class NoticeBoardDAO {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT gnbno,type,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
 					+"FROM (SELECT gnbno,type,subject,name,regdate,hit,rownum as num "
-					+"FROM (SELECT /*+ INDEX_DESC(project_freeboard gnb_gnbno_pk_3)*/ gnbno,type,subject,name,regdate,hit "
+					+"FROM (SELECT /*+ INDEX_DESC(god_notice_board_3 gnb_gnbno_pk)*/ gnbno,type,subject,name,regdate,hit "
 					+ "FROM god_notice_board_3)) "
-					+ "WHERE num BETWEEN ? AND ? "
-					+ "ORDER BY gnbno DESC";
+					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=10;
 			int start=(rowSize*page)-(rowSize-1);
@@ -113,12 +113,13 @@ public class NoticeBoardDAO {
 		   {
 			   conn=CreateConnection.getConnection();
 			   String sql="INSERT INTO god_notice_board_3 VALUES("
-					     +"(SELECT NVL(MAX(gnbno)+1,1) FROM god_notice_board_3),?,?,?,SYSDATE,?,0)";
+					     +"(SELECT NVL(MAX(gnbno)+1,1) FROM god_notice_board_3),?,?,?,SYSDATE,?,0,?)";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, vo.getName());
 			   ps.setString(2, vo.getSubject());
 			   ps.setString(3, vo.getContent());
 			   ps.setInt(4, vo.getType());
+			   ps.setString(5, vo.getId());
 			   ps.executeUpdate();//commit()
 		   }catch(Exception ex)
 		   {
@@ -183,11 +184,10 @@ public class NoticeBoardDAO {
 			   conn=CreateConnection.getConnection();
 			   String sql="SELECT gnbno,type,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
 					     +"FROM (SELECT gnbno,type,subject,name,regdate,hit,rownum as num "
-					     +"FROM (SELECT /*+ INDEX_DESC(project_freeboard gnb_gnbno_pk_3)*/ gnbno,type,subject,name,regdate,hit "
+					     +"FROM (SELECT /*+ INDEX_DESC(god_notice_board_3 gnb_gnbno_pk)*/ gnbno,type,subject,name,regdate,hit "
 					     +"FROM god_notice_board_3 "
 					     +"WHERE subject LIKE '%'||?||'%')) "
-					     +"WHERE num BETWEEN ? AND ? "
-					     +"ORDER BY gnbno DESC";
+					     +"WHERE num BETWEEN ? AND ?";
 			   // 인라인뷰 => Top-N만 가능 
 			   // 인기순위 5개 
 			   ps=conn.prepareStatement(sql);
@@ -253,6 +253,8 @@ public class NoticeBoardDAO {
 		return count;
 	}
 	
+	
+	
 	public NoticeBoardVO noticeUpdateData(int gnbno)
 	   {
 		   NoticeBoardVO vo=new NoticeBoardVO();
@@ -308,15 +310,15 @@ public class NoticeBoardDAO {
 	   }
 	   
 	   // 공지사항 게시판 관리 게시글 삭제 (admin)
-	   public void noticeDelete(int grbno)
+	   public void noticeDelete(int gnbno)
 	   {
 		   try
 		   {
 			   conn=CreateConnection.getConnection();
 			   String sql="DELETE FROM god_notice_board_3 "
-					     +"WHERE grbno=?";
+					     +"WHERE gnbno=?";
 			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, grbno);
+			   ps.setInt(1, gnbno);
 			   ps.executeUpdate();//commit()
 		   }catch(Exception ex)
 		   {

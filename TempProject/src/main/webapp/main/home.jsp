@@ -7,8 +7,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.side-quick-area {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    z-index: 11;
+    width: 100%;
+    min-width: 1400px;
+    max-width: 1440px;
+    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+}
+.wrap.main .side-quick-area .side-quick {
+    top: 643px;
+}
+.side-quick-area .side-quick {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 90px;
+}
+.side-quick .recent-list {
+    margin: 10px 0;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    padding: 11px 9px;
+}
+.side-quick .side-btns {
+    margin-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0;
+}
+.side-btns {
+    width: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+}
+</style>
 </head>
 <body>
+	
 
 	<!-- 홈화면 메인배너 -->
 	<div class="owl-carousel header-carousel position-relative">

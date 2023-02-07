@@ -5,9 +5,15 @@ import java.sql.Date;
 public class NoticeBoardVO {
 
 	private int gnbno,hit,type;
-	private String name,subject,content,dbday,prefix;
+	private String name,subject,content,dbday,prefix,id;
 	private Date regdate;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getType() {
 		return type;
 	}

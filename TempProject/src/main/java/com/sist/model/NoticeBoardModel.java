@@ -49,7 +49,7 @@ public class NoticeBoardModel {
 		  
 		  ////////////////////////////////////////////
 		  int count=dao.noticeboardRowCount();
-		  int totalpage=(int)(Math.ceil(count/20.0));
+		  int totalpage=(int)(Math.ceil(count/10.0));
 		  final int BLOCK=10;
 		  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;

@@ -57,12 +57,7 @@
       <tr>
 <td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }</pre></td>
       </tr>
-      <tr>
-      <th width=10% class="text-center">다음글</th>
-      <th width=10% class="text-center">${vo.type }</th>
-      <th width=50% class="text-left">${vo.subject }</th>
-      <th width="20%"class="text-center">${vo.dbday }</th>
-      </tr>
+
 
   </table>
   	<div class="btn_customer">

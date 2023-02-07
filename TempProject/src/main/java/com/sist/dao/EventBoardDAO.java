@@ -29,7 +29,7 @@ public class EventBoardDAO {
 					+ "FROM god_event_board_3)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
-			int rowSize=15;
+			int rowSize=12;
 			int start=(rowSize*page)-(rowSize-1);
 			int end=rowSize*page;
 			ps.setInt(1, start);

@@ -6,12 +6,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AdminDAO;
 import com.sist.dao.NoticeBoardDAO;
+import com.sist.dao.ServiceDAO;
+import com.sist.vo.AskVO;
 import com.sist.vo.NoticeBoardVO;
 import com.sist.vo.ReserveVO;
 
@@ -51,12 +52,13 @@ public class AdminModel {
 		   }
 		   
 		   int count=dao.noticeboardRowCount();
-		   int totalpage=(int)(Math.ceil(count/20.0));
+		   int totalpage=(int)(Math.ceil(count/10.0));
 		   final int BLOCK=10;
 		   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		   int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		   if(endPage>totalpage)
 				   endPage=totalpage;
+		   
 		  request.setAttribute("ss", ss);
 		  request.setAttribute("curpage", curpage);
 		  request.setAttribute("totalpage", totalpage);
@@ -90,12 +92,13 @@ public class AdminModel {
 		  String name=request.getParameter("name");
 		  String subject=request.getParameter("subject");
 		  String content=request.getParameter("content");
+		  String id=request.getParameter("id");
 		  NoticeBoardVO vo=new NoticeBoardVO();
 		  vo.setType(Integer.parseInt(type));
 		  vo.setName(name);
 		  vo.setSubject(subject);
 		  vo.setContent(content);
-		  
+		  vo.setId(id);
 		  //DAO연결 => 오라클 
 		  NoticeBoardDAO dao=new NoticeBoardDAO();
 		  dao.noticeInsert(vo);
@@ -125,7 +128,8 @@ public class AdminModel {
 		  String name=request.getParameter("name");
 		  String subject=request.getParameter("subject");
 		  String content=request.getParameter("content");
-		  String gnbno=request.getParameter("gnbno");
+		  String gnbno=request.getParameter("no");
+		  
 		  NoticeBoardVO vo=new NoticeBoardVO();
 		  vo.setType(Integer.parseInt(type));
 		  vo.setName(name);
@@ -141,14 +145,13 @@ public class AdminModel {
 	  @RequestMapping("adminpage/notice_delete.do")
 	  public String admin_notice_delete(HttpServletRequest request,HttpServletResponse response)
 	  {
-		  String grbno=request.getParameter("grbno");
+		  String gnbno=request.getParameter("gnbno");
 		  //DAO연동 
 		  NoticeBoardDAO dao=new NoticeBoardDAO();
-		  dao.noticeDelete(Integer.parseInt(grbno));
+		  dao.noticeDelete(Integer.parseInt(gnbno));
 		  return "redirect:notice_list.do";
 	  }
 	  
-	  // 예약관리 리스트
 	  @RequestMapping("adminpage/admin_reserve_list.do")
 	  public String admin_reserve_list(HttpServletRequest request,HttpServletResponse response) {
 		  
@@ -168,5 +171,26 @@ public class AdminModel {
 		  return "redirect:../adminpage/admin_reserve_list.do";
 	  }
 	  
-	  
+	  @RequestMapping("adminpage/faq_list.do")
+	  public String admin_faq_list(HttpServletRequest request,HttpServletResponse response) 
+	  {
+		  
+			String page=request.getParameter("page");
+			if(page==null) page="1";
+			int curpage=Integer.parseInt(page);
+			ServiceDAO dao=new ServiceDAO();
+			List<AskVO> list=dao.qnaListData(curpage);
+			int count=dao.qnaRowCount();
+			int totalpage=(int)(Math.ceil(count/10.0));
+			request.setAttribute("list", list);
+			request.setAttribute("count", count);
+			request.setAttribute("curpage", curpage);
+			request.setAttribute("totalpage", totalpage);
+			request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			
+		  request.setAttribute("adminpage_jsp", "../adminpage/faq_list.jsp");
+		  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		  return "../main/main.jsp";
+	  }
+
 }

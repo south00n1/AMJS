@@ -25,7 +25,7 @@
 <!-- 게시판 start -->
 <div class="wrapper row3">
   <main class="container clear">
-  <h2 class="sectiontitle">공지사항 등록</h2>
+  <h2 class="sectiontitle">공지사항 수정</h2>
   <div style="height: 5px"></div>
   <form method="post" action="../adminpage/notice_update_ok.do">
   <table class="table">
@@ -44,7 +44,7 @@
     <tr>
       <th width=15% class="text-right">이름</th>
       <td width=80%>
-        <input type=text name=name size=20 class="input-sm" readonly value="관리자">
+        <input type=text name=name size=20 class="input-sm" readonly value="${vo.name } ">
         <input type=hidden name=no value="${vo.gnbno }">
       </td>
     </tr>
@@ -57,12 +57,12 @@
     <tr>
       <th width=15% class="text-right">내용</th>
       <td width=80%>
-        <textarea rows="10" cols="60" name="content">${vo.content }</textarea>
+        <textarea rows="15" cols="80" name="content">${vo.content }</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="text-center">
-        <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
+        <input type=submit value="수정" class="btn btn-sm btn-danger">
         <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
       </td>
     </tr>

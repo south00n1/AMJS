@@ -39,7 +39,7 @@ public class ReviewBoardModel {
 		  
 		  ////////////////////////////////////////////
 		  int count=dao.reviewboardRowCount();
-		  int totalpage=(int)(Math.ceil(count/20.0));
+		  int totalpage=(int)(Math.ceil(count/10.0));
 		  final int BLOCK=10;
 		  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -64,6 +64,8 @@ public class ReviewBoardModel {
 		  request.setAttribute("main_jsp", "../board/review_insert.jsp");
 		  return "../main/main.jsp";
 	  }
+	  
+	  // 리뷰게시판 게시글 작성시 로그인한 아이디로 이름 받아서 전송되는거 질문하기
 	  @RequestMapping("board/review_insert_ok.do")
 	  public String reviewboard_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -76,12 +78,14 @@ public class ReviewBoardModel {
 		  String display_name=request.getParameter("display_name");
 		  String content=request.getParameter("content");
 		  String pwd=request.getParameter("pwd");
+		  String id=request.getParameter("id");
 		  ReviewBoardVO vo=new ReviewBoardVO();
 		  vo.setName(name);
 		  vo.setSubject(subject);
 		  vo.setDisplay_name(display_name);
 		  vo.setContent(content);
 		  vo.setPwd(pwd);
+		  vo.setId(id);
 		  ReviewBoardDAO dao=new ReviewBoardDAO();
 		  dao.boardInsert(vo); 
 		  return "redirect:review_list.do";

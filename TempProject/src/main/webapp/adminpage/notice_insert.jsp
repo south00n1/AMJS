@@ -44,7 +44,7 @@
     <tr>
       <th width=15% class="text-right">이름</th>
       <td width=80%>
-        <input type=text name=name size=20 class="input-sm" readonly value="관리자">
+        <input type=text name=name size=20 class="input-sm" readonly value="${sessionScope.id }">
       </td>
     </tr>
     <tr>
@@ -56,7 +56,7 @@
     <tr>
       <th width=15% class="text-right">내용</th>
       <td width=80%>
-        <textarea rows="10" cols="60" name="content"></textarea>
+        <textarea rows="15" cols="80" name="content"></textarea>
       </td>
     </tr>
     <tr>

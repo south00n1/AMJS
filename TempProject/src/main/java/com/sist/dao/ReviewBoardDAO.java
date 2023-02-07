@@ -18,12 +18,11 @@ public class ReviewBoardDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,good,noti,num "
-					+"FROM (SELECT no,subject,display_name,name,regdate,hit,good,noti,rownum as num "
-					+"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,good,noti "
+			String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,id,num "
+					+"FROM (SELECT no,subject,display_name,name,regdate,hit,id,rownum as num "
+					+"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,id "
 					+ "FROM god_review_board_3)) "
-					+ "WHERE num BETWEEN ? AND ? "
-					+ "ORDER BY noti,no ASC";
+					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=10;
 			int start=(rowSize*page)-(rowSize-1);
@@ -40,8 +39,7 @@ public class ReviewBoardDAO {
 				vo.setName(rs.getString(4));
 				vo.setDbday(rs.getString(5));
 				vo.setHit(rs.getInt(6));
-				vo.setGood(rs.getInt(7));
-				vo.setNoti(rs.getInt(8));
+				vo.setId(rs.getString(7));
 				list.add(vo);
 			}
 			rs.close();
@@ -88,14 +86,15 @@ public class ReviewBoardDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="INSERT INTO god_review_board_3(no,name,subject,display_name,content,pwd) "
-					+"VALUES(grb_no_seq_3.nextval,?,?,?,?,?)";
+			String sql="INSERT INTO god_review_board_3(no,name,subject,display_name,content,pwd,id) "
+					+"VALUES(grb_no_seq_3.nextval,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getSubject());
 			ps.setString(3, vo.getDisplay_name());
 			ps.setString(4, vo.getContent());
 			ps.setString(5, vo.getPwd());
+			ps.setString(6, vo.getId());
 			ps.executeUpdate();
 		}
 		catch(Exception ex)
@@ -510,13 +509,12 @@ public class ReviewBoardDAO {
 		   try
 		   {
 			   conn=CreateConnection.getConnection();
-			   String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,good,noti,num "
-					     +"FROM (SELECT no,subject,display_name,name,regdate,hit,good,noti,rownum as num "
-					     +"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,good,noti "
+			   String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,id,num "
+					     +"FROM (SELECT no,subject,display_name,name,regdate,hit,id,rownum as num "
+					     +"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,id "
 					     +"FROM god_review_board_3 "
 					     +"WHERE subject LIKE '%'||?||'%')) "
-					     +"WHERE num BETWEEN ? AND ? "
-					     + "ORDER BY noti,no ASC";
+					     +"WHERE num BETWEEN ? AND ?";
 			   ps=conn.prepareStatement(sql);
 			   int rowSize=10;
 			   int start=(rowSize*page)-(rowSize-1);
@@ -534,8 +532,7 @@ public class ReviewBoardDAO {
 					vo.setName(rs.getString(4));
 					vo.setDbday(rs.getString(5));
 					vo.setHit(rs.getInt(6));
-					vo.setGood(rs.getInt(7));
-					vo.setNoti(rs.getInt(8));
+					vo.setId(rs.getString(7));
 					list.add(vo);
 			   }
 			   rs.close();

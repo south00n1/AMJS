@@ -90,7 +90,8 @@ li.mypage_menu::before {
   	    	<span id="reserve_manage"><li class="mypage_menu">예매 관리</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<span id=""><li class="mypage_menu">--</li></span>
+  	    	<li class="mypage_menu">문의관리</li>
+  	    	<li class="mypage_menu_child"><a href="../adminpage/faq_list.do">문의내역 관리</a></li>
   	    </div>
   	    <div class="mypage_li_div">
 	  	    <li class="mypage_menu">--</li>
