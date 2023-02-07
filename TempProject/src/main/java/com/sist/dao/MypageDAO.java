@@ -102,19 +102,27 @@ public class MypageDAO {
  	}
  	
  	// 2-1. 작성 글 마이페이지에서 읽기
- 	public List<ReviewBoardVO> mypageMyPostData(String id) {
+ 	public List<ReviewBoardVO> mypageMyPostData(String id, int page) {
   		List<ReviewBoardVO> list = new ArrayList<ReviewBoardVO>();
   		try {
 			conn = CreateConnection.getConnection();
 			
-			String sql = "SELECT no, name, subject, regdate, hit "
+			String sql = "SELECT no, name, subject, regdate, hit, num "
+					+ "FROM (SELECT no, name, subject, regdate, hit, rownum as num "
+					+ "FROM (SELECT no, name, subject, regdate, hit "
 					+ "FROM god_review_board_3 "
-					+ "WHERE id = ?";
+					+ "WHERE id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
 			
 			ps = conn.prepareStatement(sql);
+			int rowSize = 10;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
 			ps.setString(1, id);
-			ResultSet rs = ps.executeQuery();
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			
+			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ReviewBoardVO vo = new ReviewBoardVO();
 				vo.setno(rs.getInt(1));
@@ -132,7 +140,27 @@ public class MypageDAO {
 			}
   			return list;
 	  	}
- 	// 2-2. 작성 글 마이페이지에서 삭제
+ 	// 2-2 작성 글 총 페이지
+  	public int mypageMyPostListTotalPage(String id) {
+  	      int total=0;
+  	      try {
+  	         conn=CreateConnection.getConnection();
+  	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_review_board_3 "
+  	         		+ "WHERE id = ?";
+  	         ps=conn.prepareStatement(sql);
+  	         ps.setString(1, id);
+  	         ResultSet rs=ps.executeQuery();
+  	         rs.next();
+  	         total=rs.getInt(1);
+  	         rs.close();
+  	      } catch(Exception ex) {
+  	         ex.printStackTrace();
+  	      } finally {
+  	         CreateConnection.disConnection(conn, ps);
+  	      }
+  	      return total;
+  	   }
+ 	// 2-3. 작성 글 마이페이지에서 삭제
  	public void myPostDelete(int no) {
  		try {
  			conn = CreateConnection.getConnection();
@@ -149,18 +177,25 @@ public class MypageDAO {
  	}
  	
  	// 3-1 작성 댓글 마이페이지에서 읽기
- 	public List<ReviewBoardReplyVO> mypageMyReplyData(String id) {
+ 	public List<ReviewBoardReplyVO> mypageMyReplyData(String id, int page) {
   		List<ReviewBoardReplyVO> list = new ArrayList<ReviewBoardReplyVO>();
   		try {
 			conn = CreateConnection.getConnection();
 			
-			String sql = "SELECT rno, br.name, msg, br.regdate, subject "
+			String sql = "SELECT rno, name, msg, regdate, subject, num "
+					+ "FROM(SELECT rno, name, msg, regdate, subject, rownum as num "
+					+ "FROM(SELECT /*+ INDEX_DESC(god_board_reply_3 gbr_gbrno_pk_3)*/rno, br.name, msg, br.regdate, subject "
 					+ "FROM god_board_reply_3 br, god_review_board_3 rb "
-					+ "WHERE bno = no "
-					+ "AND br.id = ? ";
+					+ "WHERE bno = no and br.id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
 	
 			ps = conn.prepareStatement(sql);
+			int rowSize = 10;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
 			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -180,7 +215,27 @@ public class MypageDAO {
 			}
   			return list;
 	  	}
- 	// 3-2 작성 댓글 마이페이지에서 삭제
+ 	// 3-2 작성 댓글 목록 총페이지
+  	public int mypageMyReplyListTotalPage(String id) {
+  	      int total=0;
+  	      try {
+  	         conn=CreateConnection.getConnection();
+  	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_board_reply_3 "
+  	         		+ "WHERE id = ?";
+  	         ps=conn.prepareStatement(sql);
+  	         ps.setString(1, id);
+  	         ResultSet rs=ps.executeQuery();
+  	         rs.next();
+  	         total=rs.getInt(1);
+  	         rs.close();
+  	      } catch(Exception ex) {
+  	         ex.printStackTrace();
+  	      } finally {
+  	         CreateConnection.disConnection(conn, ps);
+  	      }
+  	      return total;
+  	   }
+ 	// 3-3 작성 댓글 마이페이지에서 삭제
  	public void myReplyDelete(int rno) {
  		try {
  			conn = CreateConnection.getConnection();

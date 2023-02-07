@@ -32,11 +32,27 @@ public class MyPageModel {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
 		// dao연결
 		MypageDAO dao = new MypageDAO();
-		List<ReviewBoardVO> list = dao.mypageMyPostData(id);
+		List<ReviewBoardVO> list = dao.mypageMyPostData(id, curpage);
+		int totalpage = dao.mypageMyPostListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
 		
 		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		return "../mypage/mypage_mypost_list.jsp";
 	}
 	
@@ -53,11 +69,27 @@ public class MyPageModel {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
 		// dao연결
 		MypageDAO dao = new MypageDAO();
-		List<ReviewBoardReplyVO> list = dao.mypageMyReplyData(id);
+		List<ReviewBoardReplyVO> list = dao.mypageMyReplyData(id,curpage);
 		
+		int totalpage = dao.mypageMyReplyListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
 		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		return "../mypage/mypage_myreply_list.jsp";
 	}
 	@RequestMapping("mypage/mypage_myreply_delete.do")
