@@ -249,21 +249,19 @@ $(function(){
 		<table class="table">
 		  <tr>
 		  	<th width=15% class="text-center">문의유형</th>
-		   	<th width=60% class="text-center">제목</th>
-		   	<th width=15% class="text-center">답변상태</th>
-		   	<th width=10% class="text-center">
-		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
-		   	</th>
+		   	<th width=65% class="text-center">제목</th>
+		   	<th width=20% class="text-center">답변상태</th>
+		   	<th width=5% class="text-center"></th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }">
 		   <c:if test="${vo.id==sessionScope.id}"> <!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
 			<c:if test="${vo.group_tab==0 }">
 			  <tr>
 			  	<td width=15% class="text-center">${vo.type }</td>
-			  	<td width=35% class=qsub>
+			  	<td width=65% class=qsub>
 			  		<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
 			  	</td>
-			  	<td width=10% class="text-center">
+			  	<td width=20% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
 			  	  	<span style="color: blue">${vo.ans_state }</span>
 			  	  </c:if>
@@ -271,7 +269,7 @@ $(function(){
 			  	  	<span style="color: gray">${vo.ans_state }</span>
 			  	  </c:if>
 			  	</td>
-			   	<td width=10% class="text-center"></td>
+		   		<td width=5% class="text-center"></td>
 			  </tr>
 			</c:if>
 		   </c:if>

@@ -204,7 +204,7 @@ $(function(){
 				  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 						<td colspan=2></td>
 						<td>
-							<pre style="white-space: pre-wrap;background-color: white;border: none;overflow-y: auto">${vo.content }</pre>
+							<pre style="white-space: pre-wrap;background-color: white;border: none;height: 200px;overflow-y: auto">${vo.content }</pre>
 						</td>
 						<td>
 							<c:if test="${sessionScope.admin=='y' }">

@@ -89,7 +89,7 @@ $(function(){
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 	  	    <c:if test="${vo.id==sessionScope.id || vo.id=='admin' }">
 		  	  <tr>
-		  	  	<td width=5% class="text-center">${count-s.index-((curpage-1)*10) }</td>
+		  	  	<td width=5% class="text-center">${count-s.index }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=35%>
 		  	  	  <c:if test="${vo.group_tab>0 }">

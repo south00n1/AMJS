@@ -73,12 +73,14 @@ public class ServiceDAO {
 		return list;
 	}
 	//QNA 목록 번호
-	public int qnaRowCount(){
+	public int qnaRowCount(String id){
 		int count=0;
 		try {
 			conn=CreateConnection.getConnection();
-			String sql="SELECT COUNT(*) FROM god_ask_3";
+			String sql="SELECT COUNT(*) FROM god_ask_3 "
+					+ "WHERE id=?";
 			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);
@@ -167,7 +169,6 @@ public class ServiceDAO {
 				list.add(vo);
 			}
 			rs.close();
-			
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -239,6 +240,13 @@ public class ServiceDAO {
 	     		ps.setInt(7, rvo.getGroup_tab()+1);
 	     		ps.setInt(8, no);
 	     		ps.executeUpdate();
+	     		
+	     		sql="UPDATE god_ask_3 "
+						+ "SET depth=depth+1, ans_state='답변완료' "
+						+ "WHERE gano=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
 	     	} else {
 	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
 	     				+ "group_id,group_step,group_tab,root,depth) "
@@ -254,14 +262,14 @@ public class ServiceDAO {
 	     		ps.setInt(8, rvo.getGroup_tab()+1);
 	     		ps.setInt(9, no);
 	     		ps.executeUpdate();
+	     		
+	     		sql="UPDATE god_ask_3 "
+	     				+ "SET depth=depth+1 "
+	     				+ "WHERE gano=?";
+	     		ps=conn.prepareStatement(sql);
+	     		ps.setInt(1, no);
+	     		ps.executeUpdate();
 	     	}
-			
-			sql="UPDATE god_ask_3 "
-					+ "SET depth=depth+1, ans_state='답변완료' "
-					+ "WHERE gano=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
-			ps.executeUpdate();
 			
 			conn.commit();
 		} catch(Exception ex) {
