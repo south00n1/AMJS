@@ -18,7 +18,19 @@ public class FaqModel {
 			request.setCharacterEncoding("UTF-8");
 	    } catch (Exception e) {}
 	    String ss=request.getParameter("ss");
+	    if(ss==null) ss=" ";
+	    String page=request.getParameter("page");
+	    if(page==null) page="1";	
+	    int curpage=Integer.parseInt(page);
+	    FaqDAO dao=new FaqDAO();
+	    List<FaqVO> list=dao.faqFindData(ss, curpage);
+	    int count=dao.faqFindRowCount(ss);
+	    int totalpage=(int)(Math.ceil(count/10.0));
 	    request.setAttribute("ss", ss);
+	    request.setAttribute("list", list);
+	    request.setAttribute("count", count);
+	    request.setAttribute("curpage", curpage);
+	    request.setAttribute("totalpage", totalpage);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
 		return "../main/main.jsp";
 	}
