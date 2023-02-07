@@ -17,6 +17,7 @@ import com.sist.vo.AskVO;
 import com.sist.vo.JjimVO;
 import com.sist.vo.LikeVO;
 import com.sist.vo.ReserveVO;
+import com.sist.vo.ReviewBoardLikeVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
 
@@ -252,6 +253,45 @@ public class MyPageModel {
 		
 		dao.likeDelete(Integer.parseInt(lno));
 		return "redirect:../mypage/mypage_like_list.do";
+	}
+	@RequestMapping("mypage/mypage_gong_list.do")
+	public String mypage_gong_list(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
+		MypageDAO dao = new MypageDAO();
+		List<ReviewBoardLikeVO> list = dao.mypageGongData(id, curpage);
+		int totalpage = dao.mypageGoodListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		return "../mypage/mypage_gong_list.jsp";
+	}
+	
+	@RequestMapping("mypage/mypage_gong_delete.do")
+	public String mypage_gong_delete(HttpServletRequest request, HttpServletResponse response) {
+		String lno = request.getParameter("lno");
+		MypageDAO dao = new MypageDAO();
+		
+		dao.gongDelete(Integer.parseInt(lno));
+		return "redirect:../mypage/mypage_gong_list.do";
 	}
 	
 	@RequestMapping("mypage/join_delete.do")
