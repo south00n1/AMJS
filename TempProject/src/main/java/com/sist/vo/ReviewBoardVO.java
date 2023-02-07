@@ -3,21 +3,27 @@ package com.sist.vo;
 import java.sql.Date;
 
 public class ReviewBoardVO {
-	private int no,hit,good,noti;
+	private int no,hit,count,noti;
 	private String name,subject,display_name,content,type,id,pwd,dbday;
 	private Date regdate;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getNoti() {
 		return noti;
 	}
 	public void setNoti(int noti) {
 		this.noti = noti;
-	}
-	public int getGood() {
-		return good;
-	}
-	public void setGood(int good) {
-		this.good = good;
 	}
 	public String getPwd() {
 		return pwd;

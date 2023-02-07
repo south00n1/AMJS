@@ -1,6 +1,7 @@
 package com.sist.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ReviewBoardDAO;
+import com.sist.dao.ReviewBoardLikeDAO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
 
@@ -99,7 +101,21 @@ public class ReviewBoardModel {
 		  ReviewBoardVO vo=dao.boardDetailData(Integer.parseInt(no));
 		  request.setAttribute("vo", vo);
 		  request.setAttribute("main_jsp", "../board/review_detail.jsp"); 
+		 
+		  List<ReviewBoardVO> rlist=dao.boardListData(Integer.parseInt(no));
+		  ReviewBoardLikeDAO rdao=new ReviewBoardLikeDAO();
+		  for(ReviewBoardVO rvo:rlist)
+		  {
+			  rvo.setCount(rdao.ReviewBoardLikeCount(rvo.getno()));
+		  }
 		  List<ReviewBoardReplyVO> list=dao.replyListData(Integer.parseInt(no));
+		  request.setAttribute("rlist", rlist);
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  int mc=rdao.myLikeCount(Integer.parseInt(no), id);
+		  int tc=rdao.ReviewBoardLikeCount(Integer.parseInt(no));
+		  request.setAttribute("like_count", mc);
+		  request.setAttribute("like_total", tc);
 		  request.setAttribute("list", list);
 		  request.setAttribute("count", list.size());
 		  return "../main/main.jsp";

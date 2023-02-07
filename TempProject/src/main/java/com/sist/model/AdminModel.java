@@ -176,11 +176,12 @@ public class AdminModel {
 	  {
 		  
 			String page=request.getParameter("page");
+			String id=request.getParameter("id");
 			if(page==null) page="1";
 			int curpage=Integer.parseInt(page);
 			ServiceDAO dao=new ServiceDAO();
 			List<AskVO> list=dao.qnaListData(curpage);
-			int count=dao.qnaRowCount();
+			int count=dao.qnaRowCount(id);
 			int totalpage=(int)(Math.ceil(count/10.0));
 			request.setAttribute("list", list);
 			request.setAttribute("count", count);

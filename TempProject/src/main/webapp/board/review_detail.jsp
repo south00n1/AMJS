@@ -121,6 +121,30 @@ $(function(){
 		}
 	})
 })
+
+function like_func(){
+     var frm_read = $('#frm_read');
+     var reviewboardno = $('#reviewboardno', frm_read).val();
+     //var mno = $('#mno', frm_read).val();
+     //console.log("boardno, mno : " + boardno +","+ mno);
+     
+     $.ajax({
+       url: "../board/like_insert.do",
+       type: "GET",
+       cache: false,
+       dataType: "json",
+       data: 'reviewboardno=' +reviewboardno,
+       success: function(data) {
+         var msg = '';
+         var like_img = '';
+         msg += data.msg;
+    
+       }
+     });
+   }
+
+
+
 </script>
     
 </head>
@@ -150,7 +174,7 @@ $(function(){
    <tr>
      <th width=5% class="text-center"><img src="../board/image/profile.png" style="height: 40px; width: 40px;"></th>
      <td width=75% class="text-left">${vo.name }<br>${vo.dbday } &nbsp; 조회 ${vo.hit }</td>
-     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(${count}) &nbsp;<i class="fa-regular fa-heart fa-lg"></i>공감</th>
+     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(${count}) &nbsp;<i class="fa-regular fa-heart fa-lg"></i>공감(${like_total })</th>
    </tr>
    <tr>
 <td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }</pre></td>
@@ -161,12 +185,12 @@ $(function(){
    <tr>
      <td class="text-right" colspan="4">
      
-      <c:if test="${like_count==0 }">
-      <a href="../like/like_insert.do?no=${vo.no }" class="btn btn-xs btn-info">좋아요(${like_total })</a>
-      </c:if>
-      <c:if test="${like_count!=0 }">
-      <span class="btn btn-xs btn-default">공감(${like_total })</span>
-      </c:if>
+           <c:if test="${like_count==0 }">
+            <a href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: #F55066; color: #fff; border-radius: 5px;">공감(${like_total })</a>
+         </c:if>
+         <c:if test="${like_count!=0 }">
+            <span href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">공감(${like_total })</span>
+         </c:if>
      
        <a href="../board/review_update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
        <span class="btn btn-xs btn-warning" id="delete">삭제</span>
@@ -236,14 +260,6 @@ $(function(){
             <%-- 수정 --%>
             <tr id="u${rvo.rno }" class="rupdate" style="display:none">
              <td colspan="2">
-               <c:if test="${sessionScope.id!=null }">
-               <c:if test="${like_count==0 }">
-               <a href="../like/like_insert.do?no=${vo.no }" class="btn btn-xs btn-info">좋아요(${like_total })</a>
-              </c:if>
-              <c:if test="${like_count!=0 }">
-               <span class="btn btn-xs btn-default">좋아요(${like_total })</span>
-              </c:if>
-              </c:if>
               
                <form method="post" action="../board/reply_update.do">
 		         <input type=hidden name="bno" value="${vo.no }">
