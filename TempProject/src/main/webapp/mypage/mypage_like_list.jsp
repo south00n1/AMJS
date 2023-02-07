@@ -167,7 +167,7 @@ $(function(){
 					<td width="15%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}">${vo.loc }</a></td>
 					<td width="20%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.no}">${vo.area }</a></td>
 					<td width="10%" class="text-center">
-						<span data-lno="${vo.lno }" class="like_delBtn" style="background-color: red;">삭제</span>
+						<span data-lno="${vo.lno }" class="like_delBtn" style="background-color: gray;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>

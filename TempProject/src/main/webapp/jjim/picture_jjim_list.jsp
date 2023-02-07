@@ -155,7 +155,7 @@ $(function(){
 					<td width="15%" class="text-center origin"><a href="../picture/before_detail.do?gpno=${vo.no}">${vo.name }</a></td>
 					<td width="20%" class="text-center origin"><a href="../picture/before_detail.do?gpno=${vo.no}">${vo.code }</a></td>
 					<td width="10%" class="text-center origin">
-					<span data-no="${vo.jno }" class="jjim_delBtn" style="background-color: red;">삭제</span>
+					<span data-no="${vo.jno }" class="jjim_delBtn" style="background-color: gray;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>
