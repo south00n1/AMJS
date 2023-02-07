@@ -15,18 +15,32 @@ public class MypageDAO {
 	private PreparedStatement ps;
 	
 	// 1-1. 예매 정보 마이페이지에서 읽기
-  	public List<ReserveVO> mypageReserveData(String id) {
+  	public List<ReserveVO> mypageReserveData(String id, int page) {
   		List<ReserveVO> list = new ArrayList<ReserveVO>();
   		try {
 			conn = CreateConnection.getConnection();
-			
-			String sql = "SELECT gerno, ger.geno, rdate, rtime, inwon, ok, id, title, poster, loc "
+			/*
+			 * String sql = "select jno, no, title, image, name, code, num "
+					+ "from (select jno, no, title, image, name, code, rownum as num "
+					+ "from (select /+ INDEX_DESC(god_jjim_3 gj_jno_pk)/jno, no, title, image, name, code "
+					+ "from god_jjim_3, god_picture_3 "
+					+ "where no = gpno and id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			 */
+			String sql = "SELECT gerno, geno, rdate, rtime, inwon, ok, id, title, poster, loc, num "
+					+ "FROM (SELECT gerno, geno, rdate, rtime, inwon, ok, id, title, poster, loc, rownum as num "
+					+ "FROM (SELECT /*+ INDEX_DESC(god_exhibition_reserve_3 ger_gerno_pk_3)*/gerno, ger.geno, rdate, rtime, inwon, ok, id, title, poster, loc "
 					+ "FROM god_exhibition_reserve_3 ger, god_exhibition_3 ge "
-					+ "WHERE ger.geno = ge.geno "
-					+ "AND id = ? ";
+					+ "WHERE ger.geno = ge.geno AND id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
 			
 			ps = conn.prepareStatement(sql);
+			int rowSize = 6;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
 			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ReserveVO vo = new ReserveVO();
@@ -49,9 +63,29 @@ public class MypageDAO {
 				CreateConnection.disConnection(conn, ps);
 			}
 	  		return list;
-	  	} 
+	  	}
+  	// 1-2 예매 목록 총페이지
+ 	public int mypageReserveListTotalPage(String id) {
+ 	      int total=0;
+ 	      try {
+ 	         conn=CreateConnection.getConnection();
+ 	         String sql="SELECT CEIL(COUNT(*)/6.0) FROM god_exhibition_reserve_3 "
+ 	         		+ "WHERE id = ?";
+ 	         ps=conn.prepareStatement(sql);
+ 	         ps.setString(1, id);
+ 	         ResultSet rs=ps.executeQuery();
+ 	         rs.next();
+ 	         total=rs.getInt(1);
+ 	         rs.close();
+ 	      } catch(Exception ex) {
+ 	         ex.printStackTrace();
+ 	      } finally {
+ 	         CreateConnection.disConnection(conn, ps);
+ 	      }
+ 	      return total;
+ 	   }
   	
-  	// 1-2. 예매 목록 삭제
+  	// 1-3. 예매 목록 삭제
  	public void reserveDelete(int gerno) {
  		try {
  			conn = CreateConnection.getConnection();

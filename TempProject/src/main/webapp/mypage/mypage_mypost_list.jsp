@@ -47,6 +47,11 @@ $(function(){
 	font-size: 15px;
 	padding: 5px 7px;;
 }
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
 </style>
 </head>
 <body>
@@ -54,7 +59,7 @@ $(function(){
 			<h4 class="mypage_home_subtitle">내가 쓴 게시글</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
-			<table class="table">
+			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="10%" class="text-center">no</th>
 					<th width="40%" class="text-center">제목</th>
@@ -65,11 +70,11 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center" >${vo.no }</td>
-					<td width="40%" class="text-center">${vo.subject }</td>
-					<td width="15%" class="text-center">${vo.name }</td>
-					<td width="15%" class="text-center">${vo.regdate }</td>
-					<td width="10%" class="text-center">${vo.hit }</td>
+					<td width="10%" class="text-center origin" >${vo.no }</td>
+					<td width="40%" class="text-center origin">${vo.subject }</td>
+					<td width="15%" class="text-center origin">${vo.name }</td>
+					<td width="15%" class="text-center origin">${vo.regdate }</td>
+					<td width="10%" class="text-center origin">${vo.hit }</td>
 					<td width="10%" class="text-center">
 						<span data-no="${vo.no }" class="rst post_delBtn" style="background-color: gray;">삭제</span>
 					</td>

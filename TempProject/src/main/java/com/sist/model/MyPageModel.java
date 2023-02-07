@@ -112,11 +112,28 @@ public class MyPageModel {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		// dao연결
+		
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
 		MypageDAO dao = new MypageDAO();
-		List<ReserveVO> list = dao.mypageReserveData(id);
+		List<ReserveVO> list = dao.mypageReserveData(id, curpage);
+		int totalpage = dao.mypageReserveListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
 		
 		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		return "../mypage/mypage_reserve_list.jsp";
 	}
 	@RequestMapping("mypage/mypage_reserve_delete.do")

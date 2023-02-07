@@ -165,13 +165,13 @@ div.pic {
 	
 	    <ul id="page_ul">
 	    	<c:if test="${startPage>1 }">
-	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${startPage-1 }">&lt;</a></li>
+	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${startPage-1 }" style="font-size: 10px; width: 20px">◀</a></li>
 	        </c:if>
 	        <c:forEach var="i" begin="${startPage }" end="${endPage }">
 	          <li class="page_li" ${i==curpage?"class=active":"" }><a class="page_a" href="../picture/list.do?page=${i }">${i }</a></li>          
 	        </c:forEach>    
 	        <c:if test="${endPage<totalpage }">
-	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${endPage+1 }">&gt;</a></li>
+	          <li class="page_li"><a class="page_a" href="../picture/list.do?page=${endPage+1 }" style="font-size: 10px; width: 20px">▶</a></li>
 	        </c:if>
 	    </ul>
 	</div>

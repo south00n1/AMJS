@@ -51,7 +51,7 @@
       </tr>
       <tr>
     	<td colspan=2 class="text-center rBtn" style="display: none">
-    	  <form method="post" action="../reserve/pay.do">
+    	  <form method="post" action="../reserve/reserve_ok.do">
     		<input type=hidden name="reserveno" id="reserveno" value="${vo.geno }">
     		<input type=hidden name="reservedate" id="reservedate">
     		<input type=hidden name="reservetime" id="reservetime">

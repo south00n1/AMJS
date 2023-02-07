@@ -82,6 +82,11 @@ $(function(){
 	font-size: 15px;
 	padding: 5px 7px;;
 }
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
 
 #page_ul {
 	list-style: none;
@@ -126,7 +131,7 @@ $(function(){
 			<h4 class="mypage_home_subtitle">내가 찜한 그림</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
-			<table class="table">
+			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="40%" class="text-center">제목</th>
 					<th width="15%" class="text-center">그림</th>
@@ -136,11 +141,11 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="40%" class="text-center">${vo.title}</td>
-					<td width="15%" class="text-center"><img src="${vo.image}" style="width:50px; height: 50px"></td>
-					<td width="15%" class="text-center">${vo.name }</td>
-					<td width="20%" class="text-center">${vo.code }</td>
-					<td width="10%" class="text-center">
+					<td width="40%" class="text-center origin">${vo.title}</td>
+					<td width="15%" class="text-center origin"><img src="${vo.image}" style="width:50px; height: 50px"></td>
+					<td width="15%" class="text-center origin">${vo.name }</td>
+					<td width="20%" class="text-center origin">${vo.code }</td>
+					<td width="10%" class="text-center origin">
 					<span data-no="${vo.jno }" class="jjim_delBtn" style="background-color: red;">삭제</span>
 					</td>
 				</tr>
@@ -149,13 +154,13 @@ $(function(){
 		</div>
 			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		    	<c:if test="${startPage>1 }">
-		          <li class="page_li"><span class="jjim_page_pre page_a" data-page="${startPage-1 }">&lt;</span></li>
+		          <li class="page_li"><span class="jjim_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
 		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="jjim_page page_a" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		        <c:if test="${endPage<totalpage }">
-		          <li class="page_li"><span class="jjim_page_next page_a" data-page="${endPage+1 }">&gt;</span></li>
+		          <li class="page_li"><span class="jjim_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
 		        </c:if>
 		    </ul>
 </body>

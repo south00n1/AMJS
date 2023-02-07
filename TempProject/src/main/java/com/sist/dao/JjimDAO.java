@@ -107,7 +107,7 @@ public class JjimDAO {
 	      int total=0;
 	      try {
 	         conn=CreateConnection.getConnection();
-	         String sql="SELECT CEIL(COUNT(*)/5.0) FROM god_jjim_3 "
+	         String sql="SELECT CEIL(COUNT(*)/6.0) FROM god_jjim_3 "
 	         		+ "WHERE id = ?";
 	         ps=conn.prepareStatement(sql);
 	         ps.setString(1, id);

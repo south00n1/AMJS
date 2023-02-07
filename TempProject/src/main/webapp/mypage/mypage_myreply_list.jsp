@@ -71,8 +71,8 @@ $(function(){
 				<tr style="vertical-align: middle;">
 					<td width="25%" class="text-center origin">${vo.subject }</td>
 					<td width="35%" class="text-center origin">${vo.msg }</td>
-					<td width="15%" class="text-center">${vo.name }</td>
-					<td width="15%" class="text-center">${vo.regdate }</td>
+					<td width="15%" class="text-center origin">${vo.name }</td>
+					<td width="15%" class="text-center origin">${vo.regdate }</td>
 					<td width="10%" class="text-center">
 						<span data-rno="${vo.rno }" class="rst reply_delBtn" style="background-color: gray;">삭제</span>
 					</td>
