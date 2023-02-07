@@ -1,20 +1,20 @@
 package com.sist.vo;
 
 public class ExhibitionVO {
-	private int geno,good,hit, rownum;
-	private String poster,title,title2,kind,period,loc,loc2,area,area2,item,host,url,price,time,hashtag,content;
+	private int geno,good,count, rownum;
+	private String poster,title,title2,kind,period,loc,loc2,area,area2,item,host,url,price,time,hashtag,content,startday,endday;
 	
-	public int getHit() {
-		return hit;
+	public String getStartday() {
+		return startday;
 	}
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setStartday(String startday) {
+		this.startday = startday;
 	}
-	public int getRownum() {
-		return rownum;
+	public String getEndday() {
+		return endday;
 	}
-	public void setRownum(int rownum) {
-		this.rownum = rownum;
+	public void setEndday(String endday) {
+		this.endday = endday;
 	}
 	public int getGeno() {
 		return geno;
@@ -27,6 +27,18 @@ public class ExhibitionVO {
 	}
 	public void setGood(int good) {
 		this.good = good;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	public String getPoster() {
 		return poster;
@@ -124,5 +136,7 @@ public class ExhibitionVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 }
+	
+	
+	
