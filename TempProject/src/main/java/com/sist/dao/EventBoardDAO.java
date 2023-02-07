@@ -25,8 +25,8 @@ public class EventBoardDAO {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT gebno,name,subject,poster,TO_CHAR(regdate,'YYYY-MM-DD'),progress_status,event_date,hit,num "
 					+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit,rownum as num "
-					+"FROM (SELECT /*+ INDEX_DESC(god_event_board_3 geb_gebno_pk_3)*/ gebno,name,subject,poster,regdate,progress_status,event_date,hit "
-					+ "FROM god_event_board_3)) "
+					+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit "
+					+ "FROM god_event_board_3 ORDER BY gebno ASC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=12;
@@ -160,15 +160,15 @@ public class EventBoardDAO {
 			   conn=CreateConnection.getConnection();
 				String sql="SELECT gebno,name,subject,poster,TO_CHAR(regdate,'YYYY-MM-DD'),progress_status,event_date,hit,num "
 						+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit,rownum as num "
-						+"FROM (SELECT /*+ INDEX_DESC(god_event_board_3 geb_gebno_pk_3)*/ gebno,name,subject,poster,regdate,progress_status,event_date,hit "
+						+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit "
 						+"FROM god_event_board_3 "
-					    +"WHERE subject LIKE '%'||?||'%')) "
+					    +"WHERE subject LIKE '%'||?||'%' ORDER BY gebno ASC)) "
 						+"WHERE num BETWEEN ? AND ?";
 
 			   // 인라인뷰 => Top-N만 가능 
 			   // 인기순위 5개 
 			   ps=conn.prepareStatement(sql);
-			   int rowSize=15;
+			   int rowSize=12;
 			   int start=(rowSize*page)-(rowSize-1);
 			   int end=rowSize*page;
 			   ps.setString(1, ss);

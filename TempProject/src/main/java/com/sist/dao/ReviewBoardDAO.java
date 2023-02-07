@@ -20,8 +20,8 @@ public class ReviewBoardDAO {
 			conn=CreateConnection.getConnection();
 			String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,id,num "
 					+"FROM (SELECT no,subject,display_name,name,regdate,hit,id,rownum as num "
-					+"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,id "
-					+ "FROM god_review_board_3)) "
+					+"FROM (SELECT no,subject,display_name,name,regdate,hit,id "
+					+ "FROM god_review_board_3 ORDER BY no DESC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=10;
@@ -511,9 +511,9 @@ public class ReviewBoardDAO {
 			   conn=CreateConnection.getConnection();
 			   String sql="SELECT no,subject,display_name,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,id,num "
 					     +"FROM (SELECT no,subject,display_name,name,regdate,hit,id,rownum as num "
-					     +"FROM (SELECT /*+ INDEX_DESC(god_review_board_3 grb_no_pk_3)*/ no,subject,display_name,name,regdate,hit,id "
+					     +"FROM (SELECT no,subject,display_name,name,regdate,hit,id "
 					     +"FROM god_review_board_3 "
-					     +"WHERE subject LIKE '%'||?||'%')) "
+					     +"WHERE subject LIKE '%'||?||'%' ORDER BY no DESC)) "
 					     +"WHERE num BETWEEN ? AND ?";
 			   ps=conn.prepareStatement(sql);
 			   int rowSize=10;
