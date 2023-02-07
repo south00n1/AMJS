@@ -13,6 +13,7 @@ import com.sist.dao.JjimDAO;
 import com.sist.dao.MemberDAO;
 import com.sist.dao.MypageDAO;
 import com.sist.dao.ReviewBoardDAO;
+import com.sist.vo.AskVO;
 import com.sist.vo.JjimVO;
 import com.sist.vo.ReserveVO;
 import com.sist.vo.ReviewBoardReplyVO;
@@ -101,6 +102,45 @@ public class MyPageModel {
 		return "redirect:../mypage/mypage_myreply_list.do";
 
 	}
+	
+	@RequestMapping("mypage/mypage_myqna_list.do")
+	public String mypage_myqna_list(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		// dao연결
+		MypageDAO dao = new MypageDAO();
+		List<AskVO> list = dao.mypageMyqnaData(id,curpage);
+		int totalpage = dao.mypageMyqndListTotalPage(id);
+		
+		final int BLOCK = 5;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+			 endPage = totalpage;
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		return "../mypage/mypage_qna_list.jsp";
+	}  
+	@RequestMapping("mypage/mypage_myqna_delete.do")
+	public String mypage_myqna_list_delete(HttpServletRequest request, HttpServletResponse response) {
+		
+		String gano = request.getParameter("gano");
+		MypageDAO dao = new MypageDAO();
+		dao.myqnaDelete(Integer.parseInt(gano));
+		return "redirect:../mypage/mypage_myqna_list.do";
+
+	}
+		
 	
 	@RequestMapping("mypage/jjim_list.do")
 	public String mypage_jjim(HttpServletRequest request, HttpServletResponse response) {

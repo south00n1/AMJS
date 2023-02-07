@@ -23,7 +23,7 @@
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">Home</h4>
+			<h4 class="mypage_home_subtitle">${sessionScope.name }님의 마이페이지입니다.</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table">

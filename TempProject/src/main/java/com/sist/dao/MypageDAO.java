@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sist.vo.AskVO;
 import com.sist.vo.ReserveVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
@@ -243,6 +244,82 @@ public class MypageDAO {
  					+ "WHERE rno = ?";
  			ps = conn.prepareStatement(sql);
  			ps.setInt(1, rno);
+ 			ps.executeUpdate();
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			CreateConnection.disConnection(conn, ps);
+ 		}
+ 	}
+ 	
+ 	// 4-1 내가 쓴 문의글 마이페이지에서 읽기
+ 	public List<AskVO> mypageMyqnaData(String id, int page) {
+  		List<AskVO> list = new ArrayList<AskVO>();
+  		try {
+			conn = CreateConnection.getConnection();
+			
+			String sql = "SELECT gano, subject, type, content, regdate, ans_state, num "
+					+ "FROM (SELECT gano, subject, type, content, regdate, ans_state, rownum as num "
+					+ "FROM (SELECT gano, subject, type, content, regdate, ans_state "
+					+ "from god_ask_3 "
+					+ "WHERE id = ?)) "
+					+ "WHERE num BETWEEN ? and ?";
+			
+			ps = conn.prepareStatement(sql);
+			int rowSize = 10;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				AskVO vo = new AskVO();
+				vo.setGano(rs.getInt(1));
+				vo.setSubject(rs.getString(2));
+				vo.setType(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setRegdate(rs.getDate(5));
+				vo.setAns_state(rs.getString(6));
+				list.add(vo);
+				}
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+  			return list;
+	  	}
+ 	// 4-2 내가 쓴 문의글 총페이지
+ 	public int mypageMyqndListTotalPage(String id) {
+	      int total=0;
+	      try {
+	         conn=CreateConnection.getConnection();
+	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_ask_3 "
+	         		+ "WHERE id = ?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, id);
+	         ResultSet rs=ps.executeQuery();
+	         rs.next();
+	         total=rs.getInt(1);
+	         rs.close();
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         CreateConnection.disConnection(conn, ps);
+	      }
+	      return total;
+	   }
+ 	
+ 	public void myqnaDelete(int gano) {
+ 		try {
+ 			conn = CreateConnection.getConnection();
+ 			String sql = "DELETE FROM god_ask_3 "
+ 					+ "WHERE gano = ?";
+ 			ps = conn.prepareStatement(sql);
+ 			ps.setInt(1, gano);
  			ps.executeUpdate();
  		} catch (Exception e) {
  			e.printStackTrace();

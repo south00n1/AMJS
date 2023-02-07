@@ -63,6 +63,16 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#myqna_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_myqna_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -131,6 +141,7 @@ li.mypage_menu::before {
 	  	    <li class="mypage_menu">내 활동</li>
 	  	    <span id ="mypost_list"><li class="mypage_menu_child">내가 쓴 게시글</li></span>
 	  	    <span id ="myreply_list"><li class="mypage_menu_child">내가 쓴 댓글</li></span>
+	  	    <span id ="myqna_list"><li class="mypage_menu_child">내가 쓴 문의</li></span>
   	    </div>
   	    <div class="mypage_li_div">
   	    	<span id="reserve_list"><li class="mypage_menu">예매 목록</li></span>
