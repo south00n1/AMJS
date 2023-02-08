@@ -22,12 +22,21 @@ $(function(){
 	})
 })
 </script>
+<style type="text/css">
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 <body>
     
 	<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="../main/main.do" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary">Go Out Display</h2>
+        <img src="../main/image/logo.jpg">
+            <!--  <h2 class="m-0 text-primary">Go Out Display</h2>-->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
