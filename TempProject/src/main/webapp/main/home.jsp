@@ -7,6 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.maing-page{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 <body>
 	
@@ -43,7 +55,16 @@
 				type="search" id="search" placeholder="Search..." />
 		</div>
 	</div>
-
+	
+	<div class="wrap">
+   <div class="search">
+      <input type="search" id="search" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+	
 
 	<!-- 일반전시회 카테고리 -->
 	<div class="container-xxl py-5">

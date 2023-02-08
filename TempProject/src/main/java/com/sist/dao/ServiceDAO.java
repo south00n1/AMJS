@@ -108,26 +108,6 @@ public class ServiceDAO {
 		}
 		return list;
 	}
-	//QNA 목록 번호
-	public int qnaRowCount(String id){
-		int count=0;
-		try {
-			conn=CreateConnection.getConnection();
-			String sql="SELECT COUNT(*) FROM god_ask_3 "
-					+ "WHERE id=?";
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			count=rs.getInt(1);
-			rs.close();
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			CreateConnection.disConnection(conn, ps);
-		}
-		return count;
-	}
 	//QNA 상세 출력
 	public AskVO qnaDetailData(int no, int type) {
 		AskVO vo=new AskVO();

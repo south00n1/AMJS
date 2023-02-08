@@ -39,6 +39,12 @@
 	clear: both;
 	padding-top: 15px;
 }
+    * {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -235,13 +241,14 @@ $(function(){
 	</div>
 	
 <!-- qna -->
+  <c:if test="${sessionScope.admin!='y' }">
 	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">나의 문의 내역</h4>
 	  <c:if test="${sessionScope.id==null }">
 	  	<p>로그인 후 이용 가능합니다</p>
 	  </c:if>
-	  <c:if test="${sessionScope.admin=='n' }">
+	  <c:if test="${sessionScope.id!=null }">
 		<table class="table">
 		  <tr>
 		  	<th width=10% class="text-center">번호</th>
@@ -282,6 +289,7 @@ $(function(){
 		</table>
 	  </c:if>
 	</div>
+  </c:if>
   
 	</div>
 </body>
