@@ -6,10 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- --%>
 <style type="text/css">
 .f-card{
 	position: relative;
@@ -245,29 +241,32 @@ $(function(){
 	</div>
 	
 <!-- qna -->
+  <c:if test="${sessionScope.admin!='y' }">
 	<div>
 	  <div style="height: 30px"></div>
 		<h4 class="text-primary px-3">나의 문의 내역</h4>
 	  <c:if test="${sessionScope.id==null }">
 	  	<p>로그인 후 이용 가능합니다</p>
 	  </c:if>
-	  <c:if test="${sessionScope.admin=='n' }">
+	  <c:if test="${sessionScope.id!=null }">
 		<table class="table">
 		  <tr>
-		  	<th width=15% class="text-center">문의유형</th>
-		   	<th width=65% class="text-center">제목</th>
-		   	<th width=20% class="text-center">답변상태</th>
-		   	<th width=5% class="text-center"></th>
+		  	<th width=10% class="text-center">번호</th>
+		  	<th width=10% class="text-center">문의유형</th>
+		   	<th width=60% class="text-center">제목</th>
+		   	<th width=13% class="text-center">답변상태</th>
+		   	<th width=7% class="text-center">
+		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
+		   	</th>
 		  </tr>
-		  <c:forEach var="vo" items="${slist }">
-		   <c:if test="${vo.id==sessionScope.id}"> <!-- admin 조건을 같이 주면 group_tab==0인 조건에 같이 해당되는 경우가 없으므로 안나옴 -->
-			<c:if test="${vo.group_tab==0 }">
+		  <c:forEach var="vo" items="${slist }" varStatus="s">
 			  <tr>
-			  	<td width=15% class="text-center">${vo.type }</td>
-			  	<td width=65% class=qsub>
+			  	<td width=10% class="text-center">${count-s.index }</td>
+			  	<td width=10% class="text-center">${vo.type }</td>
+			  	<td width=60% class=qsub>
 			  		<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
 			  	</td>
-			  	<td width=20% class="text-center">
+			  	<td width=13% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
 			  	  	<span style="color: blue">${vo.ans_state }</span>
 			  	  </c:if>
@@ -275,10 +274,8 @@ $(function(){
 			  	  	<span style="color: gray">${vo.ans_state }</span>
 			  	  </c:if>
 			  	</td>
-		   		<td width=5% class="text-center"></td>
+		   		<td width=7% class="text-center"></td>
 			  </tr>
-			</c:if>
-		   </c:if>
 		  </c:forEach>
 		  <tr>
 			<td colspan=4 class="text-center" style="border-color: white">
@@ -292,6 +289,7 @@ $(function(){
 		</table>
 	  </c:if>
 	</div>
+  </c:if>
   
 	</div>
 </body>

@@ -74,7 +74,7 @@ $(function(){
 		  	  	<td width=10% class="text-center">${count-s.index-(curpage-1)*10 }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
-		  	  	<td width=10% class="text-center">${vo.hit }</td>
+		  	  	<td width=10% class="text-center"></td>
 		  	  </tr>
 		  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
 				<td colspan=2></td>

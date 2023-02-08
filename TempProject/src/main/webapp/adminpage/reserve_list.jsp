@@ -15,6 +15,7 @@ $(function(){
 	
 	$('.reserve_okBtn').click(function(){
 		let gerno = $(this).attr('data-gerno')
+		let page = $()
 		$.ajax({
 			type:'post',
 			url:'../adminpage/admin_reserve_list_ok.do',
@@ -23,7 +24,45 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
-	})	
+	})
+	
+	// 페이징 ajax
+	$('.admin_reserve_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/admin_reserve_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.admin_reserve_page_pre').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/admin_reserve_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	
+	$('.admin_reserve_page_next').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/admin_reserve_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 </script>
 <style type="text/css">
@@ -47,11 +86,64 @@ $(function(){
 	font-size: 15px;
 	padding: 5px 7px;;
 }
+<<<<<<< HEAD
 * {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+=======
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
+
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+>>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
 }
 </style>
 </head>
@@ -60,7 +152,7 @@ $(function(){
 			<h4 class="mypage_home_subtitle">예매 관리</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
-			<table class="table">
+			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="40%" class="text-center">전시회명</th>
 					<th width="10%" class="text-center">포스터</th>
@@ -72,12 +164,12 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="40%" class="text-center" >${vo.evo.title }</td>
-					<td width="10%" class="text-center"><img src="${vo.evo.poster }" style="width:50px; height:50px"></td>
-					<td width="10%" class="text-center">${vo.evo.loc }</td>
-					<td width="10%" class="text-center">${vo.rdate }</td>
-					<td width="10%" class="text-center">${vo.rtime }</td>
-					<td width="5%" class="text-center">${vo.inwon }</td>
+					<td width="40%" class="text-center origin" >${vo.evo.title }</td>
+					<td width="10%" class="text-center origin"><img src="${vo.evo.poster }" style="width:50px; height:50px"></td>
+					<td width="10%" class="text-center origin">${vo.evo.loc }</td>
+					<td width="10%" class="text-center origin">${vo.rdate }</td>
+					<td width="10%" class="text-center origin">${vo.rtime }</td>
+					<td width="5%" class="text-center origin">${vo.inwon }</td>
 					<td width="15%" class="text-center">
 						<c:if test="${vo.ok == 'y'}">
 						<span class="rst reserve_state" style="background-color: gray;">완료</span>
@@ -90,5 +182,16 @@ $(function(){
 				</c:forEach>
 			</table>
 		</div>
+			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><span class="admin_reserve_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_reserve_page page_a" data-page="${i }">${i }</span></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><span class="admin_reserve_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		        </c:if>
+		    </ul>
 </body>
 </html>
