@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <style type="text/css">
 * {
     font-family: 'GmarketSansMedium';
@@ -127,7 +126,6 @@ $(function(){
 }
 .page_li.active page_a:hover {
     color: #FFFFFF;
->>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
 }
 </style>
 </head>

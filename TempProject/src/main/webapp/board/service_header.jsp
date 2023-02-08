@@ -43,11 +43,11 @@ $(function(){
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">후기게시판</h1>
+                    <h1 class="display-3 text-white animated slideInDown" style="font-family: 'GmarketSansMedium';">후기게시판</h1>
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
-		<h6 style="color: white">GOD 후기게시판입니다. 다양한 관람후기를 남겨주세요.</h6>
+		<h6 style="color: white;font-family: 'GmarketSansMedium !important';">GOD 후기게시판입니다. 다양한 관람후기를 남겨주세요.</h6>
 		  <form method=post action="../service/faq_find.do" id=ss_frm>
 			<input type=text id=search name=ss size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
 			<button type=submit id=sBtn style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
