@@ -17,6 +17,16 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#qna_manage').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../adminpage/faq_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -91,7 +101,7 @@ li.mypage_menu::before {
   	    </div>
   	    <div class="mypage_li_div">
   	    	<li class="mypage_menu">문의관리</li>
-  	    	<li class="mypage_menu_child"><a href="../adminpage/faq_list.do">문의내역 관리</a></li>
+  	    	<span id="qna_manage"><li class="mypage_menu_child">미답변 문의내역</li></span>
   	    </div>
   	    <div class="mypage_li_div">
 	  	    <li class="mypage_menu">--</li>

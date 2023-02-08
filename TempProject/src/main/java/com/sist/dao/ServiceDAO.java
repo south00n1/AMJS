@@ -32,7 +32,7 @@ depth : 포함 대댓글 갯수
 public class ServiceDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	//QNA 목록 출력
+	//QNA 전체 목록 출력
 	public List<AskVO> qnaListData(int page){
 		List<AskVO> list=new ArrayList<AskVO>();
 		try {
@@ -48,6 +48,42 @@ public class ServiceDAO {
 			int end=rowSize*page;
 			ps.setInt(1, start);
 			ps.setInt(2, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				AskVO vo=new AskVO();
+				vo.setGano(rs.getInt(1));
+				vo.setId(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setType(rs.getString(4));
+				vo.setAns_state(rs.getString(5));
+				vo.setGroup_tab(rs.getInt(6));
+				vo.setHit(rs.getInt(7));
+				vo.setDbday(rs.getString(8));
+				vo.setDepth(rs.getInt(9));
+				vo.setFilename(rs.getString(10));
+				vo.setFilesize(rs.getInt(11));
+				list.add(vo);
+			}
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
+	//QNA ID별 서비스 메인
+	public List<AskVO> serviceMainQna(String id){
+		List<AskVO> list=new ArrayList<AskVO>();
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT gano,id,subject,type,ans_state,group_tab,hit,TO_CHAR(regdate,'YYYY-MM-DD'),depth,filename,filesize "
+					+ "FROM god_ask_3 "
+					+ "WHERE id=? "
+					+ "AND group_tab=0 "
+					+ "ORDER BY group_id DESC, group_step ASC";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				AskVO vo=new AskVO();
@@ -228,8 +264,8 @@ public class ServiceDAO {
 			
 	     	if(admin.equals("y")) {
 	     		sql="INSERT INTO god_ask_3(gano,id,pwd,subject,type,content,regdate,hit,"
-	     				+ "group_id,group_step,group_tab,root,depth) "
-	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다',?,?,SYSDATE,0,?,?,?,?,0)";
+	     				+ "group_id,group_step,group_tab,root,depth,ans_state) "
+	     				+ "VALUES(ga_gano_seq_3.nextval,?,?,'답변입니다',?,?,SYSDATE,0,?,?,?,?,0,'답변완료')";
 	     		ps=conn.prepareStatement(sql);
 	     		ps.setString(1, vo.getId());
 	     		ps.setString(2, vo.getPwd());

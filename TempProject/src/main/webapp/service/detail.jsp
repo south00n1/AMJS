@@ -157,7 +157,6 @@ $(function(){
 	  	  	<td colspan=6>${vo.subject }</td>
 	  	  </tr>
 	  	  <c:if test="${vo.filesize>0 }">
-<!-- 첨부파일 여러개인 경우 filecount 컬럼도 있어야하나? 관리를 어케하징 -->
 	  	    <tr>
 	  	    	<th colspan=2 class="text-center">첨부파일</th>
 	  	    	<td colspan=6>

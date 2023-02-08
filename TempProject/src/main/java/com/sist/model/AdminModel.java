@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AdminDAO;
+import com.sist.dao.MypageDAO;
 import com.sist.dao.NoticeBoardDAO;
 import com.sist.dao.ServiceDAO;
 import com.sist.vo.AskVO;
@@ -155,8 +157,26 @@ public class AdminModel {
 	  @RequestMapping("adminpage/admin_reserve_list.do")
 	  public String admin_reserve_list(HttpServletRequest request,HttpServletResponse response) {
 		  
+		  String page = request.getParameter("page");
+		  if (page == null) {
+			  page = "1";
+		  }
+		  int curpage = Integer.parseInt(page);
 		  AdminDAO dao = new AdminDAO();
-		  List<ReserveVO> list = dao.adminpageReserveData();
+		  List<ReserveVO> list = dao.adminpageReserveData(curpage);
+		  
+		  int totalpage = dao.adminpageReserveListTotalPage();
+			
+		  final int BLOCK = 5;
+		  int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		  int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		  if (endPage > totalpage)
+		  	   endPage = totalpage;
+		  request.setAttribute("list", list);
+		  request.setAttribute("curpage", curpage);
+		  request.setAttribute("totalpage", totalpage);
+		  request.setAttribute("startPage", startPage);
+		  request.setAttribute("endPage", endPage);
 		  
 		  request.setAttribute("list", list);
 		  return "../adminpage/reserve_list.jsp";
@@ -165,6 +185,7 @@ public class AdminModel {
 	  public String admin_reserve_list_ok(HttpServletRequest request,HttpServletResponse response) {
 		  
 		  String gerno = request.getParameter("gerno");
+		  String page = request.getParameter("page");
 		  AdminDAO dao = new AdminDAO();
 		  dao.reserveAdminOk(Integer.parseInt(gerno));
 		  
@@ -173,25 +194,29 @@ public class AdminModel {
 	  
 	  @RequestMapping("adminpage/faq_list.do")
 	  public String admin_faq_list(HttpServletRequest request,HttpServletResponse response) 
-	  {
-		  
-			String page=request.getParameter("page");
-			String id=request.getParameter("id");
-			if(page==null) page="1";
-			int curpage=Integer.parseInt(page);
-			ServiceDAO dao=new ServiceDAO();
-			List<AskVO> list=dao.qnaListData(curpage);
-			int count=dao.qnaRowCount(id);
-			int totalpage=(int)(Math.ceil(count/10.0));
+	  {  
+		  String page = request.getParameter("page");
+			if (page == null) {
+				page = "1";
+			}
+			int curpage = Integer.parseInt(page);
+			// dao연결
+			AdminDAO dao = new AdminDAO();
+			List<AskVO> list = dao.adminpageMyqnaData(curpage);
+			int totalpage = dao.adminMyqndListTotalPage();
+			
+			final int BLOCK = 5;
+			int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+			int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+			if (endPage > totalpage)
+				 endPage = totalpage;
 			request.setAttribute("list", list);
-			request.setAttribute("count", count);
 			request.setAttribute("curpage", curpage);
 			request.setAttribute("totalpage", totalpage);
-			request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-			
-		  request.setAttribute("adminpage_jsp", "../adminpage/faq_list.jsp");
-		  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-		  return "../main/main.jsp";
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
+		  
+		  return "../adminpage/faq_list.jsp";
 	  }
 
 }

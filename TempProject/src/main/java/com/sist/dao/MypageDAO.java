@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sist.vo.AskVO;
+import com.sist.vo.ExhibitionVO;
+import com.sist.vo.LikeVO;
 import com.sist.vo.ReserveVO;
+import com.sist.vo.ReviewBoardLikeVO;
 import com.sist.vo.ReviewBoardReplyVO;
 import com.sist.vo.ReviewBoardVO;
 
@@ -113,7 +116,8 @@ public class MypageDAO {
 					+ "FROM (SELECT no, name, subject, regdate, hit "
 					+ "FROM god_review_board_3 "
 					+ "WHERE id = ?)) "
-					+ "WHERE num BETWEEN ? AND ?";
+					+ "WHERE num BETWEEN ? AND ? "
+					+ "ORDER BY no DESC";
 			
 			ps = conn.prepareStatement(sql);
 			int rowSize = 10;
@@ -185,10 +189,11 @@ public class MypageDAO {
 			
 			String sql = "SELECT rno, name, msg, regdate, subject, num "
 					+ "FROM(SELECT rno, name, msg, regdate, subject, rownum as num "
-					+ "FROM(SELECT /*+ INDEX_DESC(god_board_reply_3 gbr_gbrno_pk_3)*/rno, br.name, msg, br.regdate, subject "
+					+ "FROM(SELECT rno, br.name, msg, br.regdate, subject "
 					+ "FROM god_board_reply_3 br, god_review_board_3 rb "
 					+ "WHERE bno = no and br.id = ?)) "
-					+ "WHERE num BETWEEN ? AND ?";
+					+ "WHERE num BETWEEN ? AND ? "
+					+ "ORDER BY rno DESC";
 	
 			ps = conn.prepareStatement(sql);
 			int rowSize = 10;
@@ -263,7 +268,8 @@ public class MypageDAO {
 					+ "FROM (SELECT gano, subject, type, content, regdate, ans_state "
 					+ "from god_ask_3 "
 					+ "WHERE id = ?)) "
-					+ "WHERE num BETWEEN ? and ?";
+					+ "WHERE num BETWEEN ? and ? "
+					+ "ORDER BY gano DESC";
 			
 			ps = conn.prepareStatement(sql);
 			int rowSize = 10;
@@ -327,4 +333,163 @@ public class MypageDAO {
  			CreateConnection.disConnection(conn, ps);
  		}
  	}
+ 	
+ 	// 5-1 좋아요한 전시회 출력
+ 	public List<LikeVO> mypageLikeData(String id, int page) {
+  		List<LikeVO> list = new ArrayList<LikeVO>();
+  		try {
+			conn = CreateConnection.getConnection();
+			
+			String sql = "select lno, no, title, poster, loc, area, num "
+					+ "from (select lno, no, title, poster, loc, area, rownum as num "
+					+ "from (select lno, no, title, poster, loc, area "
+					+ "from god_like_3, god_exhibition_3 "
+					+ "where no = geno and id = ?)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			
+			ps = conn.prepareStatement(sql);
+			int rowSize = 6;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				LikeVO vo = new LikeVO();
+				vo.setLno(rs.getInt(1));
+				vo.setNo(rs.getInt(2));
+				vo.setTitle(rs.getString(3));
+				vo.setPoster(rs.getString(4));
+				vo.setLoc(rs.getString(5));
+				vo.setArea(rs.getString(6));
+				list.add(vo);
+				}
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+  			return list;
+	  	}
+ 	
+ 	// 5-2 좋아요한 전시회 총페이지
+ 	public int mypageLikeListTotalPage(String id) {
+	      int total=0;
+	      try {
+	         conn=CreateConnection.getConnection();
+	         String sql="SELECT CEIL(COUNT(*)/6.0) FROM god_like_3 "
+	         		+ "WHERE id = ?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, id);
+	         ResultSet rs=ps.executeQuery();
+	         rs.next();
+	         total=rs.getInt(1);
+	         rs.close();
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         CreateConnection.disConnection(conn, ps);
+	      }
+	      return total;
+	   }
+ 	
+ 	// 5-3 좋아요 취소
+ 	public void likeDelete(int lno) {
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "DELETE FROM god_like_3 "
+					+ "WHERE lno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, lno);
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
+ 	
+ 	// 6-1 공감누른 게시글 목록출력
+ 	public List<ReviewBoardLikeVO> mypageGongData(String id, int page) {
+  		List<ReviewBoardLikeVO> list = new ArrayList<ReviewBoardLikeVO>();
+  		try {
+			conn = CreateConnection.getConnection();
+			String sql = "select lno, gno, no, subject, name, regdate, hit, num "
+					+ "from (select lno, gno, no, subject, name, regdate, hit, rownum as num "
+					+ "from (select lno, gno, no, subject, name, regdate, hit "
+					+ "from god_review_board_like_3 grbl, god_review_board_3 grb "
+					+ "where gno = no and grbl.id = ?)) "
+					+ "WHERE num BETWEEN ? AND ? "
+					+ "ORDER BY gno DESC";
+			
+			ps = conn.prepareStatement(sql);
+			int rowSize = 10;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setString(1, id);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				ReviewBoardLikeVO vo = new ReviewBoardLikeVO();
+				vo.setLno(rs.getInt(1));
+				vo.setGno(rs.getInt(2));
+				vo.setNo(rs.getInt(3));
+				vo.setSubject(rs.getString(4));
+				vo.setName(rs.getString(5));
+				vo.setRegdate(rs.getDate(6));
+				vo.setHit(rs.getInt(7));
+				list.add(vo);
+				}
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+  			return list;
+	  	}
+ 	
+ 	// 6-2 좋아요한 전시회 총페이지
+ 	public int mypageGoodListTotalPage(String id) {
+	      int total=0;
+	      try {
+	         conn=CreateConnection.getConnection();
+	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_review_board_like_3 "
+	         		+ "WHERE id = ?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setString(1, id);
+	         ResultSet rs=ps.executeQuery();
+	         rs.next();
+	         total=rs.getInt(1);
+	         rs.close();
+	      } catch(Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         CreateConnection.disConnection(conn, ps);
+	      }
+	      return total;
+	   }
+ 	
+ 	// 6-3 좋아요 취소
+ 	public void gongDelete(int lno) {
+		try {
+			conn = CreateConnection.getConnection();
+			String sql = "DELETE FROM god_review_board_like_3 "
+					+ "WHERE lno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, lno);
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+	}
 }

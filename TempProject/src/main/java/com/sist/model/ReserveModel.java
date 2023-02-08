@@ -17,7 +17,7 @@ public class ReserveModel {
 	@RequestMapping("reserve/reserve_main.do")
 	public String reserve_main(HttpServletRequest request, HttpServletResponse response) {
 		String geno=request.getParameter("geno");
-		if(geno==null) geno="22";
+		if(geno==null) geno="23";
 		ExhibitionDAO dao=new ExhibitionDAO();
 		ExhibitionVO vo=dao.ExhibitionDetailData(Integer.parseInt(geno));
 		String period=vo.getPeriod();
@@ -102,6 +102,9 @@ public class ReserveModel {
 	
 	@RequestMapping("reserve/reserve_pers.do")
 	public String reserve_pers(HttpServletRequest request, HttpServletResponse response) {
+		int price[]= {15000, 18000, 20000};
+		int i=(int)Math.random()*3+1;
+		request.setAttribute("pr", price[i]);
 		return "../reserve/reserve_pers.jsp";
 	}
 	
