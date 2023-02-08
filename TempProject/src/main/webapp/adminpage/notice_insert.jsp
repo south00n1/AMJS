@@ -5,38 +5,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>GO OUT DISPLAY</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    <style type="text/css">
-    * {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+<style type="text/css">
+* {
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
-    </style>
-    
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$('.insert_Btn').click(function(){
+		let params = $("#insert_form").serialize();
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_insert_ok.do',
+			data:params,
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.insert_cancle').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
-<%--
-				vo.setGnbno(rs.getInt(1));
-				vo.setType(rs.getInt(2));
-				vo.setSubject(rs.getString(3));
-				vo.setName(rs.getString(4));
-				vo.setDbday(rs.getString(5));
-				vo.setHit(rs.getInt(6));
-
- --%>
 
 <!-- 게시판 start -->
 <div class="wrapper row3">
   <main class="container clear">
-  <h2 class="sectiontitle">공지사항 등록</h2>
+  <h2 class="sectiontitle" style="margin-top: 10px; margin-bottom: 15px">공지사항 등록</h2>
   <div style="height: 5px"></div>
-  <form method="post" action="../adminpage/notice_insert_ok.do">
+  <form id="insert_form">
   <table class="table">
     <tr>
       <th width=15% class="text-right">구분</th>
@@ -70,8 +82,8 @@
     </tr>
     <tr>
       <td colspan="2" class="text-center">
-        <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
-        <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
+        <span class="btn btn-sm btn insert_Btn" style="background-color: green; color:white;">글쓰기</span>
+        <span class="btn btn-sm btn-danger insert_cancle">취소</span>
       </td>
     </tr>
   </table>
@@ -80,19 +92,5 @@
 </div>
 
 <!-- 게시판 end -->
-
-    
-
-
-     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sist.vo.AskVO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.NoticeBoardVO;
 import com.sist.vo.ReserveVO;
 
@@ -211,4 +212,77 @@ public class AdminDAO {
   	      }
   	      return total;
   	   }
+   	
+   	// 4-1 관리자페이지 회원목록
+   	public List<MemberVO> adminpageMemberList(int page) {
+  		List<MemberVO> list = new ArrayList<MemberVO>();
+   		try {
+ 			conn = CreateConnection.getConnection();
+ 			
+ 			String sql = "select id, name, sex, birthday, email, num "
+ 					+ "from (select id, name, sex, birthday, email, rownum as num "
+ 					+ "from (select id, name, sex, birthday, email "
+ 					+ "from god_member_3 WHERE admin = 'n')) "
+ 					+ "WHERE num BETWEEN ? AND ?";
+ 			
+ 			ps = conn.prepareStatement(sql);
+ 			int rowSize = 10;
+ 			int start = (rowSize * page) - (rowSize - 1);
+ 			int end = rowSize * page;
+ 			ps.setInt(1, start);
+ 			ps.setInt(2, end);
+ 			
+ 			ResultSet rs = ps.executeQuery();
+ 			while(rs.next()) {
+ 				MemberVO vo = new MemberVO();
+ 				vo.setId(rs.getString(1));
+ 				vo.setName(rs.getString(2));
+ 				vo.setSex(rs.getString(3));
+ 				vo.setBirthday(rs.getString(4));
+ 				vo.setEmail(rs.getString(5));
+ 				list.add(vo);
+ 				}
+ 				rs.close();
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			} finally {
+ 				CreateConnection.disConnection(conn, ps);
+ 			}
+   			return list;
+ 	 }
+  	
+  	// 4-2 관리자페이지 회원목록 총페이지
+   	public int adminpageMemberListTotalPage() {
+  	      int total=0;
+  	      try {
+  	         conn=CreateConnection.getConnection();
+  	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_member_3 ";
+  	         ps=conn.prepareStatement(sql);
+  	         ResultSet rs=ps.executeQuery();
+  	         rs.next();
+  	         total=rs.getInt(1);
+  	         rs.close();
+  	      } catch(Exception ex) {
+  	         ex.printStackTrace();
+  	      } finally {
+  	         CreateConnection.disConnection(conn, ps);
+  	      }
+  	      return total;
+  	   }
+   	
+   	// 4-3 관리자페이지 회원 추방
+   	public void adminpageMemberDelete(String id) {
+ 		try {
+ 			conn = CreateConnection.getConnection();
+ 			String sql = "DELETE FROM god_member_3 "
+ 					+ "WHERE id = ?";
+ 			ps = conn.prepareStatement(sql);
+ 			ps.setString(1, id);
+ 			ps.executeUpdate();
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			CreateConnection.disConnection(conn, ps);
+ 		}
+ 	}
 }
