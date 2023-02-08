@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -121,21 +120,14 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
-</style>
 
-    <meta charset="UTF-8">
-    <title>GO OUT DISPLAY</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    <style type="text/css">
     * {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 
 </head>
 <body>

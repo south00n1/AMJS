@@ -50,8 +50,8 @@ body{
 	margin: 0 auto;
 }
 img{
-	width: 30%;
-	height: 60%;
+	width: 100%;
+	height: 100%;
 }
 #exhibitionView .exCon{
 	height: auto;
@@ -165,7 +165,6 @@ active not_comment not_support{
 #map-title2{
 	margin: 30px;
 }
-<<<<<<< HEAD
     * {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -173,10 +172,6 @@ active not_comment not_support{
     font-style: normal;
 }
 
-   
-=======
-	
->>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
 
 </style>
 </head>

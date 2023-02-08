@@ -6,14 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
-<style type="text/css">
-* {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-=======
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -57,6 +50,12 @@ $(function(){
 })
 </script>
 <style type="text/css">
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .mypage_home_title {
 	margin: 0px;
 	margin-bottom: 10px;
@@ -127,7 +126,6 @@ $(function(){
 }
 .page_li.active page_a:hover {
     color: #FFFFFF;
->>>>>>> branch 'master' of https://github.com/south00n1/tempProject.git
 }
 </style>
 </head>
