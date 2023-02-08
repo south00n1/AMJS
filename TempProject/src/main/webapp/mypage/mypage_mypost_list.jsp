@@ -89,6 +89,16 @@ $(function(){
 	white-space : nowrap;
 	text-overflow: ellipsis;
 }
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
+
 
 #page_ul {
 	list-style: none;
@@ -144,11 +154,11 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center origin" >${vo.no }</td>
-					<td width="40%" class="text-center origin">${vo.subject }</td>
-					<td width="15%" class="text-center origin">${vo.name }</td>
-					<td width="15%" class="text-center origin">${vo.regdate }</td>
-					<td width="10%" class="text-center origin">${vo.hit }</td>
+					<td width="10%" class="text-center origin" ><a href="../board/review_detail.do?no=${vo.no }">${vo.no }</a></td>
+					<td width="40%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.subject }</a></td>
+					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.name }</a></td>
+					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.regdate }</a></td>
+					<td width="10%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.hit }</a></td>
 					<td width="10%" class="text-center">
 						<span data-no="${vo.no }" class="rst post_delBtn" style="background-color: gray;">삭제</span>
 					</td>

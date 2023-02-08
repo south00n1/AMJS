@@ -73,6 +73,26 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#like_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_like_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('#gong_list').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../mypage/mypage_gong_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -147,7 +167,10 @@ li.mypage_menu::before {
   	    	<span id="reserve_list"><li class="mypage_menu">예매 목록</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<span id="jjim_list"><li class="mypage_menu">찜하기 목록</li></span>
+  	    	<li class="mypage_menu">좋아요&찜&공감</li>
+  	    	<span id="like_list"><li class="mypage_menu_child">좋아요 목록</li></span>
+  	    	<span id="jjim_list"><li class="mypage_menu_child">찜 목록</li></span>
+  	    	<span id="gong_list"><li class="mypage_menu_child">공감 목록</li></span>
   	    </div>
   	    <div class="mypage_li_div">
 	  	    <li class="mypage_menu">내 정보</li>

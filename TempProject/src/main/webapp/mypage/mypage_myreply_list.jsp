@@ -89,6 +89,15 @@ $(function(){
 	white-space : nowrap;
 	text-overflow: ellipsis;
 }
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
 
 #page_ul {
 	list-style: none;
@@ -143,10 +152,10 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="25%" class="text-center origin">${vo.subject }</td>
-					<td width="35%" class="text-center origin">${vo.msg }</td>
-					<td width="15%" class="text-center origin">${vo.name }</td>
-					<td width="15%" class="text-center origin">${vo.regdate }</td>
+					<td width="25%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.subject }</a></td>
+					<td width="35%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.msg }</a></td>
+					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.name }</a></td>
+					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.regdate }</a></td>
 					<td width="10%" class="text-center">
 						<span data-rno="${vo.rno }" class="rst reply_delBtn" style="background-color: gray;">삭제</span>
 					</td>

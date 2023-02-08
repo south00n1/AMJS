@@ -26,6 +26,18 @@ $(function(){
 			u=0;
 		}
 	})
+	/*
+	$('.pic_jjim').click(function(){
+		let gpno = (this).attr("data-gpno")
+		$.ajax({
+			type:'post',
+			url:'../jjim/jjim_insert.do',
+			data:{"gpno":gpno},
+			success:function(response){
+				alert("'좋아요'가 반영되었습니다!");
+			}
+		})
+	})*/
 })
 </script>
 <style type="text/css">
