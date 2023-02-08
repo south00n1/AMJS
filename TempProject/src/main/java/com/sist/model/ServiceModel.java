@@ -21,8 +21,11 @@ public class ServiceModel {
 	public String service_main(HttpServletRequest request, HttpServletResponse response) {
 		//qna
 		ServiceDAO sdao=new ServiceDAO();
-		List<AskVO> slist=sdao.qnaListData(1);
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		List<AskVO> slist=sdao.serviceMainQna(id);
 		request.setAttribute("slist", slist);
+		request.setAttribute("count", slist.size());
 		
 		//faq
 		FaqDAO fdao=new FaqDAO();
@@ -40,9 +43,7 @@ public class ServiceModel {
 		int curpage=Integer.parseInt(page);
 		ServiceDAO dao=new ServiceDAO();
 		List<AskVO> list=dao.qnaListData(curpage);
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		int count=dao.qnaRowCount(id);
+		int count=list.size();
 		int totalpage=(int)(Math.ceil(count/10.0));
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);

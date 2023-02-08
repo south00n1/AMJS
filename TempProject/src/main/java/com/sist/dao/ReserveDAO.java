@@ -189,10 +189,4 @@ public class ReserveDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 	}
-    public static void main(String[] args) {
-		ReserveDAO dao=new ReserveDAO();
-		String period="2023-01-02 ~ 2023-03-04";
-		int month=dao.reserveMonth(period);
-		System.out.println(month);
-	}
 }
