@@ -6,24 +6,33 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sist.vo.AskVO;
 import com.sist.vo.ReserveVO;
 
 public class AdminDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	// 1-1. 예매 정보 마이페이지에서 읽기
-  	public List<ReserveVO> adminpageReserveData() {
+	// 1-1. 예매 정보 관리자페이지에서 읽기
+  	public List<ReserveVO> adminpageReserveData(int page) {
   		List<ReserveVO> list = new ArrayList<ReserveVO>();
   		try {
 			conn = CreateConnection.getConnection();
 			
-			String sql = "SELECT gerno, ger.geno, rdate, rtime, inwon, ok, id, title, poster, loc "
+			String sql = "SELECT gerno, geno, rdate, rtime, inwon, ok, id, title, poster, loc, num "
+					+ "FROM (SELECT gerno, geno, rdate, rtime, inwon, ok, id, title, poster, loc, rownum as num "
+					+ "FROM (SELECT gerno, ger.geno, rdate, rtime, inwon, ok, id, title, poster, loc "
 					+ "FROM god_exhibition_reserve_3 ger, god_exhibition_3 ge "
-					+ "WHERE ger.geno = ge.geno "
-					+ "ORDER BY gerno DESC ";
+					+ "WHERE ger.geno = ge.geno )) "
+					+ "WHERE num BETWEEN ? AND ? "
+					+ "ORDER BY gerno DESC";
 			
 			ps = conn.prepareStatement(sql);
+			int rowSize = 6;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ReserveVO vo = new ReserveVO();
@@ -48,7 +57,26 @@ public class AdminDAO {
 	  		return list;
 	  	}
   	
-  	// 1-2 예약승인
+  	// 1-2 예매 목록 총페이지
+  	public int adminpageReserveListTotalPage() {
+  	      int total=0;
+  	      try {
+  	         conn=CreateConnection.getConnection();
+  	         String sql="SELECT CEIL(COUNT(*)/6.0) FROM god_exhibition_reserve_3";
+  	         ps=conn.prepareStatement(sql);
+  	         ResultSet rs=ps.executeQuery();
+  	         rs.next();
+  	         total=rs.getInt(1);
+  	         rs.close();
+  	      } catch(Exception ex) {
+  	         ex.printStackTrace();
+  	      } finally {
+  	         CreateConnection.disConnection(conn, ps);
+  	      }
+  	      return total;
+  	   }
+  	
+  	// 1-3 예약승인
    	public void reserveAdminOk(int gerno) {
    		try {
  			conn = CreateConnection.getConnection();
@@ -64,4 +92,66 @@ public class AdminDAO {
  			CreateConnection.disConnection(conn, ps);
  		}
    	}
+   	
+ // 2-1 문의글 관리자페이지에서 읽기
+  	public List<AskVO> adminpageMyqnaData(int page) {
+   		List<AskVO> list = new ArrayList<AskVO>();
+   		try {
+ 			conn = CreateConnection.getConnection();
+ 			
+ 			String sql = "SELECT gano, type, subject, id, regdate, ans_state, num "
+ 					+ "FROM (SELECT gano, type, subject, id, regdate, ans_state, rownum as num "
+ 					+ "FROM (SELECT gano, type, subject, id, regdate, ans_state "
+ 					+ "from god_ask_3 "
+ 					+ "WHERE ans_state = '미답변')) "
+ 					+ "WHERE num BETWEEN ? and ?"
+ 					+ "ORDER BY gano DESC";
+ 			
+ 			ps = conn.prepareStatement(sql);
+ 			int rowSize = 10;
+ 			int start = (rowSize * page) - (rowSize - 1);
+ 			int end = rowSize * page;
+ 			ps.setInt(1, start);
+ 			ps.setInt(2, end);
+ 			
+ 			ResultSet rs = ps.executeQuery();
+ 			while(rs.next()) {
+ 				AskVO vo = new AskVO();
+ 				vo.setGano(rs.getInt(1));
+ 				vo.setType(rs.getString(2));
+ 				vo.setSubject(rs.getString(3));
+ 				vo.setId(rs.getString(4));
+ 				vo.setRegdate(rs.getDate(5));
+ 				vo.setAns_state(rs.getString(6));
+ 				list.add(vo);
+ 				}
+ 				rs.close();
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			} finally {
+ 				CreateConnection.disConnection(conn, ps);
+ 			}
+   			return list;
+ 	  	}
+  	// 2-2 관리자페이지 문의글 총페이지
+  	public int adminMyqndListTotalPage() {
+ 	      int total=0;
+ 	      try {
+ 	         conn=CreateConnection.getConnection();
+ 	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_ask_3 "
+ 	         		+ "WHERE ans_state = '미답변'";
+ 	         ps=conn.prepareStatement(sql);
+ 	         ResultSet rs=ps.executeQuery();
+ 	         rs.next();
+ 	         total=rs.getInt(1);
+ 	         rs.close();
+ 	      } catch(Exception ex) {
+ 	         ex.printStackTrace();
+ 	      } finally {
+ 	         CreateConnection.disConnection(conn, ps);
+ 	      }
+ 	      return total;
+ 	   }
+   	
+   	
 }
