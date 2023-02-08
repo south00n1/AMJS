@@ -17,21 +17,18 @@ $(function(){
 		    let mm = date.getMonth() + 1;        // 월 0부터시작 +1해줌
 		    let dd = date.getDate();            // 일
 		})
-		
-	/*
 	// 카테고리별 목록 출력
 	   $('.exhibs').on("click",function(){
 		let ec=$(this).text()
 		$.ajax({
 			type:'post',
-			url:'../exhibition/exhibition_category.do',
+			url:'../exhibition/exhibition_all.do',
 			data:{"ec":ec},
 			success:function(response){
-				
+				location.reload()
 			}
 		})
-	*/
-		
+			})
 		
 })
 </script>
@@ -278,19 +275,19 @@ input {
 	  <div>
 		<h2 class="title">전체 전시</h2>
 		<div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: left; margin-top: 30px;">
-	<form method=post action="../exhibition/exhibition_find.do" class="inline">
+	<form method=post action="../exhibition/exhibition_all.do" class="inline">
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
     </form>
     			<caption align="top">
     	  			<h5>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=1" class="btn btn-sm btn-primary exhibs">육아</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=2" class="btn btn-sm btn-primary exhibs">스포츠</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=3" class="btn btn-sm btn-primary exhibs">인테리어</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=4" class="btn btn-sm btn-primary exhibs">예술</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=5" class="btn btn-sm btn-primary exhibs">전기</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=6" class="btn btn-sm btn-primary exhibs">기계</a>
-	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">예술</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">전기</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">기계</span>
+	    	  		  	<span class="btn btn-sm btn-primary exhibs">농축산</span>
     	  			</h5>
     	  		</caption>
     </div>
