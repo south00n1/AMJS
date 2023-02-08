@@ -74,6 +74,44 @@ public class ExhibitionDAO {
 	   return total;
    }
    
+   // 카테고리별 출력 
+   public List<ExhibitionVO> exhibitionCategoryListData(String ec)
+   {
+	    List<ExhibitionVO> list=new ArrayList<ExhibitionVO>();
+	    try
+	    {
+		    conn=CreateConnection.getConnection();
+		    String sql="SELECT geno,poster,title,period,loc,num "
+		    		 +"FROM (SELECT geno,poster,title,period,loc,rownum as num "
+				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period,loc "
+				     +"FROM god_exhibition_3 "
+				     + "WHERE area LIKE '%'||?||'%')) "
+				     +"WHERE num<=50";
+		    ps=conn.prepareStatement(sql);
+		    ps.setString(1, ec);
+	  	    ResultSet rs=ps.executeQuery();
+		    while(rs.next())
+		    {
+			    ExhibitionVO vo=new ExhibitionVO();
+			    vo.setGeno(rs.getInt(1));
+			    vo.setPoster(rs.getString(2));
+			    vo.setTitle(rs.getString(3));
+			    vo.setPeriod(rs.getString(4));
+			    vo.setLoc(rs.getString(5));
+			    list.add(vo);
+		    }
+		    rs.close();
+	    }catch(Exception ex)
+	    {
+		    ex.printStackTrace();
+	    }
+	    finally
+	    {
+		    CreateConnection.disConnection(conn, ps);
+	    }
+	    return list;
+   }
+   
    // 개수 출력 , 총페이지
    public int exhibitionRowCount()  
 	{
