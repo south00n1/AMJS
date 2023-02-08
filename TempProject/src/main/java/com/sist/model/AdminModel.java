@@ -32,46 +32,36 @@ public class AdminModel {
 	@RequestMapping("adminpage/notice_list.do")
 	  public String admin_notice_list(HttpServletRequest request,HttpServletResponse response)
 	  {
-		try
-		   {
-			   // 한글 변환 
-			   request.setCharacterEncoding("UTF-8");
-		   }catch(Exception ex){}
-		   String ss=request.getParameter("ss");
-		   if(ss==null)
-			   ss="";
-		// 사용자 보내준 데이터 받기 
-		   String page=request.getParameter("page");
-		   if(page==null)
-			   page="1";
-		   int curpage=Integer.parseInt(page);
-		   NoticeBoardDAO dao=new NoticeBoardDAO();
-		   List<NoticeBoardVO> list=dao.noticeboardFindData(curpage,ss);
-		   
+		
+			String page = request.getParameter("page");
+			if (page == null) {
+				page = "1";
+			}
+			int curpage = Integer.parseInt(page);
+			// dao연결
+			AdminDAO dao = new AdminDAO();
+			List<NoticeBoardVO> list = dao.adminNoticeBoardList(curpage);
+			int totalpage = dao.adminNoticeListTotalPage();
+			
+			final int BLOCK = 5;
+			int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+			int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+			if (endPage > totalpage)
+				 endPage = totalpage;
+			
 		   for(NoticeBoardVO vo:list)
 		   {
 			   vo.setPrefix("["+prefix[vo.getType()]+"]");
 		   }
 		   
-		   int count=dao.noticeboardRowCount();
-		   int totalpage=(int)(Math.ceil(count/10.0));
-		   final int BLOCK=10;
-		   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
-		   int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
-		   if(endPage>totalpage)
-				   endPage=totalpage;
-		   
-		  request.setAttribute("ss", ss);
 		  request.setAttribute("curpage", curpage);
 		  request.setAttribute("totalpage", totalpage);
 		  request.setAttribute("startPage", startPage);
 		  request.setAttribute("endPage", endPage);
-	      request.setAttribute("count", count);
 		  request.setAttribute("list", list);
 		  request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		  request.setAttribute("adminpage_jsp", "../adminpage/notice_list.jsp");
-		  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-		  return "../main/main.jsp";
+		  
+		  return "../adminpage/notice_list.jsp";
 	  }
 	
 	@RequestMapping("adminpage/notice_insert.do")

@@ -27,6 +27,16 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#notice_manage').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -99,7 +109,7 @@ li.mypage_menu::before {
 		<h2 class="mypage_title">AdminPage</h2>
 		<div class="mypage_li_div">
 	  	    <li class="mypage_menu">커뮤니티관리</li>
-	  	    <li class="mypage_menu_child"><a href="../adminpage/notice_list.do">공지사항 관리</a></li>
+	  	    <li class="mypage_menu_child"><span id="notice_manage">공지사항 관리</span></a></li>
 	  	    <li class="mypage_menu_child">후기게시판 관리</li>
   	    </div>
   	    <div class="mypage_li_div">

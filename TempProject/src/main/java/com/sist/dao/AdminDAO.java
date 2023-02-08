@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sist.vo.AskVO;
+import com.sist.vo.NoticeBoardVO;
 import com.sist.vo.ReserveVO;
 
 public class AdminDAO {
@@ -93,7 +94,7 @@ public class AdminDAO {
  		}
    	}
    	
- // 2-1 문의글 관리자페이지에서 읽기
+   	// 2-1 문의글 관리자페이지에서 읽기
   	public List<AskVO> adminpageMyqnaData(int page) {
    		List<AskVO> list = new ArrayList<AskVO>();
    		try {
@@ -153,5 +154,61 @@ public class AdminDAO {
  	      return total;
  	   }
    	
-   	
+   	// 3-1 관리자페이지 공지사항 리스트 출력
+  	public List<NoticeBoardVO> adminNoticeBoardList(int page) {
+  		List<NoticeBoardVO> list = new ArrayList<NoticeBoardVO>();
+   		try {
+ 			conn = CreateConnection.getConnection();
+ 			
+ 			String sql = "select gnbno, type, subject, name, regdate, hit, num "
+ 					+ "from (select gnbno, type, subject, name, regdate, hit, rownum as num "
+ 					+ "from (select gnbno, type, subject, name, regdate, hit "
+ 					+ "from god_notice_board_3)) "
+ 					+ "where num BETWEEN ? AND ?";
+ 			
+ 			ps = conn.prepareStatement(sql);
+ 			int rowSize = 10;
+ 			int start = (rowSize * page) - (rowSize - 1);
+ 			int end = rowSize * page;
+ 			ps.setInt(1, start);
+ 			ps.setInt(2, end);
+ 			
+ 			ResultSet rs = ps.executeQuery();
+ 			while(rs.next()) {
+ 				NoticeBoardVO vo = new NoticeBoardVO();
+ 				vo.setGnbno(rs.getInt(1));
+ 				vo.setType(rs.getInt(2));
+ 				vo.setSubject(rs.getString(3));
+ 				vo.setName(rs.getString(4));
+ 				vo.setRegdate(rs.getDate(5));
+ 				vo.setHit(rs.getInt(6));
+ 				list.add(vo);
+ 				}
+ 				rs.close();
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			} finally {
+ 				CreateConnection.disConnection(conn, ps);
+ 			}
+   			return list;
+ 	 }
+  	
+  	// 3-2 관리자페이지 문의글 총페이지
+   	public int adminNoticeListTotalPage() {
+  	      int total=0;
+  	      try {
+  	         conn=CreateConnection.getConnection();
+  	         String sql="SELECT CEIL(COUNT(*)/10.0) FROM god_notice_board_3 ";
+  	         ps=conn.prepareStatement(sql);
+  	         ResultSet rs=ps.executeQuery();
+  	         rs.next();
+  	         total=rs.getInt(1);
+  	         rs.close();
+  	      } catch(Exception ex) {
+  	         ex.printStackTrace();
+  	      } finally {
+  	         CreateConnection.disConnection(conn, ps);
+  	      }
+  	      return total;
+  	   }
 }

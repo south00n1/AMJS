@@ -1,10 +1,128 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$('.admin_notice_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.admin_notice_page_pre').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	
+	$('.admin_notice_page_next').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+})
+</script>
+<style type="text/css">
+.mypage_home_title {
+	margin: 0px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #E2E2E2;
+}
+.mypage_home_content {
+	margin: 0px;
+}
+.mypage_home_subtitle {
+	color: #27375C;
+}
+.rst {
+	width:70px;
+	hiegh:30px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	padding: 5px 7px;;
+}
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
+
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+</style>
+
     <meta charset="UTF-8">
     <title>GO OUT DISPLAY</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -18,113 +136,47 @@
     font-style: normal;
 }
     </style>
+
 </head>
 <body>
-<%--
-				vo.setGnbno(rs.getInt(1));
-				vo.setType(rs.getInt(2));
-				vo.setSubject(rs.getString(3));
-				vo.setName(rs.getString(4));
-				vo.setDbday(rs.getString(5));
-				vo.setHit(rs.getInt(6));
-
- --%>
-
-<!-- 게시판 start -->
-
-<div class="wrapper row3">
-  <main class="container clear">
-  <div style="height: 300px">
-  <table class="table">
-    <tr>
-      <td>
-    <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../adminpage/notice_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;공지등록</a></span>
-        </td>
-    </tr>
-  </table>
-  <table class="table">
-    <tr>
-      <th width=10% class="text-center">분류</th>
-      <th width=40% class="text-center">제목</th>
-      <th width=10% class="text-center">이름</th>
-      <th width=15% class="text-center">작성일</th>
-      <th width=10% class="text-center">조회수</th>
-      <th width=15% class="text-center"></th>
-    </tr>
-    <c:forEach var="vo" items="${list }">
-      <tr>
-        <td width="10%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="40%">
-         <a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.subject}</a>&nbsp;
-         <c:if test="${vo.dbday==today }">
-           <sup><img src="../board/image/new.gif"></sup>
-         </c:if>
-        </td>
-        <td width="10%" class="text-center">${vo.name }</td>
-        <td width="15%" class="text-center">${vo.dbday }</td>
-        <td width="10%" class="text-center">${vo.hit }</td>
-        <td width="15%" class="text-center">
-          <a href="../adminpage/notice_update.do?gnbno=${vo.gnbno }" class="btn btn-xs btn-success">수정</a>
-          <a href="../adminpage/notice_delete.do?gnbno=${vo.gnbno }" class="btn btn-xs btn-info">삭제</a>
-        </td>
-      </tr>
-    </c:forEach>
-  </table>
-   <nav class="pagination">
-        <ul>
-         <c:if test="${startPage>1 }">
-          <li><a href="../adminpage/notice_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
-         </c:if>
-          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../adminpage/notice_list.do?page=${i }">${i }</a></li>
-          </c:forEach>
-         <c:if test="${endPage<totalpage }">
-          <li><a href="../adminpage/notice_list.do?page=${endPage+1 }">Next &raquo;</a></li>
-         </c:if>
-        </ul>
-        <!-- pagination end -->
-        <!-- 검색바 start -->
-        <div class="board_search">
-        <div class="container">
-		<div class="row">
-		 <form method="post" name="search" action="../adminpage/notice_list.do" class="inline">
-			<table class="pull-right">
-			 <tr>
-			  <td><input type="text" id="search" value="${ss }"
-					placeholder="검색어 입력" name="ss" maxlength="100"></td>
-			  <td><button type="submit" class="btn btn-success">검색</button></td>
-			 </tr>
-			</table>
-		 </form>
+		<div class="col-11 mypage_home_title">
+			<h4 class="mypage_home_subtitle">공지사항 목록</h4>
 		</div>
-	</div>
-	</div>
-        <!-- 검색바 end -->
-        
-      </nav>
-  
-  </div>
-  
-  			
-  
-
-  </main>
-</div>
-
-<!-- 게시판 end -->
-
-    
-
-
-     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+		<div class="col-11 mypage_home_content">
+			<table class="table" style="table-layout: fixed;">
+				<tr>
+					<th width="15%" class="text-center">분류</th>
+					<th width="35%" class="text-center">제목</th>
+					<th width="10%" class="text-center">이름</th>
+					<th width="15%" class="text-center">작성일</th>
+					<th width="10%" class="text-center">조회수</th>
+					<th width="15%" class="text-center">수정/삭제</th>
+				</tr>
+				<c:forEach var="vo" items="${list }">
+				<tr style="vertical-align: middle;">
+					<td width="10%" class="text-center origin">${vo.prefix }</td>
+					<td width="40%" class="text-center origin">${vo.subject }</td>
+					<td width="10%" class="text-center origin">${vo.name }</td>
+					<td width="15%" class="text-center origin">${today }</td>
+					<td width="10%" class="text-center origin">${vo.hit }</td>
+					<td width="15%" class="text-center origin">
+					<a href=""><span class="rst" style="background-color: green;">수정</span></a>
+					<a href=""><span class="rst" style="background-color: green;">삭제</span></a>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><span class="admin_notice_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_notice_page page_a" data-page="${i }">${i }</span></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><span class="admin_notice_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		        </c:if>
+		    </ul>
 </body>
 </html>

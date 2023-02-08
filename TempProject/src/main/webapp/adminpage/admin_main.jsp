@@ -29,7 +29,7 @@ mypage_sub_container {
 	
     flex: 0 0 auto;
     width: 82%;
-	height: 800px;
+	height: 650px;
 	background-color: white;
 	border: 1px solid #E2E2E2;
 	border-radius: 10px;
