@@ -279,17 +279,19 @@ input {
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
     </form>
-    			<caption align="top">
+
+    			<div class="category-btn">
     	  			<h5>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">예술</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">전기</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">기계</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">농축산</span>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=1" class="btn btn-sm btn-primary exhibs">육아</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=2" class="btn btn-sm btn-primary exhibs">스포츠</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=3" class="btn btn-sm btn-primary exhibs">인테리어</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=4" class="btn btn-sm btn-primary exhibs">예술</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=5" class="btn btn-sm btn-primary exhibs">전기</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=6" class="btn btn-sm btn-primary exhibs">기계</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
     	  			</h5>
-    	  		</caption>
+    	  		</div>
+
     </div>
 	  </div>
 	  <div>	
@@ -395,13 +397,13 @@ input {
     </footer>
     <ul>
     	<c:if test="${startPage>1 }">
-          <li><a href="../exhibition/exhibition_all.do?page=${startPage-1 }">&lt;</a></li>
+          <li><a href="../exhibition/exhibition_category.do?page=${startPage-1 }&eno=${eee}">&lt;</a></li>
         </c:if>
         <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li ${i==curpage?"class=active":"" }><a href="../exhibition/exhibition_all.do?page=${i }">${i }</a></li>          
+          <li ${i==curpage?"class=active":"" }><a href="../exhibition/exhibition_category.do?page=${i }&eno=${eee}">${i }</a></li>          
         </c:forEach>    
         <c:if test="${endPage<totalpage }">
-          <li><a href="../exhibition/exhibition_all.do?page=${endPage+1 }">&gt;</a></li>
+          <li><a href="../exhibition/exhibition_category.do?page=${endPage+1 }&eno=${eee}">&gt;</a></li>
         </c:if>
     </ul>
 </body>

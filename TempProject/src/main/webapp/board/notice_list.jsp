@@ -39,6 +39,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 </script>
         <style type="text/css">
     * {
@@ -117,6 +118,12 @@
 }
 .page_li.active page_a:hover {
     color: #FFFFFF;
+}
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
 }
 
 .notice-table { 
@@ -216,35 +223,21 @@
     </c:forEach>
   </table>
   </div>
-  
-<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+ 
+  			<ul id="page_ul" >
 		    	<c:if test="${startPage>1 }">
-		          <li class="page_li"><span class="admin_notice_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		          <li class="page_li"><a href="../board/notice_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_notice_page page_a" data-page="${i }">${i }</span></li>          
+		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../board/notice_list.do?page=${i }" class="page_a${i==curpage?" li_active":"" }""">${i }</a></li>          
 		        </c:forEach>    
 		        <c:if test="${endPage<totalpage }">
-		          <li class="page_li"><span class="admin_notice_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		          <li class="page_li"><a href="../board/notice_list.do?page=${endPage+1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">▶</a></li>
 		        </c:if>
 		    </ul>
-
-
-
-  
         <!-- pagination start -->
    <nav class="pagination">
-        <ul>
-         <c:if test="${startPage>1 }">
-          <li><a href="../board/notice_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
-         </c:if>
-          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/notice_list.do?page=${i }">${i }</a></li>
-          </c:forEach>
-         <c:if test="${endPage<totalpage }">
-          <li><a href="../board/notice_list.do?page=${endPage+1 }">Next &raquo;</a></li>
-         </c:if>
-        </ul>
+
         <!-- pagination end -->
         <!-- 검색바 start -->
         <div class="board_search">

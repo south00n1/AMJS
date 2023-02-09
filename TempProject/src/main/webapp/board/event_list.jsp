@@ -65,8 +65,8 @@
 
 .slides {
     padding: 0;
-    width: 660px;
-    height: 328px;
+    width: 760px;
+    height: 378px;
     display: block;
     margin: 0 auto;
     position: relative;
@@ -88,8 +88,8 @@
 .slide {
     top: 0;
     opacity: 0;
-    width: 660px;
-    height: 328px;
+    width: 760px;
+    height: 378px;
     display: block;
     position: absolute;
 
@@ -176,6 +176,66 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 .event-division span:hover{
 	color: orange;
 	cursor: pointer;
+	
+}
+.event-division span:focus{
+	color: orange;
+	cursor: pointer;
+	
+}
+.origin {
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+	font-weight: bold;
+	text-decoration: underline;
+}
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
 }
     </style>
 </head>
@@ -277,8 +337,8 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 <div class="text-center" style="text-align: center; font-size: 26px;">이벤트</div>
 <div style="height: 10px;"></div>
 <div class="text-center event-division" style="text-align: center; margin-left: 45px;">
-		    <span class="cate" style="margin-right: 40px; font-size: 16px;"><a href="../board/event_list.do" class="on">전체보기</a></span>
-		    <span class="cate" style="font-size: 16px;" data-name="진행중">진행중인 이벤트</span>
+		    <span class="cate" style="margin-right: 40px; font-size: 16px;"><a href="../board/event_list.do" class="on">전체보기</a></span>&nbsp;&nbsp; | &nbsp;&nbsp;
+		    <span class="cate" style="font-size: 16px;" data-name="진행중">진행중인 이벤트</span>&nbsp;&nbsp; | &nbsp;&nbsp;
 		    <span class="cate" style="margin-left: 40px; font-size: 16px;" data-name="종료">종료된 이벤트</span>
 	    </div>
 <!-- 게시판 start -->
@@ -301,7 +361,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
   				</div>
   				<div class="text-left py-3 px-2">
   				<span class="frame"></span>
-  				<span class="tit_event">${vo.subject }</span>
+  				<span class="tit_event origin" style="color: black;"><a href="../board/event_detail.do?gebno=${vo.gebno }" style="color: gray;">${vo.subject }</a></span>
   				<div class="box_info">
              <p class="info">
              <span class="tit_info">${vo.event_date }</span>
@@ -323,19 +383,19 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
   </div>
   
   <div style="height: 50px;"></div>
-  
+  			<ul id="page_ul" >
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><a href="../board/event_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../board/event_list.do?page=${i }" class="page_a${i==curpage?" li_active":"" }""">${i }</a></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><a href="../board/event_list.do?page=${endPage+1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">▶</a></li>
+		        </c:if>
+		    </ul>
    <nav class="pagination">
-        <ul>
-         <c:if test="${startPage>1 }">
-          <li><a href="../board/event_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
-         </c:if>
-          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/event_list.do?page=${i }">${i }</a></li>
-          </c:forEach>
-         <c:if test="${endPage<totalpage }">
-          <li><a href="../board/event_list.do?page=${endPage+1 }">Next &raquo;</a></li>
-         </c:if>
-        </ul>
+
         <!-- 검색바 start -->
         <div class="board_search">
         <div class="container">
