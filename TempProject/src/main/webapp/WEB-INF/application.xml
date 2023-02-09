@@ -8,10 +8,11 @@
   <bean class="com.sist.model.NoticeBoardModel"/>
   <bean class="com.sist.model.EventBoardModel"/>
   <bean class="com.sist.model.ExhibitionModel"/>
-  <bean class="com.sist.model.ServiceModel"/>
   <bean class="com.sist.model.MyPageModel"/>
+  <bean class="com.sist.model.ServiceModel"/>
   <bean class="com.sist.model.FaqModel"/>
   <bean class="com.sist.model.ReserveModel"/>
+  <bean class="com.sist.model.QuickModel"/>
   <bean class="com.sist.model.JjimModel"/>
   <bean class="com.sist.model.AllReplyModel"/>
   <bean class="com.sist.model.AdminModel"/>
