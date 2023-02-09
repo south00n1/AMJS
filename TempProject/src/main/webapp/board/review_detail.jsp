@@ -253,7 +253,7 @@ function like_func(){
                   <c:forEach var="i" begin="1" end="${rvo.group_tab }">
                     &nbsp;&nbsp;
                   </c:forEach>
-                  <i class="fa-regular fa-arrow-turn-down-right"></i>
+                  <img src="../board/image/right-arrow.png" style="height: 30px;width: 30px;">
                 </c:if>
               <img src="../board/image/pro.png" style="width: 50px;height: 50px;"><span style="color:orange;font-size:13px;font-weight: 400;;">${rvo.name }</span>&nbsp;<span style="font-size:12px;font-weight: 400;">(${rvo.dbday })</span></td>
               <td class="text-right"style="border-style: none;" valign="bottom">

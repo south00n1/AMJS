@@ -66,6 +66,48 @@
 .underline:hover {
   background-size: 100% 100%;
 }
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
     </style>
 </head>
 <body>
@@ -141,18 +183,20 @@
            <c:if test="${sessionScope.id!=null }">
           <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
   		   </c:if>
+  		   
+  		     			<ul id="page_ul" >
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><a href="../board/review_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../board/review_list.do?page=${i }" class="page_a${i==curpage?" li_active":"" }""">${i }</a></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><a href="../board/review_list.do?page=${endPage+1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">▶</a></li>
+		        </c:if>
+		    </ul>
     <nav class="pagination">
-        <ul>
-         <c:if test="${startPage>1 }">
-          <li><a href="../board/review_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
-         </c:if>
-          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/review_list.do?page=${i }">${i }</a></li>
-          </c:forEach>
-         <c:if test="${endPage<totalpage }">
-          <li><a href="../board/review_list.do?page=${endPage+1 }">Next &raquo;</a></li>
-         </c:if>
-        </ul>
+ 
         <!-- 검색바 start -->
         <div class="board_search">
         <div class="container">
