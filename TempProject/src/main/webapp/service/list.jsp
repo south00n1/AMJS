@@ -70,6 +70,15 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
 * {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -110,12 +119,12 @@ $(function(){
     <!-- ### -->
     
 	<div class="container" style="width:960px">
-		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		<a href="../service/faq_list.do" class="btn btn-sm btn-primary thebogy">FAQ 목록</a>
 	  	<c:if test="${sessionScope.admin=='n' }">
-	  		<span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;">
-				<a href="../service/insert.do" class="btn btn-sm writerbtn">
-				  <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
-			    </a>
+	  		<span style="float: right">
+			    <a href="../service/insert.do" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">
+				  	<i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+				</a>
 			</span>
 	  	</c:if>
 	  <div style="height: 20px"></div>
@@ -174,7 +183,7 @@ $(function(){
 	  </div>
 	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../service/list.do?page=${curpage }" class="qna_list_page page_a" data-page="${i }">${i }</a></li>          
+		          <li class="page_li"><a href="../service/list.do?page=${i }" class="qna_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</a></li>          
 		        </c:forEach>    
 		      </ul>
 	</div>

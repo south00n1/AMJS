@@ -11,17 +11,18 @@
 $(function(){
 	//전시 선택 효과
 	$('.trs').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","color":"lightgray"})
 	},function(){
-		$(this).css('cursor',"none")
+		$(this).css({"cursor":"none","color":"#52565b"})
+	})
+	$('.ename').hover(function(){
+		$(this).css({"cursor":"pointer","color":"lightgray"})
+	},function(){
+		$(this).css({"cursor":"none","color":"#52565b"})
 	})
 	$('.trs').click(function(){
 		$('.trs').css("background-color","white")
 		$(this).css("background-color","lightblue")
-		
-		//선택된 데이터 전송
-		let geno=$(this).attr("data-no")
-		location.href("../reserve/reserve_main.do?geno="+geno)
 		
 		/*
 		$.ajax({
@@ -53,29 +54,29 @@ $(function(){
 	})
 })
 </script>
-    <style type="text/css">
-    * {
+<style type="text/css">
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 </head>
 <body>
   <table class="table">
    <tr>
-     <th class="text-center"></th>
-     <th class="text-center">전시명</th>
-     <th class="text-center">전시기간</th>
+     <th width=10% class="text-center"></th>
+     <th width=50% class="text-center">전시명</th>
+     <th width=40% class="text-center">전시기간</th>
    </tr>
    <c:forEach var="vo" items="${list }">
      <tr class="trs" data-no="${vo.geno }">
-      <td class="text-center">
+      <td width=10% class="text-center">
         <img src="${vo.poster }" style="width: 30px;height: 30px">
       </td>
-      <td>${vo.title }</td>
-      <td>${vo.period }</td>
+      <td width=50%><a href="../reserve/reserve_main.do?geno=${vo.geno }" style="color: #52565b" class="ename">${vo.title }</a></td>
+      <td width=40%>${vo.period }</td>
      </tr>
    </c:forEach>
   </table>

@@ -149,6 +149,15 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
 * {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -189,19 +198,19 @@ $(function(){
     <!-- ### -->
 	
 	<div class="container" style="width:960px;height: 800px">
-		<span id=falist class="btn btn-sm btn-primary">전체보기</span>
+		<span id=falist class="btn btn-sm btn-primary thebogy">전체보기</span>
 	  	<c:if test="${sessionScope.admin!='y' }">
 	  	  <c:if test="${sessionScope.id==null }">
-		      <span style="float: right;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
-				  <a href="../member/login.do" class="btn btn-sm writerbtn">
-				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+		      <span style="float: right">
+			      <a href="../member/login.do" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">
+				  	<i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
 				  </a>
 			  </span>
 	  	  </c:if>
 	  	  <c:if test="${sessionScope.id!=null }">
-		      <span style="float: right;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
-				  <a href="../service/insert.do" class="btn btn-sm writerbtn">
-				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+		      <span style="float: right">
+			      <a href="../service/insert.do" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">
+				  	<i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
 				  </a>
 			  </span>
 	  	  </c:if>
@@ -210,7 +219,7 @@ $(function(){
 	  	<table class="table" style="margin-bottom: 0rem">
 	  	  <tr>
 	  	  	<th width=10% class="text-center">번호</th>
-	  	  	<th width=15% class="text-center">
+	  	  	<th width=17% class="text-center">
 	  	  		<div>
 			  	  <label for=ftype>문의유형</label>
 					<select name=ftype id=ftype>
@@ -223,7 +232,7 @@ $(function(){
 					</select>
 			  	</div>
 	  	  	</th>
-	  	  	<th width=65% class="text-center">제목</th>
+	  	  	<th width=63% class="text-center">제목</th>
 	  	  	<th width=10% class="text-center"></th>
 	  	  </tr>
 	  	</table>
@@ -241,8 +250,8 @@ $(function(){
 				  <c:forEach var="vo" items="${list }" varStatus="s">
 				  	  <tr>
 				  	  	<td width=10% class="text-center">${count-s.index-(curpage-1)*10 }</td>
-				  	  	<td width=15% class="text-center">${vo.type }</td>
-				  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
+				  	  	<td width=17% class="text-center">${vo.type }</td>
+				  	  	<td width=63% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 				  	  	<td width=10% class="text-center"></td>
 				  	  </tr>
 				  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
@@ -252,7 +261,7 @@ $(function(){
 						</td>
 						<td>
 							<c:if test="${sessionScope.admin=='y' }">
-			  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning">수정</a>
+			  	  				<a href="../service/faq_update.do?no=${vo.gfno }" class="btn btn-sm btn-warning thebogy">수정</a>
 			  	  			</c:if>
 						</td>
 					  </tr>
@@ -261,7 +270,7 @@ $(function(){
 			 </div>
 			  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="faq_list_page page_a" data-page="${i }">${i }</span></li>          
+		          <li class="page_li"><span class="faq_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		      </ul>
 			</c:if>

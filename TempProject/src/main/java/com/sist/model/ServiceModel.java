@@ -45,9 +45,8 @@ public class ServiceModel {
 		List<AskVO> list=dao.qnaListData(curpage);
 		int count=list.size();
 		int totalpage=(int)(Math.ceil(count/10.0));
-		final int BLOCK=5;
-		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
-		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		int startpage=1;
+		int endpage=5;
 		if(endpage>totalpage) endpage=totalpage;
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);

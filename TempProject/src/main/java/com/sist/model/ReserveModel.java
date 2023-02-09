@@ -133,6 +133,7 @@ public class ReserveModel {
 			request.setCharacterEncoding("UTF-8");
 		} catch(Exception ex) {}
 		String ed=request.getParameter("ed");
+		if(ed==null) ed="육아";
 		ReserveDAO dao=new ReserveDAO();
 		List<ExhibitionVO> list=dao.exhibitionListData(ed);
 		request.setAttribute("list", list);

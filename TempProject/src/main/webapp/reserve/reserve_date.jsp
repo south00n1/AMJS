@@ -11,7 +11,9 @@
 $(function(){
 	//날짜 선택 효과
 	$('.days_true').hover(function(){
-		$(this).css("cursor","pointer")
+		$(this).css({"cursor":"pointer","color":"lightgray"})
+	},function(){
+		$(this).css({"cursor":"none","color":"#52565b"})
 	})
 	$('.days_true').click(function(){
 		$('.days_true').css("background-color","white")

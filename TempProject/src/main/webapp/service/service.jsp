@@ -39,7 +39,13 @@
 	clear: both;
 	padding-top: 15px;
 }
-    * {
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
+.writerbtn{
+    font-family: 'GmarketSansMedium';
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
@@ -218,7 +224,7 @@ $(function(){
 			 	<th width=10% class="text-center">문의유형</th>
 			  	<th width=70% class="text-center">제목</th>
 			  	<th width=10% class="text-center">
-			  		<a href="../service/faq_list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
+			  		<a href="../service/faq_list.do"><input type=button class="btn btn-sm btn-primary thebogy" value="더보기"></a>
 			  	</th>
 		 	  </tr>
 	 	  </thead>
@@ -256,7 +262,7 @@ $(function(){
 		   	<th width=60% class="text-center">제목</th>
 		   	<th width=13% class="text-center">답변상태</th>
 		   	<th width=7% class="text-center">
-		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary" value="더보기"></a>
+		   		<a href="../service/list.do"><input type=button class="btn btn-sm btn-primary thebogy" value="더보기"></a>
 		   	</th>
 		  </tr>
 		  <c:forEach var="vo" items="${slist }" varStatus="s">
@@ -264,7 +270,7 @@ $(function(){
 			  	<td width=10% class="text-center">${count-s.index }</td>
 			  	<td width=10% class="text-center">${vo.type }</td>
 			  	<td width=60% class=qsub>
-			  		<a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
+			  		<a href="../service/detail.do?no=${vo.gano }" style="color: #52565b">${vo.subject }</a>
 			  	</td>
 			  	<td width=13% class="text-center">
 			  	  <c:if test="${vo.ans_state=='답변완료' }">
@@ -277,16 +283,12 @@ $(function(){
 		   		<td width=7% class="text-center"></td>
 			  </tr>
 		  </c:forEach>
-		  <tr>
-			<td colspan=4 class="text-center" style="border-color: white">
-	  			<span style="float: center;border: 1px solid #ccc;background: #fff;margin-right: 20px;">
-				  <a href="../service/insert.do" class="btn btn-sm writerbtn">
-				    <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
-				  </a>
-			    </span>
-			</td>
-		  </tr>
 		</table>
+		<div style="height: 20px; display: inline-block;">
+			<a href="../service/insert.do" style="position: absolute;left: 50%;transform: translateX(-50%);padding: 7px 7px 3px 7px;border: 1px solid gray" class="btn btn-sm writerbtn thebogy">
+			  <i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
+			</a>
+		</div>
 	  </c:if>
 	</div>
   </c:if>

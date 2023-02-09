@@ -29,7 +29,7 @@ $(function(){
 	})
 	
 	//페이지 이동
-	$('.pBtn').click(function(){
+	$('.faq_list_page').click(function(){
 		let page=$(this).attr("data-no")
 		let ss=$('#search').val()
 		$.ajax({
@@ -49,8 +49,50 @@ $(function(){
 	})
 })
 </script>
-    <style type="text/css">
-    * {
+<style type="text/css">
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
@@ -72,8 +114,8 @@ $(function(){
 		  <c:forEach var="vo" items="${list }" varStatus="s">
 		  	  <tr>
 		  	  	<td width=10% class="text-center">${count-s.index-(curpage-1)*10 }</td>
-		  	  	<td width=15% class="text-center">${vo.type }</td>
-		  	  	<td width=65% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
+		  	  	<td width=17% class="text-center">${vo.type }</td>
+		  	  	<td width=63% class=fsub data-no="${vo.gfno }">${vo.subject }</td>
 		  	  	<td width=10% class="text-center"></td>
 		  	  </tr>
 		  	  <tr id="f${vo.gfno }" class="fdetail" style="display: none">
@@ -90,15 +132,11 @@ $(function(){
 	  	  </c:forEach>
 	  </table>
 	 </div>
-	  <table class="table" style="border-color: white">
-	    <tr>
-	  	  <td class="text-center">
-	  		<span data-no="${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary pBtn">이전</span>
-	  		${curpage } page / ${totalpage } pages
-	  		<span data-no="${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary pBtn">다음</span>
-	  	  </td>
-	    </tr>
-	  </table>
+	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
+		          <li class="page_li"><span class="faq_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</span></li>          
+		        </c:forEach>    
+		      </ul>
 	</c:if>
 </body>
 </html>

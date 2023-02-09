@@ -100,14 +100,17 @@ $(function(){
 	})
 })
 </script>
-    <style type="text/css">
-    * {
+<style type="text/css">
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 </head>
 <body>
 	<!-- ### -->
@@ -141,13 +144,27 @@ $(function(){
     <!-- ### -->
     
 	<div class="container" style="width:700px">
+	<%--
 		<table>
 		  <tr>
 		  	<td style="border-color: white">
-		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary">FAQ 목록</a>
+		  		<a href="../service/faq_list.do" class="btn btn-sm btn-primary thebogy">FAQ 목록</a>
 		  	</td>
 		  </tr>
 		</table>
+	 --%>
+			<div style="width: 100%;height: 30px;display: flex;flex-direction: row;justify-content: space-between;">
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../service/detail.do?no=${vo.gano-1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">이전글</a>
+					</span>
+	  	  		</div>
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../service/detail.do?no=${vo.gano+1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">다음글</a>
+					</span>
+	  	  		</div>
+		  	</div>
 		<div style="height: 20px"></div>
 	  	<table class="table">
 	  	  <tr>
@@ -202,17 +219,17 @@ $(function(){
 	  	  </c:forEach>
 	  	  <tr>
 	  	  	<td class="text-center" colspan=8 style="border-color: white">
-	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning">수정</a>
-	  	  		<span class="btn btn-sm btn-danger" id=delete>삭제</span>
-	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary">목록</a>
-	  	  		<span class="btn btn-sm btn-success" id=reply>답변</span>
+	  	  		<a href="../service/update.do?no=${vo.gano }" class="btn btn-sm btn-warning thebogy">수정</a>
+	  	  		<span class="btn btn-sm btn-danger thebogy" id=delete>삭제</span>
+	  	  		<a href="../service/list.do" class="btn btn-sm btn-primary thebogy">목록</a>
+	  	  		<span class="btn btn-sm btn-success thebogy" id=reply>답변</span>
 	  	  	</td>
 	  	  </tr>
 	  	  <tr id=dpwd style="display: none" data-no="${vo.gano }">
 	  	  	<td class="text-center" colspan=8>
 	  	  		<form id=del_frm>
 	  	  		  비밀번호: <input type=password size=10 class="input-sm" id=del_pwd>
-	  	  		  <input type=button value="삭제" class="btn btn-sm btn-danger" id=delBtn>
+	  	  		  <input type=button value="삭제" class="btn btn-sm btn-danger thebogy" id=delBtn>
 	  	  		</form>
 	  	  	</td>
 	  	  </tr>
@@ -221,21 +238,21 @@ $(function(){
 	  	 <form method=post action="../service/reply.do">
 	  	  <c:if test="${sessionScope.admin=='n' }">
 			  <tr>
-			  	<th width=15% class="text-right">제목</th>
-			  	<td width=85%>
+			  	<th width=20% class="text-right">제목</th>
+			  	<td width=80%>
 			  		<input type=text name=subject size=30 class="input-sm" required>
 			  	</td>
 			  </tr>
 	  	  </c:if>
 		  <tr>
-		  	<th width=15% class="text-right">내용</th>
-		  	<td width=85%>
-		  		<textarea rows=10 cols=65 name=content required></textarea>
+		  	<th width=20% class="text-right">내용</th>
+		  	<td width=80%>
+		  		<textarea rows=10 cols=50 name=content required></textarea>
 		  	</td>
 		  </tr>
 		  <tr>
-		  	<th width=15% class="text-right">비밀번호</th>
-		  	<td width=85%>
+		  	<th width=20% class="text-right">비밀번호</th>
+		  	<td width=80%>
 		  		<input type=password name=pwd size=10 class="input-sm" required>
 		  		<input type=hidden name=no value="${vo.gano }">
 		  		<input type=hidden name=id value="${sessionScope.id }">
@@ -244,7 +261,7 @@ $(function(){
 		  </tr>
 		  <tr>
 		  	<td colspan=2 class="text-center" style="border-color: white">
-		  		<input type=submit value="등록" class="btn btn-sm btn-success">
+		  		<input type=submit value="등록" class="btn btn-sm btn-success thebogy">
 		  	</td>
 		  </tr>
 	  	 </form>

@@ -26,15 +26,14 @@ public class FaqModel {
 	    List<FaqVO> list=dao.faqFindData(ss, curpage);
 	    int count=dao.faqFindRowCount(ss);
 	    int totalpage=(int)(Math.ceil(count/10.0));
-	    final int BLOCK=5;
-	    int startpage=((curpage-1)/BLOCK*BLOCK)+1;
-	    int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
-	    if(endpage>totalpage) endpage=totalpage;
 	    request.setAttribute("ss", ss);
 	    request.setAttribute("list", list);
 	    request.setAttribute("count", count);
 	    request.setAttribute("curpage", curpage);
 	    request.setAttribute("totalpage", totalpage);
+	    int startpage=1;
+		int endpage=5;
+	    if(endpage>totalpage) endpage=totalpage;
 	    request.setAttribute("startpage", startpage);
 	    request.setAttribute("endpage", endpage);
 		request.setAttribute("main_jsp", "../service/faq_list.jsp");
@@ -103,6 +102,11 @@ public class FaqModel {
 	    request.setAttribute("count", count);
 	    request.setAttribute("curpage", curpage);
 	    request.setAttribute("totalpage", totalpage);
+	    int startpage=1;
+		int endpage=5;
+	    if(endpage>totalpage) endpage=totalpage;
+	    request.setAttribute("startpage", startpage);
+	    request.setAttribute("endpage", endpage);
 	    return "../service/faq_find_result.jsp";
 	}
 	
@@ -122,6 +126,11 @@ public class FaqModel {
 		request.setAttribute("count", count);
 		request.setAttribute("curpage", curpage);
 	    request.setAttribute("totalpage", totalpage);
+	    int startpage=1;
+		int endpage=5;
+	    if(endpage>totalpage) endpage=totalpage;
+	    request.setAttribute("startpage", startpage);
+	    request.setAttribute("endpage", endpage);
 		return "../service/faq_find_result.jsp";
 	}
 }

@@ -52,14 +52,17 @@ $(function(){
 	})
 })
 </script>
-    <style type="text/css">
-    * {
+<style type="text/css">
+.thebogy{
+    font-family: 'GmarketSansMedium';
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 </head>
 <body>
 	<!-- ### -->
@@ -119,8 +122,8 @@ $(function(){
 		  	<th width=15%>첨부파일</th>
 		  	<td width=85%>
 		  		<input type=file name=upload size=20 class="input-sm">
-		  		<input type=button class="btn btn-sm btn-success" id=addBtn value="추가">
-		  		<input type=button class="btn btn-sm btn-success" id=delBtn value="삭제">
+		  		<input type=button class="btn btn-sm btn-success thebogy" id=addBtn value="추가">
+		  		<input type=button class="btn btn-sm btn-success thebogy" id=delBtn value="삭제">
 		  	</td>
 		  </tr>
 		  <tbody id=fplus>
@@ -141,8 +144,8 @@ $(function(){
 		  </tr>
 		  <tr>
 		  	<td colspan=2 class="text-center" style="border-color: white">
-		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary">
-		  		<input type=button value="취소" class="btn btn-sm btn-primary" onclick="javascript:history.back()">
+		  		<input type=submit value="글쓰기" class="btn btn-sm btn-primary thebogy">
+		  		<input type=button value="취소" class="btn btn-sm btn-primary thebogy" onclick="javascript:history.back()">
 		  	</td>
 		  </tr>
 		</table>

@@ -14,8 +14,10 @@
 	border-radius: 5px;
 	-webkit-box-shadow: 0 0 1px rgba(0,0,0);
 }
-
-    * {
+.exhibs{
+    font-family: 'GmarketSansMedium';
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
@@ -49,10 +51,11 @@ $(function(){
 	})
 
 	//전시 재선택
+	let ed=$('#ed').text()
 	$.ajax({
 		type:'post',
 		url:'../reserve/reserve_exhib.do',
-		data:{"ed":'육아'},
+		data:{"ed":ed},
 		success:function(response){
 			$('#select_exhib').html(response)
 		}
@@ -74,7 +77,7 @@ $(function(){
 <body>
 <div class="container">
   <div style="height: 30px"></div>
-	<h3 class="text-primary px-3">GOD 전시 예매</h3>
+	<h3 class="text-primary px-3">전시 예매</h3>
     <table class=table style="width: 100%">
     	<tr>
     	  <td width="30%">
@@ -134,6 +137,7 @@ $(function(){
     	  		<caption align="top">
     	  			<h5>
     	  				예매할 전시 변경&nbsp;&nbsp;
+    	  				<input type=hidden value="${ed }" id="ed">
 	    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
 	    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
 	    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
