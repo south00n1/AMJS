@@ -104,7 +104,7 @@ $(function(){
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:700px">
+	<div class="container" style="width:700px;font-size: 15px">
 	<div class="row">
 	  <form id=up_frm>
 		<table class="table">

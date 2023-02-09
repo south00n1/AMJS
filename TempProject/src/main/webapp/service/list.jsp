@@ -85,7 +85,7 @@ $(function(){
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 </head>
 <body>
 	<!-- ### -->
@@ -118,9 +118,9 @@ $(function(){
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:960px">
+	<div class="container" style="width:960px;font-size: 14px">
 		<a href="../service/faq_list.do" class="btn btn-sm btn-primary thebogy">FAQ 목록</a>
-	  	<c:if test="${sessionScope.admin=='n' }">
+	  	<c:if test="${sessionScope.id!=null }">
 	  		<span style="float: right">
 			    <a href="../service/insert.do" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">
 				  	<i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기
@@ -149,7 +149,7 @@ $(function(){
 		  	  	  	<c:forEach var="i" begin="0" end="${vo.group_tab }">&nbsp;&nbsp;</c:forEach>
 		  	  	  	<img src="../service/image/letter.png" style="width: 20px;height: 20px">
 		  	  	  </c:if>
-		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: black">${vo.subject }</a>
+		  	  	  <a href="../service/detail.do?no=${vo.gano }" style="color: #52565b">${vo.subject }</a>
 		  	  	  <c:if test="${vo.dbday==today }">
 		          	<img src="../service/image/new_red.png" style="width: 20px">
 		          </c:if>
@@ -181,11 +181,11 @@ $(function(){
 	  	  </c:forEach>
 	  	</table>
 	  </div>
-	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
-		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
-		          <li class="page_li"><a href="../service/list.do?page=${i }" class="qna_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</a></li>          
-		        </c:forEach>    
-		      </ul>
+	  	  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		      <c:forEach var="i" begin="${startpage }" end="${endpage }">
+		          <li class="page_li"><a href="../service/list.do?page=${i }" class="page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</a></li>          
+		      </c:forEach>    
+		  </ul>
 	</div>
 </body>
 </html>

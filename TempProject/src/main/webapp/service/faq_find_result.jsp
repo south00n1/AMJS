@@ -30,7 +30,7 @@ $(function(){
 	
 	//페이지 이동
 	$('.faq_list_page').click(function(){
-		let page=$(this).attr("data-no")
+		let page=$(this).attr('data-page')
 		let ss=$('#search').val()
 		$.ajax({
 			type:'post',
@@ -132,11 +132,13 @@ $(function(){
 	  	  </c:forEach>
 	  </table>
 	 </div>
-	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
-		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
-		          <li class="page_li"><span class="faq_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</span></li>          
-		        </c:forEach>    
-		      </ul>
+	 <div>
+	 	  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+	        <c:forEach var="i" begin="${startpage }" end="${endpage }">
+		      <li class="page_li"><span class="faq_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</span></li>          
+		    </c:forEach>    
+		  </ul>
+	 </div>
 	</c:if>
 </body>
 </html>

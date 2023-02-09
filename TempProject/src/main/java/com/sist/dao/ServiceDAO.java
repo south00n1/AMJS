@@ -72,6 +72,23 @@ public class ServiceDAO {
 		}
 		return list;
 	}
+	public int qnaTotal() {
+		int total=0;
+		try {
+			conn=CreateConnection.getConnection();
+			String sql="SELECT COUNT(*) FROM god_ask_3";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			CreateConnection.disConnection(conn, ps);
+		}
+		return total;
+	}
 	//QNA ID별 서비스 메인
 	public List<AskVO> serviceMainQna(String id){
 		List<AskVO> list=new ArrayList<AskVO>();

@@ -143,7 +143,7 @@ $(function(){
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:700px">
+	<div class="container" style="width:700px;font-size: 15px">
 	<%--
 		<table>
 		  <tr>

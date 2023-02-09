@@ -95,7 +95,7 @@ $(function(){
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:700px">
+	<div class="container" style="width:700px;font-size: 15px">
 	<div class="row">
 	  <form method=post action="../service/insert_ok.do" enctype="multipart/form-data">
 		<table class="table">

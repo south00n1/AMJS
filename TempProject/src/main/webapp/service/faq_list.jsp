@@ -98,12 +98,12 @@ $(function(){
 		$.ajax({
 			type:'post',
 			url:'../service/faq_list.do',
-			success:function(result) {
+			success:function(result){
 				$.ajax({
 					type:'post',
 					url:'../service/faq_find.do',
 					data:{"ss":ss,"page":page},
-					success:function(response) {
+					success:function(response){
 						$('#f-find').html(response)
 					}
 				})
@@ -164,7 +164,7 @@ $(function(){
     font-weight: normal;
     font-style: normal;
 }
-    </style>
+</style>
 </head>
 <body>
 	<!-- ### -->
@@ -197,7 +197,7 @@ $(function(){
     </div>
     <!-- ### -->
 	
-	<div class="container" style="width:960px;height: 800px">
+	<div class="container" style="width:960px;height: 800px;font-size: 14px">
 		<span id=falist class="btn btn-sm btn-primary thebogy">전체보기</span>
 	  	<c:if test="${sessionScope.admin!='y' }">
 	  	  <c:if test="${sessionScope.id==null }">
@@ -268,11 +268,13 @@ $(function(){
 			  	  </c:forEach>
 			  </table>
 			 </div>
+			 <div>
 			  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
 		          <li class="page_li"><span class="faq_list_page page_a${i==curpage?" li_active":"" }"" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		      </ul>
+			 </div>
 			</c:if>
 	  	</div>
 	</div>

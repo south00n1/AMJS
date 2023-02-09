@@ -151,7 +151,7 @@ $(function(){
     </div>
     <!-- ### -->
 
-	<div class="container" style="width: 100%">
+	<div class="container" style="width: 100%;font-size: 14px">
 <!-- faq 빠른 찾기  -->
 	<div>
 		<h4 class="text-primary px-3">FAQ 찾기</h4>

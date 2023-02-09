@@ -76,7 +76,7 @@ $(function(){
     </div>
     <!-- ### -->
     
-	<div class="container" style="width:700px">
+	<div class="container" style="width:700px;font-size: 15px">
 	<div class="row">
 	  <form method=post action="../service/faq_update_ok.do">
 		<table class="table">
