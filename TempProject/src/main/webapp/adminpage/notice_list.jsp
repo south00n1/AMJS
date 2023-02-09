@@ -10,9 +10,18 @@
 <script type="text/javascript">
 $(function(){
 	
-	$('.notice_insert').hover(function(){
+	$('.notice_insert').mouseover(function(){
 		$(this).css('cursor', 'pointer')
+		$(this).css('color', 'white')
+		$(this).css('background-color', '#27375c')
 	})
+	
+	$('.notice_insert').mouseout(function(){
+		$(this).css('cursor', 'pointer')
+		$(this).css('color', '#27375c')
+		$(this).css('background-color', 'white')
+	})
+	
 	$('.notice_insert').click(function(){
 		$.ajax({
 			type:'post',
@@ -23,7 +32,7 @@ $(function(){
 		})
 	})
 	
-	$('.notice_insert').hover(function(){
+	$('.notice_update').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	$('.notice_update').click(function(){
@@ -38,8 +47,14 @@ $(function(){
 		})
 	})
 	
+	$('.notice_delete').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
 	$('.notice_delete').click(function(){
+		let result = confirm("삭제하시겠습니까?")
 		let gnbno = $(this).attr('data-gnbno')
+		if(result) {
+			
 		$.ajax({
 			type:'post',
 			url:'../adminpage/notice_delete.do',
@@ -48,6 +63,8 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
+		} else {
+		}
 	})
 	
 	$('.admin_notice_page').click(function(){
@@ -117,10 +134,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -166,7 +187,7 @@ $(function(){
 	z-index: 2;
 }
 
-    * {
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
@@ -178,8 +199,8 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title" style="display: flex; justify-content: space-between;">
-			<h4 class="mypage_home_subtitle">공지사항 목록</h4>
-			<div class="rst notice_insert" style="text-align:center; background-color: #27375C; width:100px; height: 30px; margin-right:35px;">
+			<h4 class="mypage_home_subtitle">공지사항 관리</h4>
+			<div class="rst notice_insert" id="insert" style="text-align:center; background-color: #fff; color:#27375C; width:100px; height: 30px; margin-right:35px; border: 1px solid #27375C">
 			<i class="fa-solid fa-pen fa-sm"></i>&nbsp;공지등록
 			</div>
 		</div>
@@ -194,13 +215,13 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center origin">${vo.prefix }</td>
-					<td width="45%" class="text-center origin">${vo.subject }</td>
-					<td width="15%" class="text-center origin">${today }</td>
-					<td width="10%" class="text-center origin">${vo.hit }</td>
+					<td width="10%" class="text-center origin"><a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.prefix }</a></td>
+					<td width="45%" class="text-center origin"><a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.subject }</a></td>
+					<td width="15%" class="text-center origin"><a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${today }</a></td>
+					<td width="10%" class="text-center origin"><a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.hit }</a></td>
 					<td width="15%" class="text-center origin">
-					<span class="rst notice_update" data-gnbno="${vo.gnbno }" style="background-color: green;">수정</span>
-					<span class="rst notice_delete" data-gnbno="${vo.gnbno }" style="background-color: red;">삭제</span>
+					<span class="rst notice_update" data-gnbno="${vo.gnbno }"><img src="../img/revise.png" style="width:20px; height:20px;"></span>
+					<span class="rst notice_delete" data-gnbno="${vo.gnbno }"><img src="../img/trash.png" style="width:20px; height:20px;"></span>
 					</td>
 				</tr>
 				</c:forEach>

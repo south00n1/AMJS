@@ -102,10 +102,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -154,7 +158,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">예매 관리</h4>
+			<h4 class="mypage_home_subtitle">예매 승인</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
@@ -169,18 +173,18 @@ $(function(){
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="40%" class="text-center origin" >${vo.evo.title }</td>
-					<td width="10%" class="text-center origin"><img src="${vo.evo.poster }" style="width:50px; height:50px"></td>
-					<td width="10%" class="text-center origin">${vo.evo.loc }</td>
-					<td width="10%" class="text-center origin">${vo.rdate }</td>
-					<td width="10%" class="text-center origin">${vo.rtime }</td>
-					<td width="5%" class="text-center origin">${vo.inwon }</td>
+					<td width="40%" class="text-center origin" ><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.evo.title }</a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}"><img src="${vo.evo.poster }" style="width:50px; height:50px"></a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.evo.loc }</a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.rdate }</a></td>
+					<td width="10%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.rtime }</a></td>
+					<td width="5%" class="text-center origin"><a href="../exhibition/exhibition_detail.do?geno=${vo.geno}">${vo.inwon }</a></td>
 					<td width="15%" class="text-center">
 						<c:if test="${vo.ok == 'y'}">
-						<span class="rst reserve_state" style="background-color: gray;">완료</span>
+						<span class="rst reserve_state"><img src="../img/ok.png" style="width:20px; height:20px;"></span>
 						</c:if>
 						<c:if test="${vo.ok == 'n'}">
-						<span data-gerno="${vo.gerno }" class="rst reserve_state reserve_okBtn" style="background-color: green;">대기</span>
+						<span data-gerno="${vo.gerno }" class="rst reserve_state reserve_okBtn"><img src="../img/wait.png" style="width:20px; height:20px;"></span>
 						</c:if>
 					</td>
 				</tr>

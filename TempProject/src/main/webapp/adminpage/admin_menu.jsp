@@ -82,19 +82,21 @@ li.mypage_menu::before {
 
 .mypage_menu_child {
 	color: #666;
-	font-size: 15px;
-	font-weight: bold;
+	font-size: 14px;
 }
 .mypage_menu_child:hover {
 	color: #27375C!important;
 	cursor: pointer;
+	font-weight: bold;
 }
 .mypage_menu_child a {
 	color: #666;
+	font-size: 14px;
 }
 .mypage_menu_child a:hover {
 	color: #27375C!important;
 	cursor: pointer;
+	font-weight: bold;
 }
 .mypage_li_div {
 	margin-bottom: 30px;
@@ -116,21 +118,22 @@ li.mypage_menu::before {
 </head>
 <body>
 	<ul class="mypage_ul">
-		<h2 class="mypage_title">AdminPage</h2>
+		<a href="../adminpage/adminpage_main.do"><h2 class="mypage_title">AdminPage</h2></a>
 		<div class="mypage_li_div">
 	  	    <li class="mypage_menu">게시글 관리</li>
-	  	    <li class="mypage_menu_child"><span id="notice_manage">공지사항 관리</span></a></li>
-	  	    <li class="mypage_menu_child">후기게시판 관리</li>
+	  	    <span id="notice_manage"><li class="mypage_menu_child">공지사항 관리</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<span id="reserve_manage"><li class="mypage_menu">예매 관리</li></span>
+  	    	<li class="mypage_menu">예매 관리</li>
+  	    	<span id="reserve_manage"><li class="mypage_menu_child">예매 승인</li></span>
   	    </div>
   	    <div class="mypage_li_div">
   	    	<li class="mypage_menu">문의관리</li>
   	    	<span id="qna_manage"><li class="mypage_menu_child">미답변 문의내역</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-	  	    <span id="member_manage"><li class="mypage_menu">회원관리</li></span>
+	  	    <li class="mypage_menu">회원관리</li>
+	  	    <span id="member_manage"><li class="mypage_menu_child">회원추방</li></span>
 		</div>
 	</ul>
 </body>

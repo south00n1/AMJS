@@ -132,19 +132,21 @@ li.mypage_menu::before {
 
 .mypage_menu_child {
 	color: #666;
-	font-size: 15px;
-	font-weight: bold;
+	font-size: 14px;
 }
 .mypage_menu_child:hover {
 	color: #27375C!important;
 	cursor: pointer;
+	font-weight: bold;
 }
 .mypage_menu_child a {
 	color: #666;
+	font-size: 14px;
 }
 .mypage_menu_child a:hover {
 	color: #27375C!important;
 	cursor: pointer;
+	font-weight: bold;
 }
 .mypage_li_div {
 	margin-bottom: 30px;

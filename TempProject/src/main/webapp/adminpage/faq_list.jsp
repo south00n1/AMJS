@@ -85,12 +85,15 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
-
 #page_ul {
 	list-style: none;
 	display: block;
@@ -159,7 +162,7 @@ $(function(){
 					<td width="15%" class="text-center origin">${vo.regdate }</td>
 					<td width="10%" class="text-center origin">${vo.ans_state }</td>
 					<td width="10%" class="text-center origin">
-					<a href="../service/detail.do?no=${vo.gano }"><span class="rst" style="background-color: green;">답변</span></a>
+					<a href="../service/detail.do?no=${vo.gano }"><span class="rst"><img src="../img/faq.png" style="width:20px; height:20px;"></span></a>
 					</td>
 				</tr>
 				</c:forEach>

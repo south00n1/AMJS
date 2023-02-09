@@ -66,7 +66,6 @@ $(function(){
         }
         else
         {
-            alert("취소됐습니다.")
         }
 	})
 })
@@ -78,6 +77,7 @@ $(function(){
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
 }
 .mypage_home_title {
 	margin: 0px;
@@ -108,10 +108,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -160,7 +164,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">회원목록</h4>
+			<h4 class="mypage_home_subtitle">회원추방</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
@@ -180,7 +184,7 @@ $(function(){
 					<td width="10%" class="text-center origin">${vo.birthday }</td>
 					<td width="15%" class="text-center origin">${vo.email }</td>
 					<td width="10%" class="text-center origin">
-					<span class="adminpage_member_delBtn" data-id="${vo.id }"><img src="../img/delete.png" style="width:25px; height: 25px"></span>
+					<span class="adminpage_member_delBtn" data-id="${vo.id }"><img src="../img/delete.png" style="width:20px; height: 20px"></span>
 					</td>
 				</tr>
 				</c:forEach>

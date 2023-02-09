@@ -189,13 +189,13 @@ input[type=button]:hover {
 		<div class="pic_detail_menu">
 			<c:if test="${sessionScope.id!=null }">
 				<c:if test="${jjim_count == 0 }">
-					<a href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;"><i class="fa-regular fa-thumbs-up"></i></a>
+					<a href="../jjim/jjim_insert.do?gpno=${vo.gpno }" ><img src="../img/jjim.png" style="width:30px; height:30px;"></a>
 				</c:if>
 				<c:if test="${jjim_count != 0 }">
-					<span href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;"><i class="fa-regular fa-thumbs-up"></i></span>
+					<span href="../jjim/jjim_insert.do?gpno=${vo.gpno }" ><img src="../img/jjim1.png" style="width:30px; height:30px;"></span>
 				</c:if>
 			</c:if>
-				<a href="../picture/list.do" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;"><i class="fa-solid fa-list"></i></a>
+				<a href="../picture/list.do" class="btn btn-xs"><img src="../img/list.png" style="width:30px; height:30px;"></a>
 		</div>
 		</div>
 		
