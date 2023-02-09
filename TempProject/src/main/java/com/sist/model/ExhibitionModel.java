@@ -95,7 +95,7 @@ public class ExhibitionModel {
 		   vo.setStartday(st.nextToken().trim());
 		   vo.setEndday(st.nextToken().trim());
 	   }
-	   int count=list.size();
+	   int count=dao.exhibitionitemFindTotalPage(tt);
 	   //int totalpage=dao.exhibitionAllTotalPage();
 	   int totalpage=(int)(Math.ceil(count/20.0));
 	   final int BLOCK=10;
@@ -122,7 +122,7 @@ public class ExhibitionModel {
 	   request.setAttribute("today1", today1);
 	 
 	   request.setAttribute("tt", tt);
-	   request.setAttribute("main_jsp", "../exhibition/exhibition_all.jsp");
+	   request.setAttribute("main_jsp", "../exhibition/exhibition_search.jsp");
 	   return "../main/main.jsp";
    }
 
@@ -137,19 +137,22 @@ public class ExhibitionModel {
 		   String page=request.getParameter("page");
 		   if(page==null)
 			   page="1";
+		  
 		   int curpage=Integer.parseInt(page);
 		   String eno=request.getParameter("eno");
+		   if(eno==null)
+			   eno="1";
 		   int eee=Integer.parseInt(eno);
 		   ExhibitionDAO dao=new ExhibitionDAO();
 		   String[] temp= {"","육아","스포츠","인테리어","예술","전기","기계","농축산"}; 
-		   List<ExhibitionVO> list=dao.exhibitionCategoryListData(temp[eee]);
+		   List<ExhibitionVO> list=dao.exhibitionCategoryListData(curpage,temp[eee]);
 		   for(ExhibitionVO vo:list)
 		   {
 			   StringTokenizer st = new StringTokenizer(vo.getPeriod(), "~") ;
 			   vo.setStartday(st.nextToken().trim());
 			   vo.setEndday(st.nextToken().trim());
 		   }
-		   int count=list.size();
+		   int count=dao.exhibitionCategoryTotalPage(eee);
 		   int totalpage=(int)(Math.ceil(count/20.0));
 		   //int totalpage=dao.exhibitionAllTotalPage();
 		   
@@ -164,6 +167,7 @@ public class ExhibitionModel {
 		   request.setAttribute("startPage", startPage);
 		   request.setAttribute("endPage", endPage);
 		   request.setAttribute("count", count);
+		   request.setAttribute("eee",eee);
 		   request.setAttribute("today", new SimpleDateFormat("yyyyMMdd").format(new Date()));
 		   //request.setAttribute("main_jsp", "../exhibition/exhibition_category.jsp");  // main.jsp에서 include되는 파일 지정 
 		   

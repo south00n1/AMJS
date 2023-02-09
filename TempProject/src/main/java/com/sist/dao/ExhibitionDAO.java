@@ -75,7 +75,7 @@ public class ExhibitionDAO {
    }
    
    // 카테고리별 출력 
-   public List<ExhibitionVO> exhibitionCategoryListData(String ec)
+   public List<ExhibitionVO> exhibitionCategoryListData(int page,String ec)
    {
 	    List<ExhibitionVO> list=new ArrayList<ExhibitionVO>();
 	    try
@@ -85,9 +85,15 @@ public class ExhibitionDAO {
 		    		 +"FROM (SELECT geno,poster,title,period,loc,rownum as num "
 				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period,loc "
 				     +"FROM god_exhibition_3 "
-				     + "WHERE area LIKE '%'||?||'%'))";
+				     +"WHERE area LIKE '%'||?||'%')) "
+				     +"WHERE num BETWEEN ? AND ?";
 		    ps=conn.prepareStatement(sql);
+		    int rowSize=50;
+			int start=(rowSize*page)-(rowSize-1);
+			int end=rowSize*page;
 		    ps.setString(1, ec);
+		    ps.setInt(2, start);
+			ps.setInt(3, end);
 	  	    ResultSet rs=ps.executeQuery();
 		    while(rs.next())
 		    {
@@ -109,6 +115,33 @@ public class ExhibitionDAO {
 		    CreateConnection.disConnection(conn, ps);
 	    }
 	    return list;
+   }
+   
+   public int exhibitionCategoryTotalPage(int eee)
+   {
+	   String[] temp= {"","육아","스포츠","인테리어","예술","전기","기계","농축산"}; 
+	   int total=0;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT COUNT(*) "
+		   		+"FROM god_exhibition_3 "
+		   		+"WHERE area LIKE '%'||?||'%'";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, temp[eee]);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return total;
    }
    
    // 개수 출력 , 총페이지
@@ -214,7 +247,7 @@ public class ExhibitionDAO {
 				   +"WHERE item LIKE '%'||?||'%')) "
 				   +"WHERE num BETWEEN ? AND ?";
 		   ps=conn.prepareStatement(sql);
-		   int rowSize=20;
+		   int rowSize=50;
 		   int start=(rowSize*page)-(rowSize-1);
 		   int end=rowSize*page;
 		   ps.setString(1, tt);
@@ -242,6 +275,32 @@ public class ExhibitionDAO {
 		   CreateConnection.disConnection(conn, ps);
 	   }
 	   return list;
+   }
+   
+   public int exhibitionitemFindTotalPage(String tt)
+   {
+	   int total=0;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT COUNT(*) "
+		   		+"FROM god_exhibition_3 "
+		   		+"WHERE item LIKE '%'||?||'%'";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, tt);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return total;
    }
 
    

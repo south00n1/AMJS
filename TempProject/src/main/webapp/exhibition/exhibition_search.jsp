@@ -395,13 +395,13 @@ input {
     </footer>
     <ul>
     	<c:if test="${startPage>1 }">
-          <li><a href="../exhibition/exhibition_all.do?page=${startPage-1 }">&lt;</a></li>
+          <li><a href="../exhibition/exhibition_find.do?page=${startPage-1 }&tt=${tt}">&lt;</a></li>
         </c:if>
         <c:forEach var="i" begin="${startPage }" end="${endPage }">
-          <li ${i==curpage?"class=active":"" }><a href="../exhibition/exhibition_all.do?page=${i }">${i }</a></li>          
+          <li ${i==curpage?"class=active":"" }><a href="../exhibition/exhibition_find.do?page=${i }&tt=${tt}">${i }</a></li>          
         </c:forEach>    
         <c:if test="${endPage<totalpage }">
-          <li><a href="../exhibition/exhibition_all.do?page=${endPage+1 }">&gt;</a></li>
+          <li><a href="../exhibition/exhibition_find.do?page=${endPage+1 }&tt=${tt}">&gt;</a></li>
         </c:if>
     </ul>
 </body>
