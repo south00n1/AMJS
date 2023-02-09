@@ -15,23 +15,25 @@ $(function(){
 			$('#del-pwd').focus();
 			return;
 		}
-		
-		$.ajax({
-			type:'post',
-			url:'../mypage/join_delete_ok.do',
-			data:{"pwd": pwd},
-			success:function(response){
-				let res = response.trim();
-				if(res === "no") {
-					$('#result').text("비밀번호가 일치하지 않습니다")
-					$('#del-pwd').val("");
-					$('#del-pwd').focus();
-				} else {
-					alert("회원 탈퇴되었습니다!")
-		            location.href="../main/main.do";
+		let result = confirm('정말 탈퇴하시겠습니까?')
+		if(result) {
+			$.ajax({
+				type:'post',
+				url:'../mypage/join_delete_ok.do',
+				data:{"pwd": pwd},
+				success:function(response){
+					let res = response.trim();
+					if(res === "no") {
+						$('#result').text("비밀번호가 일치하지 않습니다")
+						$('#del-pwd').val("");
+						$('#del-pwd').focus();
+					} else {
+						alert("회원 탈퇴되었습니다!")
+			            location.href="../main/main.do";
+					}
 				}
-			}
-		})
+			})
+		} else {}
 	})
 	
 	$('#cancleBtn').click(function(){

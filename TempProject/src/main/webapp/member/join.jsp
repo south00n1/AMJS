@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
-<link href="../member/css/join.css" rel="stylesheet">
+<link href="../member/css/join.css?after" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	Shadowbox.init({
@@ -284,7 +284,7 @@
 <body>
 	<div class="container">
 		<div class="top">
-			<h1>GOD</h1>
+			<h1>ㅇㅁㅈㅅ.</h1>
 		</div>
 
 		<form method="post" action="../member/join_ok.do" name="join_frm"

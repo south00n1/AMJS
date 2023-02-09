@@ -33,7 +33,7 @@ h1{
   width:300px;
   border-radius:6px;
   margin: 0 auto 0 auto;
-  padding:0px 0px 100px 0px;
+  padding:0px;
   border: none; 
 }
 

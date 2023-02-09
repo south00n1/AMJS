@@ -199,7 +199,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title" style="display: flex; justify-content: space-between;">
-			<h4 class="mypage_home_subtitle">공지사항 관리</h4>
+			<h4 class="mypage_home_subtitle" >공지사항 관리</h4>
 			<div class="rst notice_insert" id="insert" style="text-align:center; background-color: #fff; color:#27375C; width:100px; height: 30px; margin-right:35px; border: 1px solid #27375C">
 			<i class="fa-solid fa-pen fa-sm"></i>&nbsp;공지등록
 			</div>

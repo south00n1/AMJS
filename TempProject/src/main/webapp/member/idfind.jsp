@@ -33,7 +33,7 @@ h1{
   width:300px;
   border-radius:6px;
   margin: 0 auto 0 auto;
-  padding:0px 0px 100px 0px;
+  padding:0px;
   border: none; 
 }
 
@@ -60,7 +60,7 @@ h1{
 
 .btn{
   background:#27375C;
-  width:125px;
+  width:268px;
   padding-top:5px;
   padding-bottom:5px;
   color:white;
@@ -68,8 +68,7 @@ h1{
   border: #27375C 1px solid;
   
   margin-top:20px;
-  margin-bottom:20px;
-  float:left;
+  margin-bottom:5px;
   margin-left:16px;
   font-weight:800;
   font-size:0.8em;
@@ -81,17 +80,16 @@ h1{
 }
 
 #btn2{
-  float:left;
   background:#27375C;
-  width:125px;  padding-top:5px;
+  width:268px;  padding-top:5px;
   padding-bottom:5px;
   color:white;
   border-radius:4px;
   border: #27375C 1px solid;
   
-  margin-top:20px;
+  margin-top:5px;
   margin-bottom:20px;
-  margin-left:10px;
+  margin-left:16px;
   font-weight:800;
   font-size:0.8em;
 }
@@ -135,6 +133,7 @@ $(function(){
 				if (res == 'no') {
 					$('#id-find-result').html('<font color=red>해당 정보로 계정이 존재하지 않습니다.</font>');
 				} else {
+					$('#id-find-btn').hide()
 					$('#id-find-result').html('<font color=blue>검색된 아이디는 <b>' + res + '</b>입니다.</font>')
 				}
 				$('#ok-btn').show();

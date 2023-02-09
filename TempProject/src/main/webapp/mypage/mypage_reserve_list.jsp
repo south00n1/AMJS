@@ -17,7 +17,7 @@ $(function(){
 	})
 	
 	$('.reserve_delBtn').click(function(){
-		let result = confirm("삭제하시겠습니까?")
+		let result = confirm("취소하시겠습니까?")
 		let gerno = $(this).attr('data-gerno')
 		if(result) {
 		$.ajax({
@@ -29,7 +29,6 @@ $(function(){
 			}
 		})
 		} else {
-			alert("취소됐습니다.")
 		}
 	})
 	
@@ -166,7 +165,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">예매 목록</h4>
+			<h4 class="mypage_home_subtitle">내가 예매한 전시회</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">

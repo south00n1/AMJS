@@ -26,7 +26,6 @@ $(function(){
 			}
 		})
 		} else {
-			alert('취소됐습니다.')
 		}
 	})
 	// 페이징 ajax
@@ -166,17 +165,19 @@ $(function(){
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
-					<th width="25%" class="text-center">원문제목</th>
-					<th width="35%" class="text-center">댓글내용</th>
-					<th width="15%" class="text-center">작성자</th>
+					<th width="10%" class="text-center">no</th>
+					<th width="30%" class="text-center">원문제목</th>
+					<th width="25%" class="text-center">댓글내용</th>
+					<th width="10%" class="text-center">작성자</th>
 					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">삭제여부</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="25%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.subject }</a></td>
-					<td width="35%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.msg }</a></td>
-					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.name }</a></td>
+					<td width="10%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.rno }</a></td>
+					<td width="30%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.subject }</a></td>
+					<td width="25%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.msg }</a></td>
+					<td width="10%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.name }</a></td>
 					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.bno }">${vo.regdate }</a></td>
 					<td width="10%" class="text-center">
 						<span data-rno="${vo.rno }" class="reply_delBtn"><img src="../img/trash.png" style="width:20px; height:20px;"></span>

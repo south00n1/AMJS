@@ -138,6 +138,12 @@ li.mypage_menu::before {
 	color: #27375C!important;
 	cursor: pointer;
 	font-weight: bold;
+	text-decoration: underline;
+}
+.mypage_menu_child:active {
+	color: #27375C!important;
+	cursor: pointer;
+	font-weight: bold;
 }
 .mypage_menu_child a {
 	color: #666;
@@ -176,7 +182,8 @@ li.mypage_menu::before {
 	  	    <span id ="myqna_list"><li class="mypage_menu_child">내가 쓴 문의</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-  	    	<span id="reserve_list"><li class="mypage_menu">예매 목록</li></span>
+  	    	<li class="mypage_menu">전시회 예매</li>
+  	    	<span id="reserve_list"><li class="mypage_menu_child">예매 목록</li></span>
   	    </div>
   	    <div class="mypage_li_div">
   	    	<li class="mypage_menu">좋아요&찜&공감</li>

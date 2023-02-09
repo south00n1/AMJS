@@ -26,7 +26,6 @@ $(function(){
 			}
 		})
 		} else {
-			alert("취소됐습니다.")
 		}
 	})
 	
@@ -170,7 +169,7 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">좋아요 목록</h4>
+			<h4 class="mypage_home_subtitle">내가 좋아한 전시회</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">

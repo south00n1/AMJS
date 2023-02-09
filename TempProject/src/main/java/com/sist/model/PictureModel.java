@@ -78,7 +78,7 @@ public class PictureModel {
 		try {
 			Cookie cookie = new Cookie(user+"_picture"+gpno, gpno);
 			cookie.setPath("/");
-			cookie.setMaxAge(60*60*24); // 하루동안 저장
+			cookie.setMaxAge(60*60*2); // 두시간
 			response.addCookie(cookie);
 		} catch (Exception e) {} 
 		

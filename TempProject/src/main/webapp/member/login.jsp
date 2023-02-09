@@ -121,7 +121,7 @@ Shadowbox.init({
 	            content:'../member/idfind.do',
 	            player:'iframe',
 	            width:350,
-	            height:300
+	            height:400
 	        })
 	})
 	
@@ -132,7 +132,7 @@ Shadowbox.init({
 	            content:'../member/pwdfind.do',
 	            player:'iframe',
 	            width:350,
-	            height:330 
+	            height:400 
 	        })
 	})
 	
@@ -152,7 +152,7 @@ Shadowbox.init({
 <body>
 
 	<div class="main-form">
-		<img src="../member/image/main-logo.jpg">
+		<img src="../member/image/main-logo.jpg" style="">
 		<input type="text" placeholder="Username" id="log_id"> <input
 			type="password" placeholder="Password" id="log_pwd"> <input
 			class="inp-cbx" id="cbx" type="checkbox" style="display: none" /> <label
