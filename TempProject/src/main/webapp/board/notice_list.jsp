@@ -118,6 +118,23 @@
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
+
+.notice-table { 
+  text-transform:uppercase; }
+.notice-table:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px black;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+.notice-table:hover:after { transform: scaleX(1); }
+.notice-table:after{  transform-origin:  0% 50%; }
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -188,7 +205,7 @@
         <td width="10%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.gnbno}</td><%-- vo.getNo() = {} getXxx() --%>
         <td width="20%" height="50px" style="vertical-align: middle;" class="text-center notice-table">${vo.prefix}</td>
         <td width="45%" height="50px" style="vertical-align: middle;" class="notice-table" >
-         <a href="../board/notice_detail.do?gnbno=${vo.gnbno }">${vo.subject}</a>&nbsp;
+         <a href="../board/notice_detail.do?gnbno=${vo.gnbno }" style="color: black;">${vo.subject}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>

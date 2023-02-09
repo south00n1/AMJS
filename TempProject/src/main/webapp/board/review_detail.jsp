@@ -174,6 +174,19 @@ function like_func(){
   
   </div>
   <div style="height: 5px"></div>
+    			<div style="width: 100%;height: 30px;display: flex;flex-direction: row;justify-content: space-between;">
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../board/review_detail.do?no=${vo.no-1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">이전글</a>
+					</span>
+	  	  		</div>
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../board/review_detail.do?no=${vo.no+1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">다음글</a>
+					</span>
+	  	  		</div>
+		  	</div>
+		  	<hr>
   <table class="table board">
    <tr>
 	<td width=95% class="text-left" colspan="3"><span style="font-size:13px;font-weight: 400;color: orange;">${vo.display_name }</span><br><span style="font-size:26px;font-weight: 400;">${vo.subject }</span></td>

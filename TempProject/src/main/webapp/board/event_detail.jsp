@@ -59,7 +59,18 @@
   
   </div>
   <div style="height: 20px"></div>
-  
+    			<div style="width: 100%;height: 30px;display: flex;flex-direction: row;justify-content: space-between;">
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../board/event_detail.do?gebno=${vo.gebno-1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">이전글</a>
+					</span>
+	  	  		</div>
+	  	  		<div style="height: 20px">
+		  	  		<span>
+				    	<a href="../board/event_detail.do?gebno=${vo.gebno+1 }" style="padding: 7px 7px 3px 7px;border: 1px solid gray;font-family: GmarketSansMedium" class="btn btn-sm writerbtn thebogy">다음글</a>
+					</span>
+	  	  		</div>
+		  	</div>
 <hr>
   <div style="height: auto">
   <table class="table">

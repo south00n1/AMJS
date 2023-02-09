@@ -98,7 +98,7 @@
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
-    color: #06BBCC;
+    color: #ff8c00;
     transition-property:font-color;
     transition-duration:0.3s;
 }

@@ -42,6 +42,29 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+		}
+.underline {
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 3em;
+  font-weight: 700;
+  background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.8s;
+  color: #000;
+  cursor: pointer;
+}
+@media (min-width: 1000px) {
+  .underline {
+    font-size: 5em;
+  }
+}
+.underline.yellow {
+  background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+}
+.underline:hover {
+  background-size: 100% 100%;
 }
     </style>
 </head>
@@ -100,8 +123,8 @@
     <c:forEach var="vo" items="${list }">
       <tr>
         <td width="10%" height="50px" style="vertical-align: middle;font-size: 11px;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="45%" height="50px" style="vertical-align: middle;font-size: 13px;" >
-         <a href="../board/review_detail.do?no=${vo.no }">${vo.subject}</a>&nbsp;
+        <td class="underline" width="45%" height="50px" style="vertical-align: middle;font-size: 13px;" >
+         <a href="../board/review_detail.do?no=${vo.no }" style="color: black;">${vo.subject}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>
