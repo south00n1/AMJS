@@ -46,19 +46,19 @@
   </div>
   
   <div style="height: 50px;"></div>
-  
+    			<ul id="page_ul" >
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><a href="../board/event_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../board/event_list.do?page=${i }" class="page_a${i==curpage?" li_active":"" }""">${i }</a></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><a href="../board/event_list.do?page=${endPage+1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">▶</a></li>
+		        </c:if>
+		    </ul>
    <nav class="pagination">
-        <ul>
-         <c:if test="${startPage>1 }">
-          <li><a href="../board/event_list.do?page=${startPage-1 }">&laquo; Previous</a></li>
-         </c:if>
-          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-            <li ${i==curpage?"class=current":"" }><a href="../board/event_list.do?page=${i }">${i }</a></li>
-          </c:forEach>
-         <c:if test="${endPage<totalpage }">
-          <li><a href="../board/event_list.do?page=${endPage+1 }">Next &raquo;</a></li>
-         </c:if>
-        </ul>
+
         <!-- 검색바 start -->
         <div class="board_search">
         <div class="container">

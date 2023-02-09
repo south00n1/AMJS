@@ -6,35 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>GO OUT DISPLAY</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="../img/favicon.ico" rel="icon">
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
-    
+    <title>GO OUT DISPLAY</title>    
     <script src="https://kit.fontawesome.com/2fd2b83183.js" crossorigin="anonymous"></script>
         <style type="text/css">
     * {
@@ -166,7 +138,7 @@
       <tr>
         <td width="10%" height="50px" style="vertical-align: middle;font-size: 11px;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
         <td class="underline" width="45%" height="50px" style="vertical-align: middle;font-size: 13px;" >
-         <a href="../board/review_detail.do?no=${vo.no }" style="color: black;">${vo.subject}</a>&nbsp;
+         <a href="../board/review_detail.do?no=${vo.no }" style="color: black;">${vo.subject}</a> &nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>
@@ -184,6 +156,7 @@
           <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
   		   </c:if>
   		   
+  		   		<div style="margin-left: 70px;">
   		     			<ul id="page_ul" >
 		    	<c:if test="${startPage>1 }">
 		          <li class="page_li"><a href="../board/review_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
@@ -195,6 +168,8 @@
 		          <li class="page_li"><a href="../board/review_list.do?page=${endPage+1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">▶</a></li>
 		        </c:if>
 		    </ul>
+		    </div>
+		    
     <nav class="pagination">
  
         <!-- 검색바 start -->
