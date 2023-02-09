@@ -406,7 +406,7 @@ button {
 			<div class="owl-carousel testimonial-carousel position-relative">
 				<div class="testimonial-item text-center">
 					<img class="border rounded-circle p-2 mx-auto mb-3"
-						src="../img/testimonial-1.jpg" style="width: 80px; height: 80px;">
+						src="../main/image/user-regular.jpg" style="width: 80px; height: 80px;">
 					<h5 class="mb-1">WATSON, THE MAESTRO-알버트 왓슨 사진전</h5>
 					<p>손현진</p>
 					<div class="testimonial-text bg-light text-center">
@@ -418,7 +418,7 @@ button {
 				</div>
 				<div class="testimonial-item text-center">
 					<img class="border rounded-circle p-2 mx-auto mb-3"
-						src="../img/testimonial-2.jpg" style="width: 80px; height: 80px;">
+						src="../main/image/user-regular.jpg" style="width: 80px; height: 80px;">
 					<h5 class="mb-1">MARTIN MARGIELA AT LOTTE MUSEUM</h5>
 					<p>김선우</p>
 					<div class="testimonial-text bg-light text-center">
@@ -430,7 +430,7 @@ button {
 				</div>
 				<div class="testimonial-item text-center">
 					<img class="border rounded-circle p-2 mx-auto mb-3"
-						src="../img/testimonial-3.jpg" style="width: 80px; height: 80px;">
+						src="../main/image/user-regular.jpg" style="width: 80px; height: 80px;">
 					<h5 class="mb-1">WATSON, THE MAESTRO-알버트 왓슨 사진전</h5>
 					<p>김남훈</p>
 					<div class="testimonial-text bg-light text-center">
@@ -442,7 +442,7 @@ button {
 				</div>
 				<div class="testimonial-item text-center">
 					<img class="border rounded-circle p-2 mx-auto mb-3"
-						src="../img/testimonial-4.jpg" style="width: 80px; height: 80px;">
+						src="../main/image/user-regular.jpg" style="width: 80px; height: 80px;">
 					<h5 class="mb-1">MARTIN MARGIELA AT LOTTE MUSEUM</h5>
 					<p>최선형</p>
 					<div class="testimonial-text bg-light text-center">
