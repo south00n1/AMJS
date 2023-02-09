@@ -9,12 +9,17 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('.reserve_state').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
 	$('.reserve_delBtn').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	
 	$('.reserve_delBtn').click(function(){
+		let result = confirm("삭제하시겠습니까?")
 		let gerno = $(this).attr('data-gerno')
+		if(result) {
 		$.ajax({
 			type:'post',
 			url:'../mypage/mypage_reserve_delete.do',
@@ -23,6 +28,9 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
+		} else {
+			alert("취소됐습니다.")
+		}
 	})
 	
 	// 페이징 ajax
@@ -95,10 +103,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -142,6 +154,7 @@ $(function(){
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
 }
 .li_active {
 	background-color: #27375C;

@@ -10,8 +10,13 @@
 <script type="text/javascript">
 // href="../mypage/jjim_delete.do?no=${vo.jno }
 $(function(){
+	$('.jjim_delBtn').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
 	$('.jjim_delBtn').click(function(){
+		let result = confirm("삭제하겠습니까?");
 		let no = $(this).attr('data-no')
+	 if(result) {
 		$.ajax({
 			type:'post',
 			url:'../mypage/jjim_delete.do',
@@ -20,8 +25,13 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
+
+	 } else {
+	 	alert("취소됐습니다.")
+	 }
 		
 	})
+	
 	// mypage/jjim_list.do
 	$('.jjim_page').click(function(){
 		let page = $(this).attr('data-page')
@@ -91,10 +101,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -138,6 +152,7 @@ $(function(){
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
 }
 .li_active {
 	background-color: #27375C;
@@ -167,7 +182,7 @@ $(function(){
 					<td width="15%" class="text-center origin"><a href="../picture/before_detail.do?gpno=${vo.no}">${vo.name }</a></td>
 					<td width="20%" class="text-center origin"><a href="../picture/before_detail.do?gpno=${vo.no}">${vo.code }</a></td>
 					<td width="10%" class="text-center origin">
-					<span data-no="${vo.jno }" class="jjim_delBtn" style="background-color: gray;">삭제</span>
+					<span data-no="${vo.jno }" class="jjim_delBtn" ><img src="../img/trash.png" style="width:20px; height:20px;"></span>
 					</td>
 				</tr>
 				</c:forEach>

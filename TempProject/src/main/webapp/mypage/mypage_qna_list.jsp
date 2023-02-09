@@ -13,8 +13,11 @@ $(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	
+	
 	$('.qna_delBtn').click(function(){
+		let result = confirm("삭제하시겠습니까?")
 		let gano = $(this).attr('data-gano')
+		if(result) {
 		$.ajax({
 			type:'post',
 			url:'../mypage/mypage_myqna_delete.do',
@@ -23,6 +26,9 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
+		} else {
+			alert('취소됐습니다.')
+		}
 	})
 	
 	$('.myqna_page').click(function(){
@@ -93,10 +99,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #page_ul {
@@ -140,12 +150,16 @@ $(function(){
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
 }
 .li_active {
 	background-color: #27375C;
 	color: #FFFFFF;
 	border-radius: 5px 5px 5px 5px;
 	z-index: 2;
+}
+.ans_active {
+	color: blue;
 }
 
 </style>
@@ -168,11 +182,16 @@ $(function(){
 				<tr style="vertical-align: middle;">
 					<td width="10%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.gano }</a></td>
 					<td width="40%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.subject }</a></td>
-					<td width="15%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.type }</a></td>
+					<td width="15%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }" >${vo.type }</a></td>
 					<td width="15%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.regdate }</a></td>
+					<c:if test="${vo.ans_state=='답변완료' }">
+					<td width="10%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }" style="color:blue">${vo.ans_state }</a></td>
+					</c:if>
+					<c:if test="${vo.ans_state=='미답변' }">
 					<td width="10%" class="text-center origin"><a href="../service/detail.do?no=${vo.gano }">${vo.ans_state }</a></td>
+					</c:if>
 					<td width="10%" class="text-center">
-						<span data-gano="${vo.gano }" class="rst qna_delBtn" style="background-color: gray;">삭제</span>
+						<span data-gano="${vo.gano }" class="qna_delBtn"><img src="../img/trash.png" style="width:20px; height:20px;"></span>
 					</td>
 				</tr>
 				</c:forEach>

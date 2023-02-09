@@ -14,7 +14,9 @@ $(function(){
 	})
 	
 	$('.post_delBtn').click(function(){
+		let result = confirm("삭제하시겠습니까?")
 		let no = $(this).attr('data-no')
+		if(result) {
 		$.ajax({
 			type:'post',
 			url:'../mypage/mypage_mypost_delete.do',
@@ -23,6 +25,9 @@ $(function(){
 				$('.mypage_home_div').html(response)
 			}
 		})
+		} else {
+			alert('취소됐습니다.')
+		}
 	})
 	
 	$('.mypost_page').click(function(){
@@ -76,14 +81,7 @@ $(function(){
 .mypage_home_subtitle {
 	color: #27375C;
 }
-.rst {
-	width:70px;
-	hiegh:30px;
-	color: #fff;
-	border-radius: 5px;
-	font-size: 15px;
-	padding: 5px 7px;;
-}
+
 .origin {
 	overflow:hidden;
 	white-space : nowrap;
@@ -93,10 +91,14 @@ $(function(){
 	color: #52665B;
 }
 .origin > a:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 .origin:hover {
-	color: #27375C;
+	color: #27375c;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 
@@ -141,6 +143,7 @@ $(function(){
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
 }
 .li_active {
 	background-color: #27375C;
@@ -172,7 +175,7 @@ $(function(){
 					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.regdate }</a></td>
 					<td width="10%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.hit }</a></td>
 					<td width="10%" class="text-center">
-						<span data-no="${vo.no }" class="rst post_delBtn" style="background-color: gray;">삭제</span>
+						<span data-no="${vo.no }" class="post_delBtn"><img src="../img/trash.png" style="width:20px; height:20px;"></span>
 					</td>
 				</tr>
 				</c:forEach>

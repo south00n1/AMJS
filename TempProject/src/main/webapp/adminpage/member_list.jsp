@@ -70,15 +70,7 @@ $(function(){
         }
 	})
 })
-/*
-let result = confirm("회원탈퇴 시키시겠습니까?");
- 
- if(result) {
 
- } else {
- 	alert("취소됐습니다.")
- }
- */
 </script>
 <style type="text/css">
 * {
