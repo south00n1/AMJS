@@ -8,6 +8,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.vo.*;
 import com.sist.dao.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,34 @@ public class ServiceModel {
 		FaqDAO fdao=new FaqDAO();
 		List<FaqVO> flist=fdao.faqListData(0, 1);
 		request.setAttribute("flist", flist);
+		
+		/////퀵메뉴
+		Cookie[] cookies=request.getCookies();
+		
+		PictureDAO pdao=new PictureDAO();
+		List<PictureVO> pList=new ArrayList<PictureVO>();
+		if(cookies!=null) {
+			if(id==null) {
+				for(int i=cookies.length-1;i>=0;i--) {
+					if(cookies[i].getName().startsWith("guest_picture")) {
+						String pc=cookies[i].getValue();
+						PictureVO pvo=pdao.pictureDetailData(Integer.parseInt(pc));
+						pList.add(pvo);
+					}
+				}
+			} else {
+				for(int i=cookies.length-1;i>=0;i--) {
+					if(cookies[i].getName().startsWith(id+"_picture")) {
+						String pc=cookies[i].getValue();
+						PictureVO pvo=pdao.pictureDetailData(Integer.parseInt(pc));
+						pList.add(pvo);
+					}
+				}
+			}
+		}
+		request.setAttribute("id", id);
+		request.setAttribute("pList", pList);
+		/////
 		
 		request.setAttribute("main_jsp", "../service/service.jsp");
 		return "../main/main.jsp";

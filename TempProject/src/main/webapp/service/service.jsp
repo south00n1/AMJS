@@ -7,6 +7,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.quick {
+	position: absolute;
+	width: 150px;
+	height: 450px;
+	right: 30px;
+	padding: 10px;
+	text-align: center;
+	background-color: linen;
+	border-color: #27375C;
+	border-radius: 20px;
+}
+.pclist{
+	padding: 10px;
+	list-style: none;
+}
+.pclist li{
+	padding-bottom: 10px;
+}
+
 .f-card{
 	position: relative;
 	margin: 0 10px;
@@ -56,6 +75,13 @@
 <script type="text/javascript">
 let f=0
 $(function(){
+	//퀵메뉴
+	var currentPosition = parseInt($(".quick").css("top"));  
+	$(window).scroll(function() {  
+	    var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+	    $(".quick").stop().animate({"top":position+currentPosition+"px"},500);  
+	});
+	
 	//검색바
 	$('#search').click(function(){
 		$(this).val("")
@@ -150,7 +176,21 @@ $(function(){
         </div>
     </div>
     <!-- ### -->
-
+    
+<!-- 퀵메뉴 -->
+	<div class=quick>
+	  <b>최근 본 전시</b>
+	  <ul class="pclist">
+	    <c:forEach var="pc" items="${pList }" varStatus="s">
+	     <c:if test="${s.index<5 }">
+	  	  <li><a href="../picture/before_detail.do?gpno=${pc.gpno }"><img src="${pc.image }" style="width: 100px;height: 100px"></a></li>
+	     </c:if>
+	    </c:forEach>
+	  </ul>
+	  <a href="../reserve/reserve_main.do">전시예매</a>
+	</div>
+<!-- 퀵메뉴끝 -->
+	
 	<div class="container" style="width: 100%;font-size: 14px">
 <!-- faq 빠른 찾기  -->
 	<div>
