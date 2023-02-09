@@ -11,10 +11,12 @@ import javax.servlet.http.HttpSession;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AdminDAO;
+import com.sist.dao.MemberDAO;
 import com.sist.dao.MypageDAO;
 import com.sist.dao.NoticeBoardDAO;
 import com.sist.dao.ServiceDAO;
 import com.sist.vo.AskVO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.NoticeBoardVO;
 import com.sist.vo.ReserveVO;
 
@@ -67,9 +69,7 @@ public class AdminModel {
 	@RequestMapping("adminpage/notice_insert.do")
 	  public String admin_notice_insert(HttpServletRequest request,HttpServletResponse response)
 	  {
-		   request.setAttribute("adminpage_jsp", "../adminpage/notice_insert.jsp");
-		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-		   return "../main/main.jsp";
+		   return "../adminpage/notice_insert.jsp";
 	  }
 	
 	@RequestMapping("adminpage/notice_insert_ok.do")
@@ -104,10 +104,8 @@ public class AdminModel {
 		   NoticeBoardDAO dao=new NoticeBoardDAO();
 		   NoticeBoardVO vo=dao.noticeUpdateData(Integer.parseInt(gnbno));
 		   request.setAttribute("vo", vo);
-		   // include => request를 공유 
-		   request.setAttribute("adminpage_jsp", "../adminpage/notice_update.jsp");
-		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-		   return "../main/main.jsp";
+
+		   return "../adminpage/notice_update.jsp";
 	  }
 	  @RequestMapping("adminpage/notice_update_ok.do")
 	  public String admin_notice_update_ok(HttpServletRequest request,HttpServletResponse response)
@@ -207,6 +205,43 @@ public class AdminModel {
 			request.setAttribute("endPage", endPage);
 		  
 		  return "../adminpage/faq_list.jsp";
+	  }
+	  
+	  @RequestMapping("adminpage/member_list.do")
+	  public String member_list(HttpServletRequest request, HttpServletResponse response) {
+		  
+		  String page = request.getParameter("page");
+			if (page == null) {
+				page = "1";
+			}
+			int curpage = Integer.parseInt(page);
+			// dao연결
+			AdminDAO dao = new AdminDAO();
+			List<MemberVO> list = dao.adminpageMemberList(curpage);
+			int totalpage = dao.adminpageMemberListTotalPage();
+			
+			final int BLOCK = 5;
+			int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+			int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+			if (endPage > totalpage)
+				 endPage = totalpage;
+			
+			request.setAttribute("list", list);
+			request.setAttribute("curpage", curpage);
+			request.setAttribute("totalpage", totalpage);
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
+		  
+		  return "../adminpage/member_list.jsp";
+	  }
+	  @RequestMapping("adminpage/member_delete_list.do")
+	  public String admin_member_delete(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String id=request.getParameter("id");
+		  //DAO연동 
+		  AdminDAO dao=new AdminDAO();
+		  dao.adminpageMemberDelete(id);
+		  return "redirect:../adminpage/member_list.do";
 	  }
 
 }

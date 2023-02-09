@@ -37,6 +37,16 @@ $(function(){
 			}
 		})
 	})
+	
+	$('#member_manage').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../adminpage/member_list.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
 })
 
 
@@ -108,7 +118,7 @@ li.mypage_menu::before {
 	<ul class="mypage_ul">
 		<h2 class="mypage_title">AdminPage</h2>
 		<div class="mypage_li_div">
-	  	    <li class="mypage_menu">커뮤니티관리</li>
+	  	    <li class="mypage_menu">게시글 관리</li>
 	  	    <li class="mypage_menu_child"><span id="notice_manage">공지사항 관리</span></a></li>
 	  	    <li class="mypage_menu_child">후기게시판 관리</li>
   	    </div>
@@ -120,9 +130,7 @@ li.mypage_menu::before {
   	    	<span id="qna_manage"><li class="mypage_menu_child">미답변 문의내역</li></span>
   	    </div>
   	    <div class="mypage_li_div">
-	  	    <li class="mypage_menu">--</li>
-	  	    <li class="mypage_menu_child"><a href="../member/join_update.do">--</a></li>
-	  	    <span id=""><li class="mypage_menu_child">--</li></span>
+	  	    <span id="member_manage"><li class="mypage_menu">회원관리</li></span>
 		</div>
 	</ul>
 </body>

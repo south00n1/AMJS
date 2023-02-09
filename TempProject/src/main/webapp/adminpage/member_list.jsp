@@ -9,60 +9,68 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.gong_delBtn').hover(function(){
+	
+	$('.admin_member_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/member_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.admin_member_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/member_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	
+	$('.admin_member_page').click(function(){
+		let page = $(this).attr('data-page')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/member_list.do',
+			data:{'page':page},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	$('.adminpage_member_delBtn').hover(function(){
 		$(this).css('cursor', 'pointer')
 	})
-	
-	$('.gong_delBtn').click(function(){
-		let lno = $(this).attr('data-lno')
+	$('.adminpage_member_delBtn').click(function(){
+		let id = $(this).attr('data-id')
 		$.ajax({
 			type:'post',
-			url:'../mypage/mypage_gong_delete.do',
-			data:{"lno": lno},
-			success:function(response){
-				$('.mypage_home_div').html(response)
-			}
-		})
-	})
-	
-	$('.gong_page').click(function(){
-		let page = $(this).attr('data-page')
-		$.ajax({
-			type:'post',
-			url:'../mypage/mypage_gong_list.do',
-			data:{'page':page},
+			url:'../adminpage/member_delete_list.do',
+			data:{'id':id},
 			success:function(response) {
 				$('.mypage_home_div').html(response)
 			}
 		})
 	})
 	
-	$('.gong_page_pre').click(function(){
-		let page = $(this).attr('data-page')
-		$.ajax({
-			type:'post',
-			url:'../mypage/mypage_gong_list.do',
-			data:{'page':page},
-			success:function(response) {
-				$('.mypage_home_div').html(response)
-			}
-		})
-	})
 	
-	$('.gong_page_next').click(function(){
-		let page = $(this).attr('data-page')
-		$.ajax({
-			type:'post',
-			url:'../mypage/mypage_gong_list.do',
-			data:{'page':page},
-			success:function(response) {
-				$('.mypage_home_div').html(response)
-			}
-		})
-	})
 })
 </script>
 <style type="text/css">
+* {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .mypage_home_title {
 	margin: 0px;
 	margin-bottom: 10px;
@@ -97,7 +105,6 @@ $(function(){
 .origin:hover {
 	color: #27375C;
 }
-
 
 #page_ul {
 	list-style: none;
@@ -135,12 +142,6 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
-    * {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 .li_active {
 	background-color: #27375C;
 	color: #FFFFFF;
@@ -151,27 +152,27 @@ $(function(){
 </head>
 <body>
 		<div class="col-11 mypage_home_title">
-			<h4 class="mypage_home_subtitle">내가 공감한 게시글</h4>
+			<h4 class="mypage_home_subtitle">회원목록</h4>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
-					<th width="10%" class="text-center">no</th>
-					<th width="40%" class="text-center">제목</th>
-					<th width="15%" class="text-center">작성자</th>
-					<th width="15%" class="text-center">작성일</th>
-					<th width="10%" class="text-center">조회</th>
-					<th width="10%" class="text-center">삭제여부</th>
+					<th width="15%" class="text-center">아이디</th>
+					<th width="15%" class="text-center">이름</th>
+					<th width="10%" class="text-center">성별</th>
+					<th width="20%" class="text-center">생년월일</th>
+					<th width="30%" class="text-center">이메일</th>
+					<th width="10%" class="text-center">관리</th>
 				</tr>
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
-					<td width="10%" class="text-center origin" ><a href="../board/review_detail.do?no=${vo.no }">${vo.no }</a></td>
-					<td width="40%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.subject }</a></td>
-					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.name }</a></td>
-					<td width="15%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.regdate }</a></td>
-					<td width="10%" class="text-center origin"><a href="../board/review_detail.do?no=${vo.no }">${vo.hit }</a></td>
-					<td width="10%" class="text-center">
-						<span data-lno="${vo.lno }" class="rst gong_delBtn" style="background-color: gray;">삭제</span>
+					<td width="10%" class="text-center origin">${vo.id }</td>
+					<td width="15%" class="text-center origin">${vo.name }</td>
+					<td width="30%" class="text-center origin">${vo.sex }</td>
+					<td width="10%" class="text-center origin">${vo.birthday }</td>
+					<td width="15%" class="text-center origin">${vo.email }</td>
+					<td width="10%" class="text-center origin">
+					<span class="adminpage_member_delBtn" data-id="${vo.id }"><img src="../img/delete.png" style="width:25px; height: 25px"></span>
 					</td>
 				</tr>
 				</c:forEach>
@@ -179,13 +180,13 @@ $(function(){
 		</div>
 			<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
 		    	<c:if test="${startPage>1 }">
-		          <li class="page_li"><span class="gong_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		          <li class="page_li"><span class="admin_member_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="gong_page page_a${i==curpage?" li_active":"" }" data-page="${i }">${i }</span></li>          
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_member_page page_a${i==curpage?" li_active":"" }" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
-		        <c:if test="${endPage < totalpage }">
-		          <li class="page_li"><span class="gong_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><span class="admin_member_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
 		        </c:if>
 		    </ul>
 </body>

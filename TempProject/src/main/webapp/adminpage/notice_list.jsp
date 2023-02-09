@@ -10,6 +10,46 @@
 <script type="text/javascript">
 $(function(){
 	
+	$('.notice_insert').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
+	$('.notice_insert').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_insert.do',
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.notice_insert').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
+	$('.notice_update').click(function(){
+		let gnbno = $(this).attr('data-gnbno')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_update.do',
+			data:{'gnbno':gnbno},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
+	$('.notice_delete').click(function(){
+		let gnbno = $(this).attr('data-gnbno')
+		$.ajax({
+			type:'post',
+			url:'../adminpage/notice_delete.do',
+			data:{'gnbno':gnbno},
+			success:function(response) {
+				$('.mypage_home_div').html(response)
+			}
+		})
+	})
+	
 	$('.admin_notice_page').click(function(){
 		let page = $(this).attr('data-page')
 		$.ajax({
@@ -33,7 +73,6 @@ $(function(){
 			}
 		})
 	})
-	
 	
 	$('.admin_notice_page_next').click(function(){
 		let page = $(this).attr('data-page')
@@ -120,6 +159,12 @@ $(function(){
 .page_li.active page_a:hover {
     color: #FFFFFF;
 }
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
 
     * {
     font-family: 'GmarketSansMedium';
@@ -131,8 +176,9 @@ $(function(){
 
 </head>
 <body>
-		<div class="col-11 mypage_home_title">
+		<div class="col-11 mypage_home_title" style="display: flex; justify-content: space-between;">
 			<h4 class="mypage_home_subtitle">공지사항 목록</h4>
+			<div class="rst notice_insert" style="text-align:center; background-color: #27375C; width:80px; height: 30px; margin-right:35px;">공지등록</div>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
@@ -152,8 +198,8 @@ $(function(){
 					<td width="15%" class="text-center origin">${today }</td>
 					<td width="10%" class="text-center origin">${vo.hit }</td>
 					<td width="15%" class="text-center origin">
-					<a href=""><span class="rst" style="background-color: green;">수정</span></a>
-					<a href=""><span class="rst" style="background-color: green;">삭제</span></a>
+					<span class="rst notice_update" data-gnbno="${vo.gnbno }" style="background-color: green;">수정</span>
+					<span class="notice_delete" data-gnbno="${vo.gnbno }"><img src="../img/delete.png" style="width:25px; height: 25px"></a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -164,7 +210,7 @@ $(function(){
 		          <li class="page_li"><span class="admin_notice_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_notice_page page_a" data-page="${i }">${i }</span></li>          
+		          <li class="page_li" ><span class="admin_notice_page page_a${i==curpage?" li_active":"" }" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		        <c:if test="${endPage<totalpage }">
 		          <li class="page_li"><span class="admin_notice_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>

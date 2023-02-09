@@ -143,6 +143,12 @@ $(function(){
     font-weight: normal;
     font-style: normal;
 }
+.li_active {
+	background-color: #27375C;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -186,7 +192,7 @@ $(function(){
 		          <li class="page_li"><span class="reserve_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
 		        </c:if>
 		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="reserve_page page_a" data-page="${i }">${i }</span></li>          
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="reserve_page page_a${i==curpage?" li_active":"" }" data-page="${i }">${i }</span></li>          
 		        </c:forEach>    
 		        <c:if test="${endPage<totalpage }">
 		          <li class="page_li"><span class="reserve_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
