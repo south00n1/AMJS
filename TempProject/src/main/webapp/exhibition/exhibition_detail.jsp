@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전시회 상세보기 | GOD</title>
+<title>전시회 상세보기</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 function like_func(){
@@ -61,6 +61,9 @@ img{
 
 
 /* 오른쪽 정보 */
+.ex_title{
+	font-weight: bold;
+}
 #exhibitionView .exb_info{
 	margin-left: 50px;
 	width: 700px;
@@ -190,7 +193,7 @@ active not_comment not_support{
     <div class="exb_info">
        <table class="table">
      	<tr>
-     		<td colspan="2"><h4>${vo.title } <br>
+     		<td colspan="2"><h4 class="ex_title">${vo.title } <br>
      		<span style="color:gray; font-size: 17px">${vo.title2 }</span></h4></td>
      	</tr>
      	<tr>
