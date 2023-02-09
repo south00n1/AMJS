@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-
 // 로그아웃 버튼
 $(function(){
 	$('#logoutBtn').click(function(){
@@ -29,6 +28,8 @@ $(function(){
     font-weight: normal;
     font-style: normal;
 }
+.navbar .dropdown-toggle::after {
+    content: "▼";
 </style>
 </head>
 <body>

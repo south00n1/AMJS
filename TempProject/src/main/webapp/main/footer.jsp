@@ -12,6 +12,8 @@
     font-weight: normal;
     font-style: normal;
 }
+.footer .btn.btn-link::before {
+    content: "□";
 </style>
 </head>
 <body>
@@ -31,7 +33,7 @@
                     <h4 class="text-white mb-3">Contact</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>서울 강남구 테헤란로 132</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>02-123-4567</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>GOD@example.com</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>amujeonsi@example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
