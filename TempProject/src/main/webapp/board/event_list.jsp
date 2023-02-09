@@ -34,7 +34,22 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    
+    <script type="text/javascript">
+    $(function(){
+    	$('.event-division span').click(function(){
+    		let ca=$(this).attr("data-name")
+    		$.ajax({
+    			type:'post',
+    			url:'../board/event_ca.do',
+    			data:{"ca":ca},
+    			success:function(response)
+    			{
+    				$('#ca').html(response)
+    			}
+    		})
+    	})
+    })
+    </script>
     
     
         <style type="text/css">
@@ -158,34 +173,17 @@ input#img-5:checked ~ .nav-dots label#img-dot-5,
 input#img-6:checked ~ .nav-dots label#img-dot-6 {
   background: rgba(0, 0, 0, 0.8);
 }
-
+.event-division span:hover{
+	color: orange;
+	cursor: pointer;
+}
     </style>
 </head>
 <body>
 
 
 <!-- ### -->
-<%--
-	<div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">이벤트</h1>
-                    
-	<div>
-		<h5 style="color: white">GOD 이벤트입니다. 전시와 관련된 다양한 이벤트와 프로모션을 둘러보세요.</h5>
-    	<div style="height: 10px"></div>
-		  <form method=post action="../board/event_list.do" id=ss_frm>
-			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
-			<button type=submit id="sBtn" style="border: none;background: none;color: white;"><i class="fa fa-search"></i></button>
-		  </form>
-    </div>
-    <div style="height: 10px"></div>
-    <div style="height: 30px"></div>
-                </div>
-            </div>
-        </div>
-    </div>  --%>
+
     <!-- ### -->
 
 <div style="height: 80px;"></div>
@@ -195,7 +193,9 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
     <input type="radio" name="radio-btn" id="img-1" checked />
     <li class="slide-container">
     <div class="slide">
+    <a href="../board/event_detail.do?gebno=19">
       <img src="../board/image/ad1.png" />
+      </a>
         </div>
     <div class="nav">
       <label for="img-6" class="prev">&#x2039;</label>
@@ -206,7 +206,9 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
     <input type="radio" name="radio-btn" id="img-2" />
     <li class="slide-container">
         <div class="slide">
+            <a href="../board/event_detail.do?gebno=17">
           <img src="../board/image/ad2.png" />
+          </a>
         </div>
     <div class="nav">
       <label for="img-1" class="prev">&#x2039;</label>
@@ -217,7 +219,9 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
     <input type="radio" name="radio-btn" id="img-3" />
     <li class="slide-container">
         <div class="slide">
+            <a href="../board/event_detail.do?gebno=3">
           <img src="../board/image/ad3.png" />
+          </a>
         </div>
     <div class="nav">
       <label for="img-2" class="prev">&#x2039;</label>
@@ -273,30 +277,18 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 <div class="text-center" style="text-align: center; font-size: 26px;">이벤트</div>
 <div style="height: 10px;"></div>
 <div class="text-center event-division" style="text-align: center; margin-left: 45px;">
-		    <span style="margin-right: 40px; font-size: 16px;"><a href="#" class="on">전체보기</a></span>
-		    <span style="font-size: 16px;"><a href="#" class="">진행중인 이벤트</a></span>
-		    <span style="margin-left: 40px; font-size: 16px;"><a href="#" class="">종료된 이벤트</a></span>
+		    <span class="cate" style="margin-right: 40px; font-size: 16px;"><a href="../board/event_list.do" class="on">전체보기</a></span>
+		    <span class="cate" style="font-size: 16px;" data-name="진행중">진행중인 이벤트</span>
+		    <span class="cate" style="margin-left: 40px; font-size: 16px;" data-name="종료">종료된 이벤트</span>
 	    </div>
 <!-- 게시판 start -->
   <div style="height: auto;">
 
 	<!-- 이벤트 리스트 start -->
+	<div id="ca">
 <div class="wrapper row3">
   <main class="container clear">
-  <!-- 
-    <div>
-  	<table class="pull-right">
-					<tr>
-						<td><select class="form-control" name="searchField">
-								<option value="0">전체</option>
-								<option value="bbsTitle">진행중</option>
-								<option value="userID">종료</option>
-						</select></td>
-					</tr>
 
-				</table>
-  </div>
-   -->
   <div style="height: 30px;"></div>
   
   <div class="row g-3 justify-content-center">
@@ -365,7 +357,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
       </nav>
   </main>
 </div>
-
+</div>
 <!-- 게시판 end -->
 
     

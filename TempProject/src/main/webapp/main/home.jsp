@@ -176,16 +176,22 @@ button {
 	<!-- 홈화면 메인배너 -->
 	<div class="owl-carousel header-carousel position-relative">
 		<div class="owl-carousel-item position-relative">
+		<a href="../exhibition/exhibition_detail.do?geno=22">
 			<img class="img-fluid"
 				src="https://www.showala.com/data/banner/sz4ZpjfPra" alt="">
+				</a>
 		</div>
 		<div class="owl-carousel-item position-relative">
+				<a href="../exhibition/exhibition_detail.do?geno=57">
 			<img class="img-fluid"
 				src="https://www.showala.com/data/banner/YGBqCTfZbJ" alt="">
+				</a>
 		</div>
 		<div class="owl-carousel-item position-relative">
+				<a href="../exhibition/exhibition_detail.do?geno=31">
 			<img class="img-fluid"
 				src="https://www.showala.com/data/banner/H6C1OQZwKa" alt="">
+				</a>
 		</div>
 		<div class="owl-carousel-item position-relative">
 			<img class="img-fluid"

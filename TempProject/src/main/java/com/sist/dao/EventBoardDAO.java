@@ -200,6 +200,51 @@ public class EventBoardDAO {
 		   return list;
 	   }
 	
+	public List<EventBoardVO> boardcategoryListData(int page,String ca)
+	{
+		List<EventBoardVO> list=new ArrayList<EventBoardVO>();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT gebno,name,subject,poster,TO_CHAR(regdate,'YYYY-MM-DD'),progress_status,event_date,hit,num "
+					+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit,rownum as num "
+					+"FROM (SELECT gebno,name,subject,poster,regdate,progress_status,event_date,hit "
+					+"FROM god_event_board_3 WHERE progress_status =? ORDER BY gebno ASC)) "
+					+"WHERE num BETWEEN ? AND ?";
+			ps=conn.prepareStatement(sql);
+			int rowSize=12;
+			int start=(rowSize*page)-(rowSize-1);
+			int end=rowSize*page;
+			ps.setString(1, ca);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				EventBoardVO vo=new EventBoardVO();
+				vo.setGebno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setPoster(rs.getString(4));
+				vo.setDbday(rs.getString(5));
+				vo.setProgress_status(rs.getString(6));
+				vo.setEvent_date(rs.getString(7));
+				vo.setHit(rs.getInt(8));
+				list.add(vo);
+			}
+			rs.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
+	
 
 	
 }

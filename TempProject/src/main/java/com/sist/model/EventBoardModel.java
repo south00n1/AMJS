@@ -72,6 +72,41 @@ import com.sist.vo.NoticeBoardVO;
 			  request.setAttribute("main_jsp", "../board/event_detail.jsp"); 
 			  return "../main/main.jsp";
 		  }
+		@RequestMapping("board/event_ca.do")
+		  public String eventboard_ca(HttpServletRequest request,HttpServletResponse response)
+		  {
+			try
+			   {
+				   // 한글 변환 
+				   request.setCharacterEncoding("UTF-8");
+			   }catch(Exception ex){}
+			   String ca=request.getParameter("ca");
+			   if(ca==null)
+				   ca="";
+			  String page=request.getParameter("page");
+			  if(page==null)
+				  page="1";
+			  int curpage=Integer.parseInt(page);
+			  EventBoardDAO dao=new EventBoardDAO();
+			  List<EventBoardVO> list=dao.boardcategoryListData(curpage,ca);
+			  int count=list.size();
+			  int totalpage=(int)(Math.ceil(count/12.0));
+			  final int BLOCK=10;
+			  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			  if(endPage>totalpage)
+				   endPage=totalpage;
+			  request.setAttribute("ca", ca);
+			  request.setAttribute("curpage", curpage);
+			  request.setAttribute("totalpage", totalpage);
+			  request.setAttribute("startPage", startPage);
+			  request.setAttribute("endPage", endPage);
+			  request.setAttribute("count", count);
+			  request.setAttribute("list", list);
+			  request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			return "../board/ca.jsp";
+		  }
+
 		
 	
 	}
