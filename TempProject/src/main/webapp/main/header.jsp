@@ -35,7 +35,7 @@ $(function(){
     
 	<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="../main/main.do" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <img src="../main/image/logo.jpg">
+        <img src="../main/image/main-logo.jpg">
             <!--  <h2 class="m-0 text-primary">Go Out Display</h2>-->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

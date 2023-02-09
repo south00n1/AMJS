@@ -18,21 +18,7 @@ $(function(){
 		    let dd = date.getDate();            // 일
 		})
 		
-	/*
-	// 카테고리별 목록 출력
-	   $('.exhibs').on("click",function(){
-		let ec=$(this).text()
-		$.ajax({
-			type:'post',
-			url:'../exhibition/exhibition_category.do',
-			data:{"ec":ec},
-			success:function(response){
-				
-			}
-		})
-	*/
-		
-		
+
 })
 </script>
 <style type="text/css">
@@ -83,6 +69,7 @@ li.active a:hover {
 .title{
 	text-align:left;
 	margin-top: 5%;
+	font-weight: bold;
 }
 
 .head_sch_wrap {
@@ -276,6 +263,10 @@ input {
     font-weight: normal;
     font-style: normal;
 }
+.category-btn{
+	width: 500px;
+	margin-top: 50px;
+}
 
 
 </style>
@@ -291,7 +282,7 @@ input {
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
     </form>
-    			<caption align="top">
+    			<div class="category-btn">
     	  			<h5>
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=1" class="btn btn-sm btn-primary exhibs">육아</a>
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=2" class="btn btn-sm btn-primary exhibs">스포츠</a>
@@ -301,7 +292,7 @@ input {
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=6" class="btn btn-sm btn-primary exhibs">기계</a>
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
     	  			</h5>
-    	  		</caption>
+    	  		</di>
     </div>
 	  </div>
 	  <div>	

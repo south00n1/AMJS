@@ -149,7 +149,7 @@ public class ExhibitionModel {
 			   vo.setStartday(st.nextToken().trim());
 			   vo.setEndday(st.nextToken().trim());
 		   }
-		   int count=dao.exhibitionRowCount();
+		   int count=list.size();
 		   int totalpage=(int)(Math.ceil(count/20.0));
 		   //int totalpage=dao.exhibitionAllTotalPage();
 		   

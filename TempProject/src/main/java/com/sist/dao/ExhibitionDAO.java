@@ -85,8 +85,7 @@ public class ExhibitionDAO {
 		    		 +"FROM (SELECT geno,poster,title,period,loc,rownum as num "
 				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period,loc "
 				     +"FROM god_exhibition_3 "
-				     + "WHERE area LIKE '%'||?||'%')) "
-				     +"WHERE num<=50";
+				     + "WHERE area LIKE '%'||?||'%'))";
 		    ps=conn.prepareStatement(sql);
 		    ps.setString(1, ec);
 	  	    ResultSet rs=ps.executeQuery();
