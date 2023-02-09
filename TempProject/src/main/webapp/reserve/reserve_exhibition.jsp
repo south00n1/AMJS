@@ -21,6 +21,9 @@ $(function(){
 		
 		//선택된 데이터 전송
 		let geno=$(this).attr("data-no")
+		location.href("../reserve/reserve_main.do?geno="+geno)
+		
+		/*
 		$.ajax({
 			type:'post',
 			url:'../reserve/reserve_main.do',
@@ -46,6 +49,7 @@ $(function(){
 				$('#select_pers').html("")
 			}
 		})
+		*/
 	})
 })
 </script>

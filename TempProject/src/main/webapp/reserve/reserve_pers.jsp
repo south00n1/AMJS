@@ -33,7 +33,6 @@ $(function(){
 		gpr=$('#gp').val()
 		$('#gprice').text(gpr+"원 * "+ginwon+"명")
 		
-		//선택된 데이터 입력
 		let inwon=Number(dinwon)+Number(ginwon)
 		let totalprice=Number(dinwon)*Number(dpr)+Number(ginwon)*Number(gpr)
 		$('#tp').html("<h5>"+"합계: "+totalprice+"원"+"</h5>")	

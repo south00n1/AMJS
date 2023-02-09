@@ -103,7 +103,7 @@ public class ReserveModel {
 	@RequestMapping("reserve/reserve_pers.do")
 	public String reserve_pers(HttpServletRequest request, HttpServletResponse response) {
 		int price[]= {15000, 18000, 20000};
-		int i=(int)Math.random()*3+1;
+		int i=(int)(Math.random()*3);
 		request.setAttribute("pr", price[i]);
 		return "../reserve/reserve_pers.jsp";
 	}

@@ -33,8 +33,44 @@ $(function(){
 	})
 }
 </script>
-    <style type="text/css">
-    * {
+<style type="text/css">
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+* {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
@@ -136,15 +172,11 @@ $(function(){
 	  	  </c:forEach>
 	  	</table>
 	  </div>
-	  	<table class="table" style="border-color: white">
-	  	  <tr>
-	  	  	<td class="text-center">
-	  	  		<a href="../service/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-	  	  		${curpage } page / ${totalpage } pages
-	  	  		<a href="../service/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
-	  	  	</td>
-	  	  </tr>
-	  	</table>
+	  		  <ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		        <c:forEach var="i" begin="${startpage }" end="${endpage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><a href="../service/list.do?page=${curpage }" class="qna_list_page page_a" data-page="${i }">${i }</a></li>          
+		        </c:forEach>    
+		      </ul>
 	</div>
 </body>
 </html>
