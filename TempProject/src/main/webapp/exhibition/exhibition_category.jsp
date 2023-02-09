@@ -279,17 +279,19 @@ input {
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
     </form>
-    			<caption align="top">
+
+    			<div class="category-btn">
     	  			<h5>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">육아</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">스포츠</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">인테리어</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">예술</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">전기</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">기계</span>
-	    	  		  	<span class="btn btn-sm btn-primary exhibs">농축산</span>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=1" class="btn btn-sm btn-primary exhibs">육아</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=2" class="btn btn-sm btn-primary exhibs">스포츠</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=3" class="btn btn-sm btn-primary exhibs">인테리어</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=4" class="btn btn-sm btn-primary exhibs">예술</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=5" class="btn btn-sm btn-primary exhibs">전기</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=6" class="btn btn-sm btn-primary exhibs">기계</a>
+	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
     	  			</h5>
-    	  		</caption>
+    	  		</div>
+
     </div>
 	  </div>
 	  <div>	

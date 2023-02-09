@@ -300,7 +300,7 @@ input {
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=6" class="btn btn-sm btn-primary exhibs">기계</a>
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
     	  			</h5>
-    	  		</di>
+    	  		</div>
    </div>
     </div>
 	  </div>
@@ -351,40 +351,6 @@ input {
 		</c:forEach>
 	</div>
   </div>
-
-
-
-      
-      <!--  
-      <div class="container">
-   <div class="row g-4 justify-content-center"> 
-	<section>
-     <h2 class="sectiontitle">전체 전시</h2>
-     <h6 class="sectiontitle-1">총 <span class="sectionnumber"><fmt:formatNumber value="${count }" type="number"/></span>개의 전시가 있습니다</h6>
-      <div class="nospace clear">
-       <c:forEach var="vo" items="${list }" varStatus="s">
-        <div class="one_quarter ${s.index%4==0?'first':''}">
-          <div class="course-item bg-white">
-							<div>
-								<img class="img-fluid" src="${vo.poster }" alt=""
-									style="height: 380px">
-							</div>
-							<div class="text-center py-3 px-2" style="width: 270px">
-								<h6 class="mb-0">${vo.title }</h6>
-								<div class="mt-2">
-									<small>${vo.period }</small><br> <span class="mt-0" style="font-size: 0.6rem;">${vo.loc }</span>
-								</div>
-							</div>
-						</div>
-        </div>
-       </c:forEach>      
-      </div>
-      
-     
-      
-     </section>
-    </div>
-    -->
 </div>
 <div class="bottom">
 
@@ -415,5 +381,20 @@ input {
           <li><a href="../exhibition/exhibition_all.do?page=${endPage+1 }">&gt;</a></li>
         </c:if>
     </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>

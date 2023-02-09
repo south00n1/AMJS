@@ -83,12 +83,12 @@ public class ExhibitionDAO {
 		    conn=CreateConnection.getConnection();
 		    String sql="SELECT geno,poster,title,period,loc,num "
 		    		 +"FROM (SELECT geno,poster,title,period,loc,rownum as num "
-				     +"FROM (SELECT /*+ INDEX_ASC(god_exhibition_3 ge_geno_pk)*/ geno,poster,title,period,loc "
+				     +"FROM (SELECT geno,poster,title,period,loc "
 				     +"FROM god_exhibition_3 "
-				     +"WHERE area LIKE '%'||?||'%')) "
+				     +"WHERE area LIKE '%'||?||'%' ORDER BY geno ASC)) "
 				     +"WHERE num BETWEEN ? AND ?";
 		    ps=conn.prepareStatement(sql);
-		    int rowSize=50;
+		    int rowSize=20;
 			int start=(rowSize*page)-(rowSize-1);
 			int end=rowSize*page;
 		    ps.setString(1, ec);
@@ -241,13 +241,13 @@ public class ExhibitionDAO {
 	   {
 		   conn=CreateConnection.getConnection();
 		   String sql="SELECT geno,title,poster,loc,period,item,num "
-				   +"FROM (SELECT /*+ INDEX_DESC(god_exhibition_3 ge_geno_pk_3)*/geno,title,poster,loc,period,item,rownum as num "
+				   +"FROM (SELECT geno,title,poster,loc,period,item,rownum as num "
 				   +"FROM (SELECT geno,title,poster,loc,period,item "
 				   +"FROM god_exhibition_3 "
-				   +"WHERE item LIKE '%'||?||'%')) "
+				   +"WHERE item LIKE '%'||?||'%' ORDER BY geno ASC)) "
 				   +"WHERE num BETWEEN ? AND ?";
 		   ps=conn.prepareStatement(sql);
-		   int rowSize=50;
+		   int rowSize=20;
 		   int start=(rowSize*page)-(rowSize-1);
 		   int end=rowSize*page;
 		   ps.setString(1, tt);
