@@ -25,7 +25,9 @@
 	margin: 0;
 	padding: 0;
 }
-
+.mb-5{
+	font-weight: bold;
+}
 /* 서치바 */
 button {
 	line-height: 1.5em;

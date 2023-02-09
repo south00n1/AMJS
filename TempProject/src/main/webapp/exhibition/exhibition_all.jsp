@@ -264,8 +264,15 @@ input {
     font-style: normal;
 }
 .category-btn{
-	width: 500px;
+	width: 450px;
 	margin-top: 50px;
+}
+
+.input-sm{
+	border-color: #27375C;
+	border-radius: 1.25rem;
+	height: 35px;
+	padding: 10px;
 }
 
 
@@ -293,6 +300,7 @@ input {
 	    	  		  	<a href="../exhibition/exhibition_category.do?eno=7" class="btn btn-sm btn-primary exhibs">농축산</a>
     	  			</h5>
     	  		</di>
+   </div>
     </div>
 	  </div>
 	  <div>	
@@ -306,7 +314,6 @@ input {
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
     </form>
-    </div>
         -->
 		<h6 class="sectiontitle-1">총 <span class="sectionnumber"><fmt:formatNumber value="${count }" type="number"/></span>개의 전시가 있습니다</h6>
 	  </div>
