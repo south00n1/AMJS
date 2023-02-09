@@ -97,7 +97,7 @@ $(function(){
 <!-- faq 검색바, 인기검색어 -->
     <div style="height: 20px"></div>
 	<div>
-		<h5 style="color: white">GOD 고객센터입니다. 무엇이든 검색해보세요.</h5>
+		<h5 style="color: white">ㅇㅁㅈㅅ 고객센터입니다. 무엇이든 검색해보세요.</h5>
     	<div style="height: 10px"></div>
 		  <form method=post action="../service/faq_list.do" id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
@@ -142,7 +142,7 @@ $(function(){
 	  	  <c:forEach var="vo" items="${list }" varStatus="s">
 	  	    <c:if test="${vo.id==sessionScope.id || vo.id=='admin' }">
 		  	  <tr>
-		  	  	<td width=5% class="text-center">${count-s.index }</td>
+		  	  	<td width=5% class="text-center">${count-s.index-(curpage-1)*10 }</td>
 		  	  	<td width=15% class="text-center">${vo.type }</td>
 		  	  	<td width=35%>
 		  	  	  <c:if test="${vo.group_tab>0 }">
