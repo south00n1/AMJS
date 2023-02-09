@@ -188,13 +188,13 @@ input[type=button]:hover {
 		<div class="pic_detail_menu">
 			<c:if test="${sessionScope.id!=null }">
 				<c:if test="${jjim_count == 0 }">
-					<a href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;">찜하기</a>
+					<a href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;"><i class="fa-regular fa-thumbs-up"></i></a>
 				</c:if>
 				<c:if test="${jjim_count != 0 }">
-					<span href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">찜하기</span>
+					<span href="../jjim/jjim_insert.do?gpno=${vo.gpno }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;"><i class="fa-regular fa-thumbs-up"></i></span>
 				</c:if>
 			</c:if>
-				<a href="../picture/list.do" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;">목록</a>
+				<a href="../picture/list.do" class="btn btn-xs" style="background-color: #27375C; color: #fff; border-radius: 5px;"><i class="fa-solid fa-list"></i></a>
 		</div>
 		</div>
 		
@@ -271,7 +271,7 @@ input[type=button]:hover {
 		  <h4>최근 본 그림</h4>
 	      <div class="inline" style="margin-top: 5px;">
 		      <c:forEach var="cvo" items="${cList }" varStatus="s">
-		      	<c:if test ="${s.index<9 }">
+		      	<c:if test ="${s.index<12 }">
 		      		<a href="../picture/before_detail.do?gpno=${cvo.gpno }"><img src="${cvo.image }" style="width:100px; height:100px"></a>
 		      	</c:if>
 		      </c:forEach>

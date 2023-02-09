@@ -93,6 +93,10 @@ $(function(){
 			}
 		})
 	})
+	$('.mypage_title').hover(function(){
+		$(this).css('cursor', 'pointer')
+	})
+	
 })
 
 
@@ -162,7 +166,7 @@ li.mypage_menu::before {
 </head>
 <body>
 	<ul class="mypage_ul">
-		<h2 class="mypage_title">MyPage</h2>
+		<a href="../mypage/mypage_main.do"><h2 class="mypage_title">MyPage</h2></a>
 		<div class="mypage_li_div">
 	  	    <li class="mypage_menu">내 활동</li>
 	  	    <span id ="mypost_list"><li class="mypage_menu_child">내가 쓴 게시글</li></span>

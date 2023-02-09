@@ -178,14 +178,15 @@ $(function(){
 <body>
 		<div class="col-11 mypage_home_title" style="display: flex; justify-content: space-between;">
 			<h4 class="mypage_home_subtitle">공지사항 목록</h4>
-			<div class="rst notice_insert" style="text-align:center; background-color: #27375C; width:80px; height: 30px; margin-right:35px;">공지등록</div>
+			<div class="rst notice_insert" style="text-align:center; background-color: #27375C; width:100px; height: 30px; margin-right:35px;">
+			<i class="fa-solid fa-pen fa-sm"></i>&nbsp;공지등록
+			</div>
 		</div>
 		<div class="col-11 mypage_home_content">
 			<table class="table" style="table-layout: fixed;">
 				<tr>
 					<th width="15%" class="text-center">분류</th>
-					<th width="35%" class="text-center">제목</th>
-					<th width="10%" class="text-center">이름</th>
+					<th width="45%" class="text-center">제목</th>
 					<th width="15%" class="text-center">작성일</th>
 					<th width="10%" class="text-center">조회수</th>
 					<th width="15%" class="text-center">수정/삭제</th>
@@ -193,13 +194,12 @@ $(function(){
 				<c:forEach var="vo" items="${list }">
 				<tr style="vertical-align: middle;">
 					<td width="10%" class="text-center origin">${vo.prefix }</td>
-					<td width="40%" class="text-center origin">${vo.subject }</td>
-					<td width="10%" class="text-center origin">${vo.name }</td>
+					<td width="45%" class="text-center origin">${vo.subject }</td>
 					<td width="15%" class="text-center origin">${today }</td>
 					<td width="10%" class="text-center origin">${vo.hit }</td>
 					<td width="15%" class="text-center origin">
 					<span class="rst notice_update" data-gnbno="${vo.gnbno }" style="background-color: green;">수정</span>
-					<span class="notice_delete" data-gnbno="${vo.gnbno }"><img src="../img/delete.png" style="width:25px; height: 25px"></a>
+					<span class="rst notice_delete" data-gnbno="${vo.gnbno }" style="background-color: red;">삭제</span>
 					</td>
 				</tr>
 				</c:forEach>

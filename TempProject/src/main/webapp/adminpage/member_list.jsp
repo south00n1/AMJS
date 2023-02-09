@@ -50,19 +50,35 @@ $(function(){
 		$(this).css('cursor', 'pointer')
 	})
 	$('.adminpage_member_delBtn').click(function(){
-		let id = $(this).attr('data-id')
-		$.ajax({
-			type:'post',
-			url:'../adminpage/member_delete_list.do',
-			data:{'id':id},
-			success:function(response) {
-				$('.mypage_home_div').html(response)
-			}
-		})
+		let result = confirm("회원탈퇴 시키시겠습니까?");
+        
+        if(result)
+        {
+			let id = $(this).attr('data-id')
+			$.ajax({
+				type:'post',
+				url:'../adminpage/member_delete_list.do',
+				data:{'id':id},
+				success:function(response) {
+					$('.mypage_home_div').html(response)
+				}
+			})
+        }
+        else
+        {
+            alert("취소됐습니다.")
+        }
 	})
-	
-	
 })
+/*
+let result = confirm("회원탈퇴 시키시겠습니까?");
+ 
+ if(result) {
+
+ } else {
+ 	alert("취소됐습니다.")
+ }
+ */
 </script>
 <style type="text/css">
 * {

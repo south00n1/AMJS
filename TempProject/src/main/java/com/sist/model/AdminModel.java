@@ -25,8 +25,37 @@ public class AdminModel {
 	private String[] prefix={"","서비스소식","서비스오픈","서비스종료","서비스점검","안내"};
 	@RequestMapping("adminpage/adminpage_main.do")
 	public String admin_main(HttpServletRequest request,HttpServletResponse response)
-	{
-		  request.setAttribute("admin_jsp", "../adminpage/admin_home.jsp");
+	{	  
+		
+			String page = request.getParameter("page");
+			if (page == null) {
+				page = "1";
+			}
+			int curpage = Integer.parseInt(page);
+			// dao연결
+			AdminDAO dao = new AdminDAO();
+			List<NoticeBoardVO> list = dao.adminNoticeBoardList(curpage);
+			int totalpage = dao.adminNoticeListTotalPage();
+			
+			final int BLOCK = 5;
+			int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+			int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+			if (endPage > totalpage)
+				 endPage = totalpage;
+			
+		   for(NoticeBoardVO vo:list)
+		   {
+			   vo.setPrefix("["+prefix[vo.getType()]+"]");
+		   }
+		   
+		  request.setAttribute("curpage", curpage);
+		  request.setAttribute("totalpage", totalpage);
+		  request.setAttribute("startPage", startPage);
+		  request.setAttribute("endPage", endPage);
+		  request.setAttribute("list", list);
+		  request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		  
+		  request.setAttribute("adminpage_jsp", "../adminpage/notice_list.jsp");
 		  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		  return "../main/main.jsp";
 	}
