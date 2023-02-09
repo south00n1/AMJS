@@ -121,7 +121,7 @@ public class ReviewBoardDAO {
 			ps.setInt(1, no);
 			ps.executeUpdate();
 			
-			sql="SELECT no,name,subject,display_name,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,count "
+			sql="SELECT no,name,subject,display_name,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit,count,id "
 					+"FROM god_review_board_3 "
 					+"WHERE no=?";
 			ps=conn.prepareStatement(sql);
@@ -136,6 +136,7 @@ public class ReviewBoardDAO {
 			vo.setDbday(rs.getString(6));
 			vo.setHit(rs.getInt(7));
 			vo.setCount(rs.getInt(8));
+			vo.setId(rs.getString(9));
 			rs.close();
 		}
 		catch(Exception ex)

@@ -116,7 +116,7 @@ $(function(){
 		else
 		{
 			$('#r'+no).hide();
-			$(this).text("댓글")
+			$(this).text("답글쓰기")
 			r=0;
 		}
 	})
@@ -176,15 +176,17 @@ function like_func(){
   <div style="height: 5px"></div>
   <table class="table board">
    <tr>
-	<td width=95% class="text-left" colspan="3" style="	font-size:20px;font-weight: 400;">${vo.subject }</td>
+	<td width=95% class="text-left" colspan="3"><span style="font-size:13px;font-weight: 400;color: orange;">${vo.display_name }</span><br><span style="font-size:26px;font-weight: 400;">${vo.subject }</span></td>
    </tr>
    <tr>
      <th width=5% class="text-center"><img src="../board/image/profile.png" style="height: 40px; width: 40px;"></th>
-     <td width=75% class="text-left">${vo.name }<br>${vo.dbday } &nbsp; 조회 ${vo.hit }</td>
-     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(${count}) &nbsp;<i class="fa-regular fa-heart fa-lg"></i>공감(${like_total })</th>
+     <td width=75% class="text-left">${vo.name }<br><span style="font-size:12px;font-weight: 400;">${vo.dbday } &nbsp; 조회 ${vo.hit }</span></td>
+     <th width=20% class="text-right" valign="middle"><i class="fa-regular fa-comment-dots fa-lg"></i>&nbsp; 댓글(${count}) &nbsp;<img src="../board/image/heart.png" style="width: 30px;height: 30px;">&nbsp;공감(${like_total })</th>
    </tr>
    <tr>
-<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }</pre></td>
+
+<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;padding-top: 30px;padding-bottom: 30px;">${vo.content }</pre></td>
+	
    </tr>
    
    
@@ -198,9 +200,12 @@ function like_func(){
          <c:if test="${like_count!=0 }">
             <span href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">공감(${like_total })</span>
          </c:if>
-     
-       <a href="../board/review_update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
-       <span class="btn btn-xs btn-warning" id="delete">삭제</span>
+     	<div style="float: right;">
+     	<c:if test="${sessionScope.id==vo.id }">
+       <a href="../board/review_update.do?no=${vo.no }" class="btn btn-xs" style="font-family: GmarketSansMedium;">수정</a>
+       <span class="btn btn-xs" id="delete" style="font-family: GmarketSansMedium;">삭제</span>
+</c:if>
+       </div>
      </td>
    </tr>
    </c:if>
@@ -210,7 +215,7 @@ function like_func(){
     <td colspan="4" class="text-right">
     <form id="del_frm" class="inline">
     비밀번호:<input type=password class="input-sm" size=15 id="del_pwd">
-    <input type=button value="삭제" class="btn btn-sm btn-primary" id="del_btn">	
+    <input type=button value="삭제" class="btn btn-sm btn-primary" id="del_btn" style="font-family: GmarketSansMedium">	
     </form>
     </td>
    </tr>
@@ -230,27 +235,27 @@ function like_func(){
         <c:forEach var="rvo" items="${list }">
           <table class="table">
             <tr>
-              <td class="text-left">
+              <td class="text-left" style="border-style: none;">
                 <c:if test="${rvo.group_tab>0 }">
                   <c:forEach var="i" begin="1" end="${rvo.group_tab }">
                     &nbsp;&nbsp;
                   </c:forEach>
-                  <img src="image/re_icon.png">
+                  <i class="fa-regular fa-arrow-turn-down-right"></i>
                 </c:if>
-              ◑<span style="color:orange">${rvo.name }</span>&nbsp;(${rvo.dbday })</td>
-              <td class="text-right">
+              <img src="../board/image/pro.png" style="width: 50px;height: 50px;"><span style="color:orange;font-size:13px;font-weight: 400;;">${rvo.name }</span>&nbsp;<span style="font-size:12px;font-weight: 400;">(${rvo.dbday })</span></td>
+              <td class="text-right"style="border-style: none;" valign="bottom">
                 <c:if test="${sessionScope.id!=null }">
                  <c:if test="${sessionScope.id==rvo.id }">
-                  <span class="btn btn-xs btn-success ups" data-no="${rvo.rno }">수정</span>
-                  <a href="../board/reply_delete.do?rno=${rvo.rno }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
+                  <span class="btn btn-xs ups" data-no="${rvo.rno }">수정</span>
+                  <a href="../board/reply_delete.do?rno=${rvo.rno }&bno=${vo.no}" class="btn btn-xs" style="font-family: GmarketSansMedium;">삭제</a>
                  </c:if>
-                 <span class="btn btn-xs btn-warning replys" data-no="${rvo.rno }">댓글</span>
+                 <span class="btn btn-xs replys" style="font-family: GmarketSansMedium;vertical-align: bottom;" data-no="${rvo.rno }">답글쓰기</span>
                 </c:if>
               </td>
             </tr>
             <tr>
               <td colspan="2">
-                <pre style="white-space: pre-wrap;background-color: white;border: none">${rvo.msg }</pre> 
+                <pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${rvo.msg }</pre> 
               </td>
             </tr>
             <%-- 대댓글 --%>
@@ -259,8 +264,8 @@ function like_func(){
                <form method="post" action="../board/reply_reply_insert.do">
 		         <input type=hidden name="bno" value="${vo.no }">
 		         <input type=hidden name="pno" value="${rvo.rno }">
-		         <textarea rows="3" cols="90" name="msg" style="float: left"></textarea>&nbsp;
-		         <input type=submit value="댓글" class="btn btn-sm btn-danger" style="height: 65px">
+		         <textarea rows="3" cols="90" name="msg" placeholder="댓글을 남겨보세요." style="float: left"></textarea>&nbsp;
+		            <input type=submit value="등록" class="btn btn-sm" style="height: 65px;font-family: GmarketSansMediumfont-size:13px;font-weight: 400;background-color: orange;color: white;">
 		        </form>
              </td>
             </tr>
@@ -272,7 +277,7 @@ function like_func(){
 		         <input type=hidden name="bno" value="${vo.no }">
 		         <input type=hidden name="rno" value="${rvo.rno }">
 		         <textarea rows="3" cols="90" name="msg" style="float: left">${rvo.msg}</textarea>&nbsp;
-		         <input type=submit value="수정" class="btn btn-sm btn-danger" style="height: 65px">
+		         <input type=submit value="수정" class="btn btn-sm btn-danger" style="height: 65px;font-family: GmarketSansMedium;">
 		        </form>
              </td>
             </tr>
@@ -288,8 +293,8 @@ function like_func(){
        <td>
         <form method="post" action="../board/reply_insert.do">
          <input type=hidden name="bno" value="${vo.no }">
-         <textarea rows="3" cols="90" name="msg" style="float: left"></textarea>&nbsp;
-         <input type=submit value="댓글쓰기" class="btn btn-sm btn-danger" style="height: 65px">
+         <textarea rows="3" cols="90" name="msg" placeholder="댓글을 남겨보세요." style="float: left;"></textarea>&nbsp;
+         <input type=submit value="등록" class="btn btn-sm" style="height: 65px;font-family: GmarketSansMediumfont-size:13px;font-weight: 400;background-color: orange;color: white;">
         </form>
        </td>
      </tr>

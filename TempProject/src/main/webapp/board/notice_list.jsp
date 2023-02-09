@@ -47,6 +47,77 @@
     font-weight: normal;
     font-style: normal;
 }
+.mypage_home_title {
+	margin: 0px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #E2E2E2;
+}
+.mypage_home_content {
+	margin: 0px;
+}
+.mypage_home_subtitle {
+	color: #27375C;
+}
+.rst {
+	width:70px;
+	hiegh:30px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	padding: 5px 7px;;
+}
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+.origin > a {
+	color: #52665B;
+}
+.origin > a:hover {
+	color: #27375C;
+}
+.origin:hover {
+	color: #27375C;
+}
+
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+}
+
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #dcdce0;
+    border-radius: 5px 5px 5px 5px;
+    color: #69696E;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.page_a:hover {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #27375C;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
     </style>
 </head>
 <body>
@@ -56,10 +127,10 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">공지사항</h1>
+                    <h1 class="display-3 text-white animated slideInDown" style="font-family: GmarketSansMedium">공지사항</h1>
                     
 	<div>
-		<h5 style="color: white">GOD 공지사항입니다. 서비스와 관련된 모든 공지사항을 전달해드립니다.</h5>
+		<h5 style="color: white;font-family: GmarketSansMedium">서비스와 관련된 모든 공지사항을 전달해드립니다.</h5>
     	<div style="height: 10px"></div>
 		  <form method=post action="../board/notice_list.do" id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
@@ -129,6 +200,19 @@
   </table>
   </div>
   
+<ul id="page_ul" style="padding-left: 0px; padding-right: 90px">
+		    	<c:if test="${startPage>1 }">
+		          <li class="page_li"><span class="admin_notice_page_pre page_a" data-page="${startPage-1 }" style="font-size: 10px; width: 20px">◀</span></li>
+		        </c:if>
+		        <c:forEach var="i" begin="${startPage }" end="${endPage }">
+		          <li class="page_li" ${i==curpage?"class=active":"" }><span class="admin_notice_page page_a" data-page="${i }">${i }</span></li>          
+		        </c:forEach>    
+		        <c:if test="${endPage<totalpage }">
+		          <li class="page_li"><span class="admin_notice_page_next page_a" data-page="${endPage+1 }" style="font-size: 10px; width: 20px">▶</span></li>
+		        </c:if>
+		    </ul>
+
+
 
   
         <!-- pagination start -->

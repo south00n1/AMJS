@@ -55,10 +55,10 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">후기게시판</h1>
+                    <h1 class="display-3 text-white animated slideInDown"style="font-family: GmarketSansMedium">고객 관람후기</h1>
                     
 	<div>
-		<h5 style="color: white">GOD 후기게시판입니다. 다양한 전시후기를 둘러보세요.</h5>
+		<h5 style="color: white;font-family: GmarketSansMedium">실제 고객의 관람 후기를 만나보세요.</h5>
     	<div style="height: 10px"></div>
 		  <form method=post action="../board/review_list.do" id=ss_frm>
 			<input type=text id="search" name=ss value="${ss }" size=30 placeholder="검색어를 입력하세요" style="border-radius: 20px;border: none"/>
@@ -81,7 +81,10 @@
 
   <div style="height: 10px;"></div>
    <h6><span style="color:#2737C;font-size: 16px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
-  <div style="height: 5px"></div>
+              <c:if test="${sessionScope.id!=null }">
+          <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
+  		   </c:if>
+  <div style="height: 30px"></div>
   <hr>
   <div style="height: auto;">
 

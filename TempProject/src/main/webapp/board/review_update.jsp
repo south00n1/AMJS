@@ -111,10 +111,15 @@ $(function(){
 <!-- 게시판 글 작성 start -->
 <div class="wrapper row3">
   <main class="container clear">
-  <h2 class="sectiontitle">글 수정</h2>
+  <h2 class="sectiontitle" style="float: left;">글 수정하기</h2>
   <div style="height: 5px"></div>
   <form id="update_frm">
   <table class="table">
+  <tr>
+        <td colspan="2" class="text-center">
+        <input type=submit value="등록" class="btn btn-sm" id="updateBtn" style="background-color: #27375C; color: #fff; border-radius: 5px;opacity:0.6;float: right;">
+      </td>
+  </tr>
     <tr>
       <th width=15% class="text-right">이름</th>
       <td width=80%>
@@ -137,7 +142,7 @@ $(function(){
     <tr>
       <th width=15% class="text-right">내용</th>
       <td width=80%>
-        <textarea rows="10" cols="60" name="content" id="content">${vo.content }</textarea>
+        <textarea rows="20" cols="90" name="content" id="content">${vo.content }</textarea>
       </td>
     </tr>
     <tr>
@@ -148,8 +153,8 @@ $(function(){
     </tr>
     <tr>
       <td colspan="2" class="text-center">
-        <input type=submit value="수정" class="btn btn-sm btn-danger" id="updateBtn">
-        <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
+        <input type=submit value="등록" class="btn btn-sm" id="updateBtn" style="background-color: #27375C; color: #fff; border-radius: 5px;opacity:0.6;">
+        <input type=button value="취소" class="btn btn-sm" style="background-color: #dc143c; color: #fff; border-radius: 5px;opacity:0.6;" onclick="javascript:history.back()">
       </td>
     </tr>
   </table>

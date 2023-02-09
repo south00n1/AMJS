@@ -152,7 +152,7 @@ Shadowbox.init({
 <body>
 
 	<div class="main-form">
-		<h1>GOD</h1>
+		<img src="../member/image/logo.png" style="margin-right: 40px;">
 		<input type="text" placeholder="Username" id="log_id"> <input
 			type="password" placeholder="Password" id="log_pwd"> <input
 			class="inp-cbx" id="cbx" type="checkbox" style="display: none" /> <label
