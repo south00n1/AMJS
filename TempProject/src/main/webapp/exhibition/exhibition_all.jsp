@@ -68,7 +68,8 @@ li.active a:hover {
 /* 새로 수정 css */
 .title{
 	text-align:left;
-	margin-top: 5%;
+	margin-top: 10%;
+	margin-bottom: 5%;
 	font-weight: bold;
 }
 
@@ -283,8 +284,8 @@ input {
   <div class="container">
 	<div class="text-center">
 	  <div>
-		<h2 class="title">전체 전시</h2>
-		<div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: left; margin-top: 30px;">
+		<h2 class="title" style="text-align: center">전체 전시</h2>
+		<div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: left; margin-top: 50px;">
 	<form method=post action="../exhibition/exhibition_find.do" class="inline">
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
              <input type=submit value="검색">
