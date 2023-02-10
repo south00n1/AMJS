@@ -75,12 +75,14 @@
 <script type="text/javascript">
 let f=0
 $(function(){
+	/*
 	//퀵메뉴
 	var currentPosition = parseInt($(".quick").css("top"));  
 	$(window).scroll(function() {  
 	    var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
 	    $(".quick").stop().animate({"top":position+currentPosition+"px"},500);  
 	});
+	*/
 	
 	//검색바
 	$('#search').click(function(){
@@ -176,7 +178,8 @@ $(function(){
         </div>
     </div>
     <!-- ### -->
-    
+
+<%--
 <!-- 퀵메뉴 -->
 	<div class=quick>
 	  <b>최근 본 전시</b>
@@ -190,6 +193,7 @@ $(function(){
 	  <a href="../reserve/reserve_main.do">전시예매</a>
 	</div>
 <!-- 퀵메뉴끝 -->
+ --%>
 	
 	<div class="container" style="width: 100%;font-size: 14px">
 <!-- faq 빠른 찾기  -->
