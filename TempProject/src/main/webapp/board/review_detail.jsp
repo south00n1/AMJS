@@ -182,10 +182,10 @@ textarea {
      <td class="text-right" colspan="4">
      
            <c:if test="${like_count==0 }">
-            <a href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: #F55066; color: #fff; border-radius: 5px;">공감(${like_total })</a>
+            <a href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: #F55066; color: #fff; border-radius: 5px;">공감  ${like_total }</a>
          </c:if>
          <c:if test="${like_count!=0 }">
-            <span href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">공감(${like_total })</span>
+            <span href="../board/like_insert.do?no=${vo.no }" class="btn btn-xs" style="background-color: gray; color: #fff; border-radius: 5px;">공감완료  ${like_total }</span>
          </c:if>
      	<div style="float: right;">
      	<c:if test="${sessionScope.id==vo.id }">
@@ -233,14 +233,15 @@ textarea {
                 </c:if>
               <span style="color:orange;font-size:13px;font-weight: 400;;">${rvo.name }</span>&nbsp;<br><span style="font-size:12px;font-weight: 400;">(${rvo.dbday })</span>
               <span class="btn btn-xs replys" style="font-family: GmarketSansMedium;vertical-align: bottom;font-size: 13px;padding: 0" data-no="${rvo.rno }">답글쓰기</span>
-              </td>
-              <td class="text-right"style="border-style: none;" valign="bottom">
-                <c:if test="${sessionScope.id!=null }">
+                              <c:if test="${sessionScope.id!=null }">
                  <c:if test="${sessionScope.id==rvo.id }">
-                  <span class="btn btn-xs ups" data-no="${rvo.rno }">수정</span>
-                  <a href="../board/reply_delete.do?rno=${rvo.rno }&bno=${vo.no}" class="btn btn-xs" style="font-family: GmarketSansMedium;">삭제</a>
+                  <span class="btn btn-xs ups" style="vertical-align: bottom;font-size: 13px;font-family: GmarketSansMedium;padding: 0" data-no="${rvo.rno }">수정</span>
+                  <a href="../board/reply_delete.do?rno=${rvo.rno }&bno=${vo.no}" class="btn btn-xs" style="font-family: GmarketSansMedium;vertical-align: bottom;font-size: 13px;padding: 0;">삭제</a>
                  </c:if>
                 </c:if>
+              </td>
+              <td class="text-right"style="border-style: none;" valign="bottom">
+
               </td>
             </tr>
             <tr>

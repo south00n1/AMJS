@@ -49,14 +49,14 @@
     <tr>
       <th width=10% class="text-center">${vo.gebno }</th>
       <th width=75% class="text-center" style="	font-size:20px;font-weight: 400;" colspan="2">${vo.subject }</th>
-      <th width=15% class="text-center">기간<br>${vo.event_date }</th>
+      <th width=15% class="text-center">기간 : ${vo.event_date }</th>
     </tr>
        <tr>
       <td class="text-center" valign="top" colspan="4" height="auto">
 		<div style="height: 30px;"></div>
       <img src="${vo.content_poster }">
       <div style="height: 20px;"></div>
-      <pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }
+      <pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;padding-top: 30px;padding-bottom: 30px;;">${vo.content }
       </pre>
       </td>      
       </tr>
@@ -64,7 +64,7 @@
   <div style="height: 30px;"></div>
   	<div class="btn_customer">
 	<span class="btn btn-lg btn_list"><a href="../board/event_list.do" class="btlcu">목록</a></span>
-	<span class="btn btn-lg btn_list" style="background-color: gray;font: white;"><a href="../board/review_list.do" class="btlcu">응모하기</a></span>
+	<span class="btn btn-lg btn_list" style="background-color: orange;color: white;"><a href="../board/review_list.do" class="btlcu" style="">응모하기</a></span>
 	</div>
 
 

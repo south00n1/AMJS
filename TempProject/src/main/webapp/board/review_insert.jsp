@@ -39,8 +39,8 @@ textarea {
   <table class="table">
     <tr>
       <th width=15% class="text-right">작성자</th>
-      <td width=20%>
-      	${sessionScope.id }
+      <td width=20% colspan="4">
+      	${sessionScope.name }
         <%--<input type=text name=name size=40 placeholder="이름 입력" class="input-sm"> --%>
         <input type=hidden name=name size=45 value="${sessionScope.name }" required>
         <input type=hidden name=id size=45 value="${sessionScope.id }" required>
@@ -49,7 +49,7 @@ textarea {
     </tr>
     <tr>
       <th width=15% class="text-left">전시명</th>
-      <td width=50%>
+      <td width=50% colspan="4">
       <input type=text name=display_name size=40 placeholder="전시명 입력" class="input-sm">
       </td>
     </tr>
@@ -69,18 +69,23 @@ textarea {
       </td>
     </tr>
     <tr>
+		 <th width=15%>이벤트와<br> 외부공유 여부</th>
+		 <td width=85%>
+		<input type=checkbox style="margin-top: 15px;">관람후기 이벤트 참여&nbsp;&nbsp;
+		<input type=checkbox>외부공유 허용
+	</td>
+	</tr>
+    <tr>
       <th width=15% class="text-right">비밀번호</th>
       <td width=80% colspan="3">
         <input type=password name=pwd size=40 placeholder="비밀번호를 입력하세요." class="input-sm">
       </td>
     </tr>
-    <tr>
-      <td colspan="4" class="text-center">
-        <input type=submit value="글쓰기" class="btn btn-sm btn-danger">
-        <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
-      </td>
-    </tr>
   </table>
+  <div style="text-align: center;">
+          <input type=submit value="글쓰기" class="btn btn-sm" style="font-family: GmarketSansMedium;border: 1px solid #ccc;background:#fff; ">
+        <input type=button value="취소" class="btn btn-sm btn-danger" onclick="javascript:history.back()">
+  </div>
   </form>
   </div>
   </main>

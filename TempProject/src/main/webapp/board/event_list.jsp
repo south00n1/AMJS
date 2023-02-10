@@ -23,6 +23,9 @@
     		})
     	})
     })
+    
+
+
     </script>
     
     
@@ -211,6 +214,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 	border-radius: 5px 5px 5px 5px;
 	z-index: 2;
 }
+
     </style>
 </head>
 <body>
@@ -310,9 +314,9 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 <div style="height: 50px;"></div>
 <div class="text-center" style="text-align: center; font-size: 26px;">이벤트</div>
 <div style="height: 10px;"></div>
-<div class="text-center event-division" style="text-align: center; margin-left: 45px;">
-		    <span class="cate" style="margin-right: 40px; font-size: 16px;"><a href="../board/event_list.do" class="on">전체보기</a></span>&nbsp;&nbsp; | &nbsp;&nbsp;
-		    <span class="cate" style="font-size: 16px;" data-name="진행중">진행중인 이벤트</span>&nbsp;&nbsp; | &nbsp;&nbsp;
+<div class="text-center event-division" style="text-align: center; margin-left: 50px;">
+		    <span class="cate" style="margin-right: 40px; font-size: 16px;"><a href="../board/event_list.do" class="on">전체보기</a></span>
+		    <span class="cate" style="font-size: 16px;" data-name="진행중">진행중인 이벤트</span>
 		    <span class="cate" style="margin-left: 40px; font-size: 16px;" data-name="종료">종료된 이벤트</span>
 	    </div>
 <!-- 게시판 start -->
@@ -379,7 +383,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 					<tr>
 						<td><input type="text" class="form-control"
 							placeholder="검색어 입력" name="ss" value="${ss }" maxlength="100"></td>
-						<td><button type="submit" class="btn btn-success">검색</button></td>
+						<td><button type="submit" class="btn btn-success" style="background-color: #27375c;border-radius: 10px;">검색</button></td>
 					</tr>
 
 				</table>

@@ -47,7 +47,7 @@
       <th width=15% class="text-center">${vo.dbday }</th>
     </tr>
       <tr>
-<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;">${vo.content }</pre></td>
+<td class="text-left" valign="top" colspan="4" height="300"><pre style="white-space: pre-wrap;background-color: white;border: none;font-size: 15px;padding-top: 30px;padding-bottom: 30px;">${vo.content }</pre></td>
       </tr>
 
 

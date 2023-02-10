@@ -119,7 +119,7 @@
   <div style="height: 10px;"></div>
    <h6><span style="color:#2737C;font-size: 16px"><fmt:formatNumber value="${count }" type="number"/></span>개의 글</h6>
               <c:if test="${sessionScope.id!=null }">
-          <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
+          <span style="float: right;border: 1px solid #ccc;background:#fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
   		   </c:if>
   <div style="height: 30px"></div>
   <hr>
@@ -127,7 +127,7 @@
 
   <table class="table">
     <tr>
-      <th width=10% class="text-center">no</th>
+      <th width=10% class="text-center">NO.</th>
       <th width=45% class="text-center">제목</th>
       <th width=15% class="text-center">전시명</th>
       <th width=10% class="text-center">작성자</th>
@@ -138,7 +138,7 @@
       <tr>
         <td width="10%" height="50px" style="vertical-align: middle;font-size: 11px;" class="text-center">${vo.no}</td><%-- vo.getNo() = {} getXxx() --%>
         <td class="underline" width="45%" height="50px" style="vertical-align: middle;font-size: 13px;" >
-         <a href="../board/review_detail.do?no=${vo.no }" style="color: black;">${vo.subject}</a> &nbsp;
+         <a href="../board/review_detail.do?no=${vo.no }" style="color: black;">${vo.subject} ${rcount }</a> &nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../board/image/new.gif"></sup>
          </c:if>
@@ -156,7 +156,7 @@
           <span style="float: right;border: 1px solid #ccc;background: background: #fff; margin-right: 20px;"><a href="../board/review_insert.do" class="btn btn-sm writerbtn"><i class="fa-solid fa-pen fa-lg"></i>&nbsp;글쓰기</a></span>
   		   </c:if>
   		   
-  		   		<div style="margin-left: 70px;">
+  		   		<div style="margin-left: 10px;">
   		     			<ul id="page_ul" >
 		    	<c:if test="${startPage>1 }">
 		          <li class="page_li"><a href="../board/review_list.do?page=${startPage-1 }" class="page_a${i==curpage?" li_active":"" }""" style="font-size: 10px; width: 20px">◀</a></li>
@@ -181,7 +181,7 @@
                <tr>
                   <td><input type="text" class="form-control"
                      placeholder="검색어 입력" name="ss" value="${ss }" maxlength="100"></td>
-                  <td><button type="submit" class="btn btn-success">검색</button></td>
+                  <td><button type="submit" class="btn btn-success" style="background-color: #27375c;border-radius: 10px;">검색</button></td>
                </tr>
 
             </table>

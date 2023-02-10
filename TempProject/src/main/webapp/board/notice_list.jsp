@@ -220,7 +220,7 @@
 			 <tr>
 			  <td><input type="text" id="search" value="${ss }"
 					placeholder="검색어 입력" name="ss" maxlength="100"></td>
-			  <td><button type="submit" class="btn btn-success">검색</button></td>
+			  <td><button type="submit" class="btn btn-success" style="background-color: #27375c;border-radius: 10px;">검색</button></td>
 			 </tr>
 			</table>
 		 </form>
