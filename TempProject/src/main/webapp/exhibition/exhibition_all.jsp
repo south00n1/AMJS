@@ -323,7 +323,7 @@ input {
 				<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 					<div class="course-item bg-white">
 						<div class="position-relative overflow-hidden">
-							 <a href="../exhibition/exhibition_detail.do?geno=${vo.geno }"><img class="img-fluid" src="${vo.poster }" title="${vo.title }" style="height: 380px"></a>
+							 <a href="../exhibition/exhibition_before_detail.do?geno=${vo.geno }"><img class="img-fluid" src="${vo.poster }" title="${vo.title }" style="height: 380px"></a>
 						</div>
 							<div class="text-center py-3 px-2">
 							  <div class="ex_tit">
@@ -381,20 +381,6 @@ input {
           <li><a href="../exhibition/exhibition_all.do?page=${endPage+1 }">&gt;</a></li>
         </c:if>
     </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
 </body>
 </html>

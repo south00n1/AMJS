@@ -342,6 +342,17 @@ active not_comment not_support{
 				}
 				</script>
 		<!-- 지도 끝 -->
+		<div style="height: 80px"></div>
+		  <h4>최근 본 전시</h4>
+		  <hr>
+	      <div class="inline" style="margin-top: 5px;">
+		      <c:forEach var="cvo" items="${cList }" varStatus="s">
+		      	<c:if test ="${s.index<12 }">
+		      		<a href="../exhibition/exhibition_before_detail.do?geno=${cvo.geno }"><img src="${cvo.poster }" style="width:100px; height:150px"></a>
+		      	</c:if>
+		      </c:forEach>
+	      </div>
+	</div> <!-- pic_detail_container END -->
           </div>
          </div>
        </div>

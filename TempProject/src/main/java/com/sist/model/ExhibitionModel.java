@@ -236,48 +236,33 @@ public class ExhibitionModel {
 			request.setAttribute("like_count", mc);
 			request.setAttribute("like_total", tc);
 			
-	
+			Cookie[] cookies=request.getCookies();
+			List<ExhibitionVO> cList=new ArrayList<ExhibitionVO>();
+			if (cookies!=null) {
+				if(id == null) {
+					for(int i = cookies.length-1; i>=0; i--) {
+						if(cookies[i].getName().startsWith("guest_exhibition")) {
+							String geno2 = cookies[i].getValue();
+							ExhibitionVO vo2 = dao.ExhibitionDetailData(Integer.parseInt(geno2));
+							cList.add(vo2);
+						}
+					}
+				} else {
+					for(int i = cookies.length-1; i>=0; i--) {
+						if(cookies[i].getName().startsWith(id+"_exhibition")) {
+							String geno2 = cookies[i].getValue();
+							ExhibitionVO vo2 = dao.ExhibitionDetailData(Integer.parseInt(geno2));
+							cList.add(vo2);
+						}
+					}
+				}
+			}
+			request.setAttribute("cList", cList);
+			request.setAttribute("id", id);
+			request.setAttribute("vo", vo);
+			request.setAttribute("main_jsp", "../exhibition/exhibition_detail.jsp");
 			return "../main/main.jsp";
 		}
-	   
-   /*@RequestMapping("exhibition/exhibition_item_search.do")
-   public String exhibition_item(HttpServletRequest request,HttpServletResponse response)
-   {
-	   try
-	   {
-		   // 한글 변환
-		   request.setCharacterEncoding("UTF-8");
-	   }catch(Exception ex) {}
-	   String tt=request.getParameter("tt");
-	   if(tt==null)
-		   tt="";
-	   
-	   String page=request.getParameter("page");
-	   if(page==null)
-		   page="1";
-	   
-	   // 현재페이지 설정
-	   int curpage=Integer.parseInt(page);
-	   // DAO에서 해당 페이지의 데이터 읽기
-	   ExhibitionDAO dao=new ExhibitionDAO();
-	   ArrayList<ExhibitionVO> list=dao.exhibitionItemFindData(curpage,tt);
-	   return "../main/main.jsp";
-   }*/
-   
- /* @RequestMapping("exhibition/exhibition_category.do")
-  public String exhibition_category(HttpServletRequest request,HttpServletResponse response)
-  {
-			try {
-				request.setCharacterEncoding("UTF-8");
-			} catch(Exception ex) {}
-			String ec=request.getParameter("ec");
-			System.out.println(ec);
-			ExhibitionDAO dao=new ExhibitionDAO();
-			List<ExhibitionVO> list=dao.exhibitionCategoryListData(ec);
-			request.setAttribute("list", list);
-			return "../exhibition/exhibition_all.jsp";
-		}*/
-	  
   }
   	
 

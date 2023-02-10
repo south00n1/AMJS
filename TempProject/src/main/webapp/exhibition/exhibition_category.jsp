@@ -167,6 +167,10 @@ dd{
 	text-indent: -9999px;
 	margin-left: -4px;
 }
+.category-btn{
+	width: 450px;
+	margin-top: 50px;
+}
 
 /* 진행중 버튼 css */
 .date_status{
@@ -265,6 +269,13 @@ input {
     margin:0;
     font-size: 14px
 }
+.input-sm{
+	border-color: #27375C;
+	border-radius: 1.25rem;
+	height: 35px;
+	padding: 10px;
+}
+
 
 </style>
 </head>
@@ -273,7 +284,7 @@ input {
   <div class="container">
 	<div class="text-center">
 	  <div>
-		<h2 class="title">전체 전시</h2>
+		<h2 class="title">카테고리 별 전시</h2>
 		<div class="search-bar" style="margin: 0 auto; width: auto; height: 50px;position: relative;text-align: left; margin-top: 30px;">
 	<form method=post action="../exhibition/exhibition_all.do" class="inline">
              <input type=text name="tt" size=25 class="input-sm" value="${tt }">
